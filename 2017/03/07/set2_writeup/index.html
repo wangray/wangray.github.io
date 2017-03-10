@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>matasano crypto challenges, set 2 | Lifelong Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="cryptopals, matasano" />
+  
+  
+  <meta name="description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matasano Crypto Challenges, Set 2">
+<meta property="og:url" content="http://wangray.github.io/2017/03/07/set2_writeup/index.html">
+<meta property="og:site_name" content="Lifelong Learning">
+<meta property="og:description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png">
+<meta property="og:updated_time" content="2017-03-10T11:04:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Matasano Crypto Challenges, Set 2">
+<meta name="twitter:description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Lifelong Learning" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-set2_writeup" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+
+  <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Matasano Crypto Challenges, Set 2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set2_writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Challenge-9-Implement-PKCS-7-padding"><a href="#Challenge-9-Implement-PKCS-7-padding" class="headerlink" title="Challenge 9 Implement PKCS#7 padding"></a>Challenge 9 Implement PKCS#7 padding</h2><p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
+<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block.</p>
+<p>I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
+<h2 id="Challenge-10-Implement-CBC-mode"><a href="#Challenge-10-Implement-CBC-mode" class="headerlink" title="Challenge 10 Implement CBC mode"></a>Challenge 10 Implement CBC mode</h2><p>This challenge has us implement CBC mode of block encryption.</p>
+<p>In CBC mode, each block of plaintext is XORed with the previous ciphertext block before being encrypted. We need an IV for the first block of plaintext.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png" alt="CBC Encryption"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png" alt="CBC Decryption"></p>
+<p>In <code>set2_utils</code>, I create a CBC Cipher class that takes in a cipher and an IV. The <code>encrypt()</code> function will split the plaintext into blocks (usually size 16), and then do the encryption:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Xor with previous block. First prev_xor_block is the IV.</span></div><div class="line">pre_aes_block = xor(blocks[i], prev_xor_block)</div><div class="line"></div><div class="line"><span class="comment"># Encrypt with cipher algorithm</span></div><div class="line">current_cipher_block = e.update(pre_aes_block)</div><div class="line">prev_xor_block = current_cipher_block</div><div class="line">ciphertext += current_cipher_block</div></pre></td></tr></table></figure>
+<p>The decryption takes each block of ciphertext, decrypts it, and XORs with the previous block of ciphertext to recover the plaintext.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, len(blocks)):</div><div class="line">  decrypted_block = d.update(blocks[i])</div><div class="line">  <span class="comment"># print decrypted_block</span></div><div class="line"></div><div class="line">  plaintext += xor(decrypted_block, blocks[i<span class="number">-1</span>]) <span class="comment"># where blocks[i-1] is the previous ciphertext block</span></div></pre></td></tr></table></figure>
+<p>I can verify I’ve done this correctly by decrypting 10.txt with a CBC Cipher with IV <code>&#39;\x00&#39;*16</code>.</p>
+<h2 id="Challenge-11-An-ECB-CBC-detection-oracle"><a href="#Challenge-11-An-ECB-CBC-detection-oracle" class="headerlink" title="Challenge 11 An ECB/CBC detection oracle"></a>Challenge 11 An ECB/CBC detection oracle</h2><p>This challenge asks us to detect whether we’ve encrypted a text with ECB or CBC, chosen at random.</p>
+<p>Recall the properties of ECB vs CBC — ECB will take two identical plaintext blocks and produce two identical ciphertext blocks.</p>
+<p>This is as simple as asking the oracle to encrypt a string that contains at least two consecutive blocks of identical characters. If the oracle chooses ECB, the ciphertext will have two adjacent identical blocks as well.</p>
+<p>To ensure that we have at least two consecutive blocks of identical characters, we need to input at least 43 bytes. Why? Because the oracle pads the plaintext with 5-10 bytes, so we need to give some offset to ensure our identical plaintext blocks are properly aligned.</p>
+<p>R = random_nfix<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-------<span class="number">-16</span>-----|</div><div class="line">|<span class="number">-5</span>-| |--<span class="number">-11</span>----| |-------<span class="number">-16</span>----| |-------<span class="number">-16</span>----|</div><div class="line">RRRRR <span class="number">00000000000</span> <span class="number">0000000000000000</span> <span class="number">0000000000000000</span></div></pre></td></tr></table></figure></p>
+<h2 id="Challenge-12-Byte-at-a-time-ECB-decryption-Simple"><a href="#Challenge-12-Byte-at-a-time-ECB-decryption-Simple" class="headerlink" title="Challenge 12 Byte-at-a-time ECB decryption (Simple)"></a>Challenge 12 Byte-at-a-time ECB decryption (Simple)</h2><p>I have an oracle that produces <code>AES-128-ECB(your-string || unknown-string, random-key)</code>.</p>
+<p>I can find unknown-string with this oracle. The idea is that,</p>
+<ol>
+<li>First, I need to find the block size of the cipher.</li>
+<li>Then, assuming I know it’s using ECB, I can find the flag byte-by-byte. How? Since I control my-string, I can ensure each time that the oracle encrypts 15 bytes that I know + one unknown byte. I can then create a table of all possible ciphertexts of the 15 known bytes + 1 unknown byte, and compare the ciphertext the oracle returns to the ciphertexts in my table.</li>
+</ol>
+<p>To find the block size, I feed in incrementing offsets to the oracle, until the ciphertext length increases. The size of the increase will be block_size, because of the padding.</p>
+<p>Next, I need to get an offset of 15 known bytes to feed into the oracle. The first offset is just 15 filler variables, all A’s.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">U = unknown flag byte</div><div class="line">K = known flag byte</div><div class="line"></div><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line"></div><div class="line">          |----offset----|</div><div class="line">          |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAAU UUUU.....</div></pre></td></tr></table></figure>
+<p>And I create a table of all possible ciphertexts of A…U.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">		<span class="comment"># every candidate block of ciphertext is 16 bytes</span></div><div class="line">		block_of_interest = oracle(offset+cand)[<span class="number">0</span>:blocksize]</div><div class="line">		cand_dict[block_of_interest] = cand</div></pre></td></tr></table></figure>
+<p>I then feed the block with the unknown byte to the oracle, padding with the same filler variables as my offset. Perform the table lookup.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">oracle_block = oracle(<span class="string">'A'</span>*offset_len)[block_of_interest : block_of_interest + blocksize]</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> oracle_block <span class="keyword">in</span> cand_dict:</div><div class="line">  next_byte = cand_dict[oracle_block]</div></pre></td></tr></table></figure>
+<p>At the next iteration, I decrease the number of filler variables by 1, since I have a known byte and want the next byte.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line">          |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAKU UUUU.....</div></pre></td></tr></table></figure>
+<p>When I have 16 known bytes in this manner, I no longer need filler variables in my offset; I can just use the previous 15 known bytes as my offset. Note that my lookup table can be populated with ciphertexts of 16 flag bytes.</p>
+<p>Since I have 16-byte ciphertexts in my lookup table, I need to first align, then get the index of, the 16-byte block-of-interest that I’ll look up in my table.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line"></div><div class="line">block_num:          <span class="number">0</span>               <span class="number">1</span></div><div class="line">                              block_of_interest</div><div class="line">            alignment bytes  |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAAK  KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure>
+<p>Stopping after I run out of bytes, I find the answer is<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
+<h2 id="Challenge-13-ECB-cut-and-paste"><a href="#Challenge-13-ECB-cut-and-paste" class="headerlink" title="Challenge 13  ECB cut-and-paste"></a>Challenge 13  ECB cut-and-paste</h2><h2 id="Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix"><a href="#Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix" class="headerlink" title="Challenge 14  Byte-at-a-time ECB decryption with random prefix"></a>Challenge 14  Byte-at-a-time ECB decryption with random prefix</h2><p>In this challenge, a random-length prefix is added to the attacker-controlled string, <code>AES-128-ECB(random-prefix || attacker-controlled || target-bytes, random-key)</code>. Thus, I need to know the length of the prefix to be able to conduct the same attack as Challenge 12.</p>
+<p>Finding this length is not so hard.</p>
+<ol>
+<li>First, I can find the block index of the last byte of the prefix with just two calls to the oracle.</li>
+<li>Then, I find the offset of the last byte of the prefix within the last block.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ciphertext1 = prefix_oracle(<span class="string">''</span>)</div><div class="line">ciphertext2 = prefix_oracle(<span class="string">'A'</span>)</div></pre></td></tr></table></figure>
+<p>Because this is ECB mode, the first different block between <code>ciphertext1</code> and <code>ciphertext2</code> will be the last block of the prefix.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">U = unknown flag byte</div><div class="line">R = random prefix byte</div><div class="line"></div><div class="line">plaintext1:</div><div class="line">|-------<span class="number">-16</span>----||-enc to different value-|</div><div class="line">RRRRRRRRRRRRRRRRRRRRUUUUUU....</div><div class="line"></div><div class="line">plaintext2:</div><div class="line">|-------<span class="number">-16</span>----||-enc to different value-|</div><div class="line">RRRRRRRRRRRRRRRRRRRRAUUUUUU....</div></pre></td></tr></table></figure>
+<p>Now that I know what block the last byte of the prefix is in, <code>find_prefix_block_modulo_offset</code> finds the offset of the last byte of the prefix. I want to align two blocks of identical plaintext, to encrypt to two blocks of identical ciphertext. The amount of offset I use to align will tell me the offset of the prefix.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, blocksize):</div><div class="line">  offset = <span class="string">'A'</span>*i + <span class="string">'\x00'</span>*<span class="number">32</span></div><div class="line">  ciphertext = prefix_oracle(offset)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">     |--offset-|</div><div class="line">RRRRR00000000000 0000000000000000 0000000000000000 UUUUUU....</div><div class="line"></div><div class="line">```python</div><div class="line">In the above example, the two 16-byte-aligned blocks of \x00's will encrypt to adjacent identical ciphertext, which I can detect.</div><div class="line"></div><div class="line">Finally, `find_next_byte_with_prefix` will do the work. The offset is now</div><div class="line">```python</div><div class="line">offset = 'A'*(extra_offset_for_prefix + offset_len)</div></pre></td></tr></table></figure>
+<p>, with offset_len always being 15 known bytes, as in Challenge 12.</p>
+<p>The keys in my lookup table are no longer a fixed-length of blocksize — they include all known bytes now. Here, the len(offset) is <strong>not always 15</strong>, as in Challenge 12. Also, the length of my lookup table keys is <strong>not always blocksize</strong>; rather, the length of my keys increases with the number of known bytes. I could have implemented this more similarly to Challenge 12, which would have been less computationally expensive.</p>
+<p>How do I produce ciphertext keys for my lookup table now? Here’s what I feed into the oracle:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">  table_key = oracle(offset + knownbytes + cand)[prefix_location: prefix_location + len(offset) + len(knownbytes) + <span class="number">1</span>]</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">    |--lookup table key---------|</div><div class="line">RRRRRAAAAAAAAAAA AAAAAAAAAAAAAAAU UUUU.....</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    |-------------------lookup table key---------|  </div><div class="line">    |---offset-------|</div><div class="line"></div><div class="line">extra_offset_for_prefix</div><div class="line">    |          |</div><div class="line">RRRRRAAAAAAAAAAA AAAAAKKKKKKKKKKK KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure>
+<p>Calling <code>find_next_byte_with_prefix</code> byte-by-byte, I find the same flag as before.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
+<h2 id="Challenge-15-PKCS-7-padding-validation"><a href="#Challenge-15-PKCS-7-padding-validation" class="headerlink" title="Challenge 15 PKCS#7 padding validation"></a>Challenge 15 PKCS#7 padding validation</h2><p>Here’s an easy one. We need only validate that the PKCS7 padding is correct.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">byte = s[<span class="number">-1</span>]</div><div class="line">pad_length = unpack(byte, <span class="string">'all'</span>)</div><div class="line"><span class="keyword">if</span> byte == <span class="number">0</span> <span class="keyword">or</span> s[-pad_length:] != byte * pad_length <span class="keyword">or</span> byte == <span class="string">""</span>:</div><div class="line">```python</div><div class="line">I check <span class="keyword">if</span> the last `pad_length` bytes of `s` are equal to the string of `byte` repeated `pad_length` times, <span class="keyword">as</span> it should be <span class="keyword">in</span> a properly padded string.  </div><div class="line"></div><div class="line"><span class="comment">## Challenge 16 CBC bitflipping attacks</span></div><div class="line"></div><div class="line">We have a function that takes user input <span class="keyword">and</span> url-encodes special characters, <span class="keyword">and</span> we want to exploit the properties of CBC to allow us to insert the string <span class="string">";admin=true;"</span> without the <span class="string">";"</span> <span class="keyword">and</span> <span class="string">"="</span> being validated out.</div><div class="line"></div><div class="line">Recall that CBC takes each block of ciphertext <span class="keyword">and</span> XORs it <span class="keyword">with</span> the next block of decrypted ciphertext to recover the plaintext.</div><div class="line"></div><div class="line">If I can modify at least two consecutive blocks of ciphertext, I can make the second block decrypt to whatever I want.</div><div class="line"></div><div class="line">I know that `\x00 ^ \x59 = ;` <span class="keyword">and</span> `\x00 ^ \x61 = <span class="string">'='</span>` <span class="keyword">from</span> [ascii chart](http://www.nthelp.com/ascii.htm).</div></pre></td></tr></table></figure>
+<p>user-controlled input:<br>      0                     1<br>AAAAAAAAAAAAAAAA  \x00admin\x00true\x00</p>
+<p>ciphertext:<br>XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX</p>
+<p>modified ciphertext:<br>\x59XXXXX\x61XXXX\x59XXXX XXXXXXXXXXXXXXXX</p>
+<p>In XOR step of CBC decryption, the 2nd block would normally XOR to recover \x00admin\x00true\x00, but now that I’ve done an additional XOR on three bytes by modifying ciphertext, the 2nd block XORs to a plaintext of \x59admin\x61true\x59.<br>```</p>
+<p>Done with set2!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals-matasano/">cryptopals, matasano</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/07/set1_writeup/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Matasano Crypto Challenges, Set 1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/07/set3-writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-9-Implement-PKCS-7-padding"><span class="toc-number">1.</span> <span class="toc-text">Challenge 9 Implement PKCS#7 padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-10-Implement-CBC-mode"><span class="toc-number">2.</span> <span class="toc-text">Challenge 10 Implement CBC mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-11-An-ECB-CBC-detection-oracle"><span class="toc-number">3.</span> <span class="toc-text">Challenge 11 An ECB/CBC detection oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-12-Byte-at-a-time-ECB-decryption-Simple"><span class="toc-number">4.</span> <span class="toc-text">Challenge 12 Byte-at-a-time ECB decryption (Simple)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-13-ECB-cut-and-paste"><span class="toc-number">5.</span> <span class="toc-text">Challenge 13  ECB cut-and-paste</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix"><span class="toc-number">6.</span> <span class="toc-text">Challenge 14  Byte-at-a-time ECB decryption with random prefix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-15-PKCS-7-padding-validation"><span class="toc-number">7.</span> <span class="toc-text">Challenge 15 PKCS#7 padding validation</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Lifelong Learning
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
