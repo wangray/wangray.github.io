@@ -633,7 +633,7 @@ a.article-title:hover {
   border: none;
 }
 .article-entry table {
-  width: 100%;
+  width: auto;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -1457,6 +1457,7 @@ figure.highlight,
   overflow: hidden;
   background: #f7f8f8;
   color: #333;
+  overflow: auto;
 }
 figure.highlight table,
 .codeblock table {
@@ -1511,12 +1512,6 @@ figure.highlight .code,
 .codeblock .code {
   padding: 0.3em 15px 0.3em 1em;
   width: 100%;
-}
-figure.highlight .code pre,
-.codeblock .code pre {
-  max-width: calc(1025px - 100px);
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 figure.highlight .line,
 .codeblock .line {

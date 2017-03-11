@@ -6,7 +6,7 @@
   <title>matasano crypto challenges, set 4 | Lifelong Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="cryptopals, matasano" />
+  <meta name="keywords" content="cryptopals" />
   
   
   <meta name="description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
@@ -18,7 +18,7 @@ For each byte in the cipher">
 <meta property="og:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
 For each byte in the cipher">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/08/MAC.svg">
-<meta property="og:updated_time" content="2017-03-10T11:11:03.000Z">
+<meta property="og:updated_time" content="2017-03-11T07:36:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 4">
 <meta name="twitter:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
@@ -29,7 +29,7 @@ For each byte in the cipher">
   
   <link rel="icon" href="/css/images/mylogo.jpg">
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Menlo" rel="stylesheet" type="text/css">
   
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -139,8 +139,10 @@ For each byte in the cipher">
         
           <section id="main" style="float:none;"><article id="post-set4-writeup" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <!-- Back button -->
-
+  
   <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  
+
   <div id="articleInner" class="article-inner">
     
     
@@ -169,6 +171,7 @@ For each byte in the cipher">
         <h2 id="Challenge-25-Break-“random-access-read-write”-AES-CTR"><a href="#Challenge-25-Break-“random-access-read-write”-AES-CTR" class="headerlink" title="Challenge 25 Break “random access read/write” AES CTR"></a>Challenge 25 Break “random access read/write” AES CTR</h2><p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
 <p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>My main gripe is that this program is veryyy slow and I’m not sure where the slowdown comes from, but I’m not concerned with optimising right now.  </p>
 <h2 id="Challenge-26-CTR-bitflipping"><a href="#Challenge-26-CTR-bitflipping" class="headerlink" title="Challenge 26 CTR bitflipping"></a>Challenge 26 CTR bitflipping</h2><p>CTR is susceptible to an even simpler bitflipping attack than CBC.</p>
 <p>I can simply send in the payload string as before <code>&#39;\x00admin\x00true\x00&#39;</code>, which will be inserted between <code>&quot;&quot;comment1=cooking%20MCs;userdata=&quot;
@@ -291,7 +294,7 @@ For each byte in the cipher">
 
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals-matasano/">cryptopals, matasano</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
 
     </footer>
   </div>

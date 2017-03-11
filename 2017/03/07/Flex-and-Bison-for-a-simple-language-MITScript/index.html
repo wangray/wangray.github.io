@@ -18,7 +18,7 @@ T">
 <meta property="og:description" content="For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.
 T">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png">
-<meta property="og:updated_time" content="2017-03-10T10:58:23.000Z">
+<meta property="og:updated_time" content="2017-03-11T07:30:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flex and Bison for a simple language, MITScript">
 <meta name="twitter:description" content="For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.
@@ -29,7 +29,7 @@ T">
   
   <link rel="icon" href="/css/images/mylogo.jpg">
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Menlo" rel="stylesheet" type="text/css">
   
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -139,8 +139,10 @@ T">
         
           <section id="main" style="float:none;"><article id="post-Flex-and-Bison-for-a-simple-language-MITScript" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <!-- Back button -->
-
+  
   <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  
+
   <div id="articleInner" class="article-inner">
     
     
@@ -168,6 +170,7 @@ T">
       
         <p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
 <p>The grammar for the language is shown below.</p>
+<a id="more"></a>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Program ::= Statement*</div><div class="line">Statement ::= Assignment | CallStatement | Global | IfStatement | WhileLoop | Return</div><div class="line">Global ::= 'global' name ';'</div><div class="line">Assignment ::= LHS '=' Expression ';'</div><div class="line">CallStatement ::= Call ';'</div><div class="line">Block ::= '&#123;' Statement* '&#125;'</div><div class="line">IfStatement ::= 'if' '(' Expression ')' Block ( 'else' Block )?</div><div class="line">WhileLoop ::= 'while' '(' Expression ')' Block</div><div class="line">Return ::= 'return' Expression ';'</div><div class="line">Expression ::= Function | Boolean | Record</div><div class="line">Function ::= 'fun' '(' Name* ')' Block</div><div class="line">Boolean ::= Conjunction ( '|' Conjunction )*</div><div class="line">Conjunction ::= BoolUnit ('&amp;' BoolUnit)*</div><div class="line">BoolUnit ::= '!'? Predicate</div><div class="line">Predicate ::= Arithmetic ( ('&lt;' | '&gt;' | '&lt;=' | '&gt;='| '==') Arithmetic)?</div><div class="line">Arithmetic ::= Product ( ('+' | '-') Product)*</div><div class="line">Product ::= Unit ( ('*' | '/') Unit)*</div><div class="line">Unit ::= '-'? (LHS | Constant | Call | '(' Boolean ')' )</div><div class="line">LHS ::= Name ('.' Name | '[' Expression ']' )*</div><div class="line">Call ::= LHS '(' (Expression (',' Expression)*)? ')'</div><div class="line">Record ::= '&#123;' (Name ':' Expression ';')* '&#125;'</div><div class="line">Constant ::= integer_constant | string_constant</div></pre></td></tr></table></figure>
 <p>The goal is to construct an Abstract Syntax Tree (AST) for any MITScript program and pretty-print it.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Your parser must produce an AST with nodes <span class="keyword">for</span> the following program constructs:</div><div class="line">Block ::= [Statement]</div><div class="line">Global ::= name</div><div class="line">Assignment ::= LHS Expression</div><div class="line">ExpressionStatement ::= Expression <span class="string">';'</span></div><div class="line">IfStatement ::= Condition ThenPart ElsePart</div><div class="line">WhileLoop ::= Condition Body</div><div class="line">Return ::= Expression</div><div class="line">FunctionDeclaration ::= [Arguments] Body</div><div class="line">BinaryExpression ::= LeftOperand Operator RightOperand</div><div class="line">UnaryExpression ::= Operand Operator</div><div class="line">FieldDereference ::= BaseExpression Field</div><div class="line">IndexExpression ::= BaseExpression Index</div><div class="line">Call ::= TargetExpression [Arguments]</div><div class="line">Record ::= Map[String, Expression]</div><div class="line">IntegerConstant</div><div class="line">StringConstant</div><div class="line">NoneConstant</div></pre></td></tr></table></figure>

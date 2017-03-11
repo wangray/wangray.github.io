@@ -18,7 +18,7 @@ The functions a2b_hex, unhexlify,">
 <meta property="og:description" content="Challenge 1.1 Convert hex to base64The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
 The functions a2b_hex, unhexlify,">
 <meta property="og:image" content="http://wangray.github.io/images/vigenere.png">
-<meta property="og:updated_time" content="2017-03-10T11:09:00.000Z">
+<meta property="og:updated_time" content="2017-03-11T07:35:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 1">
 <meta name="twitter:description" content="Challenge 1.1 Convert hex to base64The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
@@ -29,7 +29,7 @@ The functions a2b_hex, unhexlify,">
   
   <link rel="icon" href="/css/images/mylogo.jpg">
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Menlo" rel="stylesheet" type="text/css">
   
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -139,8 +139,10 @@ The functions a2b_hex, unhexlify,">
         
           <section id="main" style="float:none;"><article id="post-set1_writeup" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <!-- Back button -->
-
+  
   <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  
+
   <div id="articleInner" class="article-inner">
     
     
@@ -167,8 +169,8 @@ The functions a2b_hex, unhexlify,">
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Challenge-1-1-Convert-hex-to-base64"><a href="#Challenge-1-1-Convert-hex-to-base64" class="headerlink" title="Challenge 1.1 Convert hex to base64"></a>Challenge 1.1 Convert hex to base64</h2><p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools" target="_blank" rel="external">pwntools</a>, as I use heavily in these challenges.</p>
-<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>&#39;&#39;.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to<br><code>I&#39;m killing your brain like a poisonous mushroom</code>.</p>
-<p>We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>&#39;&#39;.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to<br><code>I&#39;m killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+<a id="more"></a>
 <h2 id="Challenge-1-2-Fixed-XOR"><a href="#Challenge-1-2-Fixed-XOR" class="headerlink" title="Challenge 1.2 Fixed XOR"></a>Challenge 1.2 Fixed XOR</h2><p>This challenge uses iterators to do a fixed-length xor.</p>
 <p>The <code>chr()</code> function takes an ASCII integer code in the range 0-255 and returns a character string.</p>
 <p>The <code>ord()</code> function does the inverse, taking a character and returning its integer. We want to xor these integers.</p>
