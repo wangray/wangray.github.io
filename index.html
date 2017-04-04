@@ -152,6 +152,133 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-Upcoming-blog-posts-—-when-I-get-to-them"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/">Upcoming blog posts — when I get to them </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/" class="article-date">
+	  <time datetime="2017-04-04T18:57:58.000Z" itemprop="datePublished">04-04-2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Writing-a-C-interpreter-for-MITScript"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/17/Writing-a-C-interpreter-for-MITScript/">Writing a C++ interpreter for MITScript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/17/Writing-a-C-interpreter-for-MITScript/" class="article-date">
+	  <time datetime="2017-03-18T01:41:50.000Z" itemprop="datePublished">03-17-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to  actually execute valid MITScript!</p>
+<p>By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
+<p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html" target="_blank" rel="external">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
+<p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don’t need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space. </p>
+<p>Also, notice that we don’t garbage-collect anything. Once a Variable or Function has been allocated in the heap</p>
+<p>It seems like a daunting task, but you just have to break it up into small chunks.</p>
+<p>The professor, Armando, gave us some direction on Piazza for how to get started.</p>
+<ul>
+<li>Start by defining your Value types. Define a Value class and define sub-classes corresponding to each of the different value types.</li>
+</ul>
+<ul>
+<li>Define a StackFrame class to represent your stack frames. You can implement the update and read functions as methods in the stack frame.</li>
+</ul>
+<ul>
+<li>Implement a Visitor that corresponds to your interpreter.</li>
+</ul>
+<ul>
+<li>By tomorrow, you should also be able to start implementing the behavior for all your operators.</li>
+</ul>
+<ul>
+<li>The ‘newStackFrame’ function and the complete logic for updating and reading variables when you have multiple scopes will become clear after we do the lecture on closures.</li>
+</ul>
+<ul>
+<li>Finally, you will want to implement support for returns that are not at the end of the function and for native functions.</li>
+</ul>
+<p><a href="https://github.com/JustAPerson" target="_blank" rel="external">Jason Priest</a>, one of the most talented system developers I know, Meghana, and I got together to get started on it.</p>
+<p>I first set up the Visitor interface and the Value types</p>
+<p>I still wasn’t sure how to deal with Stack Frames.</p>
+<p>Not exactly following the order that Armando suggested, the first thing I tried to do was to get assignments and operators working, so I could do something as simple as <code>x = 5; y = 5; z = x + y;</code>. This would have given me a huge confidence boost, since I felt pretty intimidated by the scope of the lab.</p>
+<p>But how to do the native functions? Jason gave me a hint here — use subclasses of Function.</p>
+<p>My solution’s still not very clean, but</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/">6.035</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-Starting-a-new-security-club-at-MIT"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -370,61 +497,6 @@ The functions a2b_hex, unhexli......  -->
 
 
   
-    <article id="post-set3-writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set3-writeup/">Matasano Crypto Challenges, Set 3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set3-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Challenge-17-The-CBC-padding-oracle"><a href="#Challenge-17-The-CBC-padding-oracle" class="headerlink" title="Challenge 17 The CBC padding oracle!!!!!"></a>Challenge 17 The CBC padding oracle!!!!!</h2><p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
-<p>The process behind the attack on each block is:</p>
-        <!-- Challenge 17 The CBC padding oracle!!!!!The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-set4-writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -464,6 +536,61 @@ The functions a2b_hex, unhexli......  -->
 For each byte in the cip......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set4-writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-set3-writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set3-writeup/">Matasano Crypto Challenges, Set 3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set3-writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Challenge-17-The-CBC-padding-oracle"><a href="#Challenge-17-The-CBC-padding-oracle" class="headerlink" title="Challenge 17 The CBC padding oracle!!!!!"></a>Challenge 17 The CBC padding oracle!!!!!</h2><p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
+<p>The process behind the attack on each block is:</p>
+        <!-- Challenge 17 The CBC padding oracle!!!!!The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
         </p>
       
     </div>
