@@ -18,7 +18,7 @@ For each byte in the cipher">
 <meta property="og:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
 For each byte in the cipher">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/08/MAC.svg">
-<meta property="og:updated_time" content="2017-03-11T07:36:13.000Z">
+<meta property="og:updated_time" content="2017-04-05T00:16:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 4">
 <meta name="twitter:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
@@ -195,10 +195,10 @@ For each byte in the cipher">
 <h2 id="Challenge-29-Break-a-SHA-1-keyed-MAC-using-length-extension"><a href="#Challenge-29-Break-a-SHA-1-keyed-MAC-using-length-extension" class="headerlink" title="Challenge 29 Break a SHA-1 keyed MAC using length extension"></a>Challenge 29 Break a SHA-1 keyed MAC using length extension</h2><p>This is a cool attack.</p>
 <p>Here’s a general idea of how SHA-1 works:</p>
 <p>SHA1 operates on padded data.</p>
-<p>The <a href="https://tools.ietf.org/html/rfc3174" target="_blank" rel="external">RFC</a> explains the padding scheme as follows:<br><code>The purpose of message padding
-   is to make the total length of a padded message a multiple of 512.
-   SHA-1 sequentially processes blocks of 512 bits when computing the
-   message digest.</code></p>
+<p>The <a href="https://tools.ietf.org/html/rfc3174" target="_blank" rel="external">RFC</a> explains the padding scheme as follows:</p>
+<blockquote>
+<p>The purpose of message padding<br>   is to make the total length of a padded message a multiple of 512.<br>   SHA-1 sequentially processes blocks of 512 bits when computing the<br>   message digest.</p>
+</blockquote>
 <ol>
 <li>‘1’ is appended to message.</li>
 <li><p>‘0’s are appended, depending on the original length of the message. Leave space for two 4-byte words at the end, so bring up the message to 448 bits (56 bytes).<br>We can do that with</p>
@@ -305,19 +305,19 @@ For each byte in the cipher">
     
 <nav id="article-nav">
   
-    <a href="/2017/03/07/set1_writeup/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/07/set2_writeup/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Matasano Crypto Challenges, Set 1
+          Matasano Crypto Challenges, Set 2
         
       </div>
     </a>
   
   
-    <a href="/2017/03/07/set3-writeup/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/03/07/set1_writeup/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Matasano Crypto Challenges, Set 3</div>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 1</div>
     </a>
   
 </nav>
