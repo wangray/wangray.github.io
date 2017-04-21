@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>upcoming blog posts — stay tuned! | Lifelong Learning</title>
+  <title>matasano crypto challenges, set 5 | Lifelong Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="cryptopals" />
   
-  <meta name="description" content="I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them. Here’s what I’ve been up to, and what aweso">
-<meta name="keywords">
+  
+  <meta name="description" content="This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theor">
+<meta name="keywords" content="cryptopals">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Upcoming blog posts — stay tuned!">
-<meta property="og:url" content="http://wangray.github.io/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/index.html">
+<meta property="og:title" content="Matasano Crypto Challenges, Set 5">
+<meta property="og:url" content="http://wangray.github.io/2017/04/21/set5-writeup/index.html">
 <meta property="og:site_name" content="Lifelong Learning">
-<meta property="og:description" content="I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them. Here’s what I’ve been up to, and what aweso">
-<meta property="og:updated_time" content="2017-04-04T20:05:41.000Z">
+<meta property="og:description" content="This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theor">
+<meta property="og:updated_time" content="2017-04-21T20:25:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Upcoming blog posts — stay tuned!">
-<meta name="twitter:description" content="I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them. Here’s what I’ve been up to, and what aweso">
+<meta name="twitter:title" content="Matasano Crypto Challenges, Set 5">
+<meta name="twitter:description" content="This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theor">
   
     <link rel="alternate" href="/atom.xml" title="Lifelong Learning" type="application/atom+xml">
   
@@ -131,7 +133,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Upcoming-blog-posts-—-when-I-get-to-them"
+          <section id="main" style="float:none;"><article id="post-set5-writeup"
   
   style="width: 75%; float:left;"
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -147,7 +149,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Upcoming blog posts — stay tuned!
+      Matasano Crypto Challenges, Set 5
     </h1>
   
 
@@ -155,37 +157,27 @@
     
     <div class="article-meta">
       
-	<a href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/" class="article-date">
-	  <time datetime="2017-04-04T18:57:58.000Z" itemprop="datePublished">04-04-2017</time>
+	<a href="/2017/04/21/set5-writeup/" class="article-date">
+	  <time datetime="2017-04-21T19:25:14.000Z" itemprop="datePublished">04-21-2017</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Meta/">Meta</a>
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.</p>
-<p>Here’s what I’ve been up to, and what awesome posts/series you can expect in the coming weeks:</p>
-<ul>
-<li>6.115 Labs and Final project — Masterlock combo breaker?</li>
-<li>6.857 Final project — Boston Symphony Orchestra iPad app pentest</li>
-<li>CTFs — MITCTF, Cambridge2Cambridge</li>
-<li>6.035 MITScript interpreter in Rust</li>
-</ul>
-<a id="more"></a>
-<p><br></p>
-<h2 id="6-115-Final-project-—-Masterlock-combo-breaker"><a href="#6-115-Final-project-—-Masterlock-combo-breaker" class="headerlink" title="6.115 Final project — Masterlock combo breaker?"></a>6.115 Final project — Masterlock combo breaker?</h2><p>Over spring break last week, I spent almost every day in lab for 6.115, working on the infamous Lab 4. The lab is centered around motors. We code assembly for controlling a robot arm with five DC motors providing five degrees of freedom. We also control a unipolar stepper motor for a toy version of optical tomography — getting a cross-section of a dowel on a spinning disk.</p>
-<p><a href="https://www.amazon.com/Practical-Electronics-Inventors-Fourth-Scherz/dp/1259587541" target="_blank" rel="external">Practical Electronics for Inventors</a> by Paul Scherz is an awesome book. It’s very readable, and without the chapter on DC/stepper motors, this lab would not have been possible.</p>
-<h3 id="Final-Project"><a href="#Final-Project" class="headerlink" title="Final Project"></a>Final Project</h3><p>I have a cool idea for my 6.115 final project. The amazing hacker Samy Kamkar built a <a href="https://github.com/samyk/combobreaker" target="_blank" rel="external">Masterlock combo breaker</a>, and I really want to make one of these for my final project. Since I need to use both the 8051 microcontroller and the Cypress PSOC, I could have the 8051+LED interface for selecting combinations, and have the cracking algorithm coded in C for the PSOC. That still may not be enough code… maybe I could also have some computer vision such that I can observe someone turning the lock, and then record/replay the combo?</p>
-<p>Anyways, will definitely be blogging about my progress on this.</p>
-<p><br></p>
-<h2 id="6-857-Final-project-—-Boston-Symphony-Orchestra-iPad-app-pentest"><a href="#6-857-Final-project-—-Boston-Symphony-Orchestra-iPad-app-pentest" class="headerlink" title="6.857 Final project — Boston Symphony Orchestra iPad app pentest"></a>6.857 Final project — Boston Symphony Orchestra iPad app pentest</h2><p>I also need to get started on my 6.857 project, which is penetration testing an iPad application for the Boston Symphony Orchestra. We have an iPad, so I just need to setup a pentesting environment on it and start playing with it!</p>
-<p><br></p>
-<h2 id="CTFs"><a href="#CTFs" class="headerlink" title="CTFs!"></a>CTFs!</h2><p>I’ve done a few MIT-based CTFs in the past few weeks — MITCTF, organized by Steven Valdez and my fellow TechSec lead Max Justicz, and the <a href="https://cambridge2cambridge.csail.mit.edu/" target="_blank" rel="external">Cambridge2Cambridge CTF Qualifier</a> which I think is one of the most exciting initiatives to come out of MIT. In the inaugural event last year, Cambridge University students came to MIT for an attack-defense CTF and other fun physical challenges like lockpicking. This year’s final will be held at Cambridge University in July, so I hope I qualified! I’ve definitely seen a lot of improvement in my skills since last year — I’m a lot more comfortable with crypto, and have come a long way in pwn and reversing.</p>
-<p><br></p>
-<h2 id="6-035-—-MITScript-and-Rust"><a href="#6-035-—-MITScript-and-Rust" class="headerlink" title="6.035 — MITScript and Rust"></a>6.035 — MITScript and Rust</h2><p>Also, I really need to get cracking on Rust and our 035 bytecode interpreter for Lab 3! Once I’ve finished Lab 3, I’ll publish my blog posts for Lab 2 and Lab 3. Maybe I’ll write something about learning Rust, as well ;).</p>
-
+        <p>This set was surprisingly easy, actually. The book <a href="http://www.springer.com/us/book/9783642041006" target="_blank" rel="external">Understanding Cryptography</a> by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.</p>
+<p>Let’s dive in!</p>
+<h2 id="Challenge-33-Implement-Diffie-Hellman"><a href="#Challenge-33-Implement-Diffie-Hellman" class="headerlink" title="Challenge 33 Implement Diffie-Hellman"></a>Challenge 33 Implement Diffie-Hellman</h2><p>Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.</p>
+<p>Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0…p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a “generator” of the group.</p>
+<p>So, Alice and Bob each choose a random group element and use that as a power of $g$.<br>Alice computes $A = g^a\bmod p$, $a \in Z_p^*$.<br>Bob computes $B = g^b\bmod p$, $b \in Z_p^*$.</p>
+<p>What’s important to Diffie-Hellman is that, given $A$ and $g$, one cannot easily compute $a$. The value $A$ looks like a totally random element of $Z_p^*$!</p>
+<p><a href="wangray.github.io" title="Hi there">hello</a><br><a id="more"></a></p>
+<p><a href="google.com">try me</a></p>
+<p><a href="wangray.github.io" title="TestTest">testing</a></p>
+<p>  testing</p>
+<h2 id="Challenge-34"><a href="#Challenge-34" class="headerlink" title="Challenge 34"></a>Challenge 34</h2><h2 id="Challenge-35"><a href="#Challenge-35" class="headerlink" title="Challenge 35"></a>Challenge 35</h2><h2 id="Challenge-36"><a href="#Challenge-36" class="headerlink" title="Challenge 36"></a>Challenge 36</h2><h2 id="Challenge-37"><a href="#Challenge-37" class="headerlink" title="Challenge 37"></a>Challenge 37</h2><h2 id="Challenge-38"><a href="#Challenge-38" class="headerlink" title="Challenge 38"></a>Challenge 38</h2><h2 id="Challenge-39"><a href="#Challenge-39" class="headerlink" title="Challenge 39"></a>Challenge 39</h2><h2 id="Challenge-40"><a href="#Challenge-40" class="headerlink" title="Challenge 40"></a>Challenge 40</h2>
       
     </div>
     <footer class="article-footer">
@@ -219,26 +211,23 @@
 
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/03/14/Starting-a-new-security-club-at-MIT/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/15/Writing-a-C-interpreter-for-MITScript/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Starting a new security club at MIT
+          Writing a C++ interpreter for MITScript
         
       </div>
     </a>
   
-  
-    <a href="/2017/04/15/Writing-a-C-interpreter-for-MITScript/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Writing a C++ interpreter for MITScript</div>
-    </a>
   
 </nav>
 
@@ -252,7 +241,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-115-Final-project-—-Masterlock-combo-breaker"><span class="toc-number">1.</span> <span class="toc-text">6.115 Final project — Masterlock combo breaker?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Final-Project"><span class="toc-number">1.1.</span> <span class="toc-text">Final Project</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-857-Final-project-—-Boston-Symphony-Orchestra-iPad-app-pentest"><span class="toc-number">2.</span> <span class="toc-text">6.857 Final project — Boston Symphony Orchestra iPad app pentest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTFs"><span class="toc-number">3.</span> <span class="toc-text">CTFs!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-035-—-MITScript-and-Rust"><span class="toc-number">4.</span> <span class="toc-text">6.035 — MITScript and Rust</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-33-Implement-Diffie-Hellman"><span class="toc-number">1.</span> <span class="toc-text">Challenge 33 Implement Diffie-Hellman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-34"><span class="toc-number">2.</span> <span class="toc-text">Challenge 34</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-35"><span class="toc-number">3.</span> <span class="toc-text">Challenge 35</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-36"><span class="toc-number">4.</span> <span class="toc-text">Challenge 36</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-37"><span class="toc-number">5.</span> <span class="toc-text">Challenge 37</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-38"><span class="toc-number">6.</span> <span class="toc-text">Challenge 38</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-39"><span class="toc-number">7.</span> <span class="toc-text">Challenge 39</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-40"><span class="toc-number">8.</span> <span class="toc-text">Challenge 40</span></a></li></ol>
     
     </div>
   </aside>
