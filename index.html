@@ -184,7 +184,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This past weekend, I competed in my first DEF CON CTF Qualifier. TechSec teamed up with Lab RATs, Lincoln Labs’ CTF team, and RPISEC, and this powerhouse team ended up placing 10th. We beat out some very strong teams such as Samurai, LCBC, Dragon Sector, binja, and 9447. </p>
+        <p>This past weekend, I competed in my first DEF CON CTF Qualifier. TechSec teamed up with Lab RATs, Lincoln Labs’ CTF team, and RPISEC, and this powerhouse team ended up placing 10th. We beat out some very strong teams such as Samurai, LCBC, Dragon Sector, binja, and 9447.</p>
         <!-- This past weekend, I competed in my first DEF CON CTF Qualifier. TechSec teamed up with Lab RATs, Lincoln Labs’ CTF team, and RPISEC, and this powerhouse team ended up placing 10th. We beat out som......  -->
         <p class="article-more-link">
           <a href="/2017/05/03/2017/DEF CON CTF Qualifier 2017/#more">Read More</a>
@@ -484,7 +484,7 @@ Here’s what I’ve been up to, and what aw......  -->
 
 
   
-    <article id="post-set3-writeup"
+    <article id="post-set1_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -498,7 +498,7 @@ Here’s what I’ve been up to, and what aw......  -->
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set3-writeup/">Matasano Crypto Challenges, Set 3</a>
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
     </h1>
   
 
@@ -506,7 +506,7 @@ Here’s what I’ve been up to, and what aw......  -->
     
     <div class="article-meta">
       
-	<a href="/2017/03/07/set3-writeup/" class="article-date">
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
 	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
@@ -516,11 +516,12 @@ Here’s what I’ve been up to, and what aw......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Challenge-17-The-CBC-padding-oracle"><a href="#Challenge-17-The-CBC-padding-oracle" class="headerlink" title="Challenge 17 The CBC padding oracle!!!!!"></a>Challenge 17 The CBC padding oracle!!!!!</h2><p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
-<p>The process behind the attack on each block is:</p>
-        <!-- Challenge 17 The CBC padding oracle!!!!!The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
+        <h2 id="Challenge-1-1-Convert-hex-to-base64"><a href="#Challenge-1-1-Convert-hex-to-base64" class="headerlink" title="Challenge 1.1 Convert hex to base64"></a>Challenge 1.1 Convert hex to base64</h2><p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>&#39;&#39;.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to<br><code>I&#39;m killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!-- Challenge 1.1 Convert hex to base64The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhexli......  -->
         <p class="article-more-link">
-          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
         </p>
       
     </div>
@@ -594,6 +595,61 @@ Here’s what I’ve been up to, and what aw......  -->
 
 
   
+    <article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">Flex and Bison for a simple language, MITScript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
+<p>The grammar for the language is shown below.</p>
+        <!-- For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/">6.035</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-set4-writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -640,61 +696,6 @@ For each byte in the cip......  -->
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">Flex and Bison for a simple language, MITScript</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Languages/">Languages</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
-<p>The grammar for the language is shown below.</p>
-        <!-- For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/">6.035</a></li></ul>
 
     </footer>
   </div>
