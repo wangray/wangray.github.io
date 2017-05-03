@@ -3,23 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>starting a new security club at mit | Lifelong Learning</title>
+  <title>Lifelong Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="TechSec" />
   
-  
-  <meta name="description" content="fortenforge, Devin Neal, and I decided that MIT needed more of a student security community on campus. So, we started TechSec in February 2017! We host weekly meetings on Monday nights and try to get">
-<meta name="keywords" content="TechSec">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Starting a new security club at MIT">
-<meta property="og:url" content="http://wangray.github.io/2017/03/14/Starting-a-new-security-club-at-MIT/index.html">
+  <meta name="description" content="Where I keep all the stuff that doesn&apos;t fit in my head">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lifelong Learning">
+<meta property="og:url" content="http://wangray.github.io/page/2/index.html">
 <meta property="og:site_name" content="Lifelong Learning">
-<meta property="og:description" content="fortenforge, Devin Neal, and I decided that MIT needed more of a student security community on campus. So, we started TechSec in February 2017! We host weekly meetings on Monday nights and try to get">
-<meta property="og:updated_time" content="2017-03-14T15:51:32.000Z">
+<meta property="og:description" content="Where I keep all the stuff that doesn&apos;t fit in my head">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Starting a new security club at MIT">
-<meta name="twitter:description" content="fortenforge, Devin Neal, and I decided that MIT needed more of a student security community on campus. So, we started TechSec in February 2017! We host weekly meetings on Monday nights and try to get">
+<meta name="twitter:title" content="Lifelong Learning">
+<meta name="twitter:description" content="Where I keep all the stuff that doesn&apos;t fit in my head">
   
     <link rel="alternate" href="/atom.xml" title="Lifelong Learning" type="application/atom+xml">
   
@@ -38,11 +34,9 @@
   <link rel="stylesheet" href="/css/bootstrap.css" >
 
   
-    <link rel="stylesheet" href="/css/dialog.css">
+    <link rel="stylesheet" href="/css/home.css" >
   
 
-  
-    <link rel="stylesheet" href="/css/header-post.css" >
   
 
   
@@ -51,95 +45,118 @@
 
 <body>
   
-  <div id="container">
-    <div id="wrap">
+    <header id="header">
+
+  
+    <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+    <script>
+        var imgUrls = "css/images/greatbear.jpg,css/images/mit_river.jpg".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("intrologo").style.backgroundImage='url(' + imgUrls[random] + ')';
+        } else {
+          document.getElementById("intrologo").style.backgroundImage='url(/' + imgUrls[random] + ')';
+        }
+    </script>
+  
+
+    <canvas width="100%" height="100%"></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0],
+          x = c.getContext('2d'),
+          w = window.innerWidth,
+          h = window.innerHeight,
+          pr = window.devicePixelRatio || 1,
+          f = 90,
+          q,
+          m = Math,
+          r = 0,
+          u = m.PI*2,
+          v = m.cos,
+          z = m.random
+      c.width = w*pr
+      c.height = h*pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+
       
-        <header>
+    </script>
 
-    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="navbar-inner">
 
-          <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+    
+      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);">
+    
 
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                
-                  <li> <a class="main-nav-link" href="/">Home</a> </li>
-                
-                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
-                
-                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
-                
-                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
-                
-                  <li> <a class="main-nav-link" href="/about">About</a> </li>
-                
-                  <li><div id="search-form-wrap">
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+    <div class="homelogoback" style="border: 1px solid #404040;" >
+      <h1><a href="#content" id="logo">Lifelong Learning</a></h1>
+      <h3>Where I keep all the stuff that doesn&#39;t fit in my head</h3>
+      <h5>Ray Wang</h5>
+      <!-- <p><a href="https://github.com/wangray" target="_blank">Github</a></p> -->
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
 
-
-</div>
-</li>
-            </div>
-          </div>
-
-      </div>
     </div>
+  </div>
+
+  
+    <script>
+        var img = new Image();
+        var intrologodiv = document.getElementById("intrologo");
+        img.src = intrologodiv.style.backgroundImage.replace('url(','').replace(')','').replace(/\"/gi, "");
+        img.onload=function(){
+          if (img.width / img.height <= document.body.clientWidth / document.body.clientHeight) {
+            intrologodiv.style.backgroundSize = "100% auto";
+          } else {
+            intrologodiv.style.backgroundSize = "auto 100%";
+          }
+        };
+    </script>
+ 
+
+
+  <script>
+      var homelogodiv = document.getElementById("homelogo");
+      if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
+        homelogodiv.style.width = document.body.clientWidth + "px";
+        homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
+      } else {
+        homelogodiv.style.width = homelogodiv.clientWidth  + "px";
+        homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
+      }
+  </script>
+
+  <div class="intro-navigate">
+      <p class="navigater-list">
+        
+          <a id="beautifont" class="main-nav-link" href="/">Home</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/archives">Archives</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/categories">Categories</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/about">About</a>
+        
+      </p>
+  </div>
 
 </header>
 
-
-
+  
+  <div id="container">
+    <div id="wrap">
       
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Starting-a-new-security-club-at-MIT"
+          <section id="main" style="float:none;">
   
-  style="width: 75%; float:left;"
+    <article id="post-set4-writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
   class="article article-type-post" itemscope itemprop="blogPost" >
   <!-- Back button -->
-  
-  <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
   
 
   <div id="articleInner" class="article-inner">
@@ -148,8 +165,8 @@
       <header class="article-header">
         
   
-    <h1 class="thumb" class="article-title" itemprop="name">
-      Starting a new security club at MIT
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set4-writeup/">Matasano Crypto Challenges, Set 4</a>
     </h1>
   
 
@@ -157,95 +174,53 @@
     
     <div class="article-meta">
       
-	<a href="/2017/03/14/Starting-a-new-security-club-at-MIT/" class="article-date">
-	  <time datetime="2017-03-14T15:38:51.000Z" itemprop="datePublished">03-14-2017</time>
+	<a href="/2017/03/07/set4-writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/TechSec/">TechSec</a>
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://fortenforge.github.io/" target="_blank" rel="external">fortenforge</a>, <a href="https://github.com/Devin-Neal" target="_blank" rel="external">Devin Neal</a>, and I decided that MIT needed more of a student security community on campus. So, we started <a href="https://github.com/TechSecCTF/" target="_blank" rel="external">TechSec</a> in February 2017! We host weekly meetings on Monday nights and try to get students to compete with us in CTFs on weekends.</p>
-<p>You can find our meeting/workshop notes, which we laboriously compile for the benefit of our club members, <a href="https://github.com/TechSecCTF/meeting_notes" target="_blank" rel="external">here</a>. So far, we’ve been holding introduction to reverse engineering and binary workshops. We have a lot more planned, including interesting guest speakers.</p>
-
+        <h2 id="Challenge-25-Break-“random-access-read-write”-AES-CTR"><a href="#Challenge-25-Break-“random-access-read-write”-AES-CTR" class="headerlink" title="Challenge 25 Break “random access read/write” AES CTR"></a>Challenge 25 Break “random access read/write” AES CTR</h2><p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
+<p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
+        <!-- Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
+For each byte in the cip......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
+        </p>
       
     </div>
     <footer class="article-footer">
       
-        
-	<section id="comments" class="comment">
-	  <div id="disqus_thread">
-	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-	  </div>
-	</section>
-
-	<script type="text/javascript">
-	var disqus_shortname = 'wangray';
-	(function(){
-	  var dsq = document.createElement('script');
-	  dsq.type = 'text/javascript';
-	  dsq.async = true;
-	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	}());
-	(function(){
-	  var dsq = document.createElement('script');
-	  dsq.type = 'text/javascript';
-	  dsq.async = true;
-	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	}());
-	</script>
-
-
-
       
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TechSec/">TechSec</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
 
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/03/07/set2_writeup/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Matasano Crypto Challenges, Set 2
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Upcoming blog posts — stay tuned!</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
 
 <!-- Table of Contents -->
 
-  <aside id="sidebar">
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+
+  
+
+
+  <nav id="page-nav">
     
-    <ol class="toc">None</ol>
-    
-    </div>
-  </aside>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </section>
         
       </div>
+      
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
       
       <footer id="footer">
   
@@ -332,9 +307,9 @@
 <script src="/js/bootstrap.js"></script>
 
 
+  <script src="/js/home.js"></script>
 
 
-  <script src="/js/dialog.js"></script>
 
 
 
