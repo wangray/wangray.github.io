@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://wangray.github.io/2017/04/15/Writing-a-C-interpreter-for-MITScript/index.html">
 <meta property="og:site_name" content="Lifelong Learning">
 <meta property="og:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
-<meta property="og:updated_time" content="2017-04-15T21:46:03.000Z">
+<meta property="og:updated_time" content="2017-05-03T16:10:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Writing a C++ interpreter for MITScript">
 <meta name="twitter:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
@@ -167,8 +167,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript!</p>
-<p>By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
+        <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
 <a id="more"></a>
 <p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html" target="_blank" rel="external">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
 <p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don’t need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
