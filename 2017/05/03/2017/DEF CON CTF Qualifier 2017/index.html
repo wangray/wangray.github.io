@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Lifelong Learning">
 <meta property="og:description" content="This past weekend, I competed in my first DEF CON CTF Qualifier. Our club TechSec teamed up with Lab RATs (Lincoln Labs’ CTF team) and RPISEC, and this powerhouse team ended up placing 10th. We beat o">
 <meta property="og:image" content="https://www.defcon.org/images/defcon-25/post-images/dc-25-logo.jpg">
-<meta property="og:updated_time" content="2017-05-03T17:15:42.000Z">
+<meta property="og:updated_time" content="2017-05-03T17:17:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DEF CON CTF Qualifier 2017">
 <meta name="twitter:description" content="This past weekend, I competed in my first DEF CON CTF Qualifier. Our club TechSec teamed up with Lab RATs (Lincoln Labs’ CTF team) and RPISEC, and this powerhouse team ended up placing 10th. We beat o">
@@ -149,7 +149,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="https://www.defcon.org/images/defcon-25/post-images/dc-25-logo.jpg" rel="gallery_cj298ur3p001a7smwj8ed0b52">
+      <a class="article-gallery-img fancybox" href="https://www.defcon.org/images/defcon-25/post-images/dc-25-logo.jpg" rel="gallery_cj298wh7g001ae2mwa8c42vfh">
         <img src="https://www.defcon.org/images/defcon-25/post-images/dc-25-logo.jpg" itemprop="image">
       </a>
     
@@ -190,10 +190,10 @@
 <p><br></p>
 <p><img src="/images/2017/05/20170430_200017.jpg" alt="Final Scoreboard"></p>
 <h2 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h2><p>I won’t be doing full writeups in this blog post, but I’ll be describing some of my favorite challenges briefly.</p>
-<h3 id="Pegem"><a href="#Pegem" class="headerlink" title="Pegem"></a>Pegem</h3><p>Pegem was a problem in RE category (but actually pwn) in the one-instruction esolang <a href="https://esolangs.org/wiki/Subleq" target="_blank" rel="external">SUBLEQ</a> (SUbtract and Branch if Less than or EQual to zero). You had to solve a peg game written in SUBLEQ, run by a C emulator. Once you won the game, there was a “buffer overflow” that allowed you to modify the SUBLEQ program itself, changing its control flow to print out the flag byte-by-byte.</p>
+<h3 id="Pegem"><a href="#Pegem" class="headerlink" title="Pegem"></a>Pegem</h3><p>Pegem was a problem in the RE category (but actually pwn) in the one-instruction esolang <a href="https://esolangs.org/wiki/Subleq" target="_blank" rel="external">SUBLEQ</a> (SUbtract and Branch if Less than or EQual to zero). You had to solve a peg game written in SUBLEQ, run by a C emulator. Once you won the game, there was a “buffer overflow” that allowed you to modify the SUBLEQ program itself, changing its control flow to print out the flag byte-by-byte.</p>
 <p>The flag: <code>Who needs more than one instruction?</code></p>
 <h3 id="Insanity"><a href="#Insanity" class="headerlink" title="Insanity!!!"></a>Insanity!!!</h3><p>This challenge took in audio files zlib-compressed, and used a <a href="http://cmusphinx.sourceforge.net/" target="_blank" rel="external">speech-to-text</a> library to interpret each word as either ‘insanity’ or ‘insane’. Depending on how many ‘insanities’ were preceding an ‘insane’, the program would execute one of 9 opcodes in a stack-based interpreter. The exploitable bugs were in the interpreter, so we used OSX’s <code>say</code> command to produce audio files with the word insanity repeated 1-100 times. Thanks Samantha (or Siri, as you might know her)!</p>
-<h3 id="Jargon"><a href="#Jargon" class="headerlink" title="Jargon"></a>Jargon</h3><p><code>vito fuzyll + gynophage hj hoju = bja lightning fuzyll</code><br>That’s the kind of shit that I spent the wee hours of Sunday staring at. This was a black-box RE problem that took in nibbles of data over a network port, and interpreted them as random words or names of the organizers — <code>vito, selir, jymbolia,</code> etc. Each nibble corresponded to an opcode for a stack-based interpeter — <code>dead beaf</code> was <code>push</code>, <code>xyzzy</code> was <code>multiply</code>. I discovered a <code>syscall</code> opcode that took whatever was pushed onto the stack and executed that syscall, so I started fuzzing until I found one valid syscall — <code>hj hoju</code>, that pushed bunch of crap to the stack. This crap turned out to be the flag, once fortenforge figured out how the words corresponded to digits! Quite a team effort and a fun problem, though I wish we had solved a bit faster, given that I was staring at the flag without realizing it for hours.</p>
+<h3 id="Jargon"><a href="#Jargon" class="headerlink" title="Jargon"></a>Jargon</h3><p><code>vito fuzyll + gynophage hj hoju = bja lightning fuzyll</code><br>That’s the kind of shit that I spent the wee hours of Sunday staring at. This was a black-box RE problem that took in nibbles of data over a network port, and interpreted them as random words or names of the organizers — <code>vito, selir, jymbolia,</code> etc. Each nibble corresponded to an opcode for a stack-based interpeter — <code>dead beaf</code> was <code>push</code>, <code>xyzzy</code> was <code>multiply</code>. I discovered a <code>syscall</code> opcode that took whatever was pushed onto the stack and executed that syscall, so I started fuzzing until I found one valid syscall — <code>hj hoju</code>, that pushed a bunch of crap to the stack. This crap turned out to be the flag, once fortenforge figured out how the words corresponded to digits! Quite a team effort and a fun problem, though I wish we had solved a bit faster, given that I was staring at the flag without realizing it for hours.</p>
 <p><br><br>All we can do now is wait and see… at the very least, our chances look good for next year.</p>
 
       
