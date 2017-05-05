@@ -184,8 +184,12 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This past weekend, I competed in my first DEF CON CTF Qualifier. Our club TechSec teamed up with Lab RATs (Lincoln Labs’ CTF team) and RPISEC, and this powerhouse team ended up placing 10th. We beat out some very strong teams, including LCBC (the top Russian team), Dragon Sector (Poland), KaisHack (Korea Advanced Inst. of Science and Tech), and binja (Japan).</p>
-        <!-- This past weekend, I competed in my first DEF CON CTF Qualifier. Our club TechSec teamed up with Lab RATs (Lincoln Labs’ CTF team) and RPISEC, and this powerhouse team ended up placing 10th. We bea......  -->
+        <p><strong>Update 5/5/17:</strong> <strong>We qualified to DEF CON CTF 2017!!!!</strong> We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!</p>
+<p><img src="/images/2017/05/defcon2.PNG" alt="DEF CON EMAIL!!!"></p>
+        <!-- Update 5/5/17: We qualified to DEF CON CTF 2017!!!! We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!
+
+
+This past weekend, I c......  -->
         <p class="article-more-link">
           <a href="/2017/05/03/2017/DEF CON CTF Qualifier 2017/#more">Read More</a>
         </p>
@@ -484,6 +488,62 @@ Here’s what I’ve been up to, and what aw......  -->
 
 
   
+    <article id="post-set1_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Challenge-1-1-Convert-hex-to-base64"><a href="#Challenge-1-1-Convert-hex-to-base64" class="headerlink" title="Challenge 1.1 Convert hex to base64"></a>Challenge 1.1 Convert hex to base64</h2><p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>&#39;&#39;.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to<br><code>I&#39;m killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!-- Challenge 1.1 Convert hex to base64The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhexli......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-set2_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -521,63 +581,6 @@ Here’s what I’ve been up to, and what aw......  -->
         <!-- Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transfo......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set2_writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set4-writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set4-writeup/">Matasano Crypto Challenges, Set 4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set4-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Challenge-25-Break-“random-access-read-write”-AES-CTR"><a href="#Challenge-25-Break-“random-access-read-write”-AES-CTR" class="headerlink" title="Challenge 25 Break “random access read/write” AES CTR"></a>Challenge 25 Break “random access read/write” AES CTR</h2><p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
-<p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
-        <!-- Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
-For each byte in the cip......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
         </p>
       
     </div>
