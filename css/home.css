@@ -122,6 +122,10 @@ html{
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false); /* IE6~IE9 */
 }
 
+.ico {
+	margin: 5px
+}
+
 .homelogo{
 	max-width: 400px;
 	height: auto;
