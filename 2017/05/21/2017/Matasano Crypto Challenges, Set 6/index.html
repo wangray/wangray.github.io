@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://wangray.github.io/2017/05/21/2017/Matasano Crypto Challenges, Set 6/index.html">
 <meta property="og:site_name" content="Lifelong Learning">
 <meta property="og:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
-<meta property="og:updated_time" content="2017-05-21T13:40:24.000Z">
+<meta property="og:updated_time" content="2017-05-21T13:41:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 6">
 <meta name="twitter:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
@@ -169,6 +169,7 @@
       
         <p>The last of the original crypto challenges… here we go!</p>
 <h2 id="Challenge-41-Implement-unpadded-message-recovery-oracle"><a href="#Challenge-41-Implement-unpadded-message-recovery-oracle" class="headerlink" title="Challenge 41 Implement unpadded message recovery oracle"></a>Challenge 41 Implement unpadded message recovery oracle</h2><p>Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.</p>
+<a id="more"></a>
 <p>This can have many useful properties, but also produces some consequences. This challenge is analogous to a “security game” that tests for a property known as IND-CCA2 — indistinguishability under Chosen Ciphertext Attack, where the adversary has access to a decryption oracle. The challenger gives the adversary a ciphertext, and the adversary can ask for the encryption and decryption of anything he wants — except the challenge ciphertext, of course! If the adversary can learn any information about the ciphertext’s plaintext, then he wins the game.</p>
 <p>A fully homomorphic scheme fails IND-CCA2 — the adversary can completely recover the message! The adversary can’t ask for the decryption of the challenge ciphertext, but he can ask for the decryption of 2*ciphertext, or 3*ciphertext, etc. and he knows that the result will be 2*plaintext, 3*plaintext. Just divide out the scaling factor, and you have the plaintext.</p>
 <h2 id="Challenge-42-Bleichenbacher’s-e-3-RSA-Attack"><a href="#Challenge-42-Bleichenbacher’s-e-3-RSA-Attack" class="headerlink" title="Challenge 42 Bleichenbacher’s e=3 RSA Attack"></a>Challenge 42 Bleichenbacher’s e=3 RSA Attack</h2><p>Another worry with low public exponent is that the message block, when encrypted, will not be large enough to wrap the modulus.</p>
