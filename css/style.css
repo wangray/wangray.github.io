@@ -117,12 +117,12 @@ body,
 }
 body {
   background: #fff;
-  font: 15px Merriweather, "open sans", "Helvetica Neue", Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, sans-serif;
+  font: 20px Droid Sans;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
 }
 ::selection {
-  background: #39aa56;
+  background: #414141;
   color: #fff;
 }
 .article-entry h2,
@@ -130,7 +130,7 @@ body {
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  color: #39aa56;
+  color: #414141;
 }
 .outer {
   max-width: 1460px;
@@ -215,15 +215,15 @@ body {
 }
 .article-entry h1,
 .widget h1 {
-  font-size: 25px;
+  font-size: 30px;
 }
 .article-entry h2,
 .widget h2 {
-  font-size: 23px;
+  font-size: 25px;
 }
 .article-entry h3,
 .widget h3 {
-  font-size: 20px;
+  font-size: 22px;
 }
 .article-entry h4,
 .widget h4 {
@@ -312,23 +312,23 @@ body {
   font-weight: bold;
 }
 .navigater-list>a:hover {
-  color: #39aa56;
-  border-bottom: 5px solid #39aa56;
+  color: #414141;
+  border-bottom: 5px solid #414141;
   text-decoration: none;
 }
 .hr {
-  background: #39aa56;
+  background: #414141;
 }
 .navbar-nav>li>a:hover,
 .navbar-nav>li>a:focus {
-  border-bottom: 5px solid #39aa56;
-  color: #39aa56 !important;
+  border-bottom: 5px solid #414141;
+  color: #414141 !important;
 }
 .navbar-inner {
   min-height: 90px;
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.1);
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  border-top: 2px solid #39aa56;
+  border-top: 2px solid #414141;
 }
 .brand {
   float: left;
@@ -356,7 +356,7 @@ body {
   height: 88px;
   line-height: 86px;
   text-transform: capitalize;
-  font-family: Merriweather;
+  font-family: Droid Sans;
   font-weight: bold;
   font-size: 27px;
   letter-spacing: 0.2px;
@@ -405,7 +405,7 @@ body {
 }
 #search-form-wrap .search-form .search-form-submit:hover,
 #search-form-wrap .search-form .search-form-submit:focus {
-  color: #39aa56;
+  color: #414141;
 }
 .search-form-input,
 .search-form-input.ins-search-input,
@@ -431,7 +431,7 @@ body {
   line-height: 1.6em;
   outline: none !important;
   background: none !important;
-  font: 15px Merriweather, -apple-system, "Arial", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 20px font-sans;
   border: 0px;
 }
 .search-form-input:focus,
@@ -484,12 +484,11 @@ body {
 .article-inner .h4,
 .article-inner .h5,
 .article-inner .h6 {
-  font-family: Merriweather, "futura-pt", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", Microsoft JhengHei, WenQuanYi Micro Hei, "Microsoft YaHei", sans-serif;
+  font-family: Droid Sans;
 }
 .article-meta {
   text-align: center;
-  font-size: 0.9em;
-  margin: 1.5em 0 1em 0;
+  font-size: 0.7em;
 }
 .article-meta:before,
 .article-meta:after {
@@ -500,7 +499,7 @@ body {
   clear: both;
 }
 .article-date {
-  font-family: open sans;
+  font-family: Droid Sans;
   text-align: center;
   font-weight: bold;
 }
@@ -509,7 +508,7 @@ body {
   content: "\f073";
 }
 .article-date:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .article-category {
   text-align: center;
@@ -521,7 +520,7 @@ body {
   content: "\2022";
 }
 .article-category-link {
-  font-family: open sans;
+  font-family: Droid Sans;
   margin: 0 12px 1em;
   font-weight: bold;
 }
@@ -531,7 +530,7 @@ body {
   padding-right: 0.3em;
 }
 .article-category-link:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .article-header {
   text-align: center;
@@ -548,18 +547,18 @@ body {
   content: '\f060';
 }
 .back-button-link {
-  font-family: "Open Sans";
+  font-family: Droid Sans;
   color: #d3d3d3;
   padding-bottom: 30px;
 }
 .article-header h1 {
   font-weight: bold;
-  font-family: "Open Sans", "futura-pt", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", Microsoft JhengHei, WenQuanYi Micro Hei, "Microsoft YaHei", sans-serif;
+  font-family: Droid Sans;
 }
 .article-header .thumb {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 35px;
 }
 .article-title {
   text-decoration: none;
@@ -572,7 +571,7 @@ body {
   transition: color 0.2s;
 }
 a.article-title:hover {
-  color: #39aa56;
+  color: #414141;
   text-decoration: none;
 }
 .article-entry {
@@ -614,7 +613,7 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-entry a:hover {
-  color: #39aa56;
+  color: #414141;
   text-decoration: none;
 }
 .article-entry ul,
@@ -649,19 +648,19 @@ a.article-title:hover {
 }
 .article-entry blockquote {
   padding: 0.1px 20px;
-  font-family: Merriweather, "open sans", "Helvetica Neue", Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, sans-serif;
+  font-family: Droid Sans;
   font-size: 1.1em;
   margin: 1.4em 0px;
-  border-left: 5px solid #39aa56;
+  border-left: 5px solid #414141;
   background: rgba(208,211,248,0.15);
 }
 .article-entry blockquote p {
-  font-size: 15px;
+  font-size: 20px;
 }
 .article-entry blockquote footer {
-  font-size: 15px;
+  font-size: 20px;
   margin: 1.6em 0;
-  font-family: Merriweather, -apple-system, "Arial", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: Droid Sans;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -678,7 +677,7 @@ a.article-title:hover {
   margin: 0;
 }
 .article-entry .pullquotefutu p {
-  font-family: Georgia, Microsoft JhengHei, "sans serif";
+  font-family: Droid Sans;
   font-size: 19px;
 }
 .article-entry .pullquotefutu:before {
@@ -734,7 +733,7 @@ a.article-title:hover {
   border-radius: 15px;
   background: #f9fbfd;
   border: 1px solid #eef1f8;
-  color: #39aa56;
+  color: #414141;
   text-decoration: none;
   -webkit-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
@@ -743,7 +742,7 @@ a.article-title:hover {
   transition: all 0.2s ease-in-out;
 }
 .article-more-link a:hover {
-  background: #39aa56;
+  background: #414141;
   color: #fff;
   text-decoration: none;
 }
@@ -751,7 +750,6 @@ a.article-title:hover {
   font-size: 0.85em;
   line-height: 1.6em;
   border-top: 1px solid rgba(208,211,248,0.25);
-  padding-top: 1.6em;
   margin: 0 20px 20px;
 }
 .article-footer:before,
@@ -862,7 +860,7 @@ a.article-title:hover {
 .article-nav-caption {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #eef1f8;
+  color: #999;
   line-height: 1em;
   font-weight: bold;
 }
@@ -894,7 +892,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px Merriweather, -apple-system, "Arial", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px Droid Sans;
   padding: 0 15px;
   color: #606060;
   outline: none;
@@ -1003,7 +1001,8 @@ a.article-title:hover {
 }
 .toc-title {
   font-size: 120%;
-  font-family: Open sans;
+  font-family: Droid Sans;
+  font-weight: normal;
 }
 #toc {
   width: inherit;
@@ -1038,11 +1037,11 @@ li
   list-style-type: none;
 }
 .toc-link {
-  font-family: Merriweather, Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", Microsoft JhengHei, WenQuanYi Micro Hei, "Microsoft YaHei", sans-serif;
+  font-family: Droid Sans;
   color: #0e83cd;
 }
 .toc-link:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .toc-child {
   margin-left: 1em;
@@ -1075,11 +1074,11 @@ li
   font-size: 1.3em;
 }
 .archive-year {
-  color: #39aa56;
-  font-family: open sans;
+  color: #414141;
+  font-family: Droid Sans;
 }
 .archive-year:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .archive-year:before {
   font-family: "FontAwesome";
@@ -1087,7 +1086,7 @@ li
   margin-right: 0.2em;
 }
 .category-list-link {
-  font-family: open sans;
+  font-family: Droid Sans;
   font-weight: normal;
 }
 .archives-tags-wrap {
@@ -1095,13 +1094,13 @@ li
 }
 .archives-tags-wrap blockquote {
   padding: 1em;
-  font-family: open sans;
+  font-family: Droid Sans;
   margin: 4em 0 0 0;
   font-size: 1.2em;
   font-weight: normal;
   color: #33363b;
   text-align: center;
-  border-left: 0px solid #39aa56;
+  border-left: 0px solid #414141;
   background: rgba(208,211,248,0.15);
 }
 .archives-tags-wrap blockquote a {
@@ -1109,15 +1108,15 @@ li
   margin: 0.2em;
 }
 .archives-tags-wrap blockquote a:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .archive-tag {
   text-transform: none;
-  color: #39aa56;
-  font-family: open sans;
+  color: #414141;
+  font-family: Droid Sans;
 }
 .archive-tag:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .archive-tag:before {
   font-family: "FontAwesome";
@@ -1132,9 +1131,9 @@ li
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1.7em;
-  color: #39aa56;
+  color: #414141;
   text-align: left;
-  border-left: 0px solid #39aa56;
+  border-left: 0px solid #414141;
   background: rgba(208,211,248,0.15);
 }
 .archives-category-wrap blockquote a {
@@ -1142,7 +1141,7 @@ li
   margin: 0.2em;
 }
 .archives-category-wrap blockquote a:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .archives-category-wrap blockquote a:before {
   font-family: "FontAwesome";
@@ -1151,8 +1150,8 @@ li
 }
 .archive-category {
   text-transform: none;
-  color: #39aa56;
-  font-family: open sans;
+  color: #414141;
+  font-family: Droid Sans;
 }
 .archive-category:before {
   font-family: "FontAwesome";
@@ -1196,28 +1195,28 @@ li
   -ms-transition: color 0.2s;
   transition: color 0.2s;
   line-height: 1.6em;
-  border-left: 1px solid #39aa56;
+  border-left: 1px solid #414141;
   padding-left: 15px;
 }
 .archive-article-title:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .archive-article-footer {
   margin-top: 1em;
 }
 .archive-article-date {
   min-width: 85px;
-  font-family: open sans;
+  font-family: Droid Sans;
   float: left;
   color: #c7c7c7;
   text-decoration: none;
   line-height: 1.6em;
   margin-right: 15px;
   display: block;
-  font-size: 1.1em;
+  font-size: 16px;
 }
 .archive-article-date:hover {
-  color: #39aa56;
+  color: #414141;
 }
 #page-nav {
   margin: 40px auto;
@@ -1245,7 +1244,7 @@ li
   text-decoration: none;
 }
 #page-nav a:hover {
-  background: #39aa56;
+  background: #414141;
   color: #fff;
 }
 #page-nav .prev {
@@ -1283,7 +1282,7 @@ li
   text-decoration: none;
 }
 #footer a:hover {
-  color: #39aa56;
+  color: #414141;
   text-decoration: none;
 }
 #footer-info {
@@ -1353,7 +1352,7 @@ li
   box-sizing: border-box;
   padding: 12px 28px 12px 20px;
   border-bottom: 1px solid #e2e2e2;
-  font-family: "Microsoft Yahei Light", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font-family: Droid Sans;
 }
 .ins-close {
   top: 50%;
@@ -1367,7 +1366,7 @@ li
   display: inline-block;
 }
 .ins-close:hover {
-  color: #39aa56;
+  color: #414141;
 }
 .ins-search-container {
   left: 50%;
@@ -1442,7 +1441,7 @@ li
 .ins-section .ins-search-item:hover,
 .ins-section .ins-search-item.active {
   color: #fff;
-  background: #39aa56;
+  background: #414141;
 }
 .ins-section .ins-search-item:hover .ins-slug,
 .ins-section .ins-search-item.active .ins-slug,
@@ -2279,7 +2278,7 @@ figure.highlight.yml .number,
   margin: 40px 0;
 }
 .widget-title {
-  font-family: open sans;
+  font-family: Droid Sans;
 }
 .widget {
   color: #777;
@@ -2293,7 +2292,7 @@ figure.highlight.yml .number,
   text-decoration: none;
 }
 .widget a:hover {
-  color: #39aa56;
+  color: #414141;
   text-decoration: none;
 }
 .widget ul ul,

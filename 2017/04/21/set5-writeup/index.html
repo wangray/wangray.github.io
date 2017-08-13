@@ -13,7 +13,7 @@
 <meta name="keywords" content="cryptopals">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matasano Crypto Challenges, Set 5">
-<meta property="og:url" content="http://wangray.github.io/2017/04/21/set5-writeup/index.html">
+<meta property="og:url" content="http://raywang.tech/2017/04/21/set5-writeup/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theor">
 <meta property="og:updated_time" content="2017-05-21T13:41:13.000Z">
@@ -24,7 +24,7 @@
     <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Basic|Convergence|Palanquin+Dark|Palanquin:400,700|Sarala:400,700|Telex|Hind|Ubuntu|Pt+Sans|Source+Sans+Pro" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
@@ -215,9 +215,10 @@
 
       
     </div>
-    <footer class="article-footer">
-      
+    
+      <footer class="article-footer">
         
+          
 	<section id="comments" class="comment">
 	  <div id="disqus_thread">
 	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -244,11 +245,14 @@
 
 
 
-      
-      
+        
+        
+          
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
 
-    </footer>
+        
+      </footer>
+    
   </div>
   
     
@@ -279,9 +283,9 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-33-Implement-Diffie-Hellman"><span class="toc-number">1.</span> <span class="toc-text">Challenge 33 Implement Diffie-Hellman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-34-Implement-a-MITM-key-fixing-attack-on-Diffie-Hellman-with-parameter-injection"><span class="toc-number">2.</span> <span class="toc-text">Challenge 34 Implement a MITM key-fixing attack on Diffie-Hellman with parameter injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-35-Implement-DH-with-negotiated-groups-and-break-with-malicious-“g”-parameters"><span class="toc-number">3.</span> <span class="toc-text">Challenge 35 Implement DH with negotiated groups, and break with malicious “g” parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-36-Implement-Secure-Remote-Password-SRP"><span class="toc-number">4.</span> <span class="toc-text">Challenge 36 Implement Secure Remote Password (SRP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-37-Break-SRP-with-a-zero-key"><span class="toc-number">5.</span> <span class="toc-text">Challenge 37 Break SRP with a zero key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-38-Offline-dictionary-attack-on-simplified-SRP"><span class="toc-number">6.</span> <span class="toc-text">Challenge 38 Offline dictionary attack on simplified SRP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-39-Implement-RSA"><span class="toc-number">7.</span> <span class="toc-text">Challenge 39 Implement RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-40-E-3-RSA-Broadcast-Attack"><span class="toc-number">8.</span> <span class="toc-text">Challenge 40 E=3 RSA Broadcast Attack</span></a></li></ol>
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-33-Implement-Diffie-Hellman"><span class="toc-number">1.</span> <span class="toc-text">Challenge 33 Implement Diffie-Hellman</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-34-Implement-a-MITM-key-fixing-attack-on-Diffie-Hellman-with-parameter-injection"><span class="toc-number">2.</span> <span class="toc-text">Challenge 34 Implement a MITM key-fixing attack on Diffie-Hellman with parameter injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-35-Implement-DH-with-negotiated-groups-and-break-with-malicious-“g”-parameters"><span class="toc-number">3.</span> <span class="toc-text">Challenge 35 Implement DH with negotiated groups, and break with malicious “g” parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-36-Implement-Secure-Remote-Password-SRP"><span class="toc-number">4.</span> <span class="toc-text">Challenge 36 Implement Secure Remote Password (SRP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-37-Break-SRP-with-a-zero-key"><span class="toc-number">5.</span> <span class="toc-text">Challenge 37 Break SRP with a zero key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-38-Offline-dictionary-attack-on-simplified-SRP"><span class="toc-number">6.</span> <span class="toc-text">Challenge 38 Offline dictionary attack on simplified SRP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-39-Implement-RSA"><span class="toc-number">7.</span> <span class="toc-text">Challenge 39 Implement RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-40-E-3-RSA-Broadcast-Attack"><span class="toc-number">8.</span> <span class="toc-text">Challenge 40 E=3 RSA Broadcast Attack</span></a></li></ol>
     
     </div>
   </aside>
@@ -371,9 +375,6 @@
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
-<script src="/js/bootstrap.js"></script>
-
 
 
 
@@ -381,24 +382,28 @@
 
 
 
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 
 
 
-
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
 
 
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
 
   </div>
 

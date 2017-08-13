@@ -13,7 +13,7 @@
 <meta name="keywords" content="6.035">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Writing a C++ interpreter for MITScript">
-<meta property="og:url" content="http://wangray.github.io/2017/04/15/Writing-a-C-interpreter-for-MITScript/index.html">
+<meta property="og:url" content="http://raywang.tech/2017/04/15/Writing-a-C-interpreter-for-MITScript/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
 <meta property="og:updated_time" content="2017-05-03T16:10:17.000Z">
@@ -24,7 +24,7 @@
     <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Basic|Convergence|Palanquin+Dark|Palanquin:400,700|Sarala:400,700|Telex|Hind|Ubuntu|Pt+Sans|Source+Sans+Pro" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
@@ -188,7 +188,7 @@
 <p>   The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
 </blockquote>
 <p>The remaining 10% of code on this lab was debugging the ten class-provided tests.</p>
-<h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">previous post</a>.</p>
+<h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" target="_blank" rel="external">previous post</a>.</p>
 <p>Then for each of the Value types<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure></p>
 <p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they’re operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they’re called in the wrong context, or otherwise return <code>this</code>.</p>
 <p>I still wasn’t sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the “context”  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
@@ -214,9 +214,10 @@
 
       
     </div>
-    <footer class="article-footer">
-      
+    
+      <footer class="article-footer">
         
+          
 	<section id="comments" class="comment">
 	  <div id="disqus_thread">
 	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -243,11 +244,14 @@
 
 
 
-      
-      
+        
+        
+          
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/">6.035</a></li></ul>
 
-    </footer>
+        
+      </footer>
+    
   </div>
   
     
@@ -278,9 +282,9 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Structures"><span class="toc-number">1.</span> <span class="toc-text">Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-calls"><span class="toc-number">2.</span> <span class="toc-text">Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native-Functions"><span class="toc-number">3.</span> <span class="toc-text">Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-tests"><span class="toc-number">4.</span> <span class="toc-text">Debugging tests</span></a></li></ol>
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Structures"><span class="toc-number">1.</span> <span class="toc-text">Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-calls"><span class="toc-number">2.</span> <span class="toc-text">Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native-Functions"><span class="toc-number">3.</span> <span class="toc-text">Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-tests"><span class="toc-number">4.</span> <span class="toc-text">Debugging tests</span></a></li></ol>
     
     </div>
   </aside>
@@ -370,9 +374,6 @@
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
-<script src="/js/bootstrap.js"></script>
-
 
 
 
@@ -380,24 +381,28 @@
 
 
 
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 
 
 
-
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
 
 
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
 
   </div>
 

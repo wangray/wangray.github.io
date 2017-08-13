@@ -13,7 +13,7 @@
 <meta name="keywords" content="6.035">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flex and Bison for a simple language, MITScript">
-<meta property="og:url" content="http://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/index.html">
+<meta property="og:url" content="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language. T">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png">
@@ -26,7 +26,7 @@
     <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Basic|Convergence|Palanquin+Dark|Palanquin:400,700|Sarala:400,700|Telex|Hind|Ubuntu|Pt+Sans|Source+Sans+Pro" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
@@ -236,9 +236,10 @@
 
       
     </div>
-    <footer class="article-footer">
-      
+    
+      <footer class="article-footer">
         
+          
 	<section id="comments" class="comment">
 	  <div id="disqus_thread">
 	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -265,11 +266,14 @@
 
 
 
-      
-      
+        
+        
+          
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/">6.035</a></li></ul>
 
-    </footer>
+        
+      </footer>
+    
   </div>
   
     
@@ -300,9 +304,9 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flex"><span class="toc-number">1.</span> <span class="toc-text">Flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bison"><span class="toc-number">2.</span> <span class="toc-text">Bison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AST-Nodes-Visitor-pattern-pretty-printing-and-main-Or-putting-it-all-together"><span class="toc-number">3.</span> <span class="toc-text">AST Nodes, Visitor pattern pretty-printing, and main (Or, putting it all together)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-references"><span class="toc-number">4.</span> <span class="toc-text">Other references</span></a></li></ol>
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flex"><span class="toc-number">1.</span> <span class="toc-text">Flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bison"><span class="toc-number">2.</span> <span class="toc-text">Bison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AST-Nodes-Visitor-pattern-pretty-printing-and-main-Or-putting-it-all-together"><span class="toc-number">3.</span> <span class="toc-text">AST Nodes, Visitor pattern pretty-printing, and main (Or, putting it all together)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Other-references"><span class="toc-number">4.</span> <span class="toc-text">Other references</span></a></li></ol>
     
     </div>
   </aside>
@@ -392,9 +396,6 @@
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
-<script src="/js/bootstrap.js"></script>
-
 
 
 
@@ -402,24 +403,28 @@
 
 
 
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 
 
 
-
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
 
 
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
 
   </div>
 

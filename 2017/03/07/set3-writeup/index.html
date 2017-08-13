@@ -13,7 +13,7 @@
 <meta name="keywords" content="cryptopals">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matasano Crypto Challenges, Set 3">
-<meta property="og:url" content="http://wangray.github.io/2017/03/07/set3-writeup/index.html">
+<meta property="og:url" content="http://raywang.tech/2017/03/07/set3-writeup/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="Challenge 17 The CBC padding oracle!!!!!The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is padded">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/3/3f/Ctr_encryption.png">
@@ -29,7 +29,7 @@
     <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans:700,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Basic|Convergence|Palanquin+Dark|Palanquin:400,700|Sarala:400,700|Telex|Hind|Ubuntu|Pt+Sans|Source+Sans+Pro" rel="stylesheet">
   <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
@@ -254,9 +254,10 @@
 
       
     </div>
-    <footer class="article-footer">
-      
+    
+      <footer class="article-footer">
         
+          
 	<section id="comments" class="comment">
 	  <div id="disqus_thread">
 	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -283,11 +284,14 @@
 
 
 
-      
-      
+        
+        
+          
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/">cryptopals</a></li></ul>
 
-    </footer>
+        
+      </footer>
+    
   </div>
   
     
@@ -318,9 +322,9 @@
 
   <aside id="sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-17-The-CBC-padding-oracle"><span class="toc-number">1.</span> <span class="toc-text">Challenge 17 The CBC padding oracle!!!!!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-18"><span class="toc-number">2.</span> <span class="toc-text">Challenge 18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-19-Break-fixed-nonce-CTR-mode-using-substitutions"><span class="toc-number">3.</span> <span class="toc-text">Challenge 19 Break fixed-nonce CTR mode using substitutions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-20-Break-fixed-nonce-CTR-statistically"><span class="toc-number">4.</span> <span class="toc-text">Challenge 20 Break fixed-nonce CTR statistically</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-21-Implement-the-MT19937-Mersenne-Twister-RNG"><span class="toc-number">5.</span> <span class="toc-text">Challenge 21 Implement the MT19937 Mersenne Twister RNG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-22-Crack-an-MT19937-seed"><span class="toc-number">6.</span> <span class="toc-text">Challenge 22 Crack an MT19937 seed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-23-Clone-an-MT19937-RNG-from-its-output"><span class="toc-number">7.</span> <span class="toc-text">Challenge 23 Clone an MT19937 RNG from its output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-24-Create-the-MT19937-stream-cipher-and-break-it"><span class="toc-number">8.</span> <span class="toc-text">Challenge 24 Create the MT19937 stream cipher and break it</span></a></li></ol>
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-17-The-CBC-padding-oracle"><span class="toc-number">1.</span> <span class="toc-text">Challenge 17 The CBC padding oracle!!!!!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-18"><span class="toc-number">2.</span> <span class="toc-text">Challenge 18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-19-Break-fixed-nonce-CTR-mode-using-substitutions"><span class="toc-number">3.</span> <span class="toc-text">Challenge 19 Break fixed-nonce CTR mode using substitutions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-20-Break-fixed-nonce-CTR-statistically"><span class="toc-number">4.</span> <span class="toc-text">Challenge 20 Break fixed-nonce CTR statistically</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-21-Implement-the-MT19937-Mersenne-Twister-RNG"><span class="toc-number">5.</span> <span class="toc-text">Challenge 21 Implement the MT19937 Mersenne Twister RNG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-22-Crack-an-MT19937-seed"><span class="toc-number">6.</span> <span class="toc-text">Challenge 22 Crack an MT19937 seed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-23-Clone-an-MT19937-RNG-from-its-output"><span class="toc-number">7.</span> <span class="toc-text">Challenge 23 Clone an MT19937 RNG from its output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-24-Create-the-MT19937-stream-cipher-and-break-it"><span class="toc-number">8.</span> <span class="toc-text">Challenge 24 Create the MT19937 stream cipher and break it</span></a></li></ol>
     
     </div>
   </aside>
@@ -410,9 +414,6 @@
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
-<script src="/js/bootstrap.js"></script>
-
 
 
 
@@ -420,24 +421,28 @@
 
 
 
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
 
 
 
-
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
 
 
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
 
   </div>
 
