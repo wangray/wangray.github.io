@@ -117,7 +117,7 @@ body,
 }
 body {
   background: #fff;
-  font: 20px Droid Sans;
+  font: 20px Droid Sans, Source Sans Pro;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
 }
@@ -356,7 +356,7 @@ body {
   height: 88px;
   line-height: 86px;
   text-transform: capitalize;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   font-weight: bold;
   font-size: 27px;
   letter-spacing: 0.2px;
@@ -484,7 +484,7 @@ body {
 .article-inner .h4,
 .article-inner .h5,
 .article-inner .h6 {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .article-meta {
   text-align: center;
@@ -499,7 +499,7 @@ body {
   clear: both;
 }
 .article-date {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   text-align: center;
   font-weight: bold;
 }
@@ -520,7 +520,7 @@ body {
   content: "\2022";
 }
 .article-category-link {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   margin: 0 12px 1em;
   font-weight: bold;
 }
@@ -547,13 +547,13 @@ body {
   content: '\f060';
 }
 .back-button-link {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   color: #d3d3d3;
   padding-bottom: 30px;
 }
 .article-header h1 {
   font-weight: bold;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .article-header .thumb {
   margin-top: 10px;
@@ -648,7 +648,7 @@ a.article-title:hover {
 }
 .article-entry blockquote {
   padding: 0.1px 20px;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   font-size: 1.1em;
   margin: 1.4em 0px;
   border-left: 5px solid #414141;
@@ -660,7 +660,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 20px;
   margin: 1.6em 0;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -677,7 +677,7 @@ a.article-title:hover {
   margin: 0;
 }
 .article-entry .pullquotefutu p {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   font-size: 19px;
 }
 .article-entry .pullquotefutu:before {
@@ -892,7 +892,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px Droid Sans;
+  font: 14px Droid Sans, Source Sans Pro;
   padding: 0 15px;
   color: #606060;
   outline: none;
@@ -1001,7 +1001,7 @@ a.article-title:hover {
 }
 .toc-title {
   font-size: 120%;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   font-weight: normal;
 }
 #toc {
@@ -1037,7 +1037,7 @@ li
   list-style-type: none;
 }
 .toc-link {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   color: #0e83cd;
 }
 .toc-link:hover {
@@ -1075,7 +1075,7 @@ li
 }
 .archive-year {
   color: #414141;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .archive-year:hover {
   color: #414141;
@@ -1086,7 +1086,7 @@ li
   margin-right: 0.2em;
 }
 .category-list-link {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   font-weight: normal;
 }
 .archives-tags-wrap {
@@ -1094,7 +1094,7 @@ li
 }
 .archives-tags-wrap blockquote {
   padding: 1em;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   margin: 4em 0 0 0;
   font-size: 1.2em;
   font-weight: normal;
@@ -1113,7 +1113,7 @@ li
 .archive-tag {
   text-transform: none;
   color: #414141;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .archive-tag:hover {
   color: #414141;
@@ -1151,7 +1151,7 @@ li
 .archive-category {
   text-transform: none;
   color: #414141;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .archive-category:before {
   font-family: "FontAwesome";
@@ -1206,7 +1206,7 @@ li
 }
 .archive-article-date {
   min-width: 85px;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
   float: left;
   color: #c7c7c7;
   text-decoration: none;
@@ -1352,7 +1352,7 @@ li
   box-sizing: border-box;
   padding: 12px 28px 12px 20px;
   border-bottom: 1px solid #e2e2e2;
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .ins-close {
   top: 50%;
@@ -2278,7 +2278,7 @@ figure.highlight.yml .number,
   margin: 40px 0;
 }
 .widget-title {
-  font-family: Droid Sans;
+  font-family: Droid Sans, Source Sans Pro;
 }
 .widget {
   color: #777;

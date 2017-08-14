@@ -33,8 +33,6 @@
     stopSearchAnim();
   });
 
-
-
   // Share
   $('body').on('click', function() {
     $('.article-share-box.on').removeClass('on');
@@ -125,12 +123,8 @@
       margins: 4,
       lastRow: 'justify'
     };
-    console.log("true");
     $('.justified-gallery').justifiedGallery(options);
-  } else {
-    console.log("false");
   }
-
 
   // Mobile nav
   var $container = $('#container'),
