@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>matasano crypto challenges, set 7 | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it.">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matasano Crypto Challenges, Set 7">
+<meta property="og:url" content="http://raywang.tech/2017/05/21/matasano-crypto-challenges-set-7/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it.">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/Screenshot%202017-09-11%2012.48.58.png">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/expandable%20message%20diagrams.png">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/expand_2.png">
+<meta property="og:image" content="http://raywang.tech/images/2017/09/Screenshot%202017-09-11%2017.50.41.png">
+<meta property="og:updated_time" content="2017-09-12T05:05:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Matasano Crypto Challenges, Set 7">
+<meta name="twitter:description" content="Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it.">
+<meta name="twitter:image" content="http://raywang.tech/images/2017/09/Screenshot%202017-09-11%2012.48.58.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Source+Sans+Pro" rel="stylesheet">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+</head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-matasano-crypto-challenges-set-7"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><i class="back-button-icon"></i> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Matasano Crypto Challenges, Set 7
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/05/21/matasano-crypto-challenges-set-7/" class="article-date">
+	  <time datetime="2017-05-21T14:54:00.000Z" itemprop="datePublished">05-21-2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/" target="_blank" rel="external">fortenforge</a> and I worked together quite a bit to get through it.</p>
+<a id="more"></a>
+<p>One important life pro tip: <code>os.urandom()</code> is BLOCKING in python. That means, even <code>multiprocessing</code> code will not have any speedup because of this function! Try this snippet off StackOverflow instead: <code>bytearray(random.getrandbits(8) for _ in range(num_bytes))</code></p>
+<h2 id="Challenge-49-CBC-MAC-Message-Forgery"><a href="#Challenge-49-CBC-MAC-Message-Forgery" class="headerlink" title="Challenge 49 CBC-MAC Message Forgery"></a>Challenge 49 CBC-MAC Message Forgery</h2><p>This attack emphasizes two things: that CBC-MAC should use a constant IV, and that it is vulnerable to length extension.</p>
+<p>For the first part, the attacker controls the IV used by CBC-MAC. We want to construct a valid message of the form <code>&quot;from=victim&amp;to=attacker&amp;amount=1000&quot;</code>. First, the attacker generates a valid message and MAC from an account that he controls (say, an accomplice), like <code>&quot;from=normal&amp;to=attacker&amp;amount=1000&quot;</code>. Then, the attacker generates the correct IV to turn <code>normal</code> into <code>victim</code>, as follows:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">evil_msg = <span class="string">"from=victim&amp;to=attacker&amp;amount=1000"</span></div><div class="line">evil_padded = padPKCS7(evil_msg, <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="comment"># We're xoring the forged message and normal_msg to get the difference between the two, and then applying it to the iv</span></div><div class="line">forged_iv = xor(evil_msg[:<span class="number">16</span>], normal_msg[:<span class="number">16</span>], iv)</div><div class="line">forged_mac = CBC_MAC(key, forged_iv, evil_padded)</div><div class="line"></div><div class="line"><span class="keyword">assert</span> forged_mac == mac</div></pre></td></tr></table></figure>
+<p>This forged mac will now be verified by the API server.</p>
+<p>One thing that confused me is how the attacker would be able to know the private key to communicate with the server, allowing him to construct such a message. This makes sense when the challenge explains:</p>
+<blockquote>
+<p> [The API is] publicly exposed - the attacker can submit messages freely assuming he can forge the right MAC. The web client should allow the attacker to generate valid messages for accounts he controls. Assume the attacker is in a position to capture and inspect messages from the client to the API server.</p>
+</blockquote>
+<p>The important thing is that the attacker can generate MACs using the private key for <em>accounts that he controls</em>, but not for someone else’s account.</p>
+<p>In the second part of this challenge, the attacker uses length extension to append an evil string <code>&quot;attacker:10000&quot;</code> to a recipients list in a victim’s transaction. The attacker first generates a MAC for a valid message that names him as a recipient (say, a transaction from himself to himself). He then intercepts a normal message like <code>&quot;from=victim&amp;tx_list=normaluser:1&quot;</code>, and xors in his own message at the end, causing the resultant MAC to become his own MAC.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">attacker_valid_msg = construct_message(<span class="string">"hello"</span>, (<span class="string">"attacker"</span>, <span class="number">10000</span>), (<span class="string">"attacker"</span>, <span class="number">10000</span>))</div><div class="line">attacker_padded = padPKCS7(attacker_valid_msg, <span class="number">16</span>)</div><div class="line">attacker_mac = CBC_MAC(key, iv, attacker_padded)</div><div class="line"></div><div class="line"><span class="comment"># XOR out normal_mac to reacquire an IV of 0, then XOR in the first block of the attacker's msg</span></div><div class="line">evil_msg = padded + xor(normal_mac, attacker_padded[:<span class="number">16</span>]) + attacker_padded[<span class="number">16</span>:]</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"C-&gt;A-&gt;S: Sending Attacker Message + MAC"</span></div><div class="line">r.sendline(evil_msg)</div><div class="line">r.sendline(attacker_mac)</div></pre></td></tr></table></figure>
+<h2 id="Challenge-50-Hashing-with-CBC-MAC"><a href="#Challenge-50-Hashing-with-CBC-MAC" class="headerlink" title="Challenge 50 Hashing with CBC-MAC"></a>Challenge 50 Hashing with CBC-MAC</h2><p>This is a simple modification of the length extension of the last challenge. My evil javascript payload is an alert with a comment at the end.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">forge = <span class="string">"alert('Ayo, the Wu is back!');//"</span></div><div class="line">forge_padded = padPKCS7(forge, <span class="number">16</span>)</div></pre></td></tr></table></figure>
+<p>and, to ensure I get the same hash as the challenge snippet, <code>296b8d7cb78a243dda4d0a61d33bbdd1</code>, I need to extend the CBC-MAC of the JS payload with the challenge snippet.</p>
+<p>I can simply add a block in the middle to xor out the MAC of the payload, ensuring that the rest of the CBC-MAC is identical to the original.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">concat_forge = forge_padded + xor(mac, js_padded[:<span class="number">16</span>]) + js_padded[<span class="number">16</span>:]</div></pre></td></tr></table></figure>
+<h2 id="Challenge-51-Compression-Ratio-Side-Channel-Attacks-Aka-CRIME"><a href="#Challenge-51-Compression-Ratio-Side-Channel-Attacks-Aka-CRIME" class="headerlink" title="Challenge 51 Compression Ratio Side-Channel Attacks, Aka, CRIME"></a>Challenge 51 Compression Ratio Side-Channel Attacks, Aka, CRIME</h2><p>This has got to be the ugliest code I’ve written in a while, because my initial approach was bad…</p>
+<p>In this challenge, we use the side channel of zlib compression to leak a session cookie in an HTTP request.</p>
+<p>Without knowing much about the internal DEFLATE algorithm of zlib, just realize that <em>repeated strings compress better</em>. So, the basic idea is to bruteforce the session id by seeing whether added characters minimize the compression — telling us that the added characters are a part of the session id.</p>
+<p>I attempt to minimize scores by adding pairs of characters, but that turned out to be unnecessary. I also utilized python’s <code>multiprocessing</code> library, which was also totally overkill.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pool = mp.Pool(processes = <span class="number">8</span>)</div><div class="line">compression_lens = pool.map(compression_oracle_worker, base64_permutations)</div></pre></td></tr></table></figure>
+<p>When we are using CTR as the compression cipher, it’s pretty simple, since there’s no padding involved. Correct guesses for more characters of the id will result in lower compression lengths.</p>
+<p>When using CBC, we have to be concerned with padding. Instead of simply minimizing the compressed length, I need to use another piece of information to determine when I’ve guessed the right characters — a padding oracle. I put in some uncompressible guess for the id and find the padding necessary to push the compressed length above a block boundary. Once I find the correct id characters, then the compressed length will be a block length (16 bytes) lower than the uncompressible guess, because I’ve compressed it below the block boundary.</p>
+<p>The set of characters <code>!@#$%^&amp;*()-`~[]}{</code> can be used as padding, because they are not <code>base64</code> characters and will not appear in the session id.</p>
+<p>I had to do a few hacky things to get it all to work, though: I need to test two padding lengths for each guess, since my guesses are all possible <em>pairs</em> of <code>base64</code> characters. And, python’s <code>Pool.map</code> doesn’t take multiple arguments, so I have to pass in a list of lists to my oracle worker.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">base64_perms = [[padding[:<span class="number">-1</span>], final + <span class="string">""</span>.join(perm)] <span class="keyword">for</span> perm <span class="keyword">in</span> it.permutations(base64_chars, <span class="number">2</span>)]</div><div class="line">base64_perms += [[padding[:<span class="number">-2</span>], final + <span class="string">""</span>.join(perm)] <span class="keyword">for</span> perm <span class="keyword">in</span> it.permutations(base64_chars, <span class="number">2</span>)]</div></pre></td></tr></table></figure>
+<h2 id="Challenge-52-Iterated-Hash-Function-Multicollisions"><a href="#Challenge-52-Iterated-Hash-Function-Multicollisions" class="headerlink" title="Challenge 52 Iterated Hash Function Multicollisions"></a>Challenge 52 Iterated Hash Function Multicollisions</h2><p>The next three challenges all involve attacks on the Merkle-Damgard hash construction. We encountered this previously with MD5 and SHA1, and we’ll be using a specifically weakened version in these challenges.</p>
+<p>The basic idea in this challenge is that, once we find an initial collision of an iterated hash function, we can generate a ton more by extending that initial collision. The relevant paper is <a href="https://www.iacr.org/archive/crypto2004/31520306/multicollisions.pdf" target="_blank" rel="external">Joux</a>. The key figure is <img src="/images/2017/09/Screenshot 2017-09-11 12.48.58.png" alt="Multicollision Construction Joux">.</p>
+<p>We can see that we can construct colliding messages by selecting one of $B_i$, $B_i’$ for each $i$, giving us a total of $2^i$ colliding messages. Each message has the same intermediate hash values, $h_0, h_1…$.</p>
+<p>Now that we have a cheap way to generate collisions (if we ever need more, we can double how many collisions we have with very little work), we can break a cascaded hash function that just concatenates a weak hash and a strong hash. In my code, my “weak” hash is a Blowfish cipher truncated to 2 bytes of output, and my “strong” hash is truncated to 3 bytes of output.</p>
+<p>We can simply search in our pool of weak hash collisions for a pair of messages that also collides in the strong hash. No luck? Then double the number of weak hash collisions (easy!) and keep looking…</p>
+<h2 id="Challenge-53-Kelsey-and-Schneier’s-Expandable-Messages"><a href="#Challenge-53-Kelsey-and-Schneier’s-Expandable-Messages" class="headerlink" title="Challenge 53 Kelsey and Schneier’s Expandable Messages"></a>Challenge 53 Kelsey and Schneier’s Expandable Messages</h2><p>It took me a little bit to understand this attack. The best explanation is Schneier’s paper  <a href="https://www.schneier.com/academic/paperfiles/paper-preimages.pdf" target="_blank" rel="external">here.</a>.</p>
+<p>The goal here is to break second preimage resistance — as the challenge states, finding $x’$ such that $H(x’) = H(x) = y$.</p>
+<p>Remember that, in the iterated hash function construction, if the internal hash state of two different messages are ever equal, then we can make sure that all following hash states, including the output, will be equal (by ensuring that the messages don’t differ after this point). So, if we have a very long message of $2^R - 1$ blocks, we have $2^R$ intermediate hash states that we can potentially collide with, decreasing the difficulty of finding a second preimage.</p>
+<p>However, length padding screws this up. MD construction calls for the length of the message to be appended to the message before the final hash is output, which prevents the above attack. We are forced to find a colliding message of length $2^R - 1$! Fortunately, we can bypass this defense with expandable messages that allow us to actually construct a message of this length very easily.</p>
+<p>We first find pairs of colliding messages, where each pair consists of a single-block message and a message of length $2^{k-1} + 1$. Each pair’s initial hash state is the colliding hash of the previous pair. This is our expandable message.</p>
+<p><img src="/images/2017/09/expandable message diagrams.png" alt="Expandable message"></p>
+<p> When we want to construct a message of length between $k$ and $k + 2^k - 1$, we can create it by concatenating pieces of our expandable message (you might already be able to see how if you are familiar with binary search). For each block in our chain, we can either append the single-block message or the $2^{i} - 1$ message, allowing us to build a message of any length that hashes to the same output as the others. The result will look something like this:</p>
+<p><img src="/images/2017/09/expand_2.png" alt="Message constructed from our expandable message"></p>
+<p>So, all that remains to get our second preimage is to find a single “bridge” block that will allow our expandable message to hash to one of the intermediate states of the long message. Once we find this block, which collides with the $n$th intermediate hash state of the long message, we simply produce a message of length $n$ in the manner shown above.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Where prefix is generated from our expandable message</span></div><div class="line">prefix = generate_prefix(intmed_state_hash_index)</div><div class="line"></div><div class="line">second_preimage = prefix + linking_block</div><div class="line">second_preimage += target_long_msg[len(second_preimage):]</div></pre></td></tr></table></figure>
+<h2 id="Challenge-54-Kelsey-and-Kohno’s-Nostradamus-Attack"><a href="#Challenge-54-Kelsey-and-Kohno’s-Nostradamus-Attack" class="headerlink" title="Challenge 54 Kelsey and Kohno’s Nostradamus Attack"></a>Challenge 54 Kelsey and Kohno’s Nostradamus Attack</h2><p>This challenge deals with another kind of preimage resistance — we want to make a prediction about some event that hashes to some output $H$, and after the event has passed, create a correct “prediction” that also hashes to $H$, thus convincing people that we knew the results of the event beforehand.</p>
+<p>This attack is also known as the <a href="https://eprint.iacr.org/2005/281.pdf" target="_blank" rel="external">“herding” attack</a>, and it’s easy to see why. The basic premise is to construct a “collision tree” by selecting a bunch of starting hash states, finding message blocks under which pairs of these states collide, and building up a binary tree to a root hash state. The paper calls this tree a “diamond structure”, and it’s very easy to produce.</p>
+<p><img src="/images/2017/09/Screenshot 2017-09-11 17.50.41.png" alt=""></p>
+<p>Once we have the collision tree, we can choose our prefix (the actual result of the event) and append some glue blocks so that the last one collides with one of the leaves in our tree. Then, as the challenge says “Follow the path from the leaf all the way up to the root node and build your suffix using the message blocks along the way.”</p>
+<h2 id="Challenge-55-MD4-Collisions"><a href="#Challenge-55-MD4-Collisions" class="headerlink" title="Challenge 55 MD4 Collisions"></a>Challenge 55 MD4 Collisions</h2><p>To be honest, this challenge makes everything else look like chump stuff.</p>
+<p>fortenforge and I worked on this together for several days, and when I got tired of it, he soldiered on, ending up with a beautiful MD4 collision. I’ll refer you to his writeup in lieu of explaining it myself, and he deserves all the credit for this excellent piece of work.</p>
+<h2 id="Challenge-56-RC4-Single-Byte-biases"><a href="#Challenge-56-RC4-Single-Byte-biases" class="headerlink" title="Challenge 56 RC4 Single Byte biases"></a>Challenge 56 RC4 Single Byte biases</h2><p>This seems like a pretty silly challenge, and I couldn’t get it to work. We basically trust <a href="https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_alfardan.pdf" target="_blank" rel="external">this paper</a> that says that the RC4 encryption function is biased towards certain bytes at certain byte positions — byte 0, 16, 32, etc. For instance, the RC4 ciphertext’s 16th byte is biased towards <code>0xF0</code>. To quote the paper,</p>
+<blockquote>
+<p>Suppose byte $Z_r$ of the RC4 keystream has a dominant bias towards value <code>0x00</code>. As RC4 encryption is defined as $C_r = P_r ⊕ Z_r$, the corresponding ciphertext byte $C_r$ has a bias towards plaintext byte $P_r$. Thus, obtaining sufficiently many ciphertext samples $C_r$ for a fixed plaintext $P_r$ allows inference of $P_r$ by a majority vote: <strong>$P_r$ is equal to the value of $C_r$ that occurs most often.</strong></p>
+</blockquote>
+<p>Unfortunately, you need to RC4 encrypt a ton of messages under random keys for this to work, which takes a lot of time, and the results were not at all good for me, even with $2^{24}$ encryptions for each byte.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">attack_byte</span><span class="params">(idx)</span>:</span></div><div class="line">        chars = &#123;char: <span class="number">0</span> <span class="keyword">for</span> char <span class="keyword">in</span> range(<span class="number">256</span>)&#125;</div><div class="line"></div><div class="line">        padding = <span class="string">'A'</span>*(<span class="number">15</span> - idx)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**<span class="number">20</span>):</div><div class="line">            <span class="keyword">if</span> i % (<span class="number">10</span>**<span class="number">6</span>) == <span class="number">0</span>:</div><div class="line">                print(<span class="string">"Iteration: "</span>, i)</div><div class="line">            ctext = rc4_oracle(padding)</div><div class="line">            guess = ctext[<span class="number">15</span>] ^ <span class="number">0xf0</span></div><div class="line">            chars[guess]+= <span class="number">1</span></div><div class="line"></div><div class="line">        max_char = max(chars.items(), key = op.itemgetter(<span class="number">1</span>))</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/21/2017/Matasano Crypto Challenges, Set 6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Matasano Crypto Challenges, Set 6
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/23/2017/Looking towards Summer: Concolic Execution, Fuzzy Panda, and more/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Looking Towards Summer: Concolic Execution, Fuzzy Panda, and More</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-49-CBC-MAC-Message-Forgery"><span class="toc-number">1.</span> <span class="toc-text">Challenge 49 CBC-MAC Message Forgery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-50-Hashing-with-CBC-MAC"><span class="toc-number">2.</span> <span class="toc-text">Challenge 50 Hashing with CBC-MAC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-51-Compression-Ratio-Side-Channel-Attacks-Aka-CRIME"><span class="toc-number">3.</span> <span class="toc-text">Challenge 51 Compression Ratio Side-Channel Attacks, Aka, CRIME</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-52-Iterated-Hash-Function-Multicollisions"><span class="toc-number">4.</span> <span class="toc-text">Challenge 52 Iterated Hash Function Multicollisions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-53-Kelsey-and-Schneier’s-Expandable-Messages"><span class="toc-number">5.</span> <span class="toc-text">Challenge 53 Kelsey and Schneier’s Expandable Messages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-54-Kelsey-and-Kohno’s-Nostradamus-Attack"><span class="toc-number">6.</span> <span class="toc-text">Challenge 54 Kelsey and Kohno’s Nostradamus Attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-55-MD4-Collisions"><span class="toc-number">7.</span> <span class="toc-text">Challenge 55 MD4 Collisions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-56-RC4-Single-Byte-biases"><span class="toc-number">8.</span> <span class="toc-text">Challenge 56 RC4 Single Byte biases</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
+      processEscapes: false
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  <script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

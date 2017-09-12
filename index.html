@@ -258,6 +258,56 @@
 
 
   
+    <article id="post-matasano-crypto-challenges-set-7"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/05/21/matasano-crypto-challenges-set-7/">Matasano Crypto Challenges, Set 7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/05/21/matasano-crypto-challenges-set-7/" class="article-date">
+	  <time datetime="2017-05-21T14:54:00.000Z" itemprop="datePublished">05-21-2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/">fortenforge</a> and I worked together quite a bit to get through it.</p>
+        <!-- Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it......  -->
+        <p class="article-more-link">
+          <a href="/2017/05/21/matasano-crypto-challenges-set-7/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-2017/Matasano Crypto Challenges, Set 6"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -623,61 +673,6 @@ Here’s what I’ve been up to, and what aw......  -->
         <p><a href="https://fortenforge.github.io/" target="_blank" rel="external">fortenforge</a>, <a href="https://github.com/Devin-Neal" target="_blank" rel="external">Devin Neal</a>, and I decided that MIT needed more of a student security community on campus. So, we started <a href="https://github.com/TechSecCTF/" target="_blank" rel="external">TechSec</a> in February 2017! We host weekly meetings on Monday nights and try to get students to compete with us in CTFs on weekends.</p>
 <p>You can find our meeting/workshop notes, which we laboriously compile for the benefit of our club members, <a href="https://github.com/TechSecCTF/meeting_notes" target="_blank" rel="external">here</a>. So far, we’ve been holding introduction to reverse engineering and binary workshops. We have a lot more planned, including interesting guest speakers.</p>
 
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set4-writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set4-writeup/">Matasano Crypto Challenges, Set 4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set4-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Challenge-25-Break-“random-access-read-write”-AES-CTR"><a href="#Challenge-25-Break-“random-access-read-write”-AES-CTR" class="headerlink" title="Challenge 25 Break “random access read/write” AES CTR"></a>Challenge 25 Break “random access read/write” AES CTR</h2><p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
-<p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
-        <!-- Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
-For each byte in the cip......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
-        </p>
       
     </div>
     
