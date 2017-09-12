@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://raywang.tech/images/2017/09/expandable%20message%20diagrams.png">
 <meta property="og:image" content="http://raywang.tech/images/2017/09/expand_2.png">
 <meta property="og:image" content="http://raywang.tech/images/2017/09/Screenshot%202017-09-11%2017.50.41.png">
-<meta property="og:updated_time" content="2017-09-12T05:09:35.000Z">
+<meta property="og:updated_time" content="2017-09-12T20:39:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 7">
 <meta name="twitter:description" content="Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it.">
@@ -218,7 +218,7 @@
 <p><img src="/images/2017/09/Screenshot 2017-09-11 17.50.41.png" alt=""></p>
 <p>Once we have the collision tree, we can choose our prefix (the actual result of the event) and append some glue blocks so that the last one collides with one of the leaves in our tree. Then, as the challenge says “Follow the path from the leaf all the way up to the root node and build your suffix using the message blocks along the way.”</p>
 <h2 id="Challenge-55-MD4-Collisions"><a href="#Challenge-55-MD4-Collisions" class="headerlink" title="Challenge 55 MD4 Collisions"></a>Challenge 55 MD4 Collisions</h2><p>To be honest, this challenge makes everything else look like chump stuff.</p>
-<p>fortenforge and I worked on this together for several days, and when I got tired of it, he soldiered on, ending up with a beautiful MD4 collision. I’ll refer you to his writeup in lieu of explaining it myself, and he deserves all the credit for this excellent piece of work.</p>
+<p>fortenforge and I worked on this together for several days, and when I got tired of it, he soldiered on, ending up with a beautiful MD4 collision. I’ll refer you to <a href="https://fortenf.org/e/crypto/2017/09/10/md4-collisions.html" target="_blank" rel="external">his writeup</a> in lieu of explaining it myself, and he deserves all the credit for this excellent piece of work.</p>
 <h2 id="Challenge-56-RC4-Single-Byte-biases"><a href="#Challenge-56-RC4-Single-Byte-biases" class="headerlink" title="Challenge 56 RC4 Single Byte biases"></a>Challenge 56 RC4 Single Byte biases</h2><p>This seems like a pretty silly challenge, and I couldn’t get it to work. We basically trust <a href="https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_alfardan.pdf" target="_blank" rel="external">this paper</a> that says that the RC4 encryption function is biased towards certain bytes at certain byte positions — byte 0, 16, 32, etc. For instance, the RC4 ciphertext’s 16th byte is biased towards <code>0xF0</code>. To quote the paper,</p>
 <blockquote>
 <p>Suppose byte $Z_r$ of the RC4 keystream has a dominant bias towards value <code>0x00</code>. As RC4 encryption is defined as $C_r = P_r ⊕ Z_r$, the corresponding ciphertext byte $C_r$ has a bias towards plaintext byte $P_r$. Thus, obtaining sufficiently many ciphertext samples $C_r$ for a fixed plaintext $P_r$ allows inference of $P_r$ by a majority vote: <strong>$P_r$ is equal to the value of $C_r$ that occurs most often.</strong></p>
