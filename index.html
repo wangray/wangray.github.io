@@ -153,6 +153,154 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-formal-reasoning-in-coq"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/09/25/formal-reasoning-in-coq/">Formal Reasoning in Coq — a Beginner&#39;s Guide</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/25/formal-reasoning-in-coq/" class="article-date">
+	  <time datetime="2017-09-25T14:12:00.000Z" itemprop="datePublished">09-25-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a><a class="article-category-link" href="/categories/Languages/Formal-Methods/">Formal Methods</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I'm currently taking the Fall 2017 iteration of <a href="http://6826.csail.mit.edu/2017/" target="_blank" rel="external">6.826, Principles of Computer Systems</a>. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on formal verification of computer systems using <a href="https://coq.inria.fr/" target="_blank" rel="external">Coq</a>, a language for mechanical theorem proving.</p>
+<p>The goal of this class is to write the spec, implementation, and proofs for a formally verified RAID filesystem in Coq, then generate Haskell code from it.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>I've been quite curious about the field of formal verification since I first learned about it last semester. I couldn't fit Adam Chlipala's <a href="https://github.com/mit-frap/spring17" target="_blank" rel="external">FRAP</a> (Formal Reasoning About Programs) into my schedule, but I didn't want to miss out on Zeldovich and Kaashoek's PoCS class because it seemed more practical in nature.</p>
+<p>This is the first in a series of posts on approaching Coq and formal verification as a complete beginner.</p>
+<h1>Environment Setup</h1>
+<p>I'd heard good things about using Emacs + Proof General for Coq, so I started using Spacemacs, which combines vim's editing modes and keybindings with Emacs'.</p>
+<p>I haven't tried the default CoqIDE or <a href="https://github.com/the-lambda-church/coquille" target="_blank" rel="external">Coquille</a> in vim, but Emacs' Coq support is pretty great. With <a href="https://github.com/cpitclaudel/company-coq" target="_blank" rel="external">company-coq</a> and <a href="https://github.com/olivierverdier/spacemacs-coq" target="_blank" rel="external">spacemacs-coq</a> layers, there's not much more you could ask for.</p>
+<p>If you're coming from vim, Spacemacs is a little obnoxious to get set up, though. The Coq integration is a Spacemacs 'layer', which is a set of configurations for a specific task. Make sure that the Coq layer activates upon opening a <code>.v</code> file.</p>
+<p>Perhaps I'll do another post about all the editors I use daily — Vim, Sublime, Atom, and Spacemacs — (I'm a mongrel, I know), but for now, I'll just direct you to some Spacemacs <a href="#Resources">resources</a>.</p>
+<h1>Tactics, Datatypes, and Coq commands</h1>
+<p><a href="http://6826.csail.mit.edu/2017/lf/" target="_blank" rel="external">Software Foundations</a> is the best place to start getting your feet wet. The first three chapters, Basics, Induction, and Lists, ....</p>
+<p>When you open a <code>.v</code> Coq file in Spacemacs, Coq mode should be activated. You should now be able to access company-coq commands with the <code>Ctrl-C</code> leader, and if you have spacemacs-coq, there's some common commands under the <code>,</code> leader. Start the proof using <code>proof-goto-point</code> or an alias for it, and you'll be able to see the goal you're proving and the context, containing your variables and hypotheses, in a pane on the right. Note that the Coq process can only be active in one buffer at a time, so you can't have proofs running simultaneously in several files.</p>
+<p>Once you've learned the basic syntax, you should also do the Emacs <code>company-coq-tutorial</code> to learn about all the IDE-like helpers that the layer provides.</p>
+<h2>Coq objects</h2>
+<p>Here are some of the most important constructs in Coq:</p>
+<ul>
+<li><code>Definition</code>, <code>Function</code>, <code>Fixpoint</code>, and <code>Inductive</code></li>
+</ul>
+<p><code>Inductive</code> defines inductive types. <code>Function</code> and <code>Fixpoint</code> are for recursively defined functions on inductive types. Note that <code>Fixpoints</code> must be obviously decreasing on each recursive call, or else Coq will complain.</p>
+<ul>
+<li>Built-in datatypes such as <code>Nat</code>, <code>List</code>, <code>Prop</code>, <code>Bool</code>.</li>
+<li><code>Theorem</code>, <code>Lemma</code>, <code>Proof</code></li>
+<li><code>match</code> statements ( familiar from any other functional language )</li>
+</ul>
+<h2>Getting started with tactics</h2>
+<p>The first three chapters of SF will teach you a few basic tactics — namely, <code>induction</code>, <code>assert</code>, <code>simpl</code>, <code>reflexivity</code>, <code>rewrite</code>, <code>apply</code>, <code>replace</code>. Nearly all the the exercises can be completed with just these.</p>
+<p>Once you get sufficiently advanced, you'll be able to identify when magic commands like <code>auto</code> or <code>omega</code> will just solve the rest of your proof for you. <code>info_auto</code> will show you the tactics that <code>auto</code> is using.</p>
+<p>You'll start to notice patterns when dealing with basic structures. If you see a recursive data structure, you can use <code>induction</code> to generate subgoals for each of the constructors.</p>
+<p><a href="https://github.com/readablesystems/cs260r-17/blob/master/naivecoq.md" target="_blank" rel="external">This cheatsheet</a> is invaluable for most of the tactics you'll ever need. I also found <a href="https://pjreddie.com/coq-tactics/" target="_blank" rel="external">this site</a> useful for the few most basic tactics.</p>
+<p>When you first start out, it's useful to be able to search for library lemmas, theorems, definitions, notation, etc. The <code>Search ___</code> command will look for definitions and theorems. If you quote the search string like <code>&quot;eqb&quot;</code>, it will look for all theorems with that as a substring.</p>
+<p><code>Locate</code> can look up constants or notation, like <code>&quot;?=&quot;</code>. To insert the outputs of the last command as a comment (so you can refer to it without having to rerun it), spacemacs-coq provides the key sequence <code>, ;</code>.</p>
+<h1>Proving binary search trees (and pitfalls)</h1>
+<p>We are given a tree, defined as follows:
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">(* A `nattree` is a tree of natural numbers, where every internal</span></div><div class="line">   node has an associated number and leaves are empty. There are</div><div class="line">   two constructors, L (empty leaf) and I (internal node).</div><div class="line">   I's arguments are: left-subtree, number, right-subtree. *)</div><div class="line">   </div><div class="line"><span class="keyword">Inductive</span> nattree : <span class="keyword">Set</span> :=</div><div class="line">  | <span class="type">L</span> : nattree                                <span class="comment">(* Leaf *)</span></div><div class="line">  | <span class="type">I</span> : nattree -&gt; nat -&gt; nattree -&gt; nattree.  <span class="comment">(* Internal nodes *)</span></div></pre></td></tr></table></figure></p>
+<p>We have to define a binary search function and a function to test whether a tree is a BST, then write proofs about the correctness of our functions. We want to prove, among other things, that our BST tester does indeed enforce the sortedness of left and right subtrees, and that binsearch can indeed find every element in the tree.</p>
+<p>My first attempt was a <strong>disaster</strong>, ending with convoluted proofs that would have gotten progressively harder had I not stopped and asked for help. I'll talk about some of the pitfalls I made, and then discuss how everything went smoother on the second try.</p>
+<h2>Pitfall 1: The Bool and Prop worlds</h2>
+<p>Coq has two worlds: computational (<code>Type</code>) and logical (<code>Prop</code>). Booleans exist in the computational world.</p>
+<p>As <a href="https://stackoverflow.com/questions/31554453/why-are-logical-connectives-and-booleans-separate-in-coq/31568076#31568076" target="_blank" rel="external">this answer</a> explains,</p>
+<blockquote>
+<p>Essentially, Coq has both because they are useful for different things: booleans correspond to facts that can be checked mechanically (i.e., with an algorithm), whereas propositions can express more concepts... If <code>b : bool</code> represents a statement, we can assert that this statement is true by saying <code>b = true</code>, which is of type <code>Prop</code>.</p>
+</blockquote>
+<p>Note that <code>Props</code> can be used in proofs, but not in functions.</p>
+<p>To relate the two, we need theorems that translate between <code>Bool</code> and <code>Prop</code>, as I quickly and painfully discovered.</p>
+<p>Take a look at my initial definition of binsearch on a <code>nattree</code> t.</p>
+<p><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">match</span> t <span class="built_in">with</span></div><div class="line">           | <span class="type">L</span> =&gt; false</div><div class="line">           | <span class="type">I</span> l n r =&gt; <span class="keyword">match</span> beq_nat x n <span class="built_in">with</span></div><div class="line">                       | <span class="type">true</span> =&gt; true</div><div class="line">                       | <span class="type">false</span> =&gt;  <span class="keyword">match</span> Nat.ltb x n <span class="built_in">with</span></div><div class="line">                                  | <span class="type">true</span> =&gt; binsearch x l</div><div class="line">                                  | <span class="type">false</span> =&gt; binsearch x r</div><div class="line">                                  <span class="keyword">end</span></div><div class="line">                       <span class="keyword">end</span></div><div class="line">           <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span>.</div></pre></td></tr></table></figure></p>
+<p>This seems reasonable, right? However, the <code>beq_nat</code> (an alias for <code>Nat.eqb</code>) and <code>Nat.ltb</code> return <code>Bools</code>, not <code>Props</code>!</p>
+<p>So, when we want to use hypotheses like <code>x &lt; n</code> (a <code>Prop</code>) to prove <code>(x &lt;? n) = true</code>, it's not immediate because they're in two different worlds!<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>We need a lemma in Coq like
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Lemma</span> ltb_lt n m : (n &lt;? m) = true &lt;-&gt; n &lt; m.</div></pre></td></tr></table></figure></p>
+<p>To illustrate this more, how about proving the proposition that <code>(x &lt;? n) = false</code> given <code>x &gt; n</code>?</p>
+<p>First we have to do something ugly like
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">rewrite</span> &lt;- Bool.not_true_iff_false, Nat.ltb_lt.</div></pre></td></tr></table></figure></p>
+<p>which changes the goal like:
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__________________</div><div class="line">(x &lt;? n) = false</div><div class="line"></div><div class="line">__________________</div><div class="line">(x &lt;? n) &lt;&gt; true</div><div class="line"></div><div class="line">__________________</div><div class="line">~ x &lt; n</div></pre></td></tr></table></figure></p>
+<p>and only <em>then</em> will omega be able to solve it.</p>
+<h3>Second attempt</h3>
+<p>What can we do instead? The better construct is</p>
+<p><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Function</span> binsearch (x:nat) (t:nattree) : bool :=</div><div class="line"><span class="keyword">match</span> t <span class="built_in">with</span></div><div class="line">| <span class="type">L</span> =&gt;  false</div><div class="line">| <span class="type">I</span> l n r =&gt; <span class="keyword">match</span> x ?= n <span class="built_in">with</span></div><div class="line">            | <span class="type">Eq</span> =&gt; true</div><div class="line">            | <span class="type">Lt</span> =&gt; binsearch x l</div><div class="line">            | <span class="type">Gt</span> =&gt; binsearch x r</div><div class="line">            <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span>.</div></pre></td></tr></table></figure></p>
+<p>The <code>?=</code> is <code>Nat.compare</code>, which returns a <code>comparison</code> type, defined below:</p>
+<p><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Inductive</span> comparison : <span class="keyword">Set</span> :=</div><div class="line">  | <span class="type">Eq</span> : comparison</div><div class="line">  | <span class="type">Lt</span> : comparison</div><div class="line">  | <span class="type">Gt</span> : comparison.</div></pre></td></tr></table></figure></p>
+<p>With this cleaner definition, in proofs we can use the <code>destruct_compare</code> tactic defined for us to get three cases: <code>x &lt; n</code>, <code>x = n</code>, <code>x &gt; n</code>.</p>
+<h2>Pitfall 2: Non-recursive definitions</h2>
+<p>Observe these two definitions of <code>btree_sorted</code>, which checks a tree is a valid BST.</p>
+<p><strong>1:</strong>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Fixpoint</span> isAscendingProp (t: list nat) : <span class="keyword">Prop</span> :=</div><div class="line">  <span class="keyword">match</span> t <span class="built_in">with</span></div><div class="line">  | <span class="type">nil</span> =&gt; True</div><div class="line">  | <span class="type">cons</span> h tl =&gt; <span class="keyword">match</span> tl <span class="built_in">with</span></div><div class="line">                | <span class="type">nil</span> =&gt; True</div><div class="line">                | <span class="type">_</span> =&gt; and (Nat.le h (hd <span class="number">0</span> tl)) (isAscendingProp tl)</div><div class="line">                <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span>.</div><div class="line"></div><div class="line"><span class="keyword">Function</span> btree_sorted (t:nattree) : <span class="keyword">Prop</span> :=</div><div class="line">  isAscendingProp (flatten t).</div></pre></td></tr></table></figure></p>
+<p><strong>2.</strong>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Function</span> btree_sorted (t:nattree) : <span class="keyword">Prop</span> :=</div><div class="line"> <span class="keyword">match</span> t <span class="built_in">with</span></div><div class="line"> | <span class="type">L</span> =&gt; True</div><div class="line"> | <span class="type">I</span> l n r =&gt; btree_le l n /\ btree_ge r n /\ btree_sorted l /\ btree_sorted r</div><div class="line"> <span class="keyword">end</span>.</div></pre></td></tr></table></figure></p>
+<p><strong>1</strong> is flattening the tree via in-order traversal, then checking that each element in the list is $\leq$ the next element. This would lead to more work when writing proofs, since I would need more lemmas about <code>isAscendingProp</code> that related non-adjacent elements.</p>
+<p>Writing recursive definitions as in <strong>2</strong> should make life easier. As my TA said, you want the definition to match how you're writing the proof.</p>
+<h3>Aside: Using <code>List</code> lemmas</h3>
+<p>In my final solution, all my functions were recursive except <code>btree_in</code>, for determining membership in a list.</p>
+<p><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Function</span> btree_in (x:nat) (t:nattree) : <span class="keyword">Prop</span> :=</div><div class="line">  In x (flatten t).</div></pre></td></tr></table></figure></p>
+<p>If you get comfortable with the <code>List</code> library, then this shouldn't be a problem. The <code>In</code> function has some nice <a href="http://flint.cs.yale.edu/cs428/coq/library/Coq.Lists.List.html" target="_blank" rel="external">lemmas</a>. I used this one a lot:
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Lemma</span> in_app_or : <span class="keyword">forall</span> (l m:list) (a:A), In a (l ++ m) -&gt; In a l \/ In a m.</div></pre></td></tr></table></figure></p>
+<p>to split up
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">H0: In x (flatten t1 ++ n :: flatten t2)</div></pre></td></tr></table></figure></p>
+<p>into
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">H0 : In x (flatten t1) \/ n = x \/ In x (flatten t2)</div></pre></td></tr></table></figure></p>
+<h1>Identifying patterns</h1>
+<p>I found myself repeating the same tactic patterns in my proofs. For example, when I have a series of <code>/\</code> like <code>A /\ B /\</code> in my hypotheses, I can split them up using <code>destruct_pairs</code>, allowing me to use each clause individually because I know each one must be true.</p>
+<p>If there's a series of <code>\/</code> in a hypothesis, you need to use multiple <code>destructs</code>.
+For example, I often ended up having <code>H0 : In x (flatten t1) \/ n = x \/ In x (flatten t2)</code> in my context, and my goal was to prove <em>one</em> of those clauses.</p>
+<p>Well, I would use <code>destruct</code> to consider each case individually, showing that the other two non-goal clauses resulted in contradictions. Therefore, my own goal must be true.</p>
+<h1>Conventions and sugar</h1>
+<p>In <code>Basics.v</code> of SF, you'll find best practices on organizing proofs. I like to  use nested bullet points <code>-</code>, <code>+</code>, and <code>*</code>, in that order, to focus subgoals whenever I am doing <code>cases</code>, <code>induction</code>, or <code>destruct</code>. When I have an <code>assert</code>, I wrap the proof of the assert in <code>{}</code>.</p>
+<p>Hopefully, you learned some pointers to get you more productive in Coq! There's not many clear, beginner-oriented resources out there, so all of this post was constructed with trial and a lot of error.</p>
+<h1>Resources</h1>
+<ol>
+<li><a href="https://gist.github.com/davoclavo/d41cd86ffda22f1649e4" target="_blank" rel="external">Spacemacs Cheatsheet</a></li>
+<li><a href="https://pi.sjtu.edu.cn/doc/spacemacs/" target="_blank" rel="external">Spacemacs for Vim users</a></li>
+</ol>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><code>&lt;?</code>, btw, is the notation for <code>ltb</code>, which you could have looked up with <code>Locate &quot;&lt;?&quot;</code>. <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-matasano-crypto-challenges-set-7"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -185,11 +333,71 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/">fortenforge</a> and I worked together quite a bit to get through it.</p>
-        <!-- Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. fortenforge and I worked together quite a bit to get through it......  -->
-        <p class="article-more-link">
-          <a href="/2017/09/11/matasano-crypto-challenges-set-7/#more">Read More</a>
-        </p>
+        <p>Into uncharted waters we venture... this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/" target="_blank" rel="external">fortenforge</a> and I worked together quite a bit to get through it.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>One important life pro tip: <code>os.urandom()</code> is BLOCKING in python. That means, even <code>multiprocessing</code> code will not have any speedup because of this function! Try this snippet off StackOverflow instead: <code>bytearray(random.getrandbits(8) for _ in range(num_bytes))</code></p>
+<h2>Challenge 49 CBC-MAC Message Forgery</h2>
+<p>This attack emphasizes two things: that CBC-MAC should use a constant IV, and that it is vulnerable to length extension.</p>
+<p>For the first part, the attacker controls the IV used by CBC-MAC. We want to construct a valid message of the form <code>&quot;from=victim&amp;to=attacker&amp;amount=1000&quot;</code>. First, the attacker generates a valid message and MAC from an account that he controls (say, an accomplice), like <code>&quot;from=normal&amp;to=attacker&amp;amount=1000&quot;</code>. Then, the attacker generates the correct IV to turn <code>normal</code> into <code>victim</code>, as follows:</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">evil_msg = <span class="string">"from=victim&amp;to=attacker&amp;amount=1000"</span></div><div class="line">evil_padded = padPKCS7(evil_msg, <span class="number">16</span>)</div><div class="line"></div><div class="line"><span class="comment"># We're xoring the forged message and normal_msg to get the difference between the two, and then applying it to the iv</span></div><div class="line">forged_iv = xor(evil_msg[:<span class="number">16</span>], normal_msg[:<span class="number">16</span>], iv)</div><div class="line">forged_mac = CBC_MAC(key, forged_iv, evil_padded)</div><div class="line"></div><div class="line"><span class="keyword">assert</span> forged_mac == mac</div></pre></td></tr></table></figure></p>
+<p>This forged mac will now be verified by the API server.</p>
+<p>One thing that confused me is how the attacker would be able to know the private key to communicate with the server, allowing him to construct such a message. This makes sense when the challenge explains:</p>
+<blockquote>
+<p>[The API is] publicly exposed - the attacker can submit messages freely assuming he can forge the right MAC. The web client should allow the attacker to generate valid messages for accounts he controls. Assume the attacker is in a position to capture and inspect messages from the client to the API server.</p>
+</blockquote>
+<p>The important thing is that the attacker can generate MACs using the private key for <em>accounts that he controls</em>, but not for someone else's account.</p>
+<p>In the second part of this challenge, the attacker uses length extension to append an evil string <code>&quot;attacker:10000&quot;</code> to a recipients list in a victim's transaction. The attacker first generates a MAC for a valid message that names him as a recipient (say, a transaction from himself to himself). He then intercepts a normal message like <code>&quot;from=victim&amp;tx_list=normaluser:1&quot;</code>, and xors in his own message at the end, causing the resultant MAC to become his own MAC.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">attacker_valid_msg = construct_message(<span class="string">"hello"</span>, (<span class="string">"attacker"</span>, <span class="number">10000</span>), (<span class="string">"attacker"</span>, <span class="number">10000</span>))</div><div class="line">attacker_padded = padPKCS7(attacker_valid_msg, <span class="number">16</span>)</div><div class="line">attacker_mac = CBC_MAC(key, iv, attacker_padded)</div><div class="line"></div><div class="line"><span class="comment"># XOR out normal_mac to reacquire an IV of 0, then XOR in the first block of the attacker's msg</span></div><div class="line">evil_msg = padded + xor(normal_mac, attacker_padded[:<span class="number">16</span>]) + attacker_padded[<span class="number">16</span>:]</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"C-&gt;A-&gt;S: Sending Attacker Message + MAC"</span></div><div class="line">r.sendline(evil_msg)</div><div class="line">r.sendline(attacker_mac)</div></pre></td></tr></table></figure></p>
+<h2>Challenge 50 Hashing with CBC-MAC</h2>
+<p>This is a simple modification of the length extension of the last challenge. My evil javascript payload is an alert with a comment at the end.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">forge = <span class="string">"alert('Ayo, the Wu is back!');//"</span></div><div class="line">forge_padded = padPKCS7(forge, <span class="number">16</span>)</div></pre></td></tr></table></figure></p>
+<p>and, to ensure I get the same hash as the challenge snippet, <code>296b8d7cb78a243dda4d0a61d33bbdd1</code>, I need to extend the CBC-MAC of the JS payload with the challenge snippet.</p>
+<p>I can simply add a block in the middle to xor out the MAC of the payload, ensuring that the rest of the CBC-MAC is identical to the original.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">concat_forge = forge_padded + xor(mac, js_padded[:<span class="number">16</span>]) + js_padded[<span class="number">16</span>:]</div></pre></td></tr></table></figure></p>
+<h2>Challenge 51 Compression Ratio Side-Channel Attacks, Aka, CRIME</h2>
+<p>This has got to be the ugliest code I've written in a while, because my initial approach was bad...</p>
+<p>In this challenge, we use the side channel of zlib compression to leak a session cookie in an HTTP request.</p>
+<p>Without knowing much about the internal DEFLATE algorithm of zlib, just realize that <em>repeated strings compress better</em>. So, the basic idea is to bruteforce the session id by seeing whether added characters minimize the compression — telling us that the added characters are a part of the session id.</p>
+<p>I attempt to minimize scores by adding pairs of characters, but that turned out to be unnecessary. I also utilized python's <code>multiprocessing</code> library, which was also totally overkill.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pool = mp.Pool(processes = <span class="number">8</span>)</div><div class="line">compression_lens = pool.map(compression_oracle_worker, base64_permutations)</div></pre></td></tr></table></figure></p>
+<p>When we are using CTR as the compression cipher, it's pretty simple, since there's no padding involved. Correct guesses for more characters of the id will result in lower compression lengths.</p>
+<p>When using CBC, we have to be concerned with padding. Instead of simply minimizing the compressed length, I need to use another piece of information to determine when I've guessed the right characters — a padding oracle. I put in some uncompressible guess for the id and find the padding necessary to push the compressed length above a block boundary. Once I find the correct id characters, then the compressed length will be a block length (16 bytes) lower than the uncompressible guess, because I've compressed it below the block boundary.</p>
+<p>The set of characters <code>!@#$%^&amp;*()-`~[]}{</code> can be used as padding, because they are not <code>base64</code> characters and will not appear in the session id.</p>
+<p>I had to do a few hacky things to get it all to work, though: I need to test two padding lengths for each guess, since my guesses are all possible <em>pairs</em> of <code>base64</code> characters. And, python's <code>Pool.map</code> doesn't take multiple arguments, so I have to pass in a list of lists to my oracle worker.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">base64_perms = [[padding[:<span class="number">-1</span>], final + <span class="string">""</span>.join(perm)] <span class="keyword">for</span> perm <span class="keyword">in</span> it.permutations(base64_chars, <span class="number">2</span>)]</div><div class="line">base64_perms += [[padding[:<span class="number">-2</span>], final + <span class="string">""</span>.join(perm)] <span class="keyword">for</span> perm <span class="keyword">in</span> it.permutations(base64_chars, <span class="number">2</span>)]</div></pre></td></tr></table></figure></p>
+<h2>Challenge 52 Iterated Hash Function Multicollisions</h2>
+<p>The next three challenges all involve attacks on the Merkle-Damgard hash construction. We encountered this previously with MD5 and SHA1, and we'll be using a specifically weakened version in these challenges.</p>
+<p>The basic idea in this challenge is that, once we find an initial collision of an iterated hash function, we can generate a ton more by extending that initial collision. The relevant paper is <a href="https://www.iacr.org/archive/crypto2004/31520306/multicollisions.pdf" target="_blank" rel="external">Joux</a>. The key figure is ![Multicollision Construction Joux](/images/2017/09/Screenshot 2017-09-11 12.48.58.png).</p>
+<p>We can see that we can construct colliding messages by selecting one of $B_i$, $B_i'$ for each $i$, giving us a total of $2^i$ colliding messages. Each message has the same intermediate hash values, $h_0, h_1...$.</p>
+<p>Now that we have a cheap way to generate collisions (if we ever need more, we can double how many collisions we have with very little work), we can break a cascaded hash function that just concatenates a weak hash and a strong hash. In my code, my &quot;weak&quot; hash is a Blowfish cipher truncated to 2 bytes of output, and my &quot;strong&quot; hash is truncated to 3 bytes of output.</p>
+<p>We can simply search in our pool of weak hash collisions for a pair of messages that also collides in the strong hash. No luck? Then double the number of weak hash collisions (easy!) and keep looking...</p>
+<h2>Challenge 53 Kelsey and Schneier's Expandable Messages</h2>
+<p>It took me a little bit to understand this attack. The best explanation is Schneier's paper  <a href="https://www.schneier.com/academic/paperfiles/paper-preimages.pdf" target="_blank" rel="external">here.</a>.</p>
+<p>The goal here is to break second preimage resistance — as the challenge states, finding $x'$ such that $H(x') = H(x) = y$.</p>
+<p>Remember that, in the iterated hash function construction, if the internal hash state of two different messages are ever equal, then we can make sure that all following hash states, including the output, will be equal (by ensuring that the messages don't differ after this point). So, if we have a very long message of $2^R - 1$ blocks, we have $2^R$ intermediate hash states that we can potentially collide with, decreasing the difficulty of finding a second preimage.</p>
+<p>However, length padding screws this up. MD construction calls for the length of the message to be appended to the message before the final hash is output, which prevents the above attack. We are forced to find a colliding message of length $2^R - 1$! Fortunately, we can bypass this defense with expandable messages that allow us to actually construct a message of this length very easily.</p>
+<p>We first find pairs of colliding messages, where each pair consists of a single-block message and a message of length $2^{k-1} + 1$. Each pair's initial hash state is the colliding hash of the previous pair. This is our expandable message.</p>
+<p>![Expandable message](/images/2017/09/expandable message diagrams.png)</p>
+<p>When we want to construct a message of length between $k$ and $k + 2^k - 1$, we can create it by concatenating pieces of our expandable message (you might already be able to see how if you are familiar with binary search). For each block in our chain, we can either append the single-block message or the $2^{i} - 1$ message, allowing us to build a message of any length that hashes to the same output as the others. The result will look something like this:</p>
+<p><img src="/images/2017/09/expand_2.png" alt="Message constructed from our expandable message"></p>
+<p>So, all that remains to get our second preimage is to find a single &quot;bridge&quot; block that will allow our expandable message to hash to one of the intermediate states of the long message. Once we find this block, which collides with the $n$th intermediate hash state of the long message, we simply produce a message of length $n$ in the manner shown above.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Where prefix is generated from our expandable message</span></div><div class="line">prefix = generate_prefix(intmed_state_hash_index)</div><div class="line"></div><div class="line">second_preimage = prefix + linking_block</div><div class="line">second_preimage += target_long_msg[len(second_preimage):]</div></pre></td></tr></table></figure></p>
+<h2>Challenge 54 Kelsey and Kohno's Nostradamus Attack</h2>
+<p>This challenge deals with another kind of preimage resistance — we want to make a prediction about some event that hashes to some output $H$, and after the event has passed, create a correct &quot;prediction&quot; that also hashes to $H$, thus convincing people that we knew the results of the event beforehand.</p>
+<p>This attack is also known as the <a href="https://eprint.iacr.org/2005/281.pdf" target="_blank" rel="external">&quot;herding&quot; attack</a>, and it's easy to see why. The basic premise is to construct a &quot;collision tree&quot; by selecting a bunch of starting hash states, finding message blocks under which pairs of these states collide, and building up a binary tree to a root hash state. The paper calls this tree a &quot;diamond structure&quot;, and it's very easy to produce.</p>
+<p>![](/images/2017/09/Screenshot 2017-09-11 17.50.41.png)</p>
+<p>Once we have the collision tree, we can choose our prefix (the actual result of the event) and append some glue blocks so that the last one collides with one of the leaves in our tree. Then, as the challenge says &quot;Follow the path from the leaf all the way up to the root node and build your suffix using the message blocks along the way.&quot;</p>
+<h2>Challenge 55 MD4 Collisions</h2>
+<p>To be honest, this challenge makes everything else look like chump stuff.</p>
+<p>fortenforge and I worked on this together for several days, and when I got tired of it, he soldiered on, ending up with a beautiful MD4 collision. I'll refer you to <a href="https://fortenf.org/e/crypto/2017/09/10/md4-collisions.html" target="_blank" rel="external">his writeup</a> in lieu of explaining it myself, and he deserves all the credit for this excellent piece of work.</p>
+<h2>Challenge 56 RC4 Single Byte biases</h2>
+<p>This seems like a pretty silly challenge, and I couldn't get it to work. We basically trust <a href="https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_alfardan.pdf" target="_blank" rel="external">this paper</a> that says that the RC4 encryption function is biased towards certain bytes at certain byte positions — byte 0, 16, 32, etc. For instance, the RC4 ciphertext's 16th byte is biased towards <code>0xF0</code>. To quote the paper,</p>
+<blockquote>
+<p>Suppose byte $Z_r$ of the RC4 keystream has a dominant bias towards value <code>0x00</code>. As RC4 encryption is defined as $C_r = P_r ⊕ Z_r$, the corresponding ciphertext byte $C_r$ has a bias towards plaintext byte $P_r$. Thus, obtaining sufficiently many ciphertext samples $C_r$ for a fixed plaintext $P_r$ allows inference of $P_r$ by a majority vote: <strong>$P_r$ is equal to the value of $C_r$ that occurs most often.</strong></p>
+</blockquote>
+<p>Unfortunately, you need to RC4 encrypt a ton of messages under random keys for this to work, which takes a lot of time, and the results were not at all good for me, even with $2^{24}$ encryptions for each byte.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">attack_byte</span><span class="params">(idx)</span>:</span></div><div class="line">        chars = &#123;char: <span class="number">0</span> <span class="keyword">for</span> char <span class="keyword">in</span> range(<span class="number">256</span>)&#125;</div><div class="line"></div><div class="line">        padding = <span class="string">'A'</span>*(<span class="number">15</span> - idx)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**<span class="number">20</span>):</div><div class="line">            <span class="keyword">if</span> i % (<span class="number">10</span>**<span class="number">6</span>) == <span class="number">0</span>:</div><div class="line">                print(<span class="string">"Iteration: "</span>, i)</div><div class="line">            ctext = rc4_oracle(padding)</div><div class="line">            guess = ctext[<span class="number">15</span>] ^ <span class="number">0xf0</span></div><div class="line">            chars[guess]+= <span class="number">1</span></div><div class="line"></div><div class="line">        max_char = max(chars.items(), key = op.itemgetter(<span class="number">1</span>))</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -237,11 +445,92 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been wanting to write this post for a while — here I’ll describe all the excellent customizations that I’ve accrued over several years of optimizing my Mac for speed and alleviating repetitive stress injury (RSI). If you’re a Mac power user, or if you make a living at a keyboard, you <strong>want</strong> to read this.</p>
-        <!-- I’ve been wanting to write this post for a while — here I’ll describe all the excellent customizations that I’ve accrued over several years of optimizing my Mac for speed and alleviating repetitive......  -->
-        <p class="article-more-link">
-          <a href="/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/#more">Read More</a>
-        </p>
+        <p>I've been wanting to write this post for a while — here I'll describe all the excellent customizations that I've accrued over several years of optimizing my Mac for speed and alleviating repetitive stress injury (RSI). If you're a Mac power user, or if you make a living at a keyboard, you <strong>want</strong> to read this.</p>
+<p>&lt;!-- more --&gt;</p>
+<h1>Preventing or reducing RSI</h1>
+<p>If you've never experienced RSI, I'm jealous. Programming for just a few years has given me mild to <strong>excruciating</strong> amounts of wrist pain, finger pain, and elbow pain, and I'm still just a student! The small investment in an ergonomic setup could save you a lot of trouble later. Here are some things that help:</p>
+<h2>Gel wrist rest</h2>
+<p>My first ergonomic venture was a 3M gel wrist rest off of <a href="http://a.co/6VG6SUy" target="_blank" rel="external">Amazon</a>. It's lasted two years so far and has been great to keep the sharp edge of my Macbook from digging into my wrists. It also elevates your hands above the keyboard so that typing is more comfortable. I'm now inseparable from my wrist rest, and it's also gotten me some extra screening from airport security...</p>
+<p>
+<div class="justified-gallery">
+    <a href="/images/2017/08/wrist.jpg">
+        <img alt="3M Gel Wrist Rest" src="/images/2017/08/wrist.jpg">
+    </a>
+</div>
+</p>
+<p>
+<div class="justified-gallery">
+  <a href="/images/2017/08/gloves.jpg">
+      <img alt="IMAK Compression Gloves" src="/images/2017/08/gloves.jpg">
+  </a>
+  <a href="/images/2017/08/mouse_rest.jpg">
+      <img alt="Mouse Rest" src="/images/2017/08/mouse_rest.jpg">
+  </a>
+  <a href="/images/2017/08/mouse.jpg">
+      <img alt="J-Tech Mouse" src="/images/2017/08/mouse.jpg">
+</a>
+</div>
+</p>
+<h2>Compression gloves</h2>
+<p>If you have finger joint soreness, compression gloves are a must. I've tried many different pairs (comparing price and compression level), and I think IMAK has <a href="http://a.co/e1Gwpd9" target="_blank" rel="external">pretty good ones</a>. They're quite delicate and can tear after extended use, but they provide much better compression and fit than cheaper, thicker gloves. Even if you don't have any pain, I recommend getting a pair. They make typing much more pleasurable, especially in cold weather.</p>
+<h2>Ergonomic mouse and trackpad</h2>
+<p>I also tried a few ergo mice before settling on the <a href="http://a.co/0Fm9hkr" target="_blank" rel="external">J-Tech mouse</a>. It has both Bluetooth and wired versions, and it works great on a Mac. You can see in the photo the wonderful detachable platform on which you rest the bottom of your palm, keeping it off the table. There's also two thumb-side buttons that you can customize, as I'll mention later. Much less finger pain than using a trackpad or a conventional mouse.</p>
+<p>Get a <a href="http://a.co/jj5HTFD" target="_blank" rel="external">trackpad with a wrist rest</a> (either foam or gel, your pick), while you're at it.</p>
+<h2>Standing desk</h2>
+<p>A full standing desk is definitely too pricey, but there are cheaper solutions out there. One that serves its purpose for only $35 is <a href="http://a.co/dW0xceV" target="_blank" rel="external">this guy</a>. It's good to alternate standing and sitting, and this portable one is light as air and easy to set aside, but still sturdy. Adjusting it is a pain, though.</p>
+<h2>Ergonomic keyboards</h2>
+<p>I've recently started using the <a href="http://a.co/7Z7VVyO" target="_blank" rel="external">Microsoft Natural 4000</a> at work, and it puts less strain on the fingers than the default Mac keyboard. The built-in wrist rest and sloping contours are comfortable, though it's quite a large keyboard and my small hands stretch to reach some keys.</p>
+<p>For the power user, justaperson will testify that the <a href="https://ergodox-ez.com/" target="_blank" rel="external">Ergodox-EZ</a>, at $300, is not cheap, but certainly worth it. It comes in two pieces so that you can arrange your hands at shoulder width, which is the optimal position for ergonomics. There's software to program the keys however you want, and you can get versions with or without printed keycaps. And if you're a fan of mechanical keys, you can choose your preferred type.</p>
+<p>Note that it takes some getting used to, as justaperson can tell you, but he now uses it all the time.</p>
+<p>
+<div class="justified-gallery">
+    <a href="/images/2017/08/kbd.jpg">
+        <img alt="Microsoft Natural 4000" src="/images/2017/08/kbd.jpg">
+    </a>
+    <a href="/images/2017/08/ergodox-2.png">
+        <img alt="Ergodox EZ" src="/images/2017/08/ergodox-2.png">
+    </a>
+</div>
+</p>
+<h1>Mac Customizations</h1>
+<p>My Mac environment has layers of speedups, shortcuts, and tricks, some of which are so superb that I don't know how anyone works without them. Here goes:</p>
+<h2><a href="https://www.boastr.net/" target="_blank" rel="external">BetterTouchTool</a></h2>
+<p>I've been using BetterTouchTool for years, and it's absolutely incredible. The sheer number of features that now exist, including its mouse, trackpad, touchbar, keyboard integrations, allow any shortcut imaginable.  When people ask me, &quot;how the hell are you doing _______ on your Mac??&quot;, my answer is probably BetterTouchTool!</p>
+<p>Here are my best customizations that Mac users will salivate over:</p>
+<ul>
+<li>Window resizing by holding option and dragging mouse <em>anywhere</em> in the window</li>
+<li>Window moving by holding ⌘ and dragging mouse <em>anywhere</em> in the window</li>
+<li>⌘+E opens the amazing BetterTouchTool Window Switcher. Miles better than ⌘+Tab</li>
+<li>Opt+Ctrl+T to open a Finder window from anywhere</li>
+<li>I've mapped a ton of Opt+letter or arrow keys to snap a window to a corner, half, or third of the screen.</li>
+</ul>
+<p><img src="/images/2017/08/switcher.png" alt="BetterTouchTool Window Switcher"></p>
+<p>Now that I use the J-Tech mouse, I've mapped the two extra buttons to the Window Switcher as well. MAGIC!!</p>
+<p>The best part is that it's pay-what-you-want (with a measly minimum of $6), while its functionality feels like it's worth as much as the Mac itself.</p>
+<h2><a href="https://pqrs.org/osx/karabiner/" target="_blank" rel="external">Karabiner</a></h2>
+<p>This nifty, free keyboard customizer can do key modifications ranging from simple to mind-boggling, per-keyboard profiles, and more.</p>
+<p>I don't have many shortcuts, but I appreciate being able to map Return to Ctrl, so I put less strain on my left pinky, which often occurs when using tmux, vim or emacs (look up emacs pinky!). If I press Return alone, it enters a line break, but if I hold it and press another key, I get Ctrl functionality. Neat!</p>
+<p>I also sometimes remap Microsoft keyboards to make the left-corner keys more like a Mac's Ctrl, Option, and ⌘.</p>
+<p>For MacOS Sierra, you'll need <a href="https://github.com/tekezo/Karabiner-Elements" target="_blank" rel="external">Karabiner-Elements</a>, a beta version which provides much the same functionality.</p>
+<h2><a href="http://www.apprywhere.com/copy-em-paste.html" target="_blank" rel="external">Copy'Em Paste</a></h2>
+<p>STOP SWITCHING WINDOWS TO PASTE MULTIPLE THINGS! Everyone needs a good clipboard manager, no matter what platform you're on. Copy'Em Paste is everything you'll ever need from one. I love that it has a customizable hotkey, favorites, search, image clipping, and option to paste richtext or plaintext.</p>
+<p><img src="/images/2017/08/copyempaste.png" alt=""></p>
+<p>It's well worth the $15 price tag, though I won't say where I got mine...</p>
+<h2>Multiple Desktops</h2>
+<p>Many Mac users may already know about Multiple Desktops, but here's a nice hack: Each desktop is associated with a specific task, and you can use Ctrl+number hotkeys to quickly switch to what you need. For instance, you can put music in Desktop 8, a terminal in Desktop 7, email in Desktop 9, and navigating to each becomes muscle memory.</p>
+<p><img src="/images/2017/08/desktop.png" alt=""></p>
+<p>I learned this trick from firescar a few years ago. He was doing this on Linux, and I discovered that Multiple Desktops give the same effect on Macs.</p>
+<h2><a href="https://www.iterm2.com/" target="_blank" rel="external">iTerm2</a></h2>
+<p>iTerm is strictly better than Mac's built-in Terminal. If you don't have it, make the switch right now. Its endless customizations and even a black-magic tmux integration mode are a boon for programmers who use their terminal more than their browsers. I also switched from <code>bash</code> to <code>zsh</code> for the awesome plugins that make the terminal 1000x better.</p>
+<p>Here's the best zsh plugins I use:</p>
+<ul>
+<li><code>fasd</code> — Never <code>cd</code> to a full pathname again! This plugin remembers your previous working directories, so you can simply type part of a directory name and it will automatically go to the most recent/most used folder that matches fuzzy search</li>
+<li><code>osx</code> — Simple shortcuts like <code>ofd</code> to open the present working directory in a Finder window. Pretty cool, right?</li>
+<li><code>history-substring-search</code> — Instead of Ctrl+R for a shitty back-search, simply type a partial command and press the Up arrow to get a fuzzy search to recent matches. Running previous commands has never been easier...</li>
+<li><code>git</code> — Dozens of aliases for git. Enough said.</li>
+</ul>
+<p>You're welcome!</p>
+
       
     </div>
     
@@ -289,12 +578,18 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>It’s always bothered me that MIT or MIT Lincoln Lab didn’t submit anything to DARPA’s Cyber Grand Challenge. With all the smart people, such as my advisor, Armando Solar-Lezama, working on program analysis and formal methods (which I currently know nothing about), I would have expected that we could create a strong Cyber Reasoning System worthy of CGC.</p>
-<p>That’s sort of what I will be working on this summer at Lincoln and probably writing my thesis on. But I’m very new to the field and have just started diving in.</p>
-        <!-- It’s always bothered me that MIT or MIT Lincoln Lab didn’t submit anything to DARPA’s Cyber Grand Challenge. With all the smart people, such as my advisor, Armando Solar-Lezama, working on program ......  -->
-        <p class="article-more-link">
-          <a href="/2017/05/23/2017/Looking towards Summer: Concolic Execution, Fuzzy Panda, and more/#more">Read More</a>
-        </p>
+        <p>It's always bothered me that MIT or MIT Lincoln Lab didn't submit anything to DARPA's Cyber Grand Challenge. With all the smart people, such as my advisor, Armando Solar-Lezama, working on program analysis and formal methods (which I currently know nothing about), I would have expected that we could create a strong Cyber Reasoning System worthy of CGC.</p>
+<p>That's sort of what I will be working on this summer at Lincoln and probably writing my thesis on. But I'm very new to the field and have just started diving in.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>I will primarily be engineering on <a href="https://github.com/panda-re/panda" target="_blank" rel="external">panda</a>, LL's dynamic analysis platform. I will first need to implement record-replay for PowerPC, because that's what a lot of embedded devices are still programmed in.</p>
+<p>More on this later...
+&lt;/br&gt;</p>
+<p>Anyways, I've decided that I'm going to take 6.035 again in Fall, but this time in Haskell. The fall version will have a language much simpler semantics but is going to be very optimization-heavy. I'd like to get the experience in functional programming, as well as implement the optimizations that I didn't get to this semester.</p>
+<p>I still want to get better at Rust, though, so I will continue working on this Spring's version of 035, the MITScript dynamic language. I would like to get the code generator fully working and integrate a generational GC. Thank goodness I have <a href="https://github.com/JustAPerson" target="_blank" rel="external">JustAPerson</a> around to help me debug Rust.</p>
+<p>For the sake of learning Haskell and LLVM, I'll try to follow the Kaleidoscope tutorial. JustAPerson seems to think I won't be able to handle 6.035 in Haskell unless I spend the whole summer practicing.</p>
+<p>Fortenforge and I will also be finishing the Matasano Crypto Challenges and working on a packet analysis framework for Lab RATs to use at DEF CON this summer.</p>
+<p>Many things to do!</p>
+
       
     </div>
     
@@ -342,13 +637,63 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The last of the original crypto challenges… here we go!</p>
-<h2 id="Challenge-41-Implement-unpadded-message-recovery-oracle"><a href="#Challenge-41-Implement-unpadded-message-recovery-oracle" class="headerlink" title="Challenge 41 Implement unpadded message recovery oracle"></a>Challenge 41 Implement unpadded message recovery oracle</h2><p>Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.</p>
-        <!-- The last of the original crypto challenges… here we go!
-Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addit......  -->
-        <p class="article-more-link">
-          <a href="/2017/05/21/2017/Matasano Crypto Challenges, Set 6/#more">Read More</a>
-        </p>
+        <p>The last of the original crypto challenges... here we go!</p>
+<h2>Challenge 41 Implement unpadded message recovery oracle</h2>
+<p>Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>This can have many useful properties, but also produces some consequences. This challenge is analogous to a &quot;security game&quot; that tests for a property known as IND-CCA2 — indistinguishability under Chosen Ciphertext Attack, where the adversary has access to a decryption oracle. The challenger gives the adversary a ciphertext, and the adversary can ask for the encryption and decryption of anything he wants — except the challenge ciphertext, of course! If the adversary can learn any information about the ciphertext's plaintext, then he wins the game.</p>
+<p>A fully homomorphic scheme fails IND-CCA2 — the adversary can completely recover the message! The adversary can't ask for the decryption of the challenge ciphertext, but he can ask for the decryption of 2*ciphertext, or 3*ciphertext, etc. and he knows that the result will be 2*plaintext, 3*plaintext. Just divide out the scaling factor, and you have the plaintext.</p>
+<h2>Challenge 42 Bleichenbacher's e=3 RSA Attack</h2>
+<p>Another worry with low public exponent is that the message block, when encrypted, will not be large enough to wrap the modulus.</p>
+<p>A faulty PKCS 1.5 padding verifier might not check that all the <code>\xff</code> bytes in the middle are present.</p>
+<p>Here's an example of two faulty verifier versions:
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Find the 00 separator between the padding and the payload</span></div><div class="line">sep_idx = clearsig.index(<span class="string">'\x00'</span>, <span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># vulnerable python-rsa version, taking all the remainder of string after asn1 as the hash</span></div><div class="line">signature_hash = clearsig[sep_idx+len(sha1_asn1)+<span class="number">1</span>:]</div><div class="line"></div><div class="line"><span class="comment"># weaker version, taking only the next 20 bytes as hash, allowing us to append garbage</span></div><div class="line">signature_hash = clearsig[sep_idx+len(sha1_asn1)+<span class="number">1</span>:sep_idx+len(sha1_asn1)+<span class="number">1</span>+<span class="number">20</span>]</div></pre></td></tr></table></figure></p>
+<p>Looking at the weaker version, it's very simple to construct a message block meeting those parameters.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">msg_hash = hashlib.sha1(msg).digest()</div><div class="line">garbage = <span class="string">'\x00'</span>*<span class="number">75</span></div><div class="line">forge_sig =  <span class="string">"\x00\x01\xff\x00"</span> + sha1_asn1 + msg_hash + garbage</div></pre></td></tr></table></figure></p>
+<p>and then, we simply take the cube root of this forged sig, which undoes the encryption (a cubing).
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(cube_root, exact) = gmpy2.iroot(forge_sig_num, <span class="number">3</span>)</div><div class="line">cube_root += <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>The cube root will verify to a valid signature in the faulty padding verifier.</p>
+<h2>Challenge 43 DSA key recovery from nonce</h2>
+<p>The DSA signature scheme uses two cyclic groups.</p>
+<p>One large cyclic group, $Z_p^{*}$, has an order of a 1024 bit prime. Another cyclic group, $Z_q^{*}$, has an order of a 160 bit prime.</p>
+<p>A DSA signature is generated and verified as follows:</p>
+<p>Signing:</p>
+<ol>
+<li>Choose a random ephemeral key $0 &lt; k_e &lt; q$</li>
+<li>Compute $r \equiv \alpha^{k_e} \mod q$</li>
+<li>Compute $s \equiv (SHA(x) + d\cdot r) k_e^{-1}\mod q$</li>
+</ol>
+<p>Verifying:</p>
+<ol>
+<li>Compute aux value $w \equiv s^{-1} \mod q$</li>
+<li>Compute aux value $u_1 \equiv w \cdot SHA(x) \mod q$</li>
+<li>Compute aux value $u_2 \equiv w \cdot r \mod q$</li>
+<li>Compute $v \equiv \alpha^{u_1}\cdot \beta ^{u_2} \mod p) \mod q$</li>
+<li>Verify $v \equiv r \mod q$</li>
+</ol>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_sign</span><span class="params">(msg, d)</span>:</span></div><div class="line">    k_e = random.randint(<span class="number">0</span>, q)</div><div class="line">    r = pow(g, k_e, p) % q</div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    s = ((x + d*r)*modinv(q, k_e)) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (r,s)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_verify</span><span class="params">(msg, r, sig, B)</span>:</span></div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    <span class="comment">#compute aux value w</span></div><div class="line">    s_inv = modinv(q, sig)</div><div class="line">    u_1  = s_inv*x % q</div><div class="line">    u_2  = s_inv*r % q</div><div class="line"></div><div class="line">    v = (pow(g, u_1, p) * pow(B, u_2, p) % p) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v == r%q</div></pre></td></tr></table></figure></p>
+<p>To recover the private key if we know $k$, we just solve for $x$ in the equation for $s$:</p>
+<p>$$
+d = (\frac{s\cdot k_e - SHA(x)}{r} \mod q
+$$</p>
+<h2>Challenge 44 DSA nonce recovery from repeated nonce</h2>
+<p>Let's work out how we can recover the k given a pair of messages that use repeated k.</p>
+<p>$$
+\begin{align}
+s_1 - s_2 &amp;= (m_1 +  dr)k^{-1} - (m_2 + dr)k^{-1} \\
+&amp;= (m_1 - m_2)k^{-1} \\
+k &amp;= \frac{m_1 - m_2}{s_1 - s_2}
+\end{align}
+$$</p>
+<h2>Challenge 45 DSA parameter tampering</h2>
+<p>If we make the generator equal to $p+1$, then raising it to any power mod p will be 1.</p>
+<p>This allows us to forge a signature for any message.</p>
+<h2>Challenge 46 RSA parity oracle</h2>
+<p>The idea is to multiply the message by successive powers of 2, and using our parity oracle to check whether the result is even or odd. This allows us to update the upper or lower bound — if odd, the multiplication wrapped the modulus, and we update the lower bound. If even, we didn't wrap the modulus, and we have a tighter higher bound.</p>
+<p>The answer at <a href="https://crypto.stackexchange.com/questions/11053/rsa-least-significant-bit-oracle-attack" target="_blank" rel="external">this StackExchange post</a> allows us to see why. Briefly, when we multiply by 2 and then 4, if we get (even, even) then we haven't wrapped the modulus, and the message is &lt; N/4. If we get (odd, odd), then we know that we've wrapped the modulus twice — only possible if 3/4N &lt; P &lt; N. Make sure you see why: the result of the first doubling will be between 1/2N and N, so the second doubling will again wrap the modulus.</p>
+<p>Do this iteratively, until you tighten the bounds enough to get every byte of the message, which will be discovered byte-by-byte.</p>
+<h2>Challenge 47 Bleichenbacher's attack</h2>
+
       
     </div>
     
@@ -398,13 +743,31 @@ Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorph
       
         <p><strong>Update 5/5/17:</strong> <strong>We qualified to DEF CON CTF 2017!!!!</strong> We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!</p>
 <p><img src="/images/2017/05/defcon2.PNG" alt="DEF CON EMAIL!!!"></p>
-        <!-- Update 5/5/17: We qualified to DEF CON CTF 2017!!!! We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!
+<p>&lt;!--- more --&gt;</p>
+<p>This past weekend, I competed in my first DEF CON CTF Qualifier. Our club TechSec teamed up with Lab RATs (Lincoln Labs' CTF team) and RPISEC, and this powerhouse team ended up placing 10th. We beat out some very strong teams, including LCBC (the top Russian team), Dragon Sector (Poland), KaisHack (Korea Advanced Inst. of Science and Tech), and binja (Japan).</p>
+<h2>What's at stake</h2>
+<p>Held in Las Vegas every July at the DEF CON conference, DEF CON CTF attracts the best hacking teams in the world. Teams compete year-round to nab a qualification spot in Vegas and have a chance at the title.</p>
+<h2>Format and griping</h2>
+<p>Let me get a few complaints out of the way. A few things that bother me about DEF CON CTF are the lack of clarity on qualification rules and the frustrating format of the qualifier. First of all, all the challenges are Reverse Engineering and Pwn/Exploitation — most are totally inaccessible to beginners like most of TechSec's members. There was <em>one problem</em> in the Web category that actually turned out to be pwn as well (surprise!). Also, for the first two days, only a few challenges are ever available at a time, because most are locked. The team that solves the most recent challenge gets to choose which challenge to unlock next. The small numbers of challenges are meant to not overwhelm smaller teams — but on the last day, the floodgates open...</p>
+<p><a href="https://legitbs.net/" target="_blank" rel="external">LegitBS</a> has been organizer of the CTF since 2013. They usually take 15 teams from eight prequalifying events + DEF CON Quals, but how they deal with teams that qualify multiple times is uncertain. I wish they were more clear/communicative about this.</p>
+<p>Last year, LegitBS took ten from DEF CON Quals because two teams (LCBC and PPP) prequaled twice and another prequaled team (StratumAuhuur) dropped out. This year, it seems that they're taking nine, just missing us :(. At the very least, we helped Lab RATs jump from 32nd place to 10th from last year to this year. We will probably receive an email later this week as to whether we've qualified or are first alternates. There's a small chance we may still make it, if another team drops out or a team that's already qualed wins the last qualifying event, 0ctf, in June.</p>
+<p>Regardless of whether we end up qualifying, I had a thrilling experience. Rahul (fortenforge) and I worked with Lincoln at the BeaverWorks space the whole weekend, contributing where we could. We took the occasional break for Lego Batman, MIT tent parties, and sleep, but otherwise we were plugged in.</p>
+<p>In the antepenultimate hour, our team solved three challenges in quick succession — awsno (the web chal), pegem, and pepperidge farm. That put us in a tie with two other teams, and we needed just one more solve to guarantee our spot. We were working on four other chals, none of which we ended up solving in time.</p>
+<p>&lt;br&gt;</p>
+<p><img src="/images/2017/05/20170430_200017.jpg" alt="Final Scoreboard"></p>
+<h2>Challenges</h2>
+<p>I won't be doing full writeups in this blog post, but I'll be describing some of my favorite challenges briefly.</p>
+<h3>Pegem</h3>
+<p>Pegem was a problem in the RE category (but actually pwn) in the one-instruction esolang <a href="https://esolangs.org/wiki/Subleq" target="_blank" rel="external">SUBLEQ</a> (SUbtract and Branch if Less than or EQual to zero). You had to solve a peg game written in SUBLEQ, run by a C emulator. Once you won the game, there was a &quot;buffer overflow&quot; that allowed you to modify the SUBLEQ program itself, changing its control flow to print out the flag byte-by-byte.</p>
+<p>The flag: <code>Who needs more than one instruction?</code></p>
+<h3>Insanity!!!</h3>
+<p>This challenge took in audio files zlib-compressed, and used a <a href="http://cmusphinx.sourceforge.net/" target="_blank" rel="external">speech-to-text</a> library to interpret each word as either 'insanity' or 'insane'. Depending on how many 'insanities' were preceding an 'insane', the program would execute one of 9 opcodes in a stack-based interpreter. The exploitable bugs were in the interpreter, so we used OSX's <code>say</code> command to produce audio files with the word insanity repeated 1-100 times. Thanks Samantha (or Siri, as you might know her)!</p>
+<h3>Jargon</h3>
+<p><code>vito fuzyll + gynophage hj hoju = bja lightning fuzyll</code>
+That's the kind of shit that I spent the wee hours of Sunday staring at. This was a black-box RE problem that took in nibbles of data over a network port, and interpreted them as random words or names of the organizers — <code>vito, selir, jymbolia,</code> etc. Each nibble corresponded to an opcode for a stack-based interpeter — <code>dead beaf</code> was <code>push</code>, <code>xyzzy</code> was <code>multiply</code>. I discovered a <code>syscall</code> opcode that took whatever was pushed onto the stack and executed that syscall, so I started fuzzing until I found one valid syscall — <code>hj hoju</code>, that pushed a bunch of crap to the stack. This crap turned out to be the flag, once fortenforge figured out how the words corresponded to digits! Quite a team effort and a fun problem, though I wish we had solved a bit faster, given that I was staring at the flag without realizing it for hours.</p>
+<p>&lt;br&gt;
+All we can do now is wait and see... at the very least, our chances look good for next year.</p>
 
-
-This past weekend, I c......  -->
-        <p class="article-more-link">
-          <a href="/2017/05/03/2017/DEF CON CTF Qualifier 2017/#more">Read More</a>
-        </p>
       
     </div>
     
@@ -452,12 +815,39 @@ This past weekend, I c......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?</p>
-<p>Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.</p>
-        <!-- Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode in......  -->
-        <p class="article-more-link">
-          <a href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/#more">Read More</a>
-        </p>
+        <p>Well, this was my first foray into the world of Rust, the systems language that is Mozilla's precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?</p>
+<p>Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it's not great for iterating quickly if you aren't very experienced already. But, I'm licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates' C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>Fortunately, I had some great Rust developers on my team – Jason and <a href="https://github.com/kazimuth" target="_blank" rel="external">James Gilles</a>, who have been avid Rustaceans for years.</p>
+<p>If you have ever seen bytecode, you'll expect to see some non-human-readable hex bytes that stand for instructions. Instead, we have a strange text-based bytecode consisting of the following instructions:</p>
+<p><strong>Load/store instructions</strong>:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">LoadConst    </div><div class="line">LoadFunc     </div><div class="line">LoadLocal    </div><div class="line">StoreLocal   </div><div class="line">LoadGlobal   </div><div class="line">StoreGlobal  </div><div class="line">PushReference</div><div class="line">LoadReference   </div><div class="line">StoreReference  </div><div class="line">AllocRecord     </div><div class="line">FieldLoad    </div><div class="line">FieldStore   </div><div class="line">IndexLoad       </div><div class="line">IndexStore</div></pre></td></tr></table></figure></p>
+<p><strong>Closure functions</strong>:<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AllocClosure    </div><div class="line">Call    </div><div class="line">Return</div></pre></td></tr></table></figure></p>
+<p><strong>Binary/unary ops</strong>:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Add     </div><div class="line">Sub     </div><div class="line">Mul     </div><div class="line">Div     </div><div class="line">Neg     </div><div class="line">Gt      </div><div class="line">Geq     </div><div class="line">Eq      </div><div class="line">And     </div><div class="line">Or      </div><div class="line">Not</div></pre></td></tr></table></figure></p>
+<p><strong>Control flow</strong>:<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Goto</div><div class="line">If</div></pre></td></tr></table></figure></p>
+<p><strong>Stack manipulation</strong>:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Dup     </div><div class="line">Swap    </div><div class="line">Pop</div></pre></td></tr></table></figure></p>
+<p>And the full bytecode is a series of nested functions, like
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">function</div><div class="line">&#123;</div><div class="line">  functions =</div><div class="line">  [</div><div class="line">    function</div><div class="line">    &#123;</div><div class="line">      functions =[</div><div class="line">        function</div><div class="line">         &#123;</div><div class="line">          functions  = [],</div><div class="line">          constants  = [],</div><div class="line">          parameter_count = 1,</div><div class="line">          local_vars = [z],</div><div class="line">          local_ref_vars = [],</div><div class="line">          free_vars  = [y],</div><div class="line">          names = [x],</div><div class="line">          instructions = [</div><div class="line">            ...</div><div class="line">             return</div><div class="line">          ]</div><div class="line">         &#125;</div><div class="line">      ],</div><div class="line">      constants = [None, 1],</div><div class="line">      parameter_count = 1,</div><div class="line">      local_vars = [y, g],</div><div class="line">      local_ref_vars = [y],</div><div class="line">      free_vars = [],</div><div class="line">      names = [],</div><div class="line">      instructions = [</div><div class="line">        ...</div><div class="line">        return</div><div class="line">       ]</div><div class="line">    &#125;</div><div class="line">  ],</div><div class="line">  constants = [1, None],</div><div class="line">  parameter_count = 1,</div><div class="line">  local_vars = [],</div><div class="line">  local_ref_vars = [],</div><div class="line">  free_vars = [],</div><div class="line">  names = [x, f],</div><div class="line">  instructions =</div><div class="line">  [</div><div class="line">    ...</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Some things to note:<br>
+A <code>free_var</code> is a variable from a parent scope that's accessed in the current function.</p>
+<p>A closure contains a function, as well as a list of references to the free variables in the nested function. So, when we make a call, we need to clone all the closure's free variable references into the newly created frame.</p>
+<h3>Pieces of the puzzle</h3>
+<p>We split up the work into three parts. James quickly finished the bytecode parser, using the Rust library lalrpop. Jason and I worked on (last minute) the bytecode generation and interpreting, respectively.</p>
+<p>Each bytecode <code>function</code> was modeled as a Function struct.</p>
+<p>I also have a Frame structure that, as in the AST interpreter from Lab 2, contains the context for the currently executing closure. Most importantly, there is an operand stack onto which references, values, closures, etc. are pushed and popped as opcodes are executed. The HeapValue enum lists them all:</p>
+<p><figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">type</span> <span class="title">FrameSlot</span></span> = Gc&lt;RefCell&lt;HeapValue&gt;&gt;;</div><div class="line"></div><div class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">HeapValue</span></span> &#123;</div><div class="line">    Reference(FrameSlot),</div><div class="line">    Record(Gc&lt;RefCell&lt;Record&gt;&gt;),</div><div class="line">    Function(Gc&lt;Function&gt;),</div><div class="line">    Closure(Gc&lt;Closure&gt;),</div><div class="line">    <span class="comment">// note: oddly enough, foreign functions behave more like</span></div><div class="line">    <span class="comment">// closures, since you can actually call them</span></div><div class="line">    ForeignFunction(ForeignFunction),</div><div class="line">    <span class="built_in">String</span>(<span class="built_in">String</span>),</div><div class="line">    Integer(<span class="built_in">i64</span>),</div><div class="line">    Boolean(<span class="built_in">bool</span>),</div><div class="line">    <span class="literal">None</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>References have a layer of indirection provided by the Gc&lt;RefCell&lt;&gt;&gt; construct in Rust. Gc is just an alias for <code>Rc</code>. In Rust, <code>Rc</code> is a reference-counted pointer, and <code>RefCell</code> is a wrapper for a mutable value. <code>RefCell</code> introduces something called <a href="https://ricardomartins.cc/2016/06/08/interior-mutability" target="_blank" rel="external">&quot;interior mutability&quot;</a>, which allows us to modify an otherwise-immutable location like a field in a struct. We can use <code>borrow</code> or <code>borrow_mut</code> to get a pointer to the value contained in the <code>RefCell</code>.</p>
+<h3>The bytecode generator</h3>
+<p>Jason did this part almost entirely himself, and had to wrangle with some tricky scoping rules that I still don't entirely understand.</p>
+<p>One key function is <code>lookup_variable</code>, which determines whether a variable is a reference, local, or global.
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Determines what scope a variable's value should be found in</span></div><div class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">lookup_variable</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, name: &amp;<span class="built_in">str</span>) &#123;</div><div class="line">  <span class="keyword">if</span> <span class="keyword">self</span>.globals.contains(name) &#123;</div><div class="line">            <span class="keyword">self</span>.map.insert(name.to_owned(), Location::Global);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.locals.contains(name) &#123;</div><div class="line">            <span class="keyword">self</span>.map.insert(name.to_owned(), Location::Local);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.lookup_ref(name) &#123;</div><div class="line">            <span class="comment">// We found the variable in a parent scope</span></div><div class="line">            <span class="keyword">self</span>.free.push(name.to_owned());</div><div class="line">            <span class="keyword">self</span>.map.insert(name.to_owned(), Location::Reference);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.lookup_global(name) &#123;</div><div class="line">            <span class="comment">// Found the var in one of the active globals</span></div><div class="line">            <span class="keyword">self</span>.globals.push(name.to_owned());</div><div class="line">            <span class="keyword">self</span>.map.insert(name.to_owned(), Location::Global);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">panic!</span>(<span class="string">"Uninitialized variables &#123;&#125;"</span>, name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><code>lookup_ref</code> also propagates up to parents, pushing a reference variable in parent scopes, because it has to be in each parent scope to be copied down to the current scope! To be more clear, say we have nested functions f1, f2...f100; and f100 uses some variable <code>x</code> that is local to f3. f4...f99 must all have <code>x</code> as a free variable, so when we see that <code>x</code> is being used in f100, <code>lookup_ref</code> will add it as a free variable for all parents.</p>
+<p>Next, we actually need to start thinking about performance! We'll write a garbage collector for our compiler in Lab 4.</p>
+
       
     </div>
     
@@ -505,14 +895,77 @@ This past weekend, I c......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This set was surprisingly easy, actually. The book <a href="http://www.springer.com/us/book/9783642041006">Understanding Cryptography</a> by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.</p>
-<p>Let’s dive in!</p>
-<h2 id="Challenge-33-Implement-Diffie-Hellman"><a href="#Challenge-33-Implement-Diffie-Hellman" class="headerlink" title="Challenge 33 Implement Diffie-Hellman"></a>Challenge 33 Implement Diffie-Hellman</h2><p>Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.</p>
-<p>Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0…p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a “generator” of the group.</p>
-        <!-- This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number th......  -->
-        <p class="article-more-link">
-          <a href="/2017/04/21/set5-writeup/#more">Read More</a>
-        </p>
+        <p>This set was surprisingly easy, actually. The book <a href="http://www.springer.com/us/book/9783642041006" target="_blank" rel="external">Understanding Cryptography</a> by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.</p>
+<p>Let's dive in!</p>
+<h2>Challenge 33 Implement Diffie-Hellman</h2>
+<p>Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.</p>
+<p>Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0...p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a &quot;generator&quot; of the group.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>So, Alice and Bob each choose a random group element and use that as a power of $g$.
+Alice computes $A = g^a\bmod p$, $a \in Z_p^*$.
+Bob computes $B = g^b\bmod p$, $b \in Z_p^*$.</p>
+<p>What's important to Diffie-Hellman is that, given $A$ and $g$, one cannot easily compute $a$. This is called the Discrete Log Problem. The value $A$ looks like a totally random element of $Z_p^*$!</p>
+<p>Then, Alice sends $A$ to Bob and Bob sends $B$ to Alice. Alice computes $B^a \bmod p$ and Bob computes $A^b \bmod p$, which are equal, since $g^{ab} = g^{ba}$.</p>
+<p>Implementing this is easy in python with the built-in <code>pow</code> function. However, for educational purposes, I wrote the <code>modexp</code> function for fast modular exponentiation.</p>
+<p>The <code>modexp</code> function is taken from Paar and Pelzl. The exponent is converted to binary, and for each bit, we square the result. Also, if the bit is <code>1</code>, we multiply the result by the base.</p>
+<p>The final algorithm is</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Create secret keys, random values mod p</span></div><div class="line">a = random.randint(<span class="number">0</span>, p)</div><div class="line">A = modexp(g, a, p)</div><div class="line">b = random.randint(<span class="number">0</span>, p)</div><div class="line">B = modexp(g, b, p)</div><div class="line"></div><div class="line">shared_key_a = modexp(A, b, p)</div></pre></td></tr></table></figure></p>
+<h2>Challenge 34 Implement a MITM key-fixing attack on Diffie-Hellman with parameter injection</h2>
+<p>Again, <a href="https://github.com/Gallopsled/pwntools" target="_blank" rel="external">pwntools</a> to the rescue!</p>
+<p>This challenge requires some client/server sockets, which I use the pwntools tubes library for.</p>
+<p>At a high level, the challenge demonstrates that, if an attacker were able to sit in the middle of a DH key exchange session and modify the messages being passed, he can control the key and decrpyt all the traffic.</p>
+<p>The client sends <code>(p, g, A)</code> to the server, and the server responds with <code>B</code>. If you recall, <code>p</code> and <code>g</code> are the public agreed-upon parameters for the group prime and generator. <code>A</code> is the Client's piece of the secret key, and <code>B</code> is the Server's piece.</p>
+<p>If an attacker replaces <code>A</code> and <code>B</code> with <code>p</code>, then both Client and Server will compute the key to be $p^a \bmod p \ = p^b \bmod p = 0$. 0 is then hashed and used as the symmetric key for AES-encrypting messages, so the attacker can decrypt all the communications.</p>
+<h2>Challenge 35 Implement DH with negotiated groups, and break with malicious &quot;g&quot; parameters</h2>
+<p>Let's see what happens when we choose different values for the generator $g$. When $g = 1$, all powers of $g$ are 1 as well, so the secret key is always $1$. When $g = p$, as we saw in the previous challenge, powers are all divisible by $p$, so the key is always $0$. When $g = p-1$ is raised to a power, all the terms with $p$ will be $0 \bmod p$, leaving either $1$ or $-1 = p-1 \bmod p$.</p>
+<h2>Challenge 36 Implement Secure Remote Password (SRP)</h2>
+<p>Secure Remote Password is really cool. It is a form of authentication in which the client does not need to reveal her password — a form of zero-knowledge.</p>
+<p>The setup involves some large primes, and the security relies on discrete log, as before. A large prime modulus N is chosen, along with a generator g and a magic parameter $k$ that is generally set to 3.</p>
+<p>The server has a verifier for a client that wants to authenticate, $v = g^x$, where $x = H(salt|password)$.</p>
+<p>A salt is a random value used to safeguard the password hash from being easily identifiable in a hash lookup rainbow table.</p>
+<p>After exchanging some parameters, both client and server produce a session key $K$. The server needs the verifier to get $K$, while the client needs the password. The server checks that the client's $K$ is equal to the server's computed $K$, and if so, successfully authenticates the client.</p>
+<p>The full protocol can be seen on <a href="https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol" target="_blank" rel="external">Wikipedia</a>.</p>
+<h2>Challenge 37 Break SRP with a zero key</h2>
+<p>Some buggy implementations of SRP allow authentication without knowing the password, as this challenge illustrates.</p>
+<p>The server produces the session key $K$ by
+$$
+S_{server} = (A\cdot v^u)^b \bmod N \\
+K_{server} = H(S)
+$$</p>
+<p>where $A$ is sent by the Client, $v$ is the verifier, $u$ is a &quot;scrambling parameter&quot;, and $b$ is the server's random value.</p>
+<p>If $A$ is $0$ or a multiple of $N$, then $S_{server} = 0$, and we can authenticate simply by sending $K_{client} = H(0)$ without knowing the password!</p>
+<h2>Challenge 38 Offline dictionary attack on simplified SRP</h2>
+<p>This problem isn't really that interesting, so I skipped it. But here's the lowdown: if you get MITM on SRP and thus can control the values for some parameters, $b, B, u$, and $salt$, then you can precompute the session keys $K$ for common dictionary words. Doing the bruteforce cracking is not really that interesting, though.</p>
+<h2>Challenge 39 Implement RSA</h2>
+<p>The security of RSA is not based on the discrete log problem, but rather on the difficulty of factoring large numbers.</p>
+<p>We choose two large primes $p$ and $q$, and compute $n = pq$. Then, we compute the totient, or Euler's phi function, $\phi(n) = (p-1)(q-1)$. The public key $e$ is usually a small number like 3 or 65537 that is coprime to $n$, and we derive the private key $d$ such that $d*e = 1 \bmod \phi(n)$. This is exactly the definition of a modular inverse, so $d$ is the modular inverse of $e$.</p>
+<p>I implement the Extended Euclidean Algorithm to find the modular inverse of a number, using the algorithm in Pelzl.</p>
+<p>The EEA will compute the coefficients of the equation
+$$
+gcd(n, e) = s\cdot n + t\cdot e = 1 \bmod n
+$$
+The gcd is 1 because $n$ and $e$ are coprime. $s\cdot n = 0 \bmod n$, so we are left with $t\cdot e = 1 \bmod n$, directly giving us $t = d$.</p>
+<p>Here's my EEA:</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">egcd</span><span class="params">(r0, r1)</span>:</span></div><div class="line">   <span class="string">'''</span></div><div class="line">   takes the modulus in r0, and the element in r1</div><div class="line">   returns tuple of (gcd, coefficient 1, coefficient 2) s.t. s0*r0 + t0*r1 = gcd</div><div class="line">   if first value is a modulus, gcd = 1 and t0 is modinv of r1</div><div class="line">   '''</div><div class="line">   old_r0, old_r1 = r0, r1</div><div class="line">   s0, s1 = <span class="number">1</span>, <span class="number">0</span></div><div class="line">   t0, t1 = <span class="number">0</span>, <span class="number">1</span></div><div class="line"></div><div class="line">   <span class="keyword">while</span> r1 != <span class="number">0</span>:</div><div class="line">       remainder = r0%r1</div><div class="line">       q = (r0-remainder)/r1</div><div class="line"></div><div class="line">       <span class="keyword">assert</span> q*r1 + remainder == r0</div><div class="line"></div><div class="line">       r0, r1 = r1, remainder</div><div class="line"></div><div class="line">       new_s = s0 - q*s1</div><div class="line">       new_t = t0 - q*t1</div><div class="line"></div><div class="line">       <span class="keyword">assert</span> new_s*old_r0 + new_t*old_r1 == remainder</div><div class="line"></div><div class="line">       s0, s1 = s1, new_s</div><div class="line">       t0, t1 = t1, new_t</div><div class="line"></div><div class="line">   <span class="keyword">return</span> (r0, s0, t0)</div></pre></td></tr></table></figure></p>
+<p>and the driver function that returns the modular inverse:</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">modinv</span><span class="params">(mod, a)</span>:</span></div><div class="line">    (gcd, a, b) = egcd(mod, a)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> gcd != <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">    <span class="keyword">return</span> b % mod</div></pre></td></tr></table></figure></p>
+<p>With the <code>modinv</code> function, the rest of RSA is straightforward.</p>
+<h2>Challenge 40 E=3 RSA Broadcast Attack</h2>
+<p><a href="https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf" target="_blank" rel="external">20 Years of Attacks on RSA</a> describes some great attacks on RSA that come in CTFs as well as Matasano challenges.</p>
+<p>One of the simplest is Hastad's broadcast attack, which allows us to recover a message that has been encrypted with RSA pubkeys that are very small, such as $e = 3$.</p>
+<p>The <a href="https://crypto.stanford.edu/pbc/notes/numbertheory/crt.html" target="_blank" rel="external">Chinese Remainder Theorem</a> is the key to this problem.</p>
+<p>As the paper describes, we only need the same message encrypted with three different public keys to recover the plaintext.</p>
+<p>$$
+C_1 = M^3 \bmod N_1  \\
+C_1 = M^3 \bmod N_2  \\
+C_1 = M^3 \bmod N_3  \\
+$$</p>
+<p>The CRT tells us that there exists some value $C'$ that satisfies $C' = M^3 \bmod N_1N_2N_3$, a solution to all the equations. We just need to calculate the $C'$ and take its cube root, recovering $M$.</p>
+<p>The challenge just gives you the CRT equation to solve for $C'$.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">m_s_1 = N2*N3</div><div class="line">y1 = ctext1 * m_s_1 * modinv(N1, m_s_1)</div><div class="line"></div><div class="line">m_s_2 = N1*N3</div><div class="line">y2 = ctext2 * m_s_2 * modinv(N2, m_s_2)</div><div class="line"></div><div class="line">m_s_3 = N2*N1</div><div class="line">y3 = ctext3 * m_s_3 * modinv(N3, m_s_3)</div><div class="line"></div><div class="line">mod_prod = N1*N2*N3</div><div class="line"></div><div class="line">result = (y1 + y2 + y3) % mod_prod</div></pre></td></tr></table></figure></p>
+<p>Python's cube root (<code>**(1/3.)</code>) is not entirely precise, so I use the <code>gmpy</code> multiple-precision library.</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cube_root = gmpy.mpz(result).root(<span class="number">3</span>)[<span class="number">0</span>].digits()</div><div class="line">decrypted_text = binascii.unhexlify(str(hex(int(cube_root))[<span class="number">2</span>:]))</div><div class="line"></div><div class="line"><span class="keyword">assert</span> decrypted_text == <span class="string">"can't touch this"</span></div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -561,10 +1014,60 @@ This past weekend, I c......  -->
     <div class="article-entry" itemprop="articleBody">
       
         <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
-        <!-- Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITSc......  -->
-        <p class="article-more-link">
-          <a href="/2017/04/15/Writing-a-C-interpreter-for-MITScript/#more">Read More</a>
-        </p>
+<p>&lt;!-- more --&gt;</p>
+<p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html" target="_blank" rel="external">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
+<p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don't need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
+<p>It seems like a daunting task, but you just have to break it up into small chunks.</p>
+<p>The professor, Armando, gave us some direction on Piazza for how to get started.</p>
+<blockquote>
+<ul>
+<li>Start by defining your Value types. Define a Value class and define sub-classes corresponding to each of the different value types.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Define a StackFrame class to represent your stack frames. You can implement the update and read functions as methods in the stack frame.</li>
+<li>Implement a Visitor that corresponds to your interpreter.</li>
+<li>By tomorrow, you should also be able to start implementing the behavior for all your operators.</li>
+<li>The 'newStackFrame' function and the complete logic for updating and reading variables when you have multiple scopes will become clear after we do the lecture on closures.</li>
+<li>Finally, you will want to implement support for returns that are not at the end of the function and for native functions.</li>
+</ul>
+<p><a href="https://github.com/JustAPerson" target="_blank" rel="external">Jason Priest</a>, Meghana, and I got together to work on it.</p>
+<p>The key thing to note when implementing the interpreter is that everything is specified in the semantics — you need to follow it exactly when translating into code, and you can find the answer to all your questions by close examination.</p>
+<p>Not exactly following the order that Armando suggested, the first thing I tried to do was to get assignments and operators working, so I could do something as simple as <code>x = 5; y = 5; z = x + y;</code>. This would have given me a huge confidence boost, since I felt pretty intimidated by the scope of the lab.</p>
+<p>Roughly, I tackled this piece-by-piece in the following order: binary ops, assignments, record creation/assignments, function creation/calling, native functions, early returns. Of course, the ninety-ninety aphorism of software engineering holds:</p>
+<blockquote>
+<p>The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
+</blockquote>
+<p>The remaining 10% of code on this lab was debugging the ten class-provided tests.</p>
+<h3>Data Structures</h3>
+<p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" target="_blank" rel="external">previous post</a>.</p>
+<p>Then for each of the Value types
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure></p>
+<p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they're operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they're called in the wrong context, or otherwise return <code>this</code>.</p>
+<p>I still wasn't sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the &quot;context&quot;  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
+<p>I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
+<p>When we need to access a variable, we must check for its existence in the globals, the local frame, and then search recursively in parent stack frames.</p>
+<h3>Function calls</h3>
+<p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
+<p>This is another case where I needed to know the type of objects — but here, I need to know the type of an AST object. I use <code>dynamic_cast</code>.</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Global* globCast = <span class="keyword">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="keyword">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Note that we need to recursively search inside <code>if</code> statements and <code>while</code> loops during the scan, as well.</p>
+<h3>Native Functions</h3>
+<p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
+<p>We need to support the following:</p>
+<ul>
+<li>print(s) Uses the default casting of s to a string and prints it to the console followed by a newline.</li>
+<li>input() Reads a line of input from the console and returns it as a string value.</li>
+<li>intcast(s) Expects a string and internally uses the c++ function atoi to parse the string and return an integer value. If the string does not represent an integer (e.g., the string &quot;hello&quot;), the function should raise an IllegalCastException</li>
+</ul>
+<p>NativeFunction has an <code>evaluateNativeFunction()</code> method that will do the right thing.</p>
+<p>After adding the ability to return early from functions, I have a really hacky interpreter!</p>
+<h3>Debugging tests</h3>
+<p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that's never run — equivalent to</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</div><div class="line">    global x;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>In this case, we actually need to find this global and make <code>x</code> global in the scope. This is called variable hoisting.</p>
+<p>Note that there are a lot of crappy things about this interpreter — there is no garbage collection of unused objects, so memory usage might blow up, and it is costly to search recursively for a variable in parent stack frames. The next lab translates our MITScript into bytecode that can optimize away these costs.</p>
+
       
     </div>
     
@@ -612,68 +1115,31 @@ This past weekend, I c......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.</p>
-<p>Here’s what I’ve been up to, and what awesome posts/series you can expect in the coming weeks:</p>
+        <p>I've been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.</p>
+<p>Here's what I've been up to, and what awesome posts/series you can expect in the coming weeks:</p>
 <ul>
 <li>6.115 Labs and Final project — Masterlock combo breaker?</li>
 <li>6.857 Final project — Boston Symphony Orchestra iPad app pentest</li>
 <li>CTFs — MITCTF, Cambridge2Cambridge</li>
 <li>6.035 MITScript interpreter in Rust</li>
 </ul>
-        <!-- I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.
-Here’s what I’ve been up to, and what aw......  -->
-        <p class="article-more-link">
-          <a href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-Starting-a-new-security-club-at-MIT"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/14/Starting-a-new-security-club-at-MIT/">Starting a New Security Club at MIT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/14/Starting-a-new-security-club-at-MIT/" class="article-date">
-	  <time datetime="2017-03-14T15:38:51.000Z" itemprop="datePublished">03-14-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/TechSec/">TechSec</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://fortenforge.github.io/" target="_blank" rel="external">fortenforge</a>, <a href="https://github.com/Devin-Neal" target="_blank" rel="external">Devin Neal</a>, and I decided that MIT needed more of a student security community on campus. So, we started <a href="https://github.com/TechSecCTF/" target="_blank" rel="external">TechSec</a> in February 2017! We host weekly meetings on Monday nights and try to get students to compete with us in CTFs on weekends.</p>
-<p>You can find our meeting/workshop notes, which we laboriously compile for the benefit of our club members, <a href="https://github.com/TechSecCTF/meeting_notes" target="_blank" rel="external">here</a>. So far, we’ve been holding introduction to reverse engineering and binary workshops. We have a lot more planned, including interesting guest speakers.</p>
+<p>&lt;!-- more --&gt;</p>
+<p>&lt;br&gt;</p>
+<h2>6.115 Final project — Masterlock combo breaker?</h2>
+<p>Over spring break last week, I spent almost every day in lab for 6.115, working on the infamous Lab 4. The lab is centered around motors. We code assembly for controlling a robot arm with five DC motors providing five degrees of freedom. We also control a unipolar stepper motor for a toy version of optical tomography — getting a cross-section of a dowel on a spinning disk.</p>
+<p><a href="https://www.amazon.com/Practical-Electronics-Inventors-Fourth-Scherz/dp/1259587541" target="_blank" rel="external">Practical Electronics for Inventors</a> by Paul Scherz is an awesome book. It's very readable, and without the chapter on DC/stepper motors, this lab would not have been possible.</p>
+<h3>Final Project</h3>
+<p>I have a cool idea for my 6.115 final project. The amazing hacker Samy Kamkar built a <a href="https://github.com/samyk/combobreaker" target="_blank" rel="external">Masterlock combo breaker</a>, and I really want to make one of these for my final project. Since I need to use both the 8051 microcontroller and the Cypress PSOC, I could have the 8051+LED interface for selecting combinations, and have the cracking algorithm coded in C for the PSOC. That still may not be enough code... maybe I could also have some computer vision such that I can observe someone turning the lock, and then record/replay the combo?</p>
+<p>Anyways, will definitely be blogging about my progress on this.</p>
+<p>&lt;br&gt;</p>
+<h2>6.857 Final project — Boston Symphony Orchestra iPad app pentest</h2>
+<p>I also need to get started on my 6.857 project, which is penetration testing an iPad application for the Boston Symphony Orchestra. We have an iPad, so I just need to setup a pentesting environment on it and start playing with it!</p>
+<p>&lt;br&gt;</p>
+<h2>CTFs!</h2>
+<p>I've done a few MIT-based CTFs in the past few weeks — MITCTF, organized by Steven Valdez and my fellow TechSec lead Max Justicz, and the <a href="https://cambridge2cambridge.csail.mit.edu/" target="_blank" rel="external">Cambridge2Cambridge CTF Qualifier</a> which I think is one of the most exciting initiatives to come out of MIT. In the inaugural event last year, Cambridge University students came to MIT for an attack-defense CTF and other fun physical challenges like lockpicking. This year's final will be held at Cambridge University in July, so I hope I qualified! I've definitely seen a lot of improvement in my skills since last year — I'm a lot more comfortable with crypto, and have come a long way in pwn and reversing.</p>
+<p>&lt;br&gt;</p>
+<h2>6.035 — MITScript and Rust</h2>
+<p>Also, I really need to get cracking on Rust and our 035 bytecode interpreter for Lab 3! Once I've finished Lab 3, I'll publish my blog posts for Lab 2 and Lab 3. Maybe I'll write something about learning Rust, as well ;).</p>
 
       
     </div>

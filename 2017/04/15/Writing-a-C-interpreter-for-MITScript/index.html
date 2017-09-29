@@ -165,50 +165,57 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
-<a id="more"></a>
+<p>&lt;!-- more --&gt;</p>
 <p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html" target="_blank" rel="external">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
-<p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don’t need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
+<p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don't need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
 <p>It seems like a daunting task, but you just have to break it up into small chunks.</p>
 <p>The professor, Armando, gave us some direction on Piazza for how to get started.</p>
 <blockquote>
 <ul>
 <li>Start by defining your Value types. Define a Value class and define sub-classes corresponding to each of the different value types.</li>
+</ul>
+</blockquote>
+<ul>
 <li>Define a StackFrame class to represent your stack frames. You can implement the update and read functions as methods in the stack frame.</li>
 <li>Implement a Visitor that corresponds to your interpreter.</li>
 <li>By tomorrow, you should also be able to start implementing the behavior for all your operators.</li>
-<li>The ‘newStackFrame’ function and the complete logic for updating and reading variables when you have multiple scopes will become clear after we do the lecture on closures.</li>
+<li>The 'newStackFrame' function and the complete logic for updating and reading variables when you have multiple scopes will become clear after we do the lecture on closures.</li>
 <li>Finally, you will want to implement support for returns that are not at the end of the function and for native functions.</li>
 </ul>
-</blockquote>
 <p><a href="https://github.com/JustAPerson" target="_blank" rel="external">Jason Priest</a>, Meghana, and I got together to work on it.</p>
 <p>The key thing to note when implementing the interpreter is that everything is specified in the semantics — you need to follow it exactly when translating into code, and you can find the answer to all your questions by close examination.</p>
 <p>Not exactly following the order that Armando suggested, the first thing I tried to do was to get assignments and operators working, so I could do something as simple as <code>x = 5; y = 5; z = x + y;</code>. This would have given me a huge confidence boost, since I felt pretty intimidated by the scope of the lab.</p>
 <p>Roughly, I tackled this piece-by-piece in the following order: binary ops, assignments, record creation/assignments, function creation/calling, native functions, early returns. Of course, the ninety-ninety aphorism of software engineering holds:</p>
 <blockquote>
-<p>   The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
+<p>The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
 </blockquote>
 <p>The remaining 10% of code on this lab was debugging the ten class-provided tests.</p>
-<h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" target="_blank" rel="external">previous post</a>.</p>
-<p>Then for each of the Value types<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure></p>
-<p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they’re operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they’re called in the wrong context, or otherwise return <code>this</code>.</p>
-<p>I still wasn’t sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the “context”  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
-<p> I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
+<h3>Data Structures</h3>
+<p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" target="_blank" rel="external">previous post</a>.</p>
+<p>Then for each of the Value types
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure></p>
+<p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they're operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they're called in the wrong context, or otherwise return <code>this</code>.</p>
+<p>I still wasn't sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the &quot;context&quot;  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
+<p>I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
 <p>When we need to access a variable, we must check for its existence in the globals, the local frame, and then search recursively in parent stack frames.</p>
-<h3 id="Function-calls"><a href="#Function-calls" class="headerlink" title="Function calls"></a>Function calls</h3><p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
+<h3>Function calls</h3>
+<p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
 <p>This is another case where I needed to know the type of objects — but here, I need to know the type of an AST object. I use <code>dynamic_cast</code>.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Global* globCast = <span class="keyword">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="keyword">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Global* globCast = <span class="keyword">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="keyword">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Note that we need to recursively search inside <code>if</code> statements and <code>while</code> loops during the scan, as well.</p>
-<h3 id="Native-Functions"><a href="#Native-Functions" class="headerlink" title="Native Functions"></a>Native Functions</h3><p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
+<h3>Native Functions</h3>
+<p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
 <p>We need to support the following:</p>
 <ul>
 <li>print(s) Uses the default casting of s to a string and prints it to the console followed by a newline.</li>
 <li>input() Reads a line of input from the console and returns it as a string value.</li>
-<li>intcast(s) Expects a string and internally uses the c++ function atoi to parse the string and return an integer value. If the string does not represent an integer (e.g., the string “hello”), the function should raise an IllegalCastException</li>
+<li>intcast(s) Expects a string and internally uses the c++ function atoi to parse the string and return an integer value. If the string does not represent an integer (e.g., the string &quot;hello&quot;), the function should raise an IllegalCastException</li>
 </ul>
 <p>NativeFunction has an <code>evaluateNativeFunction()</code> method that will do the right thing.</p>
 <p>After adding the ability to return early from functions, I have a really hacky interpreter!</p>
-<h3 id="Debugging-tests"><a href="#Debugging-tests" class="headerlink" title="Debugging tests"></a>Debugging tests</h3><p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that’s never run — equivalent to</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</div><div class="line">    global x;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3>Debugging tests</h3>
+<p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that's never run — equivalent to</p>
+<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</div><div class="line">    global x;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
 <p>In this case, we actually need to find this global and make <code>x</code> global in the scope. This is called variable hoisting.</p>
 <p>Note that there are a lot of crappy things about this interpreter — there is no garbage collection of unused objects, so memory usage might blow up, and it is costly to search recursively for a variable in parent stack frames. The next lab translates our MITScript into bytecode that can optimize away these costs.</p>
 
@@ -285,7 +292,7 @@
     <div id="toc" class="toc-article">
     
       <strong class="toc-title">Contents</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Structures"><span class="toc-number">1.</span> <span class="toc-text">Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-calls"><span class="toc-number">2.</span> <span class="toc-text">Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native-Functions"><span class="toc-number">3.</span> <span class="toc-text">Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-tests"><span class="toc-number">4.</span> <span class="toc-text">Debugging tests</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">Debugging tests</span></a></li></ol>
     
     </div>
   </aside>
