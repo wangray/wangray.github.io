@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://raywang.tech/2017/04/15/Writing-a-C-interpreter-for-MITScript/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
-<meta property="og:updated_time" content="2017-05-03T16:10:17.000Z">
+<meta property="og:updated_time" content="2017-09-29T19:20:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Writing a C++ Interpreter for MITScript">
 <meta name="twitter:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
@@ -165,7 +165,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
-<p>&lt;!-- more --&gt;</p>
+<a id="more"></a>
 <p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html" target="_blank" rel="external">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
 <p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don't need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
 <p>It seems like a daunting task, but you just have to break it up into small chunks.</p>
@@ -192,8 +192,8 @@
 <p>The remaining 10% of code on this lab was debugging the ten class-provided tests.</p>
 <h3>Data Structures</h3>
 <p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" target="_blank" rel="external">previous post</a>.</p>
-<p>Then for each of the Value types
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure></p>
+<p>Then for each of the Value types</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Boolean</div><div class="line">Integer</div><div class="line">String</div><div class="line">Function ::= (frame, code)</div><div class="line">Record ::= Map[String, Value]*</div><div class="line">None</div></pre></td></tr></table></figure>
 <p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they're operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they're called in the wrong context, or otherwise return <code>this</code>.</p>
 <p>I still wasn't sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the &quot;context&quot;  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
 <p>I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
@@ -201,7 +201,7 @@
 <h3>Function calls</h3>
 <p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
 <p>This is another case where I needed to know the type of objects — but here, I need to know the type of an AST object. I use <code>dynamic_cast</code>.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Global* globCast = <span class="keyword">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="keyword">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Global* globCast = <span class="keyword">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="keyword">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Note that we need to recursively search inside <code>if</code> statements and <code>while</code> loops during the scan, as well.</p>
 <h3>Native Functions</h3>
 <p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
@@ -215,7 +215,7 @@
 <p>After adding the ability to return early from functions, I have a really hacky interpreter!</p>
 <h3>Debugging tests</h3>
 <p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that's never run — equivalent to</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</div><div class="line">    global x;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</div><div class="line">    global x;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <p>In this case, we actually need to find this global and make <code>x</code> global in the scope. This is called variable hoisting.</p>
 <p>Note that there are a lot of crappy things about this interpreter — there is no garbage collection of unused objects, so memory usage might blow up, and it is costly to search recursively for a variable in parent stack frames. The next lab translates our MITScript into bytecode that can optimize away these costs.</p>
 

