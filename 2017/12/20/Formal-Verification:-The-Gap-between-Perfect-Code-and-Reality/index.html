@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="In Fall 2017, I took MIT’s 6.826, Principles of Computer Systems, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class">
 <meta property="og:image" content="http://raywang.tech/images/2017/12/coq2.png">
-<meta property="og:updated_time" content="2017-12-20T17:13:13.000Z">
+<meta property="og:updated_time" content="2017-12-20T17:19:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Formal Verification: The Gap Between Perfect Code and Reality">
 <meta name="twitter:description" content="In Fall 2017, I took MIT’s 6.826, Principles of Computer Systems, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class">
@@ -146,7 +146,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/2017/12/coq2.png" rel="gallery_cjbfbiilo0007wemwbxw7eeby">
+      <a class="article-gallery-img fancybox" href="/images/2017/12/coq2.png" rel="gallery_cjbfbp4nf000279mw8vo9xf79">
         <img src="/images/2017/12/coq2.png" itemprop="image">
       </a>
     
@@ -196,7 +196,7 @@
 <p>In the FSCQ code, 6000 of 32,000 LoC were devoted to just this infrastructure.</p>
 <p>I want to highlight that we need to prove <strong><em>every possible code path</em></strong> — exponentially many in the number of conditional statements, and doubled by considering a crash at every point. Loops need to be proved inductively. On top of all that, if any spec or implementation changes even slightly, all the specs, impls, and proofs that depend on it will change as well. This makes even small changes a huge pain.</p>
 <p>Is there any other way, you ask, before you shoot yourself?</p>
-<h2 id="Push-button-proofs"><a href="#Push-button-proofs" class="headerlink" title="Push-button proofs"></a>Push-button proofs</h2><p>Another way is the “push-button” style, which formulates the spec and implementation states as symbolic SMT equations that can be passed to a solver, such as Z3. This allows Z3 to automatically verify the system, without writing any manual proofs. Z3 might, for example, check whether each code operation satisfies a formula defining equivalent spec states.</p>
+<h2 id="Push-button-proofs"><a href="#Push-button-proofs" class="headerlink" title="Push-button proofs"></a>Push-button proofs</h2><p>Another way is the “push-button” style, which formulates the spec and implementation states as symbolic SMT equations that can be passed to a solver, such as Z3. This allows Z3 to automatically verify the system, without writing any manual proofs. Z3 might, for example, check whether each code operation satisfies a formula defining the relationship between code and spec states.</p>
 <p>The main effort here is cleverly designing a set of verifiable specs that is actually scalable. It’s hard to determine whether a problem is tractable for Z3, and you have to play all sorts of tricks to make it work. For example, the writers of <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-sigurbjarnarson.pdf" target="_blank" rel="external">Yggdrasil</a>, a push-button verified filesystem, spent 4 months exploring ways to scale verification, 2-3 months building their system, and at least 6 more months <a href="https://locore.cs.washington.edu/papers/sigurbjarnarson-yggdrasil-slides.pdf" target="_blank" rel="external">experimenting with optimizations</a>. In the end, among other wild tricks, they rely on a stack of five layered abstractions, so the solver only has to reason about one layer at a time and won’t get stuck.</p>
 <h1 id="What-goes-wrong"><a href="#What-goes-wrong" class="headerlink" title="What goes wrong?"></a>What goes wrong?</h1><p>After all this effort, either carefully designing specs that are amenable to push-button verification, or tediously writing proofs in Coq, what do we get? You’d hope for perfect code, but the truth is a lot less palatable.  </p>
 <p>The guarantees of a formally verified system rest entirely on the assumptions of the system, including its trusted computing base (TCB). The TCB of a verified system includes the specs, which are manually written and hoped (fingers crossed!) to be correct, the verification tools (e.g., Coq engine, Z3, compiler), and the runtime infrastructure (OS, hardware). This should be a huge red flag. For instance, if you’ve used Z3, you’ll agree that it’s black magic to everyone except the developers, and my professors confess that they’ve found correctness bugs, especially in decidability theories that are not commonly used.</p>
