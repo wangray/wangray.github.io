@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://raywang.tech/2017/05/21/2017/Matasano Crypto Challenges, Set 6/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
-<meta property="og:updated_time" content="2017-09-29T19:20:01.000Z">
+<meta property="og:updated_time" content="2017-12-27T22:51:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 6">
 <meta name="twitter:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
@@ -170,6 +170,8 @@
 <p>This can have many useful properties, but also produces some consequences. This challenge is analogous to a “security game” that tests for a property known as IND-CCA2 — indistinguishability under Chosen Ciphertext Attack, where the adversary has access to a decryption oracle. The challenger gives the adversary a ciphertext, and the adversary can ask for the encryption and decryption of anything he wants — except the challenge ciphertext, of course! If the adversary can learn any information about the ciphertext’s plaintext, then he wins the game.</p>
 <p>A fully homomorphic scheme fails IND-CCA2 — the adversary can completely recover the message! The adversary can’t ask for the decryption of the challenge ciphertext, but he can ask for the decryption of 2*ciphertext, or 3*ciphertext, etc. and he knows that the result will be 2*plaintext, 3*plaintext. Just divide out the scaling factor, and you have the plaintext.</p>
 <h2 id="Challenge-42-Bleichenbacher’s-e-3-RSA-Attack"><a href="#Challenge-42-Bleichenbacher’s-e-3-RSA-Attack" class="headerlink" title="Challenge 42 Bleichenbacher’s e=3 RSA Attack"></a>Challenge 42 Bleichenbacher’s e=3 RSA Attack</h2><p>Another worry with low public exponent is that the message block, when encrypted, will not be large enough to wrap the modulus.</p>
+<p><a href="https://blog.filippo.io/bleichenbacher-06-signature-forgery-in-python-rsa/" target="_blank" rel="external">This blog</a> illustrates an attack on the padding scheme PKCS#1 1.5. When signing a message using RSA, the key-holder generates <code>m ^ d mod N</code>, and the recipient uses <code>(N, e)</code> to check that <code>(m ^ d) ^ e = m mod N</code>. But, instead of signing the message, you sign the PKCS1.5 encoding of the message’s <code>HASH</code>.</p>
+<p>In PKCS#1 1.5, you take the hash of the message you want to sign, and then you encode it like this:<br><code>00 01 FF FF ... FF FF 00 ASN.1 HASH</code></p>
 <p>A faulty PKCS 1.5 padding verifier might not check that all the <code>\xff</code> bytes in the middle are present.</p>
 <p>Here’s an example of two faulty verifier versions:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Find the 00 separator between the padding and the payload</span></div><div class="line">sep_idx = clearsig.index(<span class="string">'\x00'</span>, <span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># vulnerable python-rsa version, taking all the remainder of string after asn1 as the hash</span></div><div class="line">signature_hash = clearsig[sep_idx+len(sha1_asn1)+<span class="number">1</span>:]</div><div class="line"></div><div class="line"><span class="comment"># weaker version, taking only the next 20 bytes as hash, allowing us to append garbage</span></div><div class="line">signature_hash = clearsig[sep_idx+len(sha1_asn1)+<span class="number">1</span>:sep_idx+len(sha1_asn1)+<span class="number">1</span>+<span class="number">20</span>]</div></pre></td></tr></table></figure></p>
 <p>Looking at the weaker version, it’s very simple to construct a message block meeting those parameters.</p>
@@ -178,6 +180,15 @@
 <p>The cube root will verify to a valid signature in the faulty padding verifier.</p>
 <h2 id="Challenge-43-DSA-key-recovery-from-nonce"><a href="#Challenge-43-DSA-key-recovery-from-nonce" class="headerlink" title="Challenge 43 DSA key recovery from nonce"></a>Challenge 43 DSA key recovery from nonce</h2><p>The DSA signature scheme uses two cyclic groups.</p>
 <p>One large cyclic group, $Z_p^{*}$, has an order of a 1024 bit prime. Another cyclic group, $Z_q^{*}$, has an order of a 160 bit prime.</p>
+<p>The key generation is:</p>
+<ol>
+<li>Generate a 1024-bit prime $p$.</li>
+<li>Find a 160-bit prime divisor $q$ of $p-1$.</li>
+<li>Find an element $\alpha$ which generates the subgroup of $p$ with $q$ elements; i.e., $ord(\alpha) = q$.</li>
+<li>Choose a random $d$ with $0 &lt; d &lt; q$.</li>
+<li>Compute $\beta \equiv \alpha^{d}\mod p$</li>
+</ol>
+<p>The keys are now:<br>pub = $(p,q,\alpha,\beta)$<br>priv = $(d)$</p>
 <p>A DSA signature is generated and verified as follows:</p>
 <p>Signing:</p>
 <ol>
@@ -190,12 +201,12 @@
 <li>Compute aux value $w \equiv s^{-1} \mod q$</li>
 <li>Compute aux value $u_1 \equiv w \cdot SHA(x) \mod q$</li>
 <li>Compute aux value $u_2 \equiv w \cdot r \mod q$</li>
-<li>Compute $v \equiv \alpha^{u_1}\cdot \beta ^{u_2} \mod p) \mod q$</li>
+<li>Compute $v \equiv (\alpha^{u_1}\cdot \beta ^{u_2} \mod p) \mod q$</li>
 <li>Verify $v \equiv r \mod q$</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_sign</span><span class="params">(msg, d)</span>:</span></div><div class="line">    k_e = random.randint(<span class="number">0</span>, q)</div><div class="line">    r = pow(g, k_e, p) % q</div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    s = ((x + d*r)*modinv(q, k_e)) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (r,s)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_verify</span><span class="params">(msg, r, sig, B)</span>:</span></div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    <span class="comment">#compute aux value w</span></div><div class="line">    s_inv = modinv(q, sig)</div><div class="line">    u_1  = s_inv*x % q</div><div class="line">    u_2  = s_inv*r % q</div><div class="line"></div><div class="line">    v = (pow(g, u_1, p) * pow(B, u_2, p) % p) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v == r%q</div></pre></td></tr></table></figure>
 <p>To recover the private key if we know $k$, we just solve for $x$ in the equation for $s$:</p>
-<p>$$<br>d = (\frac{s\cdot k_e - SHA(x)}{r} \mod q<br>$$</p>
+<p>$$<br>d = \frac{s\cdot k_e - SHA(x)}{r} \mod q<br>$$</p>
 <h2 id="Challenge-44-DSA-nonce-recovery-from-repeated-nonce"><a href="#Challenge-44-DSA-nonce-recovery-from-repeated-nonce" class="headerlink" title="Challenge 44 DSA nonce recovery from repeated nonce"></a>Challenge 44 DSA nonce recovery from repeated nonce</h2><p>Let’s work out how we can recover the k given a pair of messages that use repeated k.</p>
 <p>$$<br>\begin{align}<br>s_1 - s_2 &amp;= (m_1 +  dr)k^{-1} - (m_2 + dr)k^{-1} \\<br> &amp;= (m_1 - m_2)k^{-1} \\<br> k &amp;= \frac{m_1 - m_2}{s_1 - s_2}<br>\end{align}<br>$$</p>
 <h2 id="Challenge-45-DSA-parameter-tampering"><a href="#Challenge-45-DSA-parameter-tampering" class="headerlink" title="Challenge 45 DSA parameter tampering"></a>Challenge 45 DSA parameter tampering</h2><p>If we make the generator equal to $p+1$, then raising it to any power mod p will be 1.</p>

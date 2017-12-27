@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character. For each byte in the cipher">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/08/MAC.svg">
-<meta property="og:updated_time" content="2017-09-29T19:20:01.000Z">
+<meta property="og:updated_time" content="2017-12-27T22:53:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 4">
 <meta name="twitter:description" content="Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character. For each byte in the cipher">
@@ -188,9 +188,7 @@
 <p>I borrow a SHA1 implementation from <a href="https://github.com/ajalt/python-sha1" target="_blank" rel="external">https://github.com/ajalt/python-sha1</a>.</p>
 <p>The <code>authsha1(key, data)</code> function produces the MAC digest, and <code>validate_oracle(key, message, digest)</code> checks that the MAC digest of <code>message</code> matches <code>digest</code>.</p>
 <h2 id="Challenge-29-Break-a-SHA-1-keyed-MAC-using-length-extension"><a href="#Challenge-29-Break-a-SHA-1-keyed-MAC-using-length-extension" class="headerlink" title="Challenge 29 Break a SHA-1 keyed MAC using length extension"></a>Challenge 29 Break a SHA-1 keyed MAC using length extension</h2><p>This is a cool attack.</p>
-<p>Here’s a general idea of how SHA-1 works:</p>
-<p>SHA1 operates on padded data.</p>
-<p>The <a href="https://tools.ietf.org/html/rfc3174" target="_blank" rel="external">RFC</a> explains the padding scheme as follows:</p>
+<p>Here’s a general idea of how SHA-1 works:<br>SHA1 operates on padded data. The <a href="https://tools.ietf.org/html/rfc3174" target="_blank" rel="external">RFC</a> explains the padding scheme as follows:</p>
 <blockquote>
 <p>The purpose of message padding<br>   is to make the total length of a padded message a multiple of 512.<br>   SHA-1 sequentially processes blocks of 512 bits when computing the<br>   message digest.</p>
 </blockquote>
@@ -231,7 +229,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">orig_message \x01\x00\x00... ;admin=true</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>. Send this and its forged digest to the receiver to be verified. The receiver will prepend the key to this message and calculate the digest. When we guess the correct keylen, the padding we’ve added to the orig_message block will be correct, and the SHA1 will continue by hashing the next block, <code>;admin=true</code>, and find that the digest is the same as our forged one.</p>
+<p>Send this and its forged digest to the receiver to be verified. The receiver will prepend the key to this message and calculate the digest. When we guess the correct keylen, the padding we’ve added to the orig_message block will be correct, and the SHA1 will continue by hashing the next block, <code>;admin=true</code>, and find that the digest is the same as our forged one.</p>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">padded_plaintext_no_key = padded_plaintext_with_key_extension[keylen_guess:]</div><div class="line"></div><div class="line"><span class="keyword">if</span> validate_oracle(key, padded_plaintext_no_key, forged_digest):</div><div class="line">  <span class="keyword">print</span> <span class="string">"Found keylen_guess"</span>, keylen_guess</div></pre></td></tr></table></figure>
 <p>I successfully created a forged digest for the message <code>comment1=cooking%20MCs;userdata=foo;comment2=%20like%20a%20pound%20of%20bacon\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x98;admin=true</code> that the receiver validates!</p>
 <h2 id="Challenge-30-Break-an-MD4-MD5-keyed-MAC-using-length-extension"><a href="#Challenge-30-Break-an-MD4-MD5-keyed-MAC-using-length-extension" class="headerlink" title="Challenge 30 Break an MD4 MD5 keyed MAC using length extension"></a>Challenge 30 Break an <del>MD4</del> MD5 keyed MAC using length extension</h2><p>I decided I like MD5 better than MD4, and there’s more implementations out there.</p>
@@ -314,9 +312,9 @@
     </a>
   
   
-    <a href="/2017/03/07/set1_writeup/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/03/07/set3-writeup/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">Matasano Crypto Challenges, Set 1</div>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 3</div>
     </a>
   
 </nav>
