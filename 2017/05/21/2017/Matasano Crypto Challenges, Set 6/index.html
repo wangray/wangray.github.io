@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://raywang.tech/2017/05/21/2017/Matasano Crypto Challenges, Set 6/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
 <meta property="og:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
-<meta property="og:updated_time" content="2017-12-27T22:51:35.000Z">
+<meta property="og:updated_time" content="2018-01-05T07:41:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 6">
 <meta name="twitter:description" content="The last of the original crypto challenges… here we go! Challenge 41 Implement unpadded message recovery oracleUnpadded RSA is homomorphic, meaning that, if operations like multiplication and addition">
@@ -186,27 +186,27 @@
 <li>Find a 160-bit prime divisor $q$ of $p-1$.</li>
 <li>Find an element $\alpha$ which generates the subgroup of $p$ with $q$ elements; i.e., $ord(\alpha) = q$.</li>
 <li>Choose a random $d$ with $0 &lt; d &lt; q$.</li>
-<li>Compute $\beta \equiv \alpha^{d}\mod p$</li>
+<li>Compute $\beta \equiv \alpha^{d}\bmod p$</li>
 </ol>
 <p>The keys are now:<br>pub = $(p,q,\alpha,\beta)$<br>priv = $(d)$</p>
 <p>A DSA signature is generated and verified as follows:</p>
 <p>Signing:</p>
 <ol>
 <li>Choose a random ephemeral key $0 &lt; k_e &lt; q$</li>
-<li>Compute $r \equiv \alpha^{k_e} \mod q$</li>
-<li>Compute $s \equiv (SHA(x) + d\cdot r) k_e^{-1}\mod q$</li>
+<li>Compute $r \equiv \alpha^{k_e} \bmod q$</li>
+<li>Compute $s \equiv (SHA(x) + d\cdot r) k_e^{-1}\bmod q$</li>
 </ol>
 <p>Verifying:</p>
 <ol>
-<li>Compute aux value $w \equiv s^{-1} \mod q$</li>
-<li>Compute aux value $u_1 \equiv w \cdot SHA(x) \mod q$</li>
-<li>Compute aux value $u_2 \equiv w \cdot r \mod q$</li>
-<li>Compute $v \equiv (\alpha^{u_1}\cdot \beta ^{u_2} \mod p) \mod q$</li>
-<li>Verify $v \equiv r \mod q$</li>
+<li>Compute aux value $w \equiv s^{-1} \bmod q$</li>
+<li>Compute aux value $u_1 \equiv w \cdot SHA(x) \bmod q$</li>
+<li>Compute aux value $u_2 \equiv w \cdot r \bmod q$</li>
+<li>Compute $v \equiv (\alpha^{u_1}\cdot \beta ^{u_2} \bmod p) \bmod q$</li>
+<li>Verify $v \equiv r \bmod q$</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_sign</span><span class="params">(msg, d)</span>:</span></div><div class="line">    k_e = random.randint(<span class="number">0</span>, q)</div><div class="line">    r = pow(g, k_e, p) % q</div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    s = ((x + d*r)*modinv(q, k_e)) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (r,s)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dsa_verify</span><span class="params">(msg, r, sig, B)</span>:</span></div><div class="line">    x = bytes2int(hashlib.sha1(msg).digest())</div><div class="line"></div><div class="line">    <span class="comment">#compute aux value w</span></div><div class="line">    s_inv = modinv(q, sig)</div><div class="line">    u_1  = s_inv*x % q</div><div class="line">    u_2  = s_inv*r % q</div><div class="line"></div><div class="line">    v = (pow(g, u_1, p) * pow(B, u_2, p) % p) % q</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v == r%q</div></pre></td></tr></table></figure>
 <p>To recover the private key if we know $k$, we just solve for $x$ in the equation for $s$:</p>
-<p>$$<br>d = \frac{s\cdot k_e - SHA(x)}{r} \mod q<br>$$</p>
+<p>$$<br>d = \frac{s\cdot k_e - SHA(x)}{r} \bmod q<br>$$</p>
 <h2 id="Challenge-44-DSA-nonce-recovery-from-repeated-nonce"><a href="#Challenge-44-DSA-nonce-recovery-from-repeated-nonce" class="headerlink" title="Challenge 44 DSA nonce recovery from repeated nonce"></a>Challenge 44 DSA nonce recovery from repeated nonce</h2><p>Let’s work out how we can recover the k given a pair of messages that use repeated k.</p>
 <p>$$<br>\begin{align}<br>s_1 - s_2 &amp;= (m_1 +  dr)k^{-1} - (m_2 + dr)k^{-1} \\<br> &amp;= (m_1 - m_2)k^{-1} \\<br> k &amp;= \frac{m_1 - m_2}{s_1 - s_2}<br>\end{align}<br>$$</p>
 <h2 id="Challenge-45-DSA-parameter-tampering"><a href="#Challenge-45-DSA-parameter-tampering" class="headerlink" title="Challenge 45 DSA parameter tampering"></a>Challenge 45 DSA parameter tampering</h2><p>If we make the generator equal to $p+1$, then raising it to any power mod p will be 1.</p>
@@ -214,7 +214,27 @@
 <h2 id="Challenge-46-RSA-parity-oracle"><a href="#Challenge-46-RSA-parity-oracle" class="headerlink" title="Challenge 46 RSA parity oracle"></a>Challenge 46 RSA parity oracle</h2><p>The idea is to multiply the message by successive powers of 2, and using our parity oracle to check whether the result is even or odd. This allows us to update the upper or lower bound — if odd, the multiplication wrapped the modulus, and we update the lower bound. If even, we didn’t wrap the modulus, and we have a tighter higher bound.</p>
 <p>The answer at <a href="https://crypto.stackexchange.com/questions/11053/rsa-least-significant-bit-oracle-attack" target="_blank" rel="external">this StackExchange post</a> allows us to see why. Briefly, when we multiply by 2 and then 4, if we get (even, even) then we haven’t wrapped the modulus, and the message is &lt; N/4. If we get (odd, odd), then we know that we’ve wrapped the modulus twice — only possible if 3/4N &lt; P &lt; N. Make sure you see why: the result of the first doubling will be between 1/2N and N, so the second doubling will again wrap the modulus.</p>
 <p>Do this iteratively, until you tighten the bounds enough to get every byte of the message, which will be discovered byte-by-byte.</p>
-<h2 id="Challenge-47-Bleichenbacher’s-attack"><a href="#Challenge-47-Bleichenbacher’s-attack" class="headerlink" title="Challenge 47 Bleichenbacher’s attack"></a>Challenge 47 Bleichenbacher’s attack</h2>
+<h2 id="Challenge-47-48-Bleichenbacher’s-attack"><a href="#Challenge-47-48-Bleichenbacher’s-attack" class="headerlink" title="Challenge 47-48 Bleichenbacher’s attack"></a>Challenge 47-48 Bleichenbacher’s attack</h2><p>Bleichenbacher’s attack shows how we can break RSA+PKCS1 padding using an adaptive chosen-ciphertext attack and a PKCS oracle. The PKCS oracle will tell you whether a ciphertext decrypts to a plaintext with the following structure:</p>
+<ul>
+<li>The first two bytes are <code>\x00\x02</code></li>
+<li>There is at least one null byte after the first null byte</li>
+</ul>
+<p>Here’s the attack — the description in the <a href="archiv.infsec.ethz.ch/education/fs08/secsem/bleichenbacher98.pdf">original paper</a> is good:</p>
+<blockquote>
+<p>The attacker tries to find small values $s_i$ for which the ciphertext $c_0(s_i)^e \bmod n$ is PKCS conforming. For each successful value for $s_i$, the attacker computes, using previous knowledge about $m_0$, a set of intervals that must contain $m_0$… The third phase starts when only one interval remains. Then, the attacker has sufficient information about $m_0$ to choose $s_i$ such that $c_0(s_i)^e \bmod n$ is much more likely to be PKCS conforming than is a randomly chosen message. The size of $s_i$ is increased gradually, narrowing the possible range of $m_0$ until <strong>only one possible value remains</strong>.</p>
+</blockquote>
+<p>The paper splits this up into four steps, which we can each implement as separate functions directly. The first step, blinding, is not really that important — it asks you to choose random integers $s_0$ until you find one s.t. $c(s_0)^e \bmod n$ is PKCS-conforming. But, you can just make sure that $c$ is already PKCS-conforming (by PKCS-padding the corresponding plaintext $p$), so $s_0$ is trivially 1.</p>
+<p>Most difficulties you might encounter when implementing this attack are with regards to the bounds. You have to be very careful about correctly handling all the $\leq$ and interval bounds.</p>
+<p>Other things to note when reading the four steps to implement in the paper:</p>
+<ul>
+<li>As the prompt says, “a PKCS#1v1.5 conformant plaintext, one that starts with 00:02, must be a number between 02:00:00…00 and 02:FF:FF..FF — in other words, 2B and 3B-1, where B is <em><strong>the bit size of the modulus minus the first 16 bits</strong></em>“. You <strong>must</strong> see why this is true.</li>
+<li>In step 2c, you just need to find one next $s_i$. Iterate over each $r_i$, and then iterate over all $s_i$’s possible for that $r_i$.</li>
+<li>In step 3, the most important step, you narrow the intervals in which the message can exist. Each interval is a pair $(a,b)$, and you iterate over all $r$ for each $(a,b)$ pair.</li>
+</ul>
+<p>Finally, once we have just one interval with one value $a$ left, we’re done! We can recover the original plaintext from the answer $a \equiv c\cdot s_0 \bmod n$ and $m \equiv a\cdot s_0^{-1} \bmod n$.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> len(m_intervals) == <span class="number">1</span> <span class="keyword">and</span> m_intervals[<span class="number">0</span>][<span class="number">0</span>] == m_intervals[<span class="number">0</span>][<span class="number">1</span>]:</div><div class="line">    <span class="comment"># We're done!</span></div><div class="line">    a = m_intervals[<span class="number">0</span>][<span class="number">0</span>]</div><div class="line">    m = a * modinv(n, <span class="number">1</span>)</div><div class="line">    <span class="keyword">return</span> m</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">assert found_msg == b&quot;kick it, CC&quot;</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -288,7 +308,7 @@
     <div id="toc" class="toc-article">
     
       <strong class="toc-title">Contents</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-41-Implement-unpadded-message-recovery-oracle"><span class="toc-number">1.</span> <span class="toc-text">Challenge 41 Implement unpadded message recovery oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-42-Bleichenbacher’s-e-3-RSA-Attack"><span class="toc-number">2.</span> <span class="toc-text">Challenge 42 Bleichenbacher’s e=3 RSA Attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-43-DSA-key-recovery-from-nonce"><span class="toc-number">3.</span> <span class="toc-text">Challenge 43 DSA key recovery from nonce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-44-DSA-nonce-recovery-from-repeated-nonce"><span class="toc-number">4.</span> <span class="toc-text">Challenge 44 DSA nonce recovery from repeated nonce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-45-DSA-parameter-tampering"><span class="toc-number">5.</span> <span class="toc-text">Challenge 45 DSA parameter tampering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-46-RSA-parity-oracle"><span class="toc-number">6.</span> <span class="toc-text">Challenge 46 RSA parity oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-47-Bleichenbacher’s-attack"><span class="toc-number">7.</span> <span class="toc-text">Challenge 47 Bleichenbacher’s attack</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-41-Implement-unpadded-message-recovery-oracle"><span class="toc-number">1.</span> <span class="toc-text">Challenge 41 Implement unpadded message recovery oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-42-Bleichenbacher’s-e-3-RSA-Attack"><span class="toc-number">2.</span> <span class="toc-text">Challenge 42 Bleichenbacher’s e=3 RSA Attack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-43-DSA-key-recovery-from-nonce"><span class="toc-number">3.</span> <span class="toc-text">Challenge 43 DSA key recovery from nonce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-44-DSA-nonce-recovery-from-repeated-nonce"><span class="toc-number">4.</span> <span class="toc-text">Challenge 44 DSA nonce recovery from repeated nonce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-45-DSA-parameter-tampering"><span class="toc-number">5.</span> <span class="toc-text">Challenge 45 DSA parameter tampering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-46-RSA-parity-oracle"><span class="toc-number">6.</span> <span class="toc-text">Challenge 46 RSA parity oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-47-48-Bleichenbacher’s-attack"><span class="toc-number">7.</span> <span class="toc-text">Challenge 47-48 Bleichenbacher’s attack</span></a></li></ol>
     
     </div>
   </aside>
@@ -453,7 +473,7 @@ ga('send', 'pageview');
             Tack, Hunt, Pool
           </div>
           <div class="panel-body">
-            Copyright © 2017 Ray Wang All Rights Reserved.
+            Copyright © 2018 Ray Wang All Rights Reserved.
           </div>
         </div>
       </div>
