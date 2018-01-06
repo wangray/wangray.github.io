@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tack, Hunt, Pool</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://raywang.tech/"/>
+  <updated>2017-12-27T22:54:27.000Z</updated>
+  <id>http://raywang.tech/</id>
+  
+  <author>
+    <name>Ray Wang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Formal Verification: The Gap Between Perfect Code and Reality</title>
+    <link href="http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/"/>
+    <id>http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/</id>
+    <published>2017-12-20T17:07:02.000Z</published>
+    <updated>2017-12-27T22:54:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;In Fall 2017, I took MIT’s &lt;a href=&quot;http://6826.csail.mit.edu/2017/index.html&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.&lt;/p&gt;
+&lt;p&gt;I went into the class believing that formal verification is the future — the only solution to a world of software ridden with bugs and security issues. But after recent events and a semester of trying to apply formal methods, I’m a serious skeptic. In this post, I’ll discuss why I think formal verification has a long way to go — and why it just doesn’t work right now.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Formal Methods" scheme="http://raywang.tech/categories/Formal-Methods/"/>
+    
+    
+      <category term="Coq" scheme="http://raywang.tech/tags/Coq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Using the LLVM MC Disassembly API</title>
+    <link href="http://raywang.tech/2017/12/04/Using-the-LLVM-MC-Disassembly-API/"/>
+    <id>http://raywang.tech/2017/12/04/Using-the-LLVM-MC-Disassembly-API/</id>
+    <published>2017-12-04T19:40:26.000Z</published>
+    <updated>2017-12-04T19:58:09.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;In this post, I’ll walk through how to link an application against LLVM and show a simple usage of the LLVM &lt;code&gt;McDisassembler&lt;/code&gt; API. It’s a little more complex that it seems, probably because there’s not many good resources for using this API.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+      <category term="LLVM" scheme="http://raywang.tech/tags/LLVM/"/>
+    
+      <category term="x86" scheme="http://raywang.tech/tags/x86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Formal Reasoning in Coq — a Beginner&#39;s Guide</title>
+    <link href="http://raywang.tech/2017/09/25/formal-reasoning-in-coq/"/>
+    <id>http://raywang.tech/2017/09/25/formal-reasoning-in-coq/</id>
+    <published>2017-09-25T14:12:00.000Z</published>
+    <updated>2017-12-27T22:13:24.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I’m currently taking the Fall 2017 iteration of &lt;a href=&quot;http://6826.csail.mit.edu/2017/&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on formal verification of computer systems using &lt;a href=&quot;https://coq.inria.fr/&quot;&gt;Coq&lt;/a&gt;, a language for mechanical theorem proving.&lt;/p&gt;
+&lt;p&gt;The goal of this class is to write the spec, implementation, and proofs for a formally verified RAID filesystem in Coq, then generate Haskell code from it.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Formal Methods" scheme="http://raywang.tech/categories/Formal-Methods/"/>
+    
+    
+      <category term="Coq" scheme="http://raywang.tech/tags/Coq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 7</title>
+    <link href="http://raywang.tech/2017/09/11/matasano-crypto-challenges-set-7/"/>
+    <id>http://raywang.tech/2017/09/11/matasano-crypto-challenges-set-7/</id>
+    <published>2017-09-11T14:54:00.000Z</published>
+    <updated>2017-09-29T19:20:02.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt; and I worked together quite a bit to get through it.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Protips for Speed (And Reducing RSI) for Programmers or Mac Users</title>
+    <link href="http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/"/>
+    <id>http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/</id>
+    <published>2017-08-13T23:23:45.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I’ve been wanting to write this post for a while — here I’ll describe all the excellent customizations that I’ve accrued over several years of optimizing my Mac for speed and alleviating repetitive stress injury (RSI). If you’re a Mac power user, or if you make a living at a keyboard, you &lt;strong&gt;want&lt;/strong&gt; to read this.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Looking Towards Summer: Concolic Execution, Fuzzy Panda, and More</title>
+    <link href="http://raywang.tech/2017/05/23/2017/Looking%20towards%20Summer:%20Concolic%20Execution,%20Fuzzy%20Panda,%20and%20more/"/>
+    <id>http://raywang.tech/2017/05/23/2017/Looking towards Summer: Concolic Execution, Fuzzy Panda, and more/</id>
+    <published>2017-05-23T06:55:00.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It’s always bothered me that MIT or MIT Lincoln Lab didn’t submit anything to DARPA’s Cyber Grand Challenge. With all the smart people, such as my advisor, Armando Solar-Lezama, working on program analysis and formal methods (which I currently know nothing about), I would have expected that we could create a strong Cyber Reasoning System worthy of CGC.&lt;/p&gt;
+&lt;p&gt;That’s sort of what I will be working on this summer at Lincoln and probably writing my thesis on. But I’m very new to the field and have just started diving in.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+      <category term="Research" scheme="http://raywang.tech/categories/Meta/Research/"/>
+    
+    
+      <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+      <category term="Symbolic Execution" scheme="http://raywang.tech/tags/Symbolic-Execution/"/>
+    
+      <category term="Program Analysis" scheme="http://raywang.tech/tags/Program-Analysis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 6</title>
+    <link href="http://raywang.tech/2017/05/21/2017/Matasano%20Crypto%20Challenges,%20Set%206/"/>
+    <id>http://raywang.tech/2017/05/21/2017/Matasano Crypto Challenges, Set 6/</id>
+    <published>2017-05-21T13:40:00.000Z</published>
+    <updated>2018-01-05T07:41:47.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The last of the original crypto challenges… here we go!&lt;/p&gt;
+&lt;h2 id=&quot;Challenge-41-Implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a href=&quot;#Challenge-41-Implement-unpadded-message-recovery-oracle&quot; class=&quot;headerlink&quot; title=&quot;Challenge 41 Implement unpadded message recovery oracle&quot;&gt;&lt;/a&gt;Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DEF CON CTF Qualifier 2017</title>
+    <link href="http://raywang.tech/2017/05/03/2017/DEF%20CON%20CTF%20Qualifier%202017/"/>
+    <id>http://raywang.tech/2017/05/03/2017/DEF CON CTF Qualifier 2017/</id>
+    <published>2017-05-03T16:12:00.000Z</published>
+    <updated>2017-09-29T19:21:53.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;Update 5/5/17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
+    
+    
+      <category term="TechSec" scheme="http://raywang.tech/tags/TechSec/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Generating and Interpreting Bytecode for MITScript — Using Rust</title>
+    <link href="http://raywang.tech/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-%E2%80%94-using-Rust/"/>
+    <id>http://raywang.tech/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/</id>
+    <published>2017-05-03T16:00:40.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?&lt;/p&gt;
+&lt;p&gt;Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 5</title>
+    <link href="http://raywang.tech/2017/04/21/set5-writeup/"/>
+    <id>http://raywang.tech/2017/04/21/set5-writeup/</id>
+    <published>2017-04-21T19:25:14.000Z</published>
+    <updated>2017-12-27T22:24:43.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This set was surprisingly easy, actually. The book &lt;a href=&quot;http://www.springer.com/us/book/9783642041006&quot;&gt;Understanding Cryptography&lt;/a&gt; by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.&lt;/p&gt;
+&lt;p&gt;Let’s dive in!&lt;/p&gt;
+&lt;h2 id=&quot;Challenge-33-Implement-Diffie-Hellman&quot;&gt;&lt;a href=&quot;#Challenge-33-Implement-Diffie-Hellman&quot; class=&quot;headerlink&quot; title=&quot;Challenge 33 Implement Diffie-Hellman&quot;&gt;&lt;/a&gt;Challenge 33 Implement Diffie-Hellman&lt;/h2&gt;&lt;p&gt;Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.&lt;/p&gt;
+&lt;p&gt;Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0…p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a “generator” of the group.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Writing a C++ Interpreter for MITScript</title>
+    <link href="http://raywang.tech/2017/04/15/Writing-a-C-interpreter-for-MITScript/"/>
+    <id>http://raywang.tech/2017/04/15/Writing-a-C-interpreter-for-MITScript/</id>
+    <published>2017-04-15T21:38:37.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Upcoming Blog Posts — Stay Tuned!</title>
+    <link href="http://raywang.tech/2017/04/04/Upcoming-blog-posts-%E2%80%94-when-I-get-to-them/"/>
+    <id>http://raywang.tech/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/</id>
+    <published>2017-04-04T18:57:58.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.&lt;/p&gt;
+&lt;p&gt;Here’s what I’ve been up to, and what awesome posts/series you can expect in the coming weeks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;6.115 Labs and Final project — Masterlock combo breaker?&lt;/li&gt;
+&lt;li&gt;6.857 Final project — Boston Symphony Orchestra iPad app pentest&lt;/li&gt;
+&lt;li&gt;CTFs — MITCTF, Cambridge2Cambridge&lt;/li&gt;
+&lt;li&gt;6.035 MITScript interpreter in Rust&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Starting a New Security Club at MIT</title>
+    <link href="http://raywang.tech/2017/03/14/Starting-a-new-security-club-at-MIT/"/>
+    <id>http://raywang.tech/2017/03/14/Starting-a-new-security-club-at-MIT/</id>
+    <published>2017-03-14T15:38:51.000Z</published>
+    <updated>2017-12-27T20:42:13.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://fortenforge.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fortenforge&lt;/a&gt;, &lt;a href=&quot;https://github.com/devneal&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="TechSec" scheme="http://raywang.tech/categories/TechSec/"/>
+    
+    
+      <category term="TechSec" scheme="http://raywang.tech/tags/TechSec/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 4</title>
+    <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-12-27T22:53:54.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-25-Break-“random-access-read-write”-AES-CTR&quot;&gt;&lt;a href=&quot;#Challenge-25-Break-“random-access-read-write”-AES-CTR&quot; class=&quot;headerlink&quot; title=&quot;Challenge 25 Break “random access read/write” AES CTR&quot;&gt;&lt;/a&gt;Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
+&lt;p&gt;For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided &lt;code&gt;edit()&lt;/code&gt; function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; xrange(len(ciphertext)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; c &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; candidates:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new_ciphertext = edit(ciphertext, i, c)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; new_ciphertext[i] == ciphertext[i]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      result += c&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-17-The-CBC-padding-oracle&quot;&gt;&lt;a href=&quot;#Challenge-17-The-CBC-padding-oracle&quot; class=&quot;headerlink&quot; title=&quot;Challenge 17 The CBC padding oracle!!!!!&quot;&gt;&lt;/a&gt;Challenge 17 The CBC padding oracle!!!!!&lt;/h2&gt;&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 1</title>
+    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Flex and Bison for a Simple Language, MITScript</title>
+    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
+    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
+&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 2</title>
+    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
+&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NSA Cybersprint 2015</title>
+    <link href="http://raywang.tech/2015/12/12/NSA-Cybersprint-2015/"/>
+    <id>http://raywang.tech/2015/12/12/NSA-Cybersprint-2015/</id>
+    <published>2015-12-12T22:38:28.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;This is my first writeup, written in 2015 in Word and back-dated&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate network infrastructure.&lt;/p&gt;
+&lt;p&gt;Here’s what it was like.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
+    
+    
+      <category term="writeups" scheme="http://raywang.tech/tags/writeups/"/>
+    
+  </entry>
+  
+</feed>
