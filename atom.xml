@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2017-12-27T22:54:27.000Z</updated>
+  <updated>2018-01-23T07:47:59.000Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My Favorite Films of All Time</title>
+    <link href="http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/"/>
+    <id>http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/</id>
+    <published>2018-01-23T07:40:02.000Z</published>
+    <updated>2018-01-23T07:47:59.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I discovered my interest in film at the start of college. As an arts reviewer for &lt;a href=&quot;https://thetech.com/authors/ray-wang&quot;&gt;The Tech&lt;/a&gt;, MIT’s student newspaper, I had the luxury of attending advance press screenings of big-name films like &lt;a href=&quot;https://thetech.com/2016/08/25/suicide-squad-review&quot;&gt;Suicide Squad&lt;/a&gt; and the final &lt;a href=&quot;https://thetech.com/2015/01/07/hobbit-v134-n61&quot;&gt;Hobbit film&lt;/a&gt;. But more importantly, my reviews cultivated an appreciation for the medium and an insatiable desire to experience all it had to offer. Since then, I’ve devoured films of all genres and eras, directors and actors, cinematographers and writers.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reviews" scheme="http://raywang.tech/categories/Reviews/"/>
+    
+      <category term="Film" scheme="http://raywang.tech/categories/Reviews/Film/"/>
+    
+    
+      <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
+    
+  </entry>
   
   <entry>
     <title>Formal Verification: The Gap Between Perfect Code and Reality</title>
@@ -305,16 +327,37 @@
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 1</title>
-    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <title>Flex and Bison for a Simple Language, MITScript</title>
+    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
+    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
+&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 2</title>
+    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
+&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
     
     </summary>
     
@@ -347,6 +390,27 @@
   </entry>
   
   <entry>
+    <title>Matasano Crypto Challenges, Set 1</title>
+    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Matasano Crypto Challenges, Set 4</title>
     <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
     <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
@@ -365,48 +429,6 @@
     
     
       <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matasano Crypto Challenges, Set 2</title>
-    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
-&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flex and Bison for a Simple Language, MITScript</title>
-    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
-    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
-&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
-    
-    
-      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
     
   </entry>
   
