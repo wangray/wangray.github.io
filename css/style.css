@@ -548,7 +548,7 @@ body {
 .back-button-link {
   font-family: Droid Sans, Source Sans Pro;
   color: #d3d3d3;
-  padding: 15px;
+  padding: 10px;
 }
 .back-button-link:hover {
   border-bottom: 5px solid #414141;
@@ -559,7 +559,7 @@ body {
   font-family: Droid Sans, Source Sans Pro;
 }
 .article-header .thumb {
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
   font-size: 35px;
 }
