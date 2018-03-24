@@ -452,7 +452,7 @@ body {
 }
 .article {
   color: #555;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 @media screen and (max-width: 479px) {
   .article {
@@ -542,14 +542,17 @@ body {
   left: 0px;
 }
 .back-button-icon:before {
-  color: #d3d3d3;
 /*Font-awesome search icon*/
   content: '\f060';
 }
 .back-button-link {
   font-family: Droid Sans, Source Sans Pro;
   color: #d3d3d3;
-  padding-bottom: 30px;
+  padding: 15px;
+}
+.back-button-link:hover {
+  border-bottom: 5px solid #414141;
+  color: #414141 !important;
 }
 .article-header h1 {
   font-weight: bold;
