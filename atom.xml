@@ -43,7 +43,7 @@
     <link href="http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/"/>
     <id>http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/</id>
     <published>2017-12-20T17:07:02.000Z</published>
-    <updated>2018-03-24T21:10:12.000Z</updated>
+    <updated>2018-03-24T21:11:00.000Z</updated>
     
     <summary type="html">
     
@@ -51,7 +51,6 @@
 Thanks to Vlad Brown for translating this post into Russian &lt;a href=&quot;http://howtorecover.me/formalnaa-proverka&quot;&gt;here&lt;/a&gt;.
 &lt;/p&gt;
 
-&lt;p&gt;AIYAAAAAAAAAAa&lt;/p&gt;
 &lt;p&gt;In Fall 2017, I took MIT’s &lt;a href=&quot;http://6826.csail.mit.edu/2017/index.html&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.&lt;/p&gt;
 &lt;p&gt;I went into the class believing that formal verification is the future — the only solution to a world of software ridden with bugs and security issues. But after recent events and a semester of trying to apply formal methods, I’m a serious skeptic. In this post, I’ll discuss why I think formal verification has a long way to go — and why it just doesn’t work right now.&lt;/p&gt;
     
@@ -353,27 +352,6 @@ Thanks to Vlad Brown for translating this post into Russian &lt;a href=&quot;htt
   </entry>
   
   <entry>
-    <title>Flex and Bison for a Simple Language, MITScript</title>
-    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
-    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
-&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
-    
-    
-      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Matasano Crypto Challenges, Set 4</title>
     <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
     <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
@@ -396,16 +374,16 @@ Thanks to Vlad Brown for translating this post into Russian &lt;a href=&quot;htt
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 2</title>
-    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <title>Matasano Crypto Challenges, Set 1</title>
+    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
-&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
+      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
     
     </summary>
     
@@ -417,16 +395,37 @@ Thanks to Vlad Brown for translating this post into Russian &lt;a href=&quot;htt
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 1</title>
-    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <title>Flex and Bison for a Simple Language, MITScript</title>
+    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
+    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
+&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 2</title>
+    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
+&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
     
     </summary>
     
