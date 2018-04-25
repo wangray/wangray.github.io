@@ -43,12 +43,12 @@
     <link href="http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/"/>
     <id>http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/</id>
     <published>2017-12-20T17:07:02.000Z</published>
-    <updated>2018-03-24T21:11:00.000Z</updated>
+    <updated>2018-04-25T17:43:53.000Z</updated>
     
     <summary type="html">
     
       &lt;p style=&quot;font-size:.85em;font-style:italic&quot;&gt;
-Thanks to Vlad Brown for translating this post into Russian &lt;a href=&quot;http://howtorecover.me/formalnaa-proverka&quot;&gt;here&lt;/a&gt;.
+Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.me/formalnaa-proverka&quot;&gt;Russian&lt;/a&gt; and &lt;a href=&quot;http://getdrawings.com/uz-mukammal-kod-va-haqiqat&quot;&gt;Uzbek&lt;/a&gt; translations.
 &lt;/p&gt;
 
 &lt;p&gt;In Fall 2017, I took MIT’s &lt;a href=&quot;http://6826.csail.mit.edu/2017/index.html&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.&lt;/p&gt;
