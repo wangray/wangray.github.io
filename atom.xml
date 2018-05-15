@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-05-15T00:23:42.718Z</updated>
+  <updated>2018-05-15T03:42:33.274Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/"/>
     <id>http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/</id>
     <published>2018-05-14T23:39:05.000Z</published>
-    <updated>2018-05-15T00:23:42.718Z</updated>
+    <updated>2018-05-15T03:42:33.274Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; pwnable      |      &lt;strong&gt;Points:&lt;/strong&gt; 124      |      &lt;strong&gt;Solves:&lt;/strong&gt; 49      |      &lt;a href=&quot;https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame&quot;&gt;&lt;strong&gt;Challenge files&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; checksec mario&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[*] &amp;apos;/home/raywang/ctf/DEFCONQ2018/mario&amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Arch:     amd64-64-little&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    RELRO:    Full RELRO&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Stack:    Canary found&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NX:       NX enabled&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    PIE:      PIE enabled&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;summary&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#summary&quot;&gt;&lt;/a&gt; Summary&lt;/h2&gt;
-&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, Anderson, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
+&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, &lt;a href=&quot;https://qzqxq.wordpress.com/&quot;&gt;qzqxq&lt;/a&gt;, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
     
     </summary>
     
@@ -378,17 +378,18 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 3</title>
-    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <title>Matasano Crypto Challenges, Set 1</title>
+    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
-&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
-&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-11-convert-hex-to-base64&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-11-convert-hex-to-base64&quot;&gt;&lt;/a&gt; Challenge 1.1 Convert hex to base64&lt;/h2&gt;
+&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&#39;&#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to&lt;br /&gt;
+&lt;code&gt;I&#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
     
     </summary>
     
@@ -444,18 +445,17 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 1</title>
-    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;challenge-11-convert-hex-to-base64&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-11-convert-hex-to-base64&quot;&gt;&lt;/a&gt; Challenge 1.1 Convert hex to base64&lt;/h2&gt;
-&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&#39;&#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to&lt;br /&gt;
-&lt;code&gt;I&#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
+&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
     
     </summary>
     
