@@ -9,19 +9,19 @@
   <meta name="keywords" content="cryptopals" />
   
   
-  <meta name="description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+  <meta name="description" content="Challenge 9 Implement PKCS#7 padding As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transfor">
 <meta name="keywords" content="cryptopals">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matasano Crypto Challenges, Set 2">
 <meta property="og:url" content="http://raywang.tech/2017/03/07/set2_writeup/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
-<meta property="og:description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+<meta property="og:description" content="Challenge 9 Implement PKCS#7 padding As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transfor">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png">
 <meta property="og:updated_time" content="2017-09-29T19:20:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matasano Crypto Challenges, Set 2">
-<meta name="twitter:description" content="Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform">
+<meta name="twitter:description" content="Challenge 9 Implement PKCS#7 padding As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transfor">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
   
     <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
@@ -167,10 +167,12 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Challenge-9-Implement-PKCS-7-padding"><a href="#Challenge-9-Implement-PKCS-7-padding" class="headerlink" title="Challenge 9 Implement PKCS#7 padding"></a>Challenge 9 Implement PKCS#7 padding</h2><p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
+        <h2 id="challenge-9-implement-pkcs7-padding"><a class="markdownIt-Anchor" href="#challenge-9-implement-pkcs7-padding"></a> Challenge 9 Implement PKCS#7 padding</h2>
+<p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
 <p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
 <a id="more"></a>
-<h2 id="Challenge-10-Implement-CBC-mode"><a href="#Challenge-10-Implement-CBC-mode" class="headerlink" title="Challenge 10 Implement CBC mode"></a>Challenge 10 Implement CBC mode</h2><p>This challenge has us implement CBC mode of block encryption.</p>
+<h2 id="challenge-10-implement-cbc-mode"><a class="markdownIt-Anchor" href="#challenge-10-implement-cbc-mode"></a> Challenge 10 Implement CBC mode</h2>
+<p>This challenge has us implement CBC mode of block encryption.</p>
 <p>In CBC mode, each block of plaintext is XORed with the previous ciphertext block before being encrypted. We need an IV for the first block of plaintext.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png" alt="CBC Encryption"></p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png" alt="CBC Decryption"></p>
@@ -178,13 +180,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Xor with previous block. First prev_xor_block is the IV.</span></div><div class="line">pre_aes_block = xor(blocks[i], prev_xor_block)</div><div class="line"></div><div class="line"><span class="comment"># Encrypt with cipher algorithm</span></div><div class="line">current_cipher_block = e.update(pre_aes_block)</div><div class="line">prev_xor_block = current_cipher_block</div><div class="line">ciphertext += current_cipher_block</div></pre></td></tr></table></figure>
 <p>The decryption takes each block of ciphertext, decrypts it, and XORs with the previous block of ciphertext to recover the plaintext.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, len(blocks)):</div><div class="line">  decrypted_block = d.update(blocks[i])</div><div class="line">  <span class="comment"># print decrypted_block</span></div><div class="line"></div><div class="line">  plaintext += xor(decrypted_block, blocks[i<span class="number">-1</span>]) <span class="comment"># where blocks[i-1] is the previous ciphertext block</span></div></pre></td></tr></table></figure>
-<p>I can verify I’ve done this correctly by decrypting 10.txt with a CBC Cipher with IV <code>&#39;\x00&#39;*16</code>.</p>
-<h2 id="Challenge-11-An-ECB-CBC-detection-oracle"><a href="#Challenge-11-An-ECB-CBC-detection-oracle" class="headerlink" title="Challenge 11 An ECB/CBC detection oracle"></a>Challenge 11 An ECB/CBC detection oracle</h2><p>This challenge asks us to detect whether we’ve encrypted a text with ECB or CBC, chosen at random.</p>
+<p>I can verify I’ve done this correctly by decrypting 10.txt with a CBC Cipher with IV <code>'\x00'*16</code>.</p>
+<h2 id="challenge-11-an-ecbcbc-detection-oracle"><a class="markdownIt-Anchor" href="#challenge-11-an-ecbcbc-detection-oracle"></a> Challenge 11 An ECB/CBC detection oracle</h2>
+<p>This challenge asks us to detect whether we’ve encrypted a text with ECB or CBC, chosen at random.</p>
 <p>Recall the properties of ECB vs CBC — ECB will take two identical plaintext blocks and produce two identical ciphertext blocks.</p>
 <p>This is as simple as asking the oracle to encrypt a string that contains at least two consecutive blocks of identical characters. If the oracle chooses ECB, the ciphertext will have two adjacent identical blocks as well.</p>
 <p>To ensure that we have at least two consecutive blocks of identical characters, we need to input at least 43 bytes. Why? Because the oracle pads the plaintext with 5-10 bytes, so we need to give some offset to ensure our identical plaintext blocks are properly aligned.</p>
-<p>R = random_nfix<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-------<span class="number">-16</span>-----|</div><div class="line">|<span class="number">-5</span>-| |--<span class="number">-11</span>----| |-------<span class="number">-16</span>----| |-------<span class="number">-16</span>----|</div><div class="line">RRRRR <span class="number">00000000000</span> <span class="number">0000000000000000</span> <span class="number">0000000000000000</span></div></pre></td></tr></table></figure></p>
-<h2 id="Challenge-12-Byte-at-a-time-ECB-decryption-Simple"><a href="#Challenge-12-Byte-at-a-time-ECB-decryption-Simple" class="headerlink" title="Challenge 12 Byte-at-a-time ECB decryption (Simple)"></a>Challenge 12 Byte-at-a-time ECB decryption (Simple)</h2><p>I have an oracle that produces <code>AES-128-ECB(your-string || unknown-string, random-key)</code>.</p>
+<p>R = random_nfix</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">|-------<span class="number">-16</span>-----|</div><div class="line">|<span class="number">-5</span>-| |--<span class="number">-11</span>----| |-------<span class="number">-16</span>----| |-------<span class="number">-16</span>----|</div><div class="line">RRRRR <span class="number">00000000000</span> <span class="number">0000000000000000</span> <span class="number">0000000000000000</span></div></pre></td></tr></table></figure>
+<h2 id="challenge-12-byte-at-a-time-ecb-decryption-simple"><a class="markdownIt-Anchor" href="#challenge-12-byte-at-a-time-ecb-decryption-simple"></a> Challenge 12 Byte-at-a-time ECB decryption (Simple)</h2>
+<p>I have an oracle that produces <code>AES-128-ECB(your-string || unknown-string, random-key)</code>.</p>
 <p>I can find unknown-string with this oracle. The idea is that,</p>
 <ol>
 <li>First, I need to find the block size of the cipher.</li>
@@ -202,8 +207,11 @@
 <p>When I have 16 known bytes in this manner, I no longer need filler variables in my offset; I can just use the previous 15 known bytes as my offset. Note that my lookup table can be populated with ciphertexts of 16 flag bytes.</p>
 <p>Since I have 16-byte ciphertexts in my lookup table, I need to first align, then get the index of, the 16-byte block-of-interest that I’ll look up in my table.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input to oracle, |<span class="number">-16</span>-| bytes to be looked up <span class="keyword">in</span> table:</div><div class="line"></div><div class="line">block_num:          <span class="number">0</span>               <span class="number">1</span></div><div class="line">                              block_of_interest</div><div class="line">            alignment bytes  |-------<span class="number">-16</span>-----|</div><div class="line">plaintext: AAAAAAAAAAAAAAAK  KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure>
-<p>Stopping after I run out of bytes, I find the answer is<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
-<h2 id="Challenge-13-ECB-cut-and-paste"><a href="#Challenge-13-ECB-cut-and-paste" class="headerlink" title="Challenge 13  ECB cut-and-paste"></a>Challenge 13  ECB cut-and-paste</h2><h2 id="Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix"><a href="#Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix" class="headerlink" title="Challenge 14  Byte-at-a-time ECB decryption with random prefix"></a>Challenge 14  Byte-at-a-time ECB decryption with random prefix</h2><p>In this challenge, a random-length prefix is added to the attacker-controlled string, <code>AES-128-ECB(random-prefix || attacker-controlled || target-bytes, random-key)</code>. Thus, I need to know the length of the prefix to be able to conduct the same attack as Challenge 12.</p>
+<p>Stopping after I run out of bytes, I find the answer is</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure>
+<h2 id="challenge-13-ecb-cut-and-paste"><a class="markdownIt-Anchor" href="#challenge-13-ecb-cut-and-paste"></a> Challenge 13  ECB cut-and-paste</h2>
+<h2 id="challenge-14-byte-at-a-time-ecb-decryption-with-random-prefix"><a class="markdownIt-Anchor" href="#challenge-14-byte-at-a-time-ecb-decryption-with-random-prefix"></a> Challenge 14  Byte-at-a-time ECB decryption with random prefix</h2>
+<p>In this challenge, a random-length prefix is added to the attacker-controlled string, <code>AES-128-ECB(random-prefix || attacker-controlled || target-bytes, random-key)</code>. Thus, I need to know the length of the prefix to be able to conduct the same attack as Challenge 12.</p>
 <p>Finding this length is not so hard.</p>
 <ol>
 <li>First, I can find the block index of the last byte of the prefix with just two calls to the oracle.</li>
@@ -217,17 +225,21 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">     |--offset-|</div><div class="line">RRRRR00000000000 0000000000000000 0000000000000000 UUUUUU....</div><div class="line"></div><div class="line">```python</div><div class="line">In the above example, the two 16-byte-aligned blocks of \x00's will encrypt to adjacent identical ciphertext, which I can detect.</div><div class="line"></div><div class="line">Finally, `find_next_byte_with_prefix` will do the work. The offset is now</div><div class="line">```python</div><div class="line">offset = 'A'*(extra_offset_for_prefix + offset_len)</div></pre></td></tr></table></figure>
 <p>, with offset_len always being 15 known bytes, as in Challenge 12.</p>
 <p>The keys in my lookup table are no longer a fixed-length of blocksize — they include all known bytes now. Here, the len(offset) is <strong>not always 15</strong>, as in Challenge 12. Also, the length of my lookup table keys is <strong>not always blocksize</strong>; rather, the length of my keys increases with the number of known bytes. I could have implemented this more similarly to Challenge 12, which would have been less computationally expensive.</p>
-<p>How do I produce ciphertext keys for my lookup table now? Here’s what I feed into the oracle:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">  table_key = oracle(offset + knownbytes + cand)[prefix_location: prefix_location + len(offset) + len(knownbytes) + <span class="number">1</span>]</div></pre></td></tr></table></figure></p>
+<p>How do I produce ciphertext keys for my lookup table now? Here’s what I feed into the oracle:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> cand <span class="keyword">in</span> candidates:</div><div class="line">  table_key = oracle(offset + knownbytes + cand)[prefix_location: prefix_location + len(offset) + len(knownbytes) + <span class="number">1</span>]</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">    |--lookup table key---------|</div><div class="line">RRRRRAAAAAAAAAAA AAAAAAAAAAAAAAAU UUUU.....</div></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    |-------------------lookup table key---------|  </div><div class="line">    |---offset-------|</div><div class="line"></div><div class="line">extra_offset_for_prefix</div><div class="line">    |          |</div><div class="line">RRRRRAAAAAAAAAAA AAAAAKKKKKKKKKKK KKKKKKKKKKKKKKKU UUUU.....</div></pre></td></tr></table></figure>
-<p>Calling <code>find_next_byte_with_prefix</code> byte-by-byte, I find the same flag as before.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure></p>
-<h2 id="Challenge-15-PKCS-7-padding-validation"><a href="#Challenge-15-PKCS-7-padding-validation" class="headerlink" title="Challenge 15 PKCS#7 padding validation"></a>Challenge 15 PKCS#7 padding validation</h2><p>Here’s an easy one. We need only validate that the PKCS7 padding is correct.</p>
+<p>Calling <code>find_next_byte_with_prefix</code> byte-by-byte, I find the same flag as before.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rollin<span class="string">' in my 5.0\nWith my rag-top down so my hair can blow\nThe girlies on standby waving just to say hi\nDid you stop? No, I just drove by\n</span></div></pre></td></tr></table></figure>
+<h2 id="challenge-15-pkcs7-padding-validation"><a class="markdownIt-Anchor" href="#challenge-15-pkcs7-padding-validation"></a> Challenge 15 PKCS#7 padding validation</h2>
+<p>Here’s an easy one. We need only validate that the PKCS7 padding is correct.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte = s[<span class="number">-1</span>]</div><div class="line">pad_length = unpack(byte, <span class="string">'all'</span>)</div><div class="line"><span class="keyword">if</span> byte == <span class="number">0</span> <span class="keyword">or</span> s[-pad_length:] != byte * pad_length <span class="keyword">or</span> byte == <span class="string">""</span>:</div></pre></td></tr></table></figure>
-<p>I check if the last <code>pad_length</code> bytes of <code>s</code> are equal to the string of <code>byte</code> repeated <code>pad_length</code> times, as it should be in a properly padded string.  </p>
-<h2 id="Challenge-16-CBC-bitflipping-attacks"><a href="#Challenge-16-CBC-bitflipping-attacks" class="headerlink" title="Challenge 16 CBC bitflipping attacks"></a>Challenge 16 CBC bitflipping attacks</h2><p>We have a function that takes user input and url-encodes special characters, and we want to exploit the properties of CBC to allow us to insert the string “;admin=true;” without the “;” and “=” being validated out.</p>
+<p>I check if the last <code>pad_length</code> bytes of <code>s</code> are equal to the string of <code>byte</code> repeated <code>pad_length</code> times, as it should be in a properly padded string.</p>
+<h2 id="challenge-16-cbc-bitflipping-attacks"><a class="markdownIt-Anchor" href="#challenge-16-cbc-bitflipping-attacks"></a> Challenge 16 CBC bitflipping attacks</h2>
+<p>We have a function that takes user input and url-encodes special characters, and we want to exploit the properties of CBC to allow us to insert the string “;admin=true;” without the “;” and “=” being validated out.</p>
 <p>Recall that CBC takes each block of ciphertext and XORs it with the next block of decrypted ciphertext to recover the plaintext.</p>
 <p>If I can modify at least two consecutive blocks of ciphertext, I can make the second block decrypt to whatever I want.</p>
-<p>I know that <code>\x00 ^ \x59 = ;</code> and <code>\x00 ^ \x61 = &#39;=&#39;</code> from <a href="http://www.nthelp.com/ascii.htm" target="_blank" rel="external">ascii chart</a>.</p>
+<p>I know that <code>\x00 ^ \x59 = ;</code> and <code>\x00 ^ \x61 = '='</code> from <a href="http://www.nthelp.com/ascii.htm" target="_blank" rel="external">ascii chart</a>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">user-controlled input:</div><div class="line">      0                     1</div><div class="line">AAAAAAAAAAAAAAAA  \x00admin\x00true\x00</div><div class="line"></div><div class="line">ciphertext:</div><div class="line">XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX</div><div class="line"></div><div class="line">modified ciphertext:</div><div class="line">\x59XXXXX\x61XXXX\x59XXXX XXXXXXXXXXXXXXXX</div><div class="line"></div><div class="line">In XOR step of CBC decryption, the 2nd block would normally XOR to recover \x00admin\x00true\x00, but now that I&apos;ve done an additional XOR on three bytes by modifying ciphertext, the 2nd block XORs to a plaintext of \x59admin\x61true\x59.</div></pre></td></tr></table></figure>
 <p>Done with set2!</p>
 
@@ -276,19 +288,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/12/12/NSA-Cybersprint-2015/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">
         
-          Flex and Bison for a Simple Language, MITScript
+          NSA Cybersprint 2015
         
       </div>
     </a>
   
   
-    <a href="/2017/03/07/set1_writeup/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/03/07/set4-writeup/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">Matasano Crypto Challenges, Set 1</div>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 4</div>
     </a>
   
 </nav>
@@ -304,7 +316,7 @@
     <div id="toc" class="toc-article">
     
       <strong class="toc-title">Contents</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-9-Implement-PKCS-7-padding"><span class="toc-number">1.</span> <span class="toc-text">Challenge 9 Implement PKCS#7 padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-10-Implement-CBC-mode"><span class="toc-number">2.</span> <span class="toc-text">Challenge 10 Implement CBC mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-11-An-ECB-CBC-detection-oracle"><span class="toc-number">3.</span> <span class="toc-text">Challenge 11 An ECB/CBC detection oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-12-Byte-at-a-time-ECB-decryption-Simple"><span class="toc-number">4.</span> <span class="toc-text">Challenge 12 Byte-at-a-time ECB decryption (Simple)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-13-ECB-cut-and-paste"><span class="toc-number">5.</span> <span class="toc-text">Challenge 13  ECB cut-and-paste</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-14-Byte-at-a-time-ECB-decryption-with-random-prefix"><span class="toc-number">6.</span> <span class="toc-text">Challenge 14  Byte-at-a-time ECB decryption with random prefix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-15-PKCS-7-padding-validation"><span class="toc-number">7.</span> <span class="toc-text">Challenge 15 PKCS#7 padding validation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenge-16-CBC-bitflipping-attacks"><span class="toc-number">8.</span> <span class="toc-text">Challenge 16 CBC bitflipping attacks</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-9-implement-pkcs7-padding"><span class="toc-number">1.</span> <span class="toc-text"> Challenge 9 Implement PKCS#7 padding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-10-implement-cbc-mode"><span class="toc-number">2.</span> <span class="toc-text"> Challenge 10 Implement CBC mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-11-an-ecbcbc-detection-oracle"><span class="toc-number">3.</span> <span class="toc-text"> Challenge 11 An ECB/CBC detection oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-12-byte-at-a-time-ecb-decryption-simple"><span class="toc-number">4.</span> <span class="toc-text"> Challenge 12 Byte-at-a-time ECB decryption (Simple)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-13-ecb-cut-and-paste"><span class="toc-number">5.</span> <span class="toc-text"> Challenge 13  ECB cut-and-paste</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-14-byte-at-a-time-ecb-decryption-with-random-prefix"><span class="toc-number">6.</span> <span class="toc-text"> Challenge 14  Byte-at-a-time ECB decryption with random prefix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-15-pkcs7-padding-validation"><span class="toc-number">7.</span> <span class="toc-text"> Challenge 15 PKCS#7 padding validation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-16-cbc-bitflipping-attacks"><span class="toc-number">8.</span> <span class="toc-text"> Challenge 16 CBC bitflipping attacks</span></a></li></ol>
     
     </div>
   </aside>

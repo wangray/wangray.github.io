@@ -154,6 +154,59 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/">Generating and Interpreting Bytecode for MITScript — Using Rust</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/" class="article-date">
+	  <time datetime="2017-05-03T16:00:40.000Z" itemprop="datePublished">05-03-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?</p>
+<p>Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.</p>
+        <!-- Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode in......  -->
+        <p class="article-more-link">
+          <a href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-set5-writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -188,8 +241,9 @@
       
         <p>This set was surprisingly easy, actually. The book <a href="http://www.springer.com/us/book/9783642041006">Understanding Cryptography</a> by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.</p>
 <p>Let’s dive in!</p>
-<h2 id="Challenge-33-Implement-Diffie-Hellman"><a href="#Challenge-33-Implement-Diffie-Hellman" class="headerlink" title="Challenge 33 Implement Diffie-Hellman"></a>Challenge 33 Implement Diffie-Hellman</h2><p>Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.</p>
-<p>Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0…p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a “generator” of the group.</p>
+<h2 id="challenge-33-implement-diffie-hellman"><a class="markdownIt-Anchor" href="#challenge-33-implement-diffie-hellman"></a> Challenge 33 Implement Diffie-Hellman</h2>
+<p>Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.</p>
+<p>Alice and Bob agree on an integer group of prime <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord mathit">p</span></span></span></span>, with a generator <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.03588em;">g</span></span></span></span>. <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.03588em;">g</span></span></span></span> raised to every power in <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>p</mi><mo>−</mo><mn>1</mn></mrow></mrow><annotation encoding="application/x-tex">{0...p-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathit">p</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span></span></span>, taken <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo><mo>mod</mo></mo><mi>p</mi></mrow><annotation encoding="application/x-tex">\bmod p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base"><span class="mspace muspace"></span><span class="mord">mod</span><span class="mspace muspace"></span><span class="mord mathit">p</span></span></span></span>, can produce every element of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base"><span class="mord mathit">p</span></span></span></span>. Hence, it is called a “generator” of the group.</p>
         <!-- This set was surprisingly easy, actually. The book Understanding Cryptography by Paar &amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number th......  -->
         <p class="article-more-link">
           <a href="/2017/04/21/set5-writeup/#more">Read More</a>
@@ -424,115 +478,6 @@ Here’s what I’ve been up to, and what aw......  -->
 
 
   
-    <article id="post-set4-writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set4-writeup/">Matasano Crypto Challenges, Set 4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set4-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Challenge-25-Break-“random-access-read-write”-AES-CTR"><a href="#Challenge-25-Break-“random-access-read-write”-AES-CTR" class="headerlink" title="Challenge 25 Break “random access read/write” AES CTR"></a>Challenge 25 Break “random access read/write” AES CTR</h2><p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
-<p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
-        <!-- Challenge 25 Break “random access read/write” AES CTRBecause we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
-For each byte in the cip......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set1_writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set1_writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Challenge-1-1-Convert-hex-to-base64"><a href="#Challenge-1-1-Convert-hex-to-base64" class="headerlink" title="Challenge 1.1 Convert hex to base64"></a>Challenge 1.1 Convert hex to base64</h2><p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
-<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>&#39;&#39;.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to<br><code>I&#39;m killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
-        <!-- Challenge 1.1 Convert hex to base64The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
-The functions a2b_hex, unhexli......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-set2_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -565,9 +510,11 @@ The functions a2b_hex, unhexli......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Challenge-9-Implement-PKCS-7-padding"><a href="#Challenge-9-Implement-PKCS-7-padding" class="headerlink" title="Challenge 9 Implement PKCS#7 padding"></a>Challenge 9 Implement PKCS#7 padding</h2><p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
+        <h2 id="challenge-9-implement-pkcs7-padding"><a class="markdownIt-Anchor" href="#challenge-9-implement-pkcs7-padding"></a> Challenge 9 Implement PKCS#7 padding</h2>
+<p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
 <p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
-        <!-- Challenge 9 Implement PKCS#7 paddingAs the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transfo......  -->
+        <!--  Challenge 9 Implement PKCS#7 padding
+As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to trans......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set2_writeup/#more">Read More</a>
         </p>
@@ -618,9 +565,11 @@ The functions a2b_hex, unhexli......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Challenge-17-The-CBC-padding-oracle"><a href="#Challenge-17-The-CBC-padding-oracle" class="headerlink" title="Challenge 17 The CBC padding oracle!!!!!"></a>Challenge 17 The CBC padding oracle!!!!!</h2><p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
+        <h2 id="challenge-17-the-cbc-padding-oracle"><a class="markdownIt-Anchor" href="#challenge-17-the-cbc-padding-oracle"></a> Challenge 17 The CBC padding oracle!!!</h2>
+<p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
 <p>The process behind the attack on each block is:</p>
-        <!-- Challenge 17 The CBC padding oracle!!!!!The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
+        <!--  Challenge 17 The CBC padding oracle!!!
+The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set3-writeup/#more">Read More</a>
         </p>
@@ -639,7 +588,7 @@ The functions a2b_hex, unhexli......  -->
 
 
   
-    <article id="post-NSA-Cybersprint-2015"
+    <article id="post-set4-writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -653,7 +602,7 @@ The functions a2b_hex, unhexli......  -->
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2015/12/12/NSA-Cybersprint-2015/">NSA Cybersprint 2015</a>
+      <a class="article-title" href="/2017/03/07/set4-writeup/">Matasano Crypto Challenges, Set 4</a>
     </h1>
   
 
@@ -661,23 +610,82 @@ The functions a2b_hex, unhexli......  -->
     
     <div class="article-meta">
       
-	<a href="/2015/12/12/NSA-Cybersprint-2015/" class="article-date">
-	  <time datetime="2015-12-12T22:38:28.000Z" itemprop="datePublished">12-12-2015</time>
+	<a href="/2017/03/07/set4-writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
 
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>This is my first writeup, written in 2015 in Word and back-dated</strong></p>
-<p>Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate network infrastructure.</p>
-<p>Here’s what it was like.</p>
-        <!-- This is my first writeup, written in 2015 in Word and back-dated
-Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corpora......  -->
+        <h2 id="challenge-25-break-random-access-readwrite-aes-ctr"><a class="markdownIt-Anchor" href="#challenge-25-break-random-access-readwrite-aes-ctr"></a> Challenge 25 Break “random access read/write” AES CTR</h2>
+<p>Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.</p>
+<p>For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided <code>edit()</code> function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(ciphertext)):</div><div class="line">  <span class="keyword">for</span> c <span class="keyword">in</span> candidates:</div><div class="line">    new_ciphertext = edit(ciphertext, i, c)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> new_ciphertext[i] == ciphertext[i]:</div><div class="line">      result += c</div></pre></td></tr></table></figure>
+        <!--  Challenge 25 Break “random access read/write” AES CTR
+Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.
+For each byte in the c......  -->
         <p class="article-more-link">
-          <a href="/2015/12/12/NSA-Cybersprint-2015/#more">Read More</a>
+          <a href="/2017/03/07/set4-writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-set1_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="challenge-11-convert-hex-to-base64"><a class="markdownIt-Anchor" href="#challenge-11-convert-hex-to-base64"></a> Challenge 1.1 Convert hex to base64</h2>
+<p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to<br />
+<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!--  Challenge 1.1 Convert hex to base64
+The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhex......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
         </p>
       
     </div>
@@ -698,7 +706,7 @@ Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Cap
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>

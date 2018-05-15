@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-03-24T21:16:29.000Z</updated>
+  <updated>2018-05-14T23:57:50.273Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DEF CON Quals 2018: It&#39;s a Me</title>
+    <link href="http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/"/>
+    <id>http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/</id>
+    <published>2018-05-14T23:39:05.000Z</published>
+    <updated>2018-05-14T23:57:50.273Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; pwnable      |      &lt;strong&gt;Points:&lt;/strong&gt; 124      |      &lt;strong&gt;Solves:&lt;/strong&gt; 49      |      &lt;a href=&quot;https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame&quot;&gt;&lt;strong&gt;Exploit files&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;gt; checksec mario&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[*] &amp;apos;/home/raywang/ctf/DEFCONQ2018/mario&amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Arch:     amd64-64-little&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    RELRO:    Full RELRO&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Stack:    Canary found&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    NX:       NX enabled&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    PIE:      PIE enabled&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;summary&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#summary&quot;&gt;&lt;/a&gt; Summary&lt;/h2&gt;
+&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, Anderson, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
+    
+    
+      <category term="writeups" scheme="http://raywang.tech/tags/writeups/"/>
+    
+  </entry>
   
   <entry>
     <title>My Favorite Films of All Time</title>
@@ -183,7 +206,8 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     <summary type="html">
     
       &lt;p&gt;The last of the original crypto challenges… here we go!&lt;/p&gt;
-&lt;h2 id=&quot;Challenge-41-Implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a href=&quot;#Challenge-41-Implement-unpadded-message-recovery-oracle&quot; class=&quot;headerlink&quot; title=&quot;Challenge 41 Implement unpadded message recovery oracle&quot;&gt;&lt;/a&gt;Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
+&lt;h2 id=&quot;challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;/a&gt; Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;
+&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
     
     </summary>
     
@@ -199,12 +223,12 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     <link href="http://raywang.tech/2017/05/03/2017/DEF%20CON%20CTF%20Qualifier%202017/"/>
     <id>http://raywang.tech/2017/05/03/2017/DEF CON CTF Qualifier 2017/</id>
     <published>2017-05-03T16:12:00.000Z</published>
-    <updated>2017-09-29T19:21:53.000Z</updated>
+    <updated>2018-05-14T22:41:57.439Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;Update 5/5/17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;Update 5/5/17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot; /&gt;&lt;/p&gt;
     
     </summary>
     
@@ -247,8 +271,9 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
       &lt;p&gt;This set was surprisingly easy, actually. The book &lt;a href=&quot;http://www.springer.com/us/book/9783642041006&quot;&gt;Understanding Cryptography&lt;/a&gt; by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.&lt;/p&gt;
 &lt;p&gt;Let’s dive in!&lt;/p&gt;
-&lt;h2 id=&quot;Challenge-33-Implement-Diffie-Hellman&quot;&gt;&lt;a href=&quot;#Challenge-33-Implement-Diffie-Hellman&quot; class=&quot;headerlink&quot; title=&quot;Challenge 33 Implement Diffie-Hellman&quot;&gt;&lt;/a&gt;Challenge 33 Implement Diffie-Hellman&lt;/h2&gt;&lt;p&gt;Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.&lt;/p&gt;
-&lt;p&gt;Alice and Bob agree on an integer group of prime $p$, with a generator $g$. $g$ raised to every power in ${0…p-1}$, taken $\bmod p$, can produce every element of $p$. Hence, it is called a “generator” of the group.&lt;/p&gt;
+&lt;h2 id=&quot;challenge-33-implement-diffie-hellman&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-33-implement-diffie-hellman&quot;&gt;&lt;/a&gt; Challenge 33 Implement Diffie-Hellman&lt;/h2&gt;
+&lt;p&gt;Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.&lt;/p&gt;
+&lt;p&gt;Alice and Bob agree on an integer group of prime &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mord mathit&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, with a generator &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mord mathit&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mord mathit&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; raised to every power in &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mrow&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;.&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;.&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;.&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;{0...p-1}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.64444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.8388800000000001em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord mathit&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;mord rule&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mord rule&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, taken &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mo&gt;&lt;mo&gt;mod&lt;/mo&gt;&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\bmod p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.69444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.8888799999999999em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mspace muspace&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;mspace muspace&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathit&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, can produce every element of &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;strut bottom&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;mord mathit&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. Hence, it is called a “generator” of the group.&lt;/p&gt;
     
     </summary>
     
@@ -352,6 +377,50 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
+    <title>Matasano Crypto Challenges, Set 2</title>
+    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;challenge-9-implement-pkcs7-padding&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-9-implement-pkcs7-padding&quot;&gt;&lt;/a&gt; Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;
+&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
+&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
+&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Matasano Crypto Challenges, Set 4</title>
     <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
     <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
@@ -360,7 +429,8 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Challenge-25-Break-“random-access-read-write”-AES-CTR&quot;&gt;&lt;a href=&quot;#Challenge-25-Break-“random-access-read-write”-AES-CTR&quot; class=&quot;headerlink&quot; title=&quot;Challenge 25 Break “random access read/write” AES CTR&quot;&gt;&lt;/a&gt;Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;/a&gt; Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;
+&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
 &lt;p&gt;For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided &lt;code&gt;edit()&lt;/code&gt; function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.&lt;/p&gt;
 &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; xrange(len(ciphertext)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; c &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; candidates:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new_ciphertext = edit(ciphertext, i, c)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; new_ciphertext[i] == ciphertext[i]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      result += c&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
@@ -382,8 +452,10 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Challenge-1-1-Convert-hex-to-base64&quot;&gt;&lt;a href=&quot;#Challenge-1-1-Convert-hex-to-base64&quot; class=&quot;headerlink&quot; title=&quot;Challenge 1.1 Convert hex to base64&quot;&gt;&lt;/a&gt;Challenge 1.1 Convert hex to base64&lt;/h2&gt;&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&amp;#39;&amp;#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*“ and decode it. The string decodes to&lt;br&gt;&lt;code&gt;I&amp;#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-11-convert-hex-to-base64&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-11-convert-hex-to-base64&quot;&gt;&lt;/a&gt; Challenge 1.1 Convert hex to base64&lt;/h2&gt;
+&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
+&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&#39;&#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to&lt;br /&gt;
+&lt;code&gt;I&#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
     
     </summary>
     
@@ -391,70 +463,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
       <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matasano Crypto Challenges, Set 2</title>
-    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Challenge-9-Implement-PKCS-7-padding&quot;&gt;&lt;a href=&quot;#Challenge-9-Implement-PKCS-7-padding&quot; class=&quot;headerlink&quot; title=&quot;Challenge 9 Implement PKCS#7 padding&quot;&gt;&lt;/a&gt;Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
-&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matasano Crypto Challenges, Set 3</title>
-    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Challenge-17-The-CBC-padding-oracle&quot;&gt;&lt;a href=&quot;#Challenge-17-The-CBC-padding-oracle&quot; class=&quot;headerlink&quot; title=&quot;Challenge 17 The CBC padding oracle!!!!!&quot;&gt;&lt;/a&gt;Challenge 17 The CBC padding oracle!!!!!&lt;/h2&gt;&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
-&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSA Cybersprint 2015</title>
-    <link href="http://raywang.tech/2015/12/12/NSA-Cybersprint-2015/"/>
-    <id>http://raywang.tech/2015/12/12/NSA-Cybersprint-2015/</id>
-    <published>2015-12-12T22:38:28.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;This is my first writeup, written in 2015 in Word and back-dated&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Capture-The-Flag that took place on a simulated corporate network infrastructure.&lt;/p&gt;
-&lt;p&gt;Here’s what it was like.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
-    
-    
-      <category term="writeups" scheme="http://raywang.tech/tags/writeups/"/>
     
   </entry>
   
