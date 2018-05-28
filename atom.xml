@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-05-27T23:36:18.362Z</updated>
+  <updated>2018-05-28T00:01:26.764Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <title>Sunset of Eden: Sci-Fi Short Story Based on the Three-Body Problem</title>
     <link href="http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/"/>
     <id>http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/</id>
-    <published>2018-05-27T23:36:18.000Z</published>
-    <updated>2018-05-27T23:36:18.362Z</updated>
+    <published>2018-05-27T23:36:18.361Z</published>
+    <updated>2018-05-28T00:01:26.764Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;em&gt;The Three-Body Problem&lt;/em&gt; trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously &lt;a href=&quot;https://thetech.com/2016/10/06/deaths-end-review&quot;&gt;extolled&lt;/a&gt; as one of the greatest sci-fi epics of all time. This story was written in 2016, and is based off of events in the spectacular final book, &lt;a href=&quot;https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101&quot;&gt;&lt;em&gt;Death’s End&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;&lt;em&gt;The Three-Body Problem&lt;/em&gt; trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously &lt;a href=&quot;https://thetech.com/2016/10/06/deaths-end-review&quot;&gt;extolled&lt;/a&gt; as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, &lt;a href=&quot;https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101&quot;&gt;&lt;em&gt;Death’s End&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
@@ -398,6 +398,27 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
+    <title>Flex and Bison for a Simple Language, MITScript</title>
+    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
+    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
+&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Matasano Crypto Challenges, Set 4</title>
     <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
     <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
@@ -440,27 +461,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
       <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flex and Bison for a Simple Language, MITScript</title>
-    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
-    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
-&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
-    
-    
-      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
     
   </entry>
   
