@@ -481,7 +481,7 @@ Here’s what I’ve been up to, and what aw......  -->
 
 
   
-    <article id="post-set3-writeup"
+    <article id="post-set2_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
   class="article article-type-post" itemscope itemprop="blogPost" >
@@ -495,7 +495,7 @@ Here’s what I’ve been up to, and what aw......  -->
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set3-writeup/">Matasano Crypto Challenges, Set 3</a>
+      <a class="article-title" href="/2017/03/07/set2_writeup/">Matasano Crypto Challenges, Set 2</a>
     </h1>
   
 
@@ -503,7 +503,7 @@ Here’s what I’ve been up to, and what aw......  -->
     
     <div class="article-meta">
       
-	<a href="/2017/03/07/set3-writeup/" class="article-date">
+	<a href="/2017/03/07/set2_writeup/" class="article-date">
 	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
@@ -513,13 +513,13 @@ Here’s what I’ve been up to, and what aw......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="challenge-17-the-cbc-padding-oracle"><a class="markdownIt-Anchor" href="#challenge-17-the-cbc-padding-oracle"></a> Challenge 17 The CBC padding oracle!!!</h2>
-<p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
-<p>The process behind the attack on each block is:</p>
-        <!--  Challenge 17 The CBC padding oracle!!!
-The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
+        <h2 id="challenge-9-implement-pkcs7-padding"><a class="markdownIt-Anchor" href="#challenge-9-implement-pkcs7-padding"></a> Challenge 9 Implement PKCS#7 padding</h2>
+<p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
+<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
+        <!--  Challenge 9 Implement PKCS#7 padding
+As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to trans......  -->
         <p class="article-more-link">
-          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
+          <a href="/2017/03/07/set2_writeup/#more">Read More</a>
         </p>
       
     </div>
