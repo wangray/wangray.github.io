@@ -376,17 +376,17 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 3</title>
-    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <title>Matasano Crypto Challenges, Set 2</title>
+    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
     <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
-&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
-&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-9-implement-pkcs7-padding&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-9-implement-pkcs7-padding&quot;&gt;&lt;/a&gt; Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;
+&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
+&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
     
     </summary>
     
@@ -421,6 +421,28 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <published>2017-03-07T15:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
+&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Matasano Crypto Challenges, Set 1</title>
     <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
     <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
@@ -440,27 +462,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
       <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flex and Bison for a Simple Language, MITScript</title>
-    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
-    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
-&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
-    
-    
-      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
     
   </entry>
   
