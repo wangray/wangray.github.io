@@ -28,6 +28,7 @@
   <link rel="icon" href="/css/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Source+Sans+Pro" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
 
@@ -146,7 +147,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="https://www.rust-lang.org/logos/rust-logo-256x256.png" rel="gallery_cjibwwkmh000dlcmwxqxptmzw">
+      <a class="article-gallery-img fancybox" href="https://www.rust-lang.org/logos/rust-logo-256x256.png" rel="gallery_cjinswckz000fiemwi1dlk4s7">
         <img src="https://www.rust-lang.org/logos/rust-logo-256x256.png" itemprop="image">
       </a>
     
@@ -333,39 +334,6 @@ A <code>free_var</code> is a variable from a parent scope that’s accessed in t
   
 </nav> -->
     
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-       displayMath: [ ['$$','$$'], ['\\[','\\]'] ],
-      processEscapes: false
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
