@@ -155,6 +155,63 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-set1_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="challenge-11-convert-hex-to-base64"><a class="markdownIt-Anchor" href="#challenge-11-convert-hex-to-base64"></a> Challenge 1.1 Convert hex to base64</h2>
+<p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to<br />
+<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!--  Challenge 1.1 Convert hex to base64
+The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhex......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-set2_writeup"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -194,61 +251,6 @@
 As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to trans......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set2_writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set3-writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set3-writeup/">Matasano Crypto Challenges, Set 3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set3-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="challenge-17-the-cbc-padding-oracle"><a class="markdownIt-Anchor" href="#challenge-17-the-cbc-padding-oracle"></a> Challenge 17 The CBC padding oracle!!!</h2>
-<p>The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning <code>True</code> if the plaintext is padded properly.</p>
-<p>The process behind the attack on each block is:</p>
-        <!--  Challenge 17 The CBC padding oracle!!!
-The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set3-writeup/#more">Read More</a>
         </p>
       
     </div>

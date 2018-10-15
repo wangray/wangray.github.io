@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-10-15T20:56:42.036Z</updated>
+  <updated>2018-10-15T20:54:41.799Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>Investing in a Good Note-Taking Application</title>
     <link href="http://raywang.tech/2018/10/15/Investing-in-a-good-note-taking-application/"/>
     <id>http://raywang.tech/2018/10/15/Investing-in-a-good-note-taking-application/</id>
-    <published>2018-10-15T20:53:24.000Z</published>
-    <updated>2018-10-15T20:56:42.036Z</updated>
+    <published>2018-10-15T20:54:41.799Z</published>
+    <updated>2018-10-15T20:54:41.799Z</updated>
     
     <summary type="html">
     
@@ -83,7 +83,7 @@
     <link href="http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/"/>
     <id>http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/</id>
     <published>2018-01-23T07:40:02.000Z</published>
-    <updated>2018-08-26T04:02:38.843Z</updated>
+    <updated>2018-10-15T20:58:38.858Z</updated>
     
     <summary type="html">
     
@@ -416,18 +416,17 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 1</title>
-    <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2018-06-21T00:25:38.093Z</updated>
+    <updated>2017-09-29T19:20:01.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;challenge-11-convert-hex-to-base64&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-11-convert-hex-to-base64&quot;&gt;&lt;/a&gt; Challenge 1.1 Convert hex to base64&lt;/h2&gt;
-&lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
-&lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&#39;&#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to&lt;br /&gt;
-&lt;code&gt;I&#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
+&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
     
     </summary>
     
