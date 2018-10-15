@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-05-29T06:25:36.379Z</updated>
+  <updated>2018-10-15T20:56:42.036Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Investing in a Good Note-Taking Application</title>
+    <link href="http://raywang.tech/2018/10/15/Investing-in-a-good-note-taking-application/"/>
+    <id>http://raywang.tech/2018/10/15/Investing-in-a-good-note-taking-application/</id>
+    <published>2018-10-15T20:53:24.000Z</published>
+    <updated>2018-10-15T20:56:42.036Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Perhaps the best investment that you could make in your own learning, knowledge retention, and organization is a good note-taking application. Over the years, I’ve dumped all of my accumulated knowledge about computer science, security, and technology into various note-taking apps, ensuring that I can easily recall information from the thousands of different sources that I’ve found useful.&lt;/p&gt;
+&lt;p&gt;This post will be a general braindump of the factors behind choosing a note-taking app, a shameless plug for my favorite one, Quiver, and an explanation of how I use a note-taking app effectively.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Sunset of Eden: Sci-Fi Short Story Based on the Three-Body Problem</title>
@@ -397,29 +416,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 4</title>
-    <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
-    <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-12-27T22:53:54.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;/a&gt; Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;
-&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
-&lt;p&gt;For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided &lt;code&gt;edit()&lt;/code&gt; function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; xrange(len(ciphertext)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; c &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; candidates:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new_ciphertext = edit(ciphertext, i, c)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; new_ciphertext[i] == ciphertext[i]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      result += c&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Matasano Crypto Challenges, Set 1</title>
     <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
     <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
@@ -443,17 +439,18 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 2</title>
-    <link href="http://raywang.tech/2017/03/07/set2_writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set2_writeup/</id>
+    <title>Matasano Crypto Challenges, Set 4</title>
+    <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
     <published>2017-03-07T15:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
+    <updated>2017-12-27T22:53:54.000Z</updated>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;challenge-9-implement-pkcs7-padding&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-9-implement-pkcs7-padding&quot;&gt;&lt;/a&gt; Challenge 9 Implement PKCS#7 padding&lt;/h2&gt;
-&lt;p&gt;As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”&lt;/p&gt;
-&lt;p&gt;The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools &lt;code&gt;pack()&lt;/code&gt; function to pack the number of padding bytes.&lt;/p&gt;
+      &lt;h2 id=&quot;challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;/a&gt; Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;
+&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
+&lt;p&gt;For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided &lt;code&gt;edit()&lt;/code&gt; function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; xrange(len(ciphertext)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; c &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; candidates:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new_ciphertext = edit(ciphertext, i, c)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; new_ciphertext[i] == ciphertext[i]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      result += c&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
