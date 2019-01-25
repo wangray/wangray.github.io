@@ -155,6 +155,63 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-set1_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="challenge-11-convert-hex-to-base64"><a class="markdownIt-Anchor" href="#challenge-11-convert-hex-to-base64"></a> Challenge 1.1 Convert hex to base64</h2>
+<p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to<br />
+<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+        <!--  Challenge 1.1 Convert hex to base64
+The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
+The functions a2b_hex, unhex......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
    style="margin-top: 0px; margin-bottom: 0px; "
   
@@ -178,7 +235,7 @@
     <div class="article-meta">
       
 	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
@@ -192,61 +249,6 @@
         <!-- For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set2_writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set2_writeup/">Matasano Crypto Challenges, Set 2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set2_writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="challenge-9-implement-pkcs7-padding"><a class="markdownIt-Anchor" href="#challenge-9-implement-pkcs7-padding"></a> Challenge 9 Implement PKCS#7 padding</h2>
-<p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
-<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
-        <!--  Challenge 9 Implement PKCS#7 padding
-As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to trans......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set2_writeup/#more">Read More</a>
         </p>
       
     </div>
@@ -286,7 +288,7 @@ As the challenge states, “A block cipher transforms a fixed-sized block (usual
     <div class="article-meta">
       
 	<a href="/2015/12/12/NSA-Cybersprint-2015/" class="article-date">
-	  <time datetime="2015-12-12T22:38:28.000Z" itemprop="datePublished">12-12-2015</time>
+	  <time datetime="2015-12-13T01:38:28.000Z" itemprop="datePublished">12-12-2015</time>
 	</a>
 
       
@@ -337,7 +339,7 @@ Last weekend, I took to some haxxoring in the NSA Cybersprint Competition, a Cap
   <div class="container">
       <div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2018 Ray Wang. All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2019 Ray Wang. All Rights Reserved.</p>
 	</div>
   </div>
 </footer>
@@ -454,7 +456,7 @@ ga('send', 'pageview');
             Tack, Hunt, Pool
           </div>
           <div class="panel-body">
-            Copyright © 2018 Ray Wang All Rights Reserved.
+            Copyright © 2019 Ray Wang All Rights Reserved.
           </div>
         </div>
       </div>

@@ -178,7 +178,7 @@
     <div class="article-meta">
       
 	<a href="/2017/05/21/2017/Matasano Crypto Challenges, Set 6/" class="article-date">
-	  <time datetime="2017-05-21T13:40:00.000Z" itemprop="datePublished">05-21-2017</time>
+	  <time datetime="2017-05-21T16:40:00.000Z" itemprop="datePublished">05-21-2017</time>
 	</a>
 
       
@@ -234,7 +234,7 @@ Unpadded RSA is homomorphic, meaning that, if operations like multiplication and
     <div class="article-meta">
       
 	<a href="/2017/05/03/2017/DEF CON CTF Qualifier 2017/" class="article-date">
-	  <time datetime="2017-05-03T16:12:00.000Z" itemprop="datePublished">05-03-2017</time>
+	  <time datetime="2017-05-03T19:12:00.000Z" itemprop="datePublished">05-03-2017</time>
 	</a>
 
       
@@ -290,7 +290,7 @@ This past weekend, I co......  -->
     <div class="article-meta">
       
 	<a href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust/" class="article-date">
-	  <time datetime="2017-05-03T16:00:40.000Z" itemprop="datePublished">05-03-2017</time>
+	  <time datetime="2017-05-03T19:00:40.000Z" itemprop="datePublished">05-03-2017</time>
 	</a>
 
       
@@ -399,7 +399,7 @@ This past weekend, I co......  -->
     <div class="article-meta">
       
 	<a href="/2017/04/15/Writing-a-C-interpreter-for-MITScript/" class="article-date">
-	  <time datetime="2017-04-15T21:38:37.000Z" itemprop="datePublished">04-15-2017</time>
+	  <time datetime="2017-04-16T00:38:37.000Z" itemprop="datePublished">04-15-2017</time>
 	</a>
 
       
@@ -451,7 +451,7 @@ This past weekend, I co......  -->
     <div class="article-meta">
       
 	<a href="/2017/04/04/Upcoming-blog-posts-—-when-I-get-to-them/" class="article-date">
-	  <time datetime="2017-04-04T18:57:58.000Z" itemprop="datePublished">04-04-2017</time>
+	  <time datetime="2017-04-04T21:57:58.000Z" itemprop="datePublished">04-04-2017</time>
 	</a>
 
       
@@ -511,7 +511,7 @@ Here’s what I’ve been up to, and what aw......  -->
     <div class="article-meta">
       
 	<a href="/2017/03/14/Starting-a-new-security-club-at-MIT/" class="article-date">
-	  <time datetime="2017-03-14T15:38:51.000Z" itemprop="datePublished">03-14-2017</time>
+	  <time datetime="2017-03-14T18:38:51.000Z" itemprop="datePublished">03-14-2017</time>
 	</a>
 
       
@@ -523,6 +523,61 @@ Here’s what I’ve been up to, and what aw......  -->
         <p><a href="https://fortenforge.github.io/" target="_blank" rel="external">fortenforge</a>, <a href="https://github.com/devneal" target="_blank" rel="external">Devin Neal</a>, and I decided that MIT needed more of a student security community on campus. So, we started <a href="https://github.com/TechSecCTF/" target="_blank" rel="external">TechSec</a> in February 2017! We host weekly meetings on Monday nights and try to get students to compete with us in CTFs on weekends.</p>
 <p>You can find our meeting/workshop notes, which we laboriously compile for the benefit of our club members, <a href="https://github.com/TechSecCTF/meeting_notes" target="_blank" rel="external">here</a>. So far, we’ve been holding introduction to reverse engineering and binary workshops. We have a lot more planned, including interesting guest speakers.</p>
 
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-set2_writeup"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/03/07/set2_writeup/">Matasano Crypto Challenges, Set 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set2_writeup/" class="article-date">
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="challenge-9-implement-pkcs7-padding"><a class="markdownIt-Anchor" href="#challenge-9-implement-pkcs7-padding"></a> Challenge 9 Implement PKCS#7 padding</h2>
+<p>As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to transform a single block; we encrypt irregularly-sized messages.”</p>
+<p>The PKCS#7 padding scheme will append the number of bytes of padding to the end of the block. I use the pwntools <code>pack()</code> function to pack the number of padding bytes.</p>
+        <!--  Challenge 9 Implement PKCS#7 padding
+As the challenge states, “A block cipher transforms a fixed-sized block (usually 8 or 16 bytes) of plaintext into ciphertext. But we almost never want to trans......  -->
+        <p class="article-more-link">
+          <a href="/2017/03/07/set2_writeup/#more">Read More</a>
+        </p>
       
     </div>
     
@@ -561,7 +616,7 @@ Here’s what I’ve been up to, and what aw......  -->
     <div class="article-meta">
       
 	<a href="/2017/03/07/set4-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
@@ -618,7 +673,7 @@ For each byte in the c......  -->
     <div class="article-meta">
       
 	<a href="/2017/03/07/set3-writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
 	</a>
 
       
@@ -634,63 +689,6 @@ For each byte in the c......  -->
 The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning True if the plaintext is pad......  -->
         <p class="article-more-link">
           <a href="/2017/03/07/set3-writeup/#more">Read More</a>
-        </p>
-      
-    </div>
-    
-      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-set1_writeup"
-   style="margin-top: 0px; margin-bottom: 0px; "
-  
-  class="article article-type-post" itemscope itemprop="blogPost" >
-  <!-- Back button -->
-  
-
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/03/07/set1_writeup/">Matasano Crypto Challenges, Set 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/03/07/set1_writeup/" class="article-date">
-	  <time datetime="2017-03-07T15:38:11.000Z" itemprop="datePublished">03-07-2017</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="challenge-11-convert-hex-to-base64"><a class="markdownIt-Anchor" href="#challenge-11-convert-hex-to-base64"></a> Challenge 1.1 Convert hex to base64</h2>
-<p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
-<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to<br />
-<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
-        <!--  Challenge 1.1 Convert hex to base64
-The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges.
-The functions a2b_hex, unhex......  -->
-        <p class="article-more-link">
-          <a href="/2017/03/07/set1_writeup/#more">Read More</a>
         </p>
       
     </div>
@@ -726,7 +724,7 @@ The functions a2b_hex, unhex......  -->
   <div class="container">
       <div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2018 Ray Wang. All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2019 Ray Wang. All Rights Reserved.</p>
 	</div>
   </div>
 </footer>
@@ -843,7 +841,7 @@ ga('send', 'pageview');
             Tack, Hunt, Pool
           </div>
           <div class="panel-body">
-            Copyright © 2018 Ray Wang All Rights Reserved.
+            Copyright © 2019 Ray Wang All Rights Reserved.
           </div>
         </div>
       </div>
