@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2018-10-17T15:42:01.451Z</updated>
+  <updated>2019-01-25T07:31:22.803Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Time-Travel Debugging in PANDA</title>
+    <link href="http://raywang.tech/2018/11/14/Time-Travel-Debugging-in-PANDA/"/>
+    <id>http://raywang.tech/2018/11/14/Time-Travel-Debugging-in-PANDA/</id>
+    <published>2018-11-14T08:00:00.000Z</published>
+    <updated>2019-01-25T07:31:22.803Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;During a weekend hackathon with some of the Lincoln Lab maintainers of &lt;a href=&quot;https://github.com/panda-re/panda/&quot;&gt;PANDA&lt;/a&gt;, I implemented a really useful feature — &lt;a href=&quot;https://github.com/panda-re/panda/blob/master/panda/docs/time-travel.md&quot;&gt;&lt;strong&gt;time-travel debugging&lt;/strong&gt;&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;As has been discussed in &lt;a href=&quot;https://blog.ret2.io/2018/06/19/pwn2own-2018-root-cause-analysis/#record-replay-debugging&quot;&gt;Ret2Systems’ great blog post&lt;/a&gt;, time-travel debugging is an invaluable tool in the reverse engineer’s arsenal. While Mozilla’s brilliant &lt;a href=&quot;https://github.com/mozilla/rrhttps://&quot;&gt;rr&lt;/a&gt; is the dominant choice for Linux user binaries and WinDBG Preview works on Windows binaries, PANDA can debug user and kernel space on both systems.&lt;/p&gt;
+&lt;p&gt;In this blog post, I’ll talk about the simple design behind reverse-execution and demonstrate its utility in root-causing a Linux kernel n-day.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Tooling" scheme="http://raywang.tech/categories/Tooling/"/>
+    
+    
+      <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+  </entry>
   
   <entry>
     <title>Investing in a Good Note-Taking Application</title>
@@ -395,51 +417,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
   </entry>
   
   <entry>
-    <title>Matasano Crypto Challenges, Set 3</title>
-    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
-    <published>2017-03-07T18:38:11.000Z</published>
-    <updated>2017-09-29T19:20:01.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
-&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
-&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matasano Crypto Challenges, Set 4</title>
-    <link href="http://raywang.tech/2017/03/07/set4-writeup/"/>
-    <id>http://raywang.tech/2017/03/07/set4-writeup/</id>
-    <published>2017-03-07T18:38:11.000Z</published>
-    <updated>2017-12-27T22:53:54.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-25-break-random-access-readwrite-aes-ctr&quot;&gt;&lt;/a&gt; Challenge 25 Break “random access read/write” AES CTR&lt;/h2&gt;
-&lt;p&gt;Because we can seek into the ciphertext and edit arbitrary characters, we we can simply guess each plaintext character.&lt;/p&gt;
-&lt;p&gt;For each byte in the ciphertext, I can try all 256 characters by replacing the ciphertext byte with my encrypted guess using the provided &lt;code&gt;edit()&lt;/code&gt; function. If the new ciphertext exactly matches the original ciphertext, then I know my guess for the plaintext character is correct, since it encrypted to the same byte.&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; xrange(len(ciphertext)):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; c &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; candidates:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new_ciphertext = edit(ciphertext, i, c)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; new_ciphertext[i] == ciphertext[i]:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      result += c&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Matasano Crypto Challenges, Set 1</title>
     <link href="http://raywang.tech/2017/03/07/set1_writeup/"/>
     <id>http://raywang.tech/2017/03/07/set1_writeup/</id>
@@ -452,6 +429,28 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
 &lt;p&gt;The first challenge is pretty straightforward, using python’s built-in functions or &lt;a href=&quot;https://github.com/Gallopsled/pwntools&quot;&gt;pwntools&lt;/a&gt;, as I use heavily in these challenges.&lt;/p&gt;
 &lt;p&gt;The functions &lt;code&gt;a2b_hex&lt;/code&gt;, &lt;code&gt;unhexlify&lt;/code&gt;, and &lt;code&gt;&#39;&#39;.decode(&amp;quot;hex&amp;quot;)&lt;/code&gt; all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to&lt;br /&gt;
 &lt;code&gt;I&#39;m killing your brain like a poisonous mushroom&lt;/code&gt;. We can then use &lt;code&gt;binascii.b2a_base64()&lt;/code&gt; to convert the byte string to a base64 representation.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+      <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 3</title>
+    <link href="http://raywang.tech/2017/03/07/set3-writeup/"/>
+    <id>http://raywang.tech/2017/03/07/set3-writeup/</id>
+    <published>2017-03-07T18:38:11.000Z</published>
+    <updated>2017-09-29T19:20:01.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-17-the-cbc-padding-oracle&quot;&gt;&lt;/a&gt; Challenge 17 The CBC padding oracle!!!&lt;/h2&gt;
+&lt;p&gt;The CBC padding oracle is a very famous attack. We have an oracle function that takes in a ciphertext and decrypts it, returning &lt;code&gt;True&lt;/code&gt; if the plaintext is padded properly.&lt;/p&gt;
+&lt;p&gt;The process behind the attack on each block is:&lt;/p&gt;
     
     </summary>
     
