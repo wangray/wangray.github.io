@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2021-01-02T06:25:37.389Z</updated>
+  <updated>2021-01-02T08:12:28.984Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Test Title Update the Ultimate Low-Budget Ergonomic Hacker Battlestation</title>
+    <title>Fiction and Fandoms for Quarantine</title>
+    <link href="http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/"/>
+    <id>http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/</id>
+    <published>2021-01-02T07:05:20.000Z</published>
+    <updated>2021-01-02T08:12:28.984Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;If you’re looking for a new fandom to obsess over during quarantine, or just some entertainment to pass the time, take a look at some of what I’ve discovered in recent games, books, TV, and films.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
+    
+    
+      <category term="quarantine" scheme="http://raywang.tech/tags/quarantine/"/>
+    
+      <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+      <category term="Gaming" scheme="http://raywang.tech/tags/Gaming/"/>
+    
+      <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
+    
+      <category term="TV" scheme="http://raywang.tech/tags/TV/"/>
+    
+      <category term="Books" scheme="http://raywang.tech/tags/Books/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The Ultimate Low-Budget Ergonomic Hacker Battlestation</title>
     <link href="http://raywang.tech/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/"/>
     <id>http://raywang.tech/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/</id>
     <published>2019-04-28T08:00:31.000Z</published>
-    <updated>2021-01-02T06:25:37.389Z</updated>
+    <updated>2021-01-02T06:27:16.453Z</updated>
     
     <summary type="html">
     
@@ -43,7 +73,7 @@
     <link href="http://raywang.tech/2019/02/11/Investing-in-a-good-note-taking-application/"/>
     <id>http://raywang.tech/2019/02/11/Investing-in-a-good-note-taking-application/</id>
     <published>2019-02-11T08:00:00.000Z</published>
-    <updated>2021-01-02T06:22:19.453Z</updated>
+    <updated>2021-01-02T08:03:19.352Z</updated>
     
     <summary type="html">
     
@@ -84,7 +114,7 @@
     <link href="http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/"/>
     <id>http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/</id>
     <published>2018-05-27T07:00:00.000Z</published>
-    <updated>2021-01-02T06:20:57.770Z</updated>
+    <updated>2021-01-02T07:09:56.112Z</updated>
     
     <summary type="html">
     
@@ -95,7 +125,7 @@
       <category term="Creative Writing" scheme="http://raywang.tech/categories/Creative-Writing/"/>
     
     
-      <category term="Sci-fi" scheme="http://raywang.tech/tags/Sci-fi/"/>
+      <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
     
   </entry>
   
@@ -127,7 +157,7 @@
     <link href="http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/"/>
     <id>http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/</id>
     <published>2018-01-23T10:40:02.000Z</published>
-    <updated>2020-10-12T17:54:26.919Z</updated>
+    <updated>2021-01-02T07:13:20.156Z</updated>
     
     <summary type="html">
     
@@ -135,9 +165,7 @@
     
     </summary>
     
-      <category term="Reviews" scheme="http://raywang.tech/categories/Reviews/"/>
-    
-      <category term="Film" scheme="http://raywang.tech/categories/Reviews/Film/"/>
+      <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
     
     
       <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
@@ -239,7 +267,7 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     <link href="http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/"/>
     <id>http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/</id>
     <published>2017-08-14T02:23:45.000Z</published>
-    <updated>2020-10-12T17:54:26.920Z</updated>
+    <updated>2021-01-02T07:11:12.027Z</updated>
     
     <summary type="html">
     
@@ -249,6 +277,8 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
       <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
     
+    
+      <category term="Ergonomics" scheme="http://raywang.tech/tags/Ergonomics/"/>
     
   </entry>
   
@@ -435,27 +465,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
       <category term="TechSec" scheme="http://raywang.tech/tags/TechSec/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flex and Bison for a Simple Language, MITScript</title>
-    <link href="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/"/>
-    <id>http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/</id>
-    <published>2017-03-07T18:38:11.000Z</published>
-    <updated>2020-10-12T17:54:26.918Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.&lt;/p&gt;
-&lt;p&gt;The grammar for the language is shown below.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
-    
-    
-      <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
     
   </entry>
   
