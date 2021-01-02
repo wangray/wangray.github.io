@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2021-01-02T08:12:28.984Z</updated>
+  <updated>2021-01-02T08:15:25.148Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/"/>
     <id>http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/</id>
     <published>2021-01-02T07:05:20.000Z</published>
-    <updated>2021-01-02T08:12:28.984Z</updated>
+    <updated>2021-01-02T08:15:25.148Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;If you’re looking for a new fandom to obsess over during quarantine, or just some entertainment to pass the time, take a look at some of what I’ve discovered in recent games, books, TV, and films.&lt;/p&gt;
+      &lt;p&gt;If you’re looking for a new fandom to obsess about in the new year, or just some entertainment to pass the time during quarantine, take a look at some of what I’ve discovered in recent games, books, TV, and films.&lt;/p&gt;
     
     </summary>
     
@@ -157,7 +157,7 @@
     <link href="http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/"/>
     <id>http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/</id>
     <published>2018-01-23T10:40:02.000Z</published>
-    <updated>2021-01-02T07:13:20.156Z</updated>
+    <updated>2021-01-02T08:14:22.537Z</updated>
     
     <summary type="html">
     
@@ -167,6 +167,8 @@
     
       <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
     
+    
+      <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
     
       <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
     
