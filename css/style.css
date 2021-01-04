@@ -117,7 +117,7 @@ body,
 }
 body {
   background: #fff;
-  font: 10px Droid Sans, Source Sans Pro;
+  font: 20px Droid Sans, Source Sans Pro;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
 }
@@ -431,7 +431,7 @@ body {
   line-height: 1.6em;
   outline: none !important;
   background: none !important;
-  font: 10px font-sans;
+  font: 20px font-sans;
   border: 0px;
 }
 .search-form-input:focus,
@@ -660,10 +660,10 @@ a.article-title:hover {
   background: rgba(208,211,248,0.15);
 }
 .article-entry blockquote p {
-  font-size: 10px;
+  font-size: 20px;
 }
 .article-entry blockquote footer {
-  font-size: 10px;
+  font-size: 20px;
   margin: 1.6em 0;
   font-family: Droid Sans, Source Sans Pro;
 }
