@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2021-01-04T10:27:46.572Z</updated>
+  <updated>2021-01-04T10:32:07.577Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/"/>
     <id>http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/</id>
     <published>2021-01-02T07:05:20.000Z</published>
-    <updated>2021-01-04T10:27:46.572Z</updated>
+    <updated>2021-01-04T10:32:07.577Z</updated>
     
     <summary type="html">
     
@@ -32,13 +32,13 @@
       <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
     
     
-      <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
-    
       <category term="quarantine" scheme="http://raywang.tech/tags/quarantine/"/>
     
       <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
     
       <category term="Gaming" scheme="http://raywang.tech/tags/Gaming/"/>
+    
+      <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
     
       <category term="TV" scheme="http://raywang.tech/tags/TV/"/>
     
@@ -168,9 +168,9 @@
       <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
     
     
-      <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
-    
       <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
+    
+      <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
     
   </entry>
   
