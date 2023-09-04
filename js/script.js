@@ -117,14 +117,14 @@
   }
 
   // justifiedgallery
-  if (!!$.prototype.justifiedGallery) { // if justifiedGallery method is defined
-    var options = {
-      rowHeight: 140,
-      margins: 4,
-      lastRow: 'justify'
-    };
-    $('.justified-gallery:not(#custom)').justifiedGallery(options);
-  }
+//   if (!!$.prototype.justifiedGallery) { // if justifiedGallery method is defined
+//     var options = {
+//       rowHeight: 140,
+//       margins: 4,
+//       lastRow: 'justify'
+//     };
+//     $('.justified-gallery:not(#custom)').justifiedGallery(options);
+//   }
 
   // Mobile nav
   var $container = $('#container'),
