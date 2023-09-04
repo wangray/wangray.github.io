@@ -123,7 +123,7 @@
       margins: 4,
       lastRow: 'justify'
     };
-    $('.justified-gallery').justifiedGallery(options);
+    $('.justified-gallery:not(#custom)').justifiedGallery(options);
   }
 
   // Mobile nav
