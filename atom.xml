@@ -6,7 +6,7 @@
   <link href="http://raywang.tech/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2023-08-23T19:08:36.301Z</updated>
+  <updated>2023-09-04T02:13:55.369Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>One Thousand and One Hobbies</title>
+    <link href="http://raywang.tech/2023/08/27/One-Thousand-and-One-Hobbies/"/>
+    <id>http://raywang.tech/2023/08/27/One-Thousand-and-One-Hobbies/</id>
+    <published>2023-08-28T02:20:37.000Z</published>
+    <updated>2023-09-04T02:13:55.369Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Since quarantine days, I’ve picked up &lt;em&gt;a lot&lt;/em&gt; of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start…&lt;/p&gt;
+&lt;p&gt;Why? As far as I can tell, a combination of wanting to challenge myself, become a more interesting and versatile person, and pure impulsiveness.&lt;/p&gt;
+&lt;p&gt;But along the way, I’ve learned a lot about myself, as well as the process of learning. This post should hopefully spark some interest in my diverse activities and provide insights on how to pick up and enjoy new skills.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+    <category term="Hobbies" scheme="http://raywang.tech/tags/Hobbies/"/>
+    
+  </entry>
   
   <entry>
     <title>I, Not Robot</title>
@@ -39,7 +61,7 @@
     <link href="http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/"/>
     <id>http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/</id>
     <published>2021-01-02T07:05:20.000Z</published>
-    <updated>2023-08-23T19:08:36.301Z</updated>
+    <updated>2023-08-28T03:34:51.066Z</updated>
     
     
     <summary type="html">&lt;p&gt;If you’re looking for a new fandom to obsess about in the new year, or just some entertainment to pass the time during quarantine, take a look at some of what I’ve discovered in recent games, books, TV, and films.&lt;/p&gt;
@@ -434,31 +456,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
     <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Upcoming Blog Posts — Stay Tuned!</title>
-    <link href="http://raywang.tech/2017/04/04/Upcoming-blog-posts-%E2%80%94-when-I-get-to-them/"/>
-    <id>http://raywang.tech/2017/04/04/Upcoming-blog-posts-%E2%80%94-when-I-get-to-them/</id>
-    <published>2017-04-04T21:57:58.000Z</published>
-    <updated>2023-08-23T17:20:51.742Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;I’ve been insanely busy with a bunch of cool things, which means both more blog content, but also quite a large latency before I get around to writing them.&lt;/p&gt;
-&lt;p&gt;Here’s what I’ve been up to, and what awesome posts/series you can expect in the coming weeks:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;6.115 Labs and Final project — Masterlock combo breaker?&lt;/li&gt;
-&lt;li&gt;6.857 Final project — Boston Symphony Orchestra iPad app pentest&lt;/li&gt;
-&lt;li&gt;CTFs — MITCTF, Cambridge2Cambridge&lt;/li&gt;
-&lt;li&gt;6.035 MITScript interpreter in Rust&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;escape&gt;</summary>
-    
-    
-    
-    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
-    
     
   </entry>
   
