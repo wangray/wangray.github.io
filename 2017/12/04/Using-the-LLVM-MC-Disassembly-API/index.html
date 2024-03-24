@@ -186,7 +186,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>In this post, I’ll walk through how to link an application against LLVM and show a simple usage of the LLVM <code>McDisassembler</code> API. It’s a little more complex that it seems, probably because there’s not many good resources for using this API.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In this post, I’ll walk through how to link an application against LLVM and show a simple usage of the LLVM <code>McDisassembler</code> API. It’s a little more complex that it seems, probably because there’s not many good resources for using this API.</p>
 <p><escape><span id="more"></span></escape></p>
 <h2 id="linking-a-program-with-llvm"><a class="markdownIt-Anchor" href="#linking-a-program-with-llvm"></a> Linking a program with LLVM</h2>
 <p>The handy <code>llvm-config</code> utility, which comes with LLVM, can be used to determine the compiler/linker flags you need for LLVM. The relevant options are <code>--ldflags</code>, <code>--cxxflags</code>, and <code>--libs</code>. Let’s see what the output of these will be.</p>

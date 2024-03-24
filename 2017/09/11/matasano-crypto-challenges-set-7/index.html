@@ -189,7 +189,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/">fortenforge</a> and I worked together quite a bit to get through it.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. <a href="https://fortenf.org/e/">fortenforge</a> and I worked together quite a bit to get through it.</p>
 <p><escape><span id="more"></span></escape></p>
 <p>One important life pro tip: <code>os.urandom()</code> is BLOCKING in python. That means, even <code>multiprocessing</code> code will not have any speedup because of this function! Try this snippet off StackOverflow instead: <code>bytearray(random.getrandbits(8) for _ in range(num_bytes))</code></p>
 <h2 id="challenge-49-cbc-mac-message-forgery"><a class="markdownIt-Anchor" href="#challenge-49-cbc-mac-message-forgery"></a> Challenge 49 CBC-MAC Message Forgery</h2>
