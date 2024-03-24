@@ -126,7 +126,6 @@
 //     $('.justified-gallery:not(#custom)').justifiedGallery(options);
 //   }
 
-
   // Mobile nav
   var $container = $('#container'),
     isMobileNavAnim = false,
@@ -156,4 +155,3 @@
     $container.removeClass('mobile-nav-on');
   });
 })(jQuery);
-
