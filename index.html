@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="description" content="Where I keep all the stuff that doesn&#39;t fit in my head">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tack, Hunt, Pool">
+<meta property="og:url" content="http://raywang.tech/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Where I keep all the stuff that doesn&#39;t fit in my head">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Ray Wang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/home.css" >
+  
+
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+    <header id="header">
+
+  
+    <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+    <script>
+        var imgUrls = "css/images/mit_river.jpg".split(",");
+        var d = new Date()
+        // var random = d.getDay() % 2;
+        var random = 0;
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("intrologo").style.backgroundImage='url(' + imgUrls[random] + ')';
+        } else {
+          document.getElementById("intrologo").style.backgroundImage='url(/' + imgUrls[random] + ')';
+        }
+    </script>
+  
+
+    <canvas width="100%" height="100%"></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0],
+          x = c.getContext('2d'),
+          w = window.innerWidth,
+          h = window.innerHeight,
+          pr = window.devicePixelRatio || 1,
+          f = 90,
+          q,
+          m = Math,
+          r = 0,
+          u = m.PI*2,
+          v = m.cos,
+          z = m.random
+      c.width = w*pr
+      c.height = h*pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+
+      
+    </script>
+
+
+    
+      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);">
+    
+
+
+    <div class="homelogoback" style="border: 1px solid #404040;" >
+      <h1><a href="#content" id="logo">Tack, Hunt, Pool</a></h1>
+      <script>
+        if (screen.height > 700 && screen.width > 500) {
+          document.write("<h3>Where I keep all the stuff that doesn&#39;t fit in my head</h3>");
+        }
+      </script>
+
+      <!-- <h5>Ray Wang</h5> -->
+      <div>
+        <a href="https://github.com/wangray" class="fa fa-2x fa-github ico" target="_blank"></a>
+        <a href="https://twitter.com/ghostly_gray" class="fa fa-2x fa-twitter ico" target="_blank"></a>
+        <a href="https://www.linkedin.com/in/wangray007" class="fa fa-2x fa-linkedin-square ico" target="_blank"></a>
+        </div>
+    </div>
+    </div>
+  </div>
+
+  
+    <script>
+        var img = new Image();
+        var intrologodiv = document.getElementById("intrologo");
+        img.src = intrologodiv.style.backgroundImage.replace('url(','').replace(')','').replace(/\"/gi, "");
+        img.onload=function(){
+          if (img.width / img.height <= document.body.clientWidth / document.body.clientHeight) {
+            intrologodiv.style.backgroundSize = "100% auto";
+          } else {
+            intrologodiv.style.backgroundSize = "auto 100%";
+          }
+        };
+    </script>
+ 
+
+
+  <script>
+      var homelogodiv = document.getElementById("homelogo");
+      if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
+        homelogodiv.style.width = document.body.clientWidth + "px";
+        homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
+      } else {
+        homelogodiv.style.width = homelogodiv.clientWidth  + "px";
+        homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
+      }
+  </script>
+
+  <div class="intro-navigate">
+      <p class="navigater-list">
+        
+          <a id="beautifont" class="main-nav-link" href="/">Home</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/archives">Archives</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/categories">Categories</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
+        
+          <a id="beautifont" class="main-nav-link" href="/about">About</a>
+        
+      </p>
+  </div>
+
+</header>
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+  
+    <article id="post-A-Translation-of-Black-Myth-Wukong-Lore-—-Compendium-of-Creatures"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/">A Translation of Black Myth: Wukong — Compendium of Creatures</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/" class="article-date">
+	  <time datetime="2024-03-23T07:00:00.000Z" itemprop="datePublished">03-23-2024</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Gaming/">Gaming</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The most hyped videogame release of this year might just be <em>Black Myth: Wukong</em>, a Chinese action RPG set in the fantasy world of <em>Journey to the West</em>. To improve my Chinese and be able to fully immerse myself in the game on release, I've been consuming anything I can find about it online. During public demos last year, players screen-captured a lore book called <em>yǐng shén tú</em> (影神图), an illustrated compendium of supernatural enemies encountered in one of the game's regions, Purple Cloud Mountain (紫云山). Here, I've translated the available compendium entries from the original blog post, with some help from ChatGPT.</p>
+        <!-- The most hyped videogame release of this year might just be Game Science’s Black Myth: Wukong. It’s set in the fantasy world of Journey to the West, a classic Chinese tale of a monk and his band of......  -->
+        <p class="article-more-link">
+          <a href="/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-One-Thousand-and-One-Hobbies"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2023/08/27/One-Thousand-and-One-Hobbies/">One Thousand and One Hobbies</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2023/08/27/One-Thousand-and-One-Hobbies/" class="article-date">
+	  <time datetime="2023-08-28T02:20:37.000Z" itemprop="datePublished">08-27-2023</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Meta/">Meta</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Since quarantine days, I’ve picked up <em>a lot</em> of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start…</p>
+<p>Why? Full reasons unclear, but at least a combination of pure impulsiveness and a desire to challenge myself and become a more versatile person.</p>
+<p>Along the way, I’ve survived some self-discovery and learned a lot about the <em>process of learning</em>. This post should hopefully spark some interest in my diverse activities and provide insights on how to pick up and enjoy new skills.</p>
+<p><escape>
+        <!-- Since quarantine days, I’ve picked up a lot of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, ......  -->
+        <p class="article-more-link">
+          <a href="/2023/08/27/One-Thousand-and-One-Hobbies/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-I-Not-Robot"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2022/08/29/I-Not-Robot/">I, Not Robot</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2022/08/29/I-Not-Robot/" class="article-date">
+	  <time datetime="2022-08-29T07:16:09.000Z" itemprop="datePublished">08-29-2022</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Writing/">Writing</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This original short story — about a rogue AI living in an Amazon-like datacenter — was inspired by <a href="https://www.csail.mit.edu/news/fooling-neural-networks-w3d-printed-objects">brilliant research</a> from several of my classmates at the <a href="https://mitibmwatsonailab.mit.edu/">MIT AI Lab</a> during my undergrad. They showed the world that “machine learning” could just as easily be hacked as any other computer system, with fascinating consequences.</p>
+<p><escape>
+        <!-- This original short story — about a rogue AI living in an Amazon-like datacenter — was inspired by brilliant research from several of my classmates at the MIT AI Lab during my undergrad. They showe......  -->
+        <p class="article-more-link">
+          <a href="/2022/08/29/I-Not-Robot/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Fiction-and-fandoms-for-quarantine"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/01/01/Fiction-and-fandoms-for-quarantine/">Fiction and Fandoms for Quarantine</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/01/01/Fiction-and-fandoms-for-quarantine/" class="article-date">
+	  <time datetime="2021-01-02T07:05:20.000Z" itemprop="datePublished">01-01-2021</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Reviews-and-Recs/">Reviews and Recs</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you’re looking for a new fandom to obsess about in the new year, or just some entertainment to pass the time during quarantine, take a look at some of what I’ve discovered in recent games, books, TV, and films.</p>
+<p><escape>
+        <!-- If you’re looking for a new fandom to obsess about in the new year, or just some entertainment to pass the time during quarantine, take a look at some of what I’ve discovered in recent games, books......  -->
+        <p class="article-more-link">
+          <a href="/2021/01/01/Fiction-and-fandoms-for-quarantine/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/">The Ultimate Low-Budget Ergonomic Hacker Battlestation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/" class="article-date">
+	  <time datetime="2019-04-28T08:00:31.000Z" itemprop="datePublished">04-28-2019</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Meta/">Meta</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>New year, new job, and now an all-new battlestation setup! You might know that I have an obsession with ergonomics and productivity boosting, and now that I’ve finally moved out of college dorm rooms, I went all out and painstakingly customized my work station to fulfill all my needs.</p>
+<p>What’s even better, I did it on a low budget without any compromises. I really hit the sweet spot of cost effectiveness — either buying top-of-the-line when it was worth it, or getting better value from mid-tier products. The total came out to just under $2k and has absolutely everything you might want for maximum comfort during long hacking sessions.</p>
+<p>In this post, I’ll break down the process of constructing my battlestation by discussing each component and giving tips on how to find the right equipment for yourself.</p>
+<p><escape>
+        <!-- New year, new job, and now an all-new battlestation setup! You might know that I have an obsession with ergonomics and productivity boosting, and now that I’ve finally moved out of college dorm roo......  -->
+        <p class="article-more-link">
+          <a href="/2019/04/28/The-Ultimate-Low-Budget-Ergonomic-Hacker-Battle-Station/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Investing-in-a-good-note-taking-application"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/02/11/Investing-in-a-good-note-taking-application/">Investing in a Good Note-Taking Application</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/02/11/Investing-in-a-good-note-taking-application/" class="article-date">
+	  <time datetime="2019-02-11T08:00:00.000Z" itemprop="datePublished">02-11-2019</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Meta/">Meta</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Perhaps the best investment that you could make in your own learning, knowledge retention, and organization is a good note-taking application. Over the years, I’ve dumped all of my accumulated knowledge about computer science, security, and technology into various note-taking apps, ensuring that I can easily recall information from the thousands of different sources that I’ve found useful.</p>
+<p>This post will be a general braindump of the factors behind choosing a note-taking app, a shameless plug for my favorite one, Quiver, and an explanation of how I use a note-taking app effectively.</p>
+<p><escape>
+        <!-- Perhaps the best investment that you could make in your own learning, knowledge retention, and organization is a good note-taking application. Over the years, I’ve dumped all of my accumulated know......  -->
+        <p class="article-more-link">
+          <a href="/2019/02/11/Investing-in-a-good-note-taking-application/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Time-Travel-Debugging-in-PANDA"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/14/Time-Travel-Debugging-in-PANDA/">Time-Travel Debugging in PANDA</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/14/Time-Travel-Debugging-in-PANDA/" class="article-date">
+	  <time datetime="2018-11-14T08:00:00.000Z" itemprop="datePublished">11-14-2018</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Tooling/">Tooling</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>During a weekend hackathon with some of the Lincoln Lab maintainers of <a href="https://github.com/panda-re/panda/">PANDA</a>, I implemented a really useful feature — <a href="https://github.com/panda-re/panda/blob/master/panda/docs/time-travel.md"><strong>time-travel debugging</strong></a>!</p>
+<p>As has been discussed in <a href="https://blog.ret2.io/2018/06/19/pwn2own-2018-root-cause-analysis/#record-replay-debugging">Ret2Systems’ great blog post</a>, time-travel debugging is an invaluable tool in the reverse engineer’s arsenal. While Mozilla’s brilliant <a href="https://github.com/mozilla/rrhttps://">rr</a> is the dominant choice for Linux user binaries and WinDBG Preview works on Windows binaries, PANDA can debug user and kernel space on both systems.</p>
+<p>In this blog post, I’ll talk about the simple design behind reverse-execution and demonstrate its utility in root-causing a Linux kernel n-day.</p>
+<p><escape>
+        <!-- During a weekend hackathon with some of the Lincoln Lab maintainers of PANDA, I implemented a really useful feature — time-travel debugging!
+As has been discussed in Ret2Systems’ great blog post, t......  -->
+        <p class="article-more-link">
+          <a href="/2018/11/14/Time-Travel-Debugging-in-PANDA/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/">Sunset of Eden: Sci-Fi Short Story Based on the Three-Body Problem</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/" class="article-date">
+	  <time datetime="2018-05-27T07:00:00.000Z" itemprop="datePublished">05-27-2018</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Writing/">Writing</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>The Three-Body Problem</em> trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously <a href="https://thetech.com/2016/10/06/deaths-end-review">extolled</a> as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, <a href="https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101"><em>Death’s End</em></a>.<br />
+<escape>
+        <!-- The Three-Body Problem trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously extolled as one of the greatest sci-fi epics of all time. This short sto......  -->
+        <p class="article-more-link">
+          <a href="/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-DEF-CON-Quals-2018-It-s-a-Me"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/">DEF CON Quals 2018: It&#39;s a Me</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/" class="article-date">
+	  <time datetime="2018-05-15T02:39:05.000Z" itemprop="datePublished">05-14-2018</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Category:</strong> pwnable      |      <strong>Points:</strong> 124      |      <strong>Solves:</strong> 49      |      <a href="https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame"><strong>Challenge files</strong></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; checksec mario</span><br><span class="line">[*] &#x27;/home/raywang/ctf/DEFCONQ2018/mario&#x27;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      PIE enabled</span><br></pre></td></tr></table></figure>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+<p>This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. <a href="https://fortenf.org/e/">fortenforge</a>, <a href="https://qzqxq.wordpress.com/">qzqxq</a>, and I combined to reverse the binary and discover the 3 separate vulnerabilities.</p>
+<p><escape>
+        <!-- Category: pwnable      |      Points: 124      |      Solves: 49      |      Challenge files
+1234567&gt; checksec mario[*] &#x27;/home/raywang/ctf/DEFCONQ2018/mario&#x27;    Arch:     amd64-64-litt......  -->
+        <p class="article-more-link">
+          <a href="/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-My-Favorite-Films-of-All-Time"
+   style="margin-top: 0px; margin-bottom: 0px; "
+  
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/01/23/My-Favorite-Films-of-All-Time/">My Favorite Films of All Time</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/01/23/My-Favorite-Films-of-All-Time/" class="article-date">
+	  <time datetime="2018-01-23T10:40:02.000Z" itemprop="datePublished">01-23-2018</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Reviews-and-Recs/">Reviews and Recs</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I discovered my interest in film at the start of college. As an arts reviewer for <a href="https://thetech.com/authors/ray-wang">The Tech</a>, MIT’s student newspaper, I had the luxury of attending advance press screenings of big-name films like <a href="https://thetech.com/2016/08/25/suicide-squad-review">Suicide Squad</a> and the final <a href="https://thetech.com/2015/01/07/hobbit-v134-n61">Hobbit film</a>. But more importantly, my reviews cultivated an appreciation for the medium and an insatiable desire to experience all it had to offer. Since then, I’ve devoured films of all genres and eras, directors and actors, cinematographers and writers.</p>
+<p><escape>
+        <!-- I discovered my interest in film at the start of college. As an arts reviewer for The Tech, MIT’s student newspaper, I had the luxury of attending advance press screenings of big-name films like Su......  -->
+        <p class="article-more-link">
+          <a href="/2018/01/23/My-Favorite-Films-of-All-Time/#more">Read More</a>
+        </p>
+      
+    </div>
+    
+      <footer style="border-top:1px solid rgba(208,211,248,0.25)">
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+      </div>
+      
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<script src="/js/home.js"></script>
+
+
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

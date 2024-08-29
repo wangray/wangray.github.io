@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Formal Reasoning in Coq — a Beginner&#39;s Guide | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Coq" />
+  
+  
+  <meta name="description" content="I’m currently taking the Fall 2017 iteration of 6.826, Principles of Computer Systems. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formal Reasoning in Coq — a Beginner&#39;s Guide">
+<meta property="og:url" content="http://raywang.tech/2017/09/25/formal-reasoning-in-coq/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="I’m currently taking the Fall 2017 iteration of 6.826, Principles of Computer Systems. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-25T17:12:00.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.441Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="Coq">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-formal-reasoning-in-coq"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Formal Reasoning in Coq — a Beginner&#39;s Guide
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/25/formal-reasoning-in-coq/" class="article-date">
+	  <time datetime="2017-09-25T17:12:00.000Z" itemprop="datePublished">09-25-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Formal-Methods/">Formal Methods</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>I’m currently taking the Fall 2017 iteration of <a href="http://6826.csail.mit.edu/2017/">6.826, Principles of Computer Systems</a>. This class has been offered in various forms over the years, but this iteration is quite different. It focuses on formal verification of computer systems using <a href="https://coq.inria.fr/">Coq</a>, a language for mechanical theorem proving.</p>
+<p>The goal of this class is to write the spec, implementation, and proofs for a formally verified RAID filesystem in Coq, then generate Haskell code from it.</p>
+<p><escape><span id="more"></span></escape></p>
+<p>I’ve been quite curious about the field of formal verification since I first learned about it last semester. I couldn’t fit Adam Chlipala’s <a href="https://github.com/mit-frap/spring17">FRAP</a> (Formal Reasoning About Programs) into my schedule, but I didn’t want to miss out on Zeldovich and Kaashoek’s PoCS class because it seemed more practical in nature.</p>
+<p>This is the first in a series of posts on approaching Coq and formal verification as a complete beginner.</p>
+<h1 id="environment-setup"><a class="markdownIt-Anchor" href="#environment-setup"></a> Environment Setup</h1>
+<p>I’d heard good things about using Emacs + Proof General for Coq, so I started using Spacemacs, which combines vim’s editing modes and keybindings with Emacs’.</p>
+<p>I haven’t tried the default CoqIDE or <a href="https://github.com/the-lambda-church/coquille">Coquille</a> in vim, but Emacs’ Coq support is pretty great. With <a href="https://github.com/cpitclaudel/company-coq">company-coq</a> and <a href="https://github.com/olivierverdier/spacemacs-coq">spacemacs-coq</a> layers, there’s not much more you could ask for.</p>
+<p>If you’re coming from vim, Spacemacs is a little obnoxious to get set up, though. The Coq integration is a Spacemacs ‘layer’, which is a set of configurations for a specific task. Make sure that the Coq layer activates upon opening a <code>.v</code> file.</p>
+<p>Perhaps I’ll do another post about all the editors I use daily — Vim, Sublime, Atom, and Spacemacs — (I’m a mongrel, I know), but for now, I’ll just direct you to some Spacemacs <a href="#Resources">resources</a>.</p>
+<h1 id="tactics-datatypes-and-coq-commands"><a class="markdownIt-Anchor" href="#tactics-datatypes-and-coq-commands"></a> Tactics, Datatypes, and Coq commands</h1>
+<p><a href="http://6826.csail.mit.edu/2017/lf/">Software Foundations</a> is the best place to start getting your feet wet. The first three chapters — Basics, Induction, and Lists — will give you all you need to start being productive.</p>
+<p>When you open a <code>.v</code> Coq file in Spacemacs, Coq mode should be activated. You should now be able to access company-coq commands with the <code>Ctrl-C</code> leader, and if you have spacemacs-coq, there’s some common commands under the <code>,</code> leader. Start the proof using <code>proof-goto-point</code> or an alias for it, and you’ll be able to see the goal you’re proving and the context, containing your variables and hypotheses, in a pane on the right. Note that the Coq process can only be active in one buffer at a time, so you can’t have proofs running simultaneously in several files.</p>
+<p>Once you’ve learned the basic syntax, you should also do the Emacs <code>company-coq-tutorial</code> to learn about all the IDE-like helpers that the layer provides.</p>
+<h2 id="coq-objects"><a class="markdownIt-Anchor" href="#coq-objects"></a> Coq objects</h2>
+<p>Here are some of the most important constructs in Coq:</p>
+<ul>
+<li><code>Definition</code>, <code>Function</code>, <code>Fixpoint</code>, and <code>Inductive</code></li>
+</ul>
+<p><code>Inductive</code> defines inductive types. <code>Function</code> and <code>Fixpoint</code> are for recursively defined functions on inductive types. Note that <code>Fixpoints</code> must be obviously decreasing on each recursive call, or else Coq will complain.</p>
+<ul>
+<li>Built-in datatypes such as <code>Nat</code>, <code>List</code>, <code>Prop</code>, <code>Bool</code>.</li>
+<li><code>Theorem</code>, <code>Lemma</code>, <code>Proof</code></li>
+<li><code>match</code> statements ( familiar from any other functional language )</li>
+</ul>
+<h2 id="getting-started-with-tactics"><a class="markdownIt-Anchor" href="#getting-started-with-tactics"></a> Getting started with tactics</h2>
+<p>The first three chapters of SF will teach you a few basic tactics — namely, <code>induction</code>, <code>assert</code>, <code>simpl</code>, <code>reflexivity</code>, <code>rewrite</code>, <code>apply</code>, <code>replace</code>. Nearly all the the exercises can be completed with just these.</p>
+<p>Once you get sufficiently advanced, you’ll be able to identify when magic commands like <code>auto</code> or <code>omega</code> will just solve the rest of your proof for you. <code>info_auto</code> will show you the tactics that <code>auto</code> is using.</p>
+<p>You’ll start to notice patterns in how to apply tactics.<br />
+For instance,</p>
+<ul>
+<li>If you see a recursive data structure, you should think about <code>destruct</code> and <code>induction</code>. Both are used to perform case analysis on a constructor of an inductively defined type; induction also generates an induction hypothesis, while destruct does not.</li>
+<li>Sometimes, <code>unfold</code> will break a monolithic function into useful pieces. Other times, it will give you a <code>fix</code> expression that is harder to parse. Try <code>simpl</code> instead.<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="`simpl`, like many other tactics, can be applied globally in context and goal with `___ in *`, or to a specific hypothesis with `___ in H0`.
+">[2]</span></a></sup></li>
+</ul>
+<p><a href="https://github.com/readablesystems/cs260r-17/blob/master/naivecoq.md">This cheatsheet</a> is invaluable for most of the tactics you’ll ever need. I also found <a href="https://pjreddie.com/coq-tactics/">this site</a> useful for the few most basic tactics.</p>
+<p>When you first start out, it’s useful to be able to search for library lemmas, theorems, definitions, notation, etc. The <code>Search ___</code> command will look for definitions and theorems. If you quote the search string like <code>&quot;eqb&quot;</code>, it will look for all theorems with that as a substring.</p>
+<p><code>Locate</code> can look up constants or notation, like <code>&quot;?=&quot;</code>. To insert the outputs of the last command as a comment (so you can refer to it without having to rerun it), spacemacs-coq provides the key sequence <code>, ;</code>.</p>
+<h1 id="proving-binary-search-trees-and-pitfalls"><a class="markdownIt-Anchor" href="#proving-binary-search-trees-and-pitfalls"></a> Proving binary search trees (and pitfalls)</h1>
+<p>In the first <a href="http://6826.csail.mit.edu/2017/lab/lab0.html">lab</a> of 6.826, we have to prove properties of trees. We are given a tree, defined as follows:</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(* A `nattree` is a tree of natural numbers, where every internal</span></span><br><span class="line"><span class="comment">   node has an associated number and leaves are empty. There are</span></span><br><span class="line"><span class="comment">   two constructors, L (empty leaf) and I (internal node).</span></span><br><span class="line"><span class="comment">   I&#x27;s arguments are: left-subtree, number, right-subtree. *)</span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">Inductive</span> nattree : <span class="keyword">Set</span> :=</span><br><span class="line">  | <span class="type">L</span> : nattree                                <span class="comment">(* Leaf *)</span></span><br><span class="line">  | <span class="type">I</span> : nattree -&gt; nat -&gt; nattree -&gt; nattree.  <span class="comment">(* Internal nodes *)</span></span><br></pre></td></tr></table></figure>
+<p>We have to define a binary search function and a function to test whether a tree is a BST, then write proofs about the correctness of our functions. We want to prove, among other things, that our BST tester does indeed enforce the sortedness of left and right subtrees, and that binsearch can indeed find every element in the tree.</p>
+<p>My first attempt was a <strong>disaster</strong>, ending with convoluted proofs that would have gotten progressively harder had I not stopped and asked for help. I’ll talk about some of the pitfalls I made, and then discuss how everything went smoother on the second try.</p>
+<h2 id="pitfall-1-the-bool-and-prop-worlds"><a class="markdownIt-Anchor" href="#pitfall-1-the-bool-and-prop-worlds"></a> Pitfall 1: The Bool and Prop worlds</h2>
+<p>Coq has two worlds: computational (<code>Type</code>) and logical (<code>Prop</code>). Booleans exist in the computational world, and can be either <code>true</code> or <code>false</code>. <code>Props</code>, by distinction, are uppercased <code>True</code> or <code>False</code>.</p>
+<p>As <a href="https://stackoverflow.com/questions/31554453/why-are-logical-connectives-and-booleans-separate-in-coq/31568076#31568076">this answer</a> explains,</p>
+<blockquote>
+<p>Essentially, Coq has both because they are useful for different things: booleans correspond to facts that can be checked mechanically (i.e., with an algorithm), whereas propositions can express more concepts… If <code>b : bool</code> represents a statement, we can assert that this statement is true by saying <code>b = true</code>, which is of type <code>Prop</code>.</p>
+</blockquote>
+<p>Note that <code>Props</code> can be used in proofs, but not in functions.</p>
+<p>To relate the two, we need theorems that translate between <code>Bool</code> and <code>Prop</code>, as I quickly and painfully discovered.</p>
+<p>Take a look at my initial definition of binsearch on a <code>nattree</code> t.</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span> t <span class="built_in">with</span></span><br><span class="line">           | <span class="type">L</span> =&gt; false</span><br><span class="line">           | <span class="type">I</span> l n r =&gt; <span class="keyword">match</span> beq_nat x n <span class="built_in">with</span></span><br><span class="line">                       | <span class="type">true</span> =&gt; true</span><br><span class="line">                       | <span class="type">false</span> =&gt;  <span class="keyword">match</span> Nat.ltb x n <span class="built_in">with</span></span><br><span class="line">                                  | <span class="type">true</span> =&gt; binsearch x l</span><br><span class="line">                                  | <span class="type">false</span> =&gt; binsearch x r</span><br><span class="line">                                  <span class="keyword">end</span></span><br><span class="line">                       <span class="keyword">end</span></span><br><span class="line">           <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<p>This seems reasonable, right? However, the <code>beq_nat</code> (an alias for <code>Nat.eqb</code>) and <code>Nat.ltb</code> return <code>Bools</code>, not <code>Props</code>!</p>
+<p>So, when we want to use hypotheses like <code>x &lt; n</code> (a <code>Prop</code>) to prove <code>(x &lt;? n) = true</code>, it’s not immediate because they’re in two different worlds!<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=“hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=“<code>&lt;?</code>, btw, is the notation for <code>ltb</code>, which you could have looked up with <code>Locate &quot;&lt;?&quot;</code>.”&gt;[1]</span></a></sup></p>
+<p>We need a lemma in Coq like</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Lemma</span> ltb_lt n m : (n &lt;? m) = true &lt;-&gt; n &lt; m.</span><br></pre></td></tr></table></figure>
+<p>This lemma says that the proposition <code>n &lt; m</code> is <code>True</code> iff the proposition <code>(n &lt;? m) = true</code> is <code>True</code>.</p>
+<p>To illustrate this more, how about proving the proposition that <code>(x &lt;? n) = false</code> given <code>x &gt; n</code>?</p>
+<p>First we have to do something ugly like</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rewrite</span> &lt;- Bool.not_true_iff_false, Nat.ltb_lt.</span><br></pre></td></tr></table></figure>
+<p>which changes the goal like:</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__________________</span><br><span class="line">(x &lt;? n) = false</span><br><span class="line"></span><br><span class="line">__________________</span><br><span class="line">(x &lt;? n) &lt;&gt; true</span><br><span class="line"></span><br><span class="line">__________________</span><br><span class="line">~ x &lt; n</span><br></pre></td></tr></table></figure>
+<p>and only <em>then</em> will an automagic command like <code>omega</code> be able to solve it.</p>
+<h3 id="second-attempt"><a class="markdownIt-Anchor" href="#second-attempt"></a> Second attempt</h3>
+<p>What’s a better way to define <code>binsearch</code>, then? The cleanest is</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span> binsearch (x:nat) (t:nattree) : bool :=</span><br><span class="line"><span class="keyword">match</span> t <span class="built_in">with</span></span><br><span class="line">| <span class="type">L</span> =&gt;  false</span><br><span class="line">| <span class="type">I</span> l n r =&gt; <span class="keyword">match</span> x ?= n <span class="built_in">with</span></span><br><span class="line">            | <span class="type">Eq</span> =&gt; true</span><br><span class="line">            | <span class="type">Lt</span> =&gt; binsearch x l</span><br><span class="line">            | <span class="type">Gt</span> =&gt; binsearch x r</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<p>The <code>?=</code> is <code>Nat.compare</code>, which returns a <code>comparison</code> type, defined below:</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Inductive</span> comparison : <span class="keyword">Set</span> :=</span><br><span class="line">  | <span class="type">Eq</span> : comparison</span><br><span class="line">  | <span class="type">Lt</span> : comparison</span><br><span class="line">  | <span class="type">Gt</span> : comparison.</span><br></pre></td></tr></table></figure>
+<p>With this cleaner definition, we can now use the lab’s given <code>destruct_compare</code> tactic to split our proof into three cases: <code>x &lt; n</code>, <code>x = n</code>, <code>x &gt; n</code>.</p>
+<h2 id="pitfall-2-non-recursive-definitions"><a class="markdownIt-Anchor" href="#pitfall-2-non-recursive-definitions"></a> Pitfall 2: Non-recursive definitions</h2>
+<p>Observe these two definitions of <code>btree_sorted</code>, which checks a tree is a valid BST.</p>
+<p><strong>1:</strong></p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Fixpoint</span> isAscendingProp (t: list nat) : <span class="keyword">Prop</span> :=</span><br><span class="line">  <span class="keyword">match</span> t <span class="built_in">with</span></span><br><span class="line">  | <span class="type">nil</span> =&gt; True</span><br><span class="line">  | <span class="type">cons</span> h tl =&gt; <span class="keyword">match</span> tl <span class="built_in">with</span></span><br><span class="line">                | <span class="type">nil</span> =&gt; True</span><br><span class="line">                | <span class="type">_</span> =&gt; and (Nat.le h (hd <span class="number">0</span> tl)) (isAscendingProp tl)</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">Function</span> btree_sorted (t:nattree) : <span class="keyword">Prop</span> :=</span><br><span class="line">  isAscendingProp (flatten t).</span><br></pre></td></tr></table></figure>
+<p><strong>2:</strong></p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span> btree_sorted (t:nattree) : <span class="keyword">Prop</span> :=</span><br><span class="line"> <span class="keyword">match</span> t <span class="built_in">with</span></span><br><span class="line"> | <span class="type">L</span> =&gt; True</span><br><span class="line"> | <span class="type">I</span> l n r =&gt; btree_le l n /\ btree_ge r n /\ btree_sorted l /\ btree_sorted r</span><br><span class="line"> <span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>1</strong> is flattening the tree via in-order traversal, then checking that each element in the list is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≤</mo></mrow><annotation encoding="application/x-tex">\leq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span></span></span></span> the next element. Algorithmically, this is efficient and correct, but it would lead to more work when writing proofs, since I would need more lemmas about <code>isAscendingProp</code> that related non-adjacent elements.</p>
+<p>Writing recursive definitions as in <strong>2</strong> makes the proof much easier. As my TA said, you want the definition to match how you’re writing the proof.</p>
+<h3 id="aside-using-list-lemmas"><a class="markdownIt-Anchor" href="#aside-using-list-lemmas"></a> Aside: Using <code>List</code> lemmas</h3>
+<p>In my final solution, all my functions were recursive except <code>btree_in</code>, for determining membership in a list.</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span> btree_in (x:nat) (t:nattree) : <span class="keyword">Prop</span> :=</span><br><span class="line">  In x (flatten t).</span><br></pre></td></tr></table></figure>
+<p>If you get comfortable with the <code>List</code> library, then this shouldn’t be a problem. The <code>In</code> function has some nice <a href="http://flint.cs.yale.edu/cs428/coq/library/Coq.Lists.List.html">lemmas</a>. I used this one a lot:</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Lemma</span> in_app_or : <span class="keyword">forall</span> (l m:list) (a:A), In a (l ++ m) -&gt; In a l \/ In a m.</span><br></pre></td></tr></table></figure>
+<p>to split up</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H0: In x (flatten t1 ++ n :: flatten t2)</span><br></pre></td></tr></table></figure>
+<p>into</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H0 : In x (flatten t1) \/ n = x \/ In x (flatten t2)</span><br></pre></td></tr></table></figure>
+<h1 id="identifying-patterns"><a class="markdownIt-Anchor" href="#identifying-patterns"></a> Identifying patterns</h1>
+<p>I found myself repeating the same tactic patterns in my proofs. For example, when I have a series of <code>/\</code> like <code>A /\ B /\ C</code> in my hypotheses, I can split them up using <code>destruct_pairs</code>, allowing me to use each clause individually because I know each one must be true.</p>
+<p>If there’s a series of <code>\/</code> in a hypothesis, you need to use multiple <code>destructs</code>.<br />
+For example, I often ended up having <code>H0 : In x (flatten left_subtree) \/ n = x \/ In x (flatten right_subtree)</code> in my context, and my goal was to prove <em>one</em> of those clauses.</p>
+<p>Well, I would use <code>destruct</code> to consider each case individually, showing that the other two non-goal clauses resulted in contradictions. Therefore, my own goal must be true.</p>
+<h1 id="conventions-and-sugar"><a class="markdownIt-Anchor" href="#conventions-and-sugar"></a> Conventions and sugar</h1>
+<p>In <code>Basics.v</code> of SF, you’ll find best practices on organizing proofs. I like to  use nested bullet points <code>-</code>, <code>+</code>, and <code>*</code>, in that order, to focus subgoals whenever I am doing <code>cases</code>, <code>induction</code>, or <code>destruct</code>. When I have an <code>assert</code>, I wrap the proof of the assert in <code>&#123;&#125;</code>.</p>
+<p>Hopefully, you learned some pointers to get you more productive in Coq! There’s not many clear, beginner-oriented resources out there, so all of this post was constructed with trial and a lot of error.</p>
+<h1 id="resources"><a class="markdownIt-Anchor" href="#resources"></a> Resources</h1>
+<ol>
+<li><a href="https://gist.github.com/davoclavo/d41cd86ffda22f1649e4">Spacemacs Cheatsheet</a></li>
+<li><a href="https://pi.sjtu.edu.cn/doc/spacemacs/">Spacemacs for Vim users</a></li>
+</ol>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><code>&lt;?</code>, btw, is the notation for <code>ltb</code>, which you could have looked up with <code>Locate &quot;&lt;?&quot;</code>.<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><code>simpl</code>, like many other tactics, can be applied globally in context and goal with <code>___ in *</code>, or to a specific hypothesis with <code>___ in H0</code>.<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coq/" rel="tag">Coq</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/04/Using-the-LLVM-MC-Disassembly-API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Using the LLVM MC Disassembly API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/11/matasano-crypto-challenges-set-7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 7</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#environment-setup"><span class="toc-number">1.</span> <span class="toc-text"> Environment Setup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tactics-datatypes-and-coq-commands"><span class="toc-number">2.</span> <span class="toc-text"> Tactics, Datatypes, and Coq commands</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#coq-objects"><span class="toc-number">2.1.</span> <span class="toc-text"> Coq objects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getting-started-with-tactics"><span class="toc-number">2.2.</span> <span class="toc-text"> Getting started with tactics</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#proving-binary-search-trees-and-pitfalls"><span class="toc-number">3.</span> <span class="toc-text"> Proving binary search trees (and pitfalls)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pitfall-1-the-bool-and-prop-worlds"><span class="toc-number">3.1.</span> <span class="toc-text"> Pitfall 1: The Bool and Prop worlds</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#second-attempt"><span class="toc-number">3.1.1.</span> <span class="toc-text"> Second attempt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pitfall-2-non-recursive-definitions"><span class="toc-number">3.2.</span> <span class="toc-text"> Pitfall 2: Non-recursive definitions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#aside-using-list-lemmas"><span class="toc-number">3.2.1.</span> <span class="toc-text"> Aside: Using List lemmas</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#identifying-patterns"><span class="toc-number">4.</span> <span class="toc-text"> Identifying patterns</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conventions-and-sugar"><span class="toc-number">5.</span> <span class="toc-text"> Conventions and sugar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#resources"><span class="toc-number">6.</span> <span class="toc-text"> Resources</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

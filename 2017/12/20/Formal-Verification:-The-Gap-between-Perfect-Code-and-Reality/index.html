@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Formal Verification: The Gap Between Perfect Code and Reality | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Coq" />
+  
+  
+  <meta name="description" content="Thanks to Vlad Brown and Drawings Team for Russian and Uzbek translations.   In Fall 2017, I took MIT’s 6.826, Principles of Computer Systems, taught by Turing Award-winner Butler Lampson, Nickolai Z">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Formal Verification: The Gap Between Perfect Code and Reality">
+<meta property="og:url" content="http://raywang.tech/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Thanks to Vlad Brown and Drawings Team for Russian and Uzbek translations.   In Fall 2017, I took MIT’s 6.826, Principles of Computer Systems, taught by Turing Award-winner Butler Lampson, Nickolai Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://raywang.tech/images/2017/12/coq2.png">
+<meta property="article:published_time" content="2017-12-20T20:07:02.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.439Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="Coq">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://raywang.tech/images/2017/12/coq2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/2017/12/coq2.png" rel="gallery_cm0evsj0g000gcbmh78zdb51o">
+        <img src="/images/2017/12/coq2.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Formal Verification: The Gap Between Perfect Code and Reality
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/12/20/Formal-Verification:-The-Gap-between-Perfect-Code-and-Reality/" class="article-date">
+	  <time datetime="2017-12-20T20:07:02.000Z" itemprop="datePublished">12-20-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Formal-Methods/">Formal Methods</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+<p style="font-size:.85em;font-style:italic">
+Thanks to Vlad Brown and Drawings Team for <a href="http://howtorecover.me/formalnaa-proverka">Russian</a> and <a href="http://getdrawings.com/uz-mukammal-kod-va-haqiqat">Uzbek</a> translations.
+</p>
+
+<p>In Fall 2017, I took MIT’s <a href="http://6826.csail.mit.edu/2017/index.html">6.826, Principles of Computer Systems</a>, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.</p>
+<p>I went into the class believing that formal verification is the future — the only solution to a world of software ridden with bugs and security issues. But after recent events and a semester of trying to apply formal methods, I’m a serious skeptic. In this post, I’ll discuss why I think formal verification has a long way to go — and why it just doesn’t work right now.</p>
+<p><escape><span id="more"></span></escape></p>
+<h1 id="try-it-i-dare-you"><a class="markdownIt-Anchor" href="#try-it-i-dare-you"></a> Try it — I dare you</h1>
+<p>First, let’s talk about how we get a system that we can rubber-stamp as “formally verified”.</p>
+<h2 id="simulation-proofs"><a class="markdownIt-Anchor" href="#simulation-proofs"></a> Simulation proofs</h2>
+<p>There are two broad ways to write a formally verified system. The first, the more conventional way, involves carefully constructing specifications of the behavior of a system, an implementation of the system, and then manually writing proofs that the implementation matches the spec. All of this is written in a theorem-proving language like Coq, and then extracted to OCaml or Haskell for a runnable implementation.</p>
+<p>From personal experience with 6.826 labs, this is a nightmare.</p>
+<p>First, the proof burden is huge — for MIT’s <a href="http://adam.chlipala.net/papers/FscqSOSP15/">FSCQ file system</a>, developed over about 1.5 years using Coq, the complete system was <strong>10x more code</strong> than a similar unverified filesystem. Imagine that — 2000 lines of implementation become 20,000 lines of proof! This is partly because Coq is a very general language for reasoning about mathematical logic, and it has little built-in machinery for specialized applications such as complex computer systems. So, we need to build infrastructure from scratch, as well as define our systems from the ground up — from bits and bytes into entire disks.</p>
+<p>The labs were largely spared this ridiculous proof burden due to a lot of automation and infrastructure provided by the instructors. Indeed, 2700 lines of Coq (LoC) are devoted to proof infrastructure — and, in the case of the toy replicated disk lab, another 1500 lines for the actual system.</p>
+<p>Where does all this overhead come from? Well, we need to support what’s called a “simulation proof”. In this proof style, we step through every procedure in our system and show that every reachable state in our implementation has a corresponding state in our spec. Our spec for each procedure contains three conditions — a <em>precondition</em>, a <em>postcondition</em>, and a <em>crash condition</em> that is true if our code suddenly crashes. Then, our proof involves several things:</p>
+<ol>
+<li>Establish that the precondition of our procedure holds</li>
+<li>Prove <em><strong>every line/branch</strong></em> of the procedure is a valid transition</li>
+<li>If there are no crashes at the end of execution, prove the postcondition holds</li>
+<li>If crashes happened before the end of execution, then prove the crash condition holds before each crash, the crash recovery procedure is a valid transition, and the postcondition ends up holding</li>
+</ol>
+<p>Here’s a diagram of a single transition, showing the correspondence between a code state and a spec state. The double arrows are what we need to prove.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">                spec semantics</span><br><span class="line">forall state ===================&gt; exists state&#x27;</span><br><span class="line">         ^                                 ^^</span><br><span class="line">         |                                 ||</span><br><span class="line">         V      code semantics             VV</span><br><span class="line">  forall w  -----------------------&gt; forall w&#x27;</span><br></pre></td></tr></table></figure>
+<p>In the FSCQ code, 6000 of 32,000 LoC were devoted to just this infrastructure.</p>
+<p>I want to highlight that we need to prove <strong><em>every possible code path</em></strong> — exponentially many in the number of conditional statements, and doubled by considering a crash at every point. Loops need to be proved inductively. On top of all that, if any spec or implementation changes even slightly, all the specs, impls, and proofs that depend on it will change as well. This makes even small changes a huge pain.</p>
+<p>Is there any other way, you ask, before you shoot yourself?</p>
+<h2 id="push-button-proofs"><a class="markdownIt-Anchor" href="#push-button-proofs"></a> Push-button proofs</h2>
+<p>Another way is the “push-button” style, which formulates the spec and implementation states as symbolic SMT equations that can be passed to a solver, such as Z3. This allows Z3 to automatically verify the system, without writing any manual proofs. Z3 might, for example, check whether each code operation satisfies a formula defining the relationship between code and spec states.</p>
+<p>The main effort here is cleverly designing a set of verifiable specs that is actually scalable. It’s hard to determine whether a problem is tractable for Z3, and you have to play all sorts of tricks to make it work. For example, the writers of <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-sigurbjarnarson.pdf">Yggdrasil</a>, a push-button verified filesystem, spent 4 months exploring ways to scale verification, 2-3 months building their system, and at least 6 more months <a href="https://locore.cs.washington.edu/papers/sigurbjarnarson-yggdrasil-slides.pdf">experimenting with optimizations</a>. In the end, among other wild tricks, they rely on a stack of five layered abstractions, so the solver only has to reason about one layer at a time and won’t get stuck.</p>
+<h1 id="what-goes-wrong"><a class="markdownIt-Anchor" href="#what-goes-wrong"></a> What goes wrong?</h1>
+<p>After all this effort, either carefully designing specs that are amenable to push-button verification, or tediously writing proofs in Coq, what do we get? You’d hope for perfect code, but the truth is a lot less palatable.</p>
+<p>The guarantees of a formally verified system rest entirely on the assumptions of the system, including its trusted computing base (TCB). The TCB of a verified system includes the specs, which are manually written and hoped (fingers crossed!) to be correct, the verification tools (e.g., Coq engine, Z3, compiler), and the runtime infrastructure (OS, hardware). This should be a huge red flag. For instance, if you’ve used Z3, you’ll agree that it’s black magic to everyone except the developers, and my professors confess that they’ve found correctness bugs, especially in decidability theories that are not commonly used.</p>
+<h2 id="an-empirical-study"><a class="markdownIt-Anchor" href="#an-empirical-study"></a> An empirical study</h2>
+<p>One of the papers we read, <a href="https://homes.cs.washington.edu/~pfonseca/papers/eurosys2017-dsbugs.pdf">An Empirical Study on the Correctness of Formally Verified Distributed Systems</a>, thoroughly analyzes three recent formally-verified distributed systems — two were Coq/OCaml-based, and a third was Dafny/SMT-based. The abstract says it all:</p>
+<blockquote>
+<p>Through code review and testing, we found a total of 16 bugs, many of which produce serious consequences, including crashing servers, returning incorrect results to clients, and invalidating verification guarantees. These bugs were caused by violations of a wide-range of assumptions on which the verified components relied.</p>
+</blockquote>
+<p>Among other serious consequences were <strong>command injection</strong> and <strong>data loss</strong>, in supposedly <em>formally verified</em> systems!</p>
+<p>I want to discuss some of these bugs, including where and how they were found.</p>
+<p>Most of these bugs were found through static analysis of the specs and implementations, as well as conventional debugging and network and file system fuzzing. These bugs generally occurred at the interfaces between verified and unverified components.</p>
+<p>11 occurred at what the authors call the <em>shim layer</em>, the OS interface that includes system calls and other primitives. When the verified components do not exactly model the real-world OS implementation, serious bugs arise. For instance, not escaping metacharacters or not handling all possible syscall error codes caused incorrect results, leading to command injection and data loss. Real-world resource limits, such as too-large packets or stack exhaustion, also broke assumptions and crashed or hung the distributed system.</p>
+<p>The remaining bugs were due to incomplete or incorrect specs, and critical issues with the verification tools themselves. In particular, these provers were not fail-safe — <code>SIGINTs</code>, exceptions, or other verifier crashes would cause the prover to report that verification succeeded!</p>
+<p>As if that’s not concerning enough, there’s two recent headlines in which supposedly formally verified systems had alarming bugs, in one case with disastrous security consequences.</p>
+<h2 id="krack-and-compcert"><a class="markdownIt-Anchor" href="#krack-and-compcert"></a> KRACK and CompCert</h2>
+<p>Big news back in October was the KRACK attack on WPA2-protected WiFi networks. Cryptographer Matt Green <a href="https://blog.cryptographyengineering.com/2017/10/16/falling-through-the-kracks/">sums it up nicely</a>. The two parts of WPA2 — the 4-way handshake and the encryption protocol — have security proofs; the 4-way handshake was even formally verified in <a href="https://www.andrew.cmu.edu/user/danupam/hsddm-ccs05.pdf">2005</a>! However, no one reasoned about how these two parts interacted in real-world code, leading to almost every single implementation on the planet being vulnerable to a catastrophic Key Reuse attack that can lead to full decryption and forgery of WiFi traffic.</p>
+<p>A smaller issue is a recent <a href="https://github.com/AbsInt/CompCert/issues/211">parsing bug</a> in CompCert, a formally verified C compiler released in 2008. The bug is an amateur scoping issue, where a variable declared in the scope of a <code>for</code> loop clobbers a global variable with the same name.</p>
+<p>Although the CompCert paper explicitly says that the parsing step, as well as the assembling/linking steps, are not verified, this kind of bug is a huge blow to the credibility of formal methods. It really makes you wonder what sort of bugs formal verification is supposed to catch.</p>
+<h2 id="is-there-hope"><a class="markdownIt-Anchor" href="#is-there-hope"></a> Is there hope?</h2>
+<p>Formal verification may not totally be wishful thinking. I’m hanging onto the hope that there is a place for it, and there’s some evidence to support this.</p>
+<p>In the empirical study, no bugs were found in the implementation of complex and error-prone distributed protocols (Paxos, RAFT). This shows that verification <em>can be</em> applied to increase reliability. And John Regehr’s <a href="https://www.cs.utah.edu/~regehr/papers/pldi11-preprint.pdf">compiler bug-hunting paper</a> reported that CompCert did not have any <em>runtime wrong-code errors</em>, which were found in 10 other compilers.</p>
+<p>But the guarantees that we expect are much stronger than a correct protocol, handshake, or compiler optimization. We need the entire system to be reliable, and we need proof effort to be minimal for widespread adoption to be feasible.</p>
+<p>The bottom line is that formal methods will languish in academic circles, unable to bridge the gap with the real, nonsensical world, for a long time to come.</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coq/" rel="tag">Coq</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/23/My-Favorite-Films-of-All-Time/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          My Favorite Films of All Time
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/04/Using-the-LLVM-MC-Disassembly-API/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Using the LLVM MC Disassembly API</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#try-it-i-dare-you"><span class="toc-number">1.</span> <span class="toc-text"> Try it — I dare you</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#simulation-proofs"><span class="toc-number">1.1.</span> <span class="toc-text"> Simulation proofs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push-button-proofs"><span class="toc-number">1.2.</span> <span class="toc-text"> Push-button proofs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#what-goes-wrong"><span class="toc-number">2.</span> <span class="toc-text"> What goes wrong?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#an-empirical-study"><span class="toc-number">2.1.</span> <span class="toc-text"> An empirical study</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#krack-and-compcert"><span class="toc-number">2.2.</span> <span class="toc-text"> KRACK and CompCert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#is-there-hope"><span class="toc-number">2.3.</span> <span class="toc-text"> Is there hope?</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

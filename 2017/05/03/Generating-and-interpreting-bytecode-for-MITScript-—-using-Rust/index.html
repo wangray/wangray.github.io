@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Generating and Interpreting Bytecode for MITScript — Using Rust | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="6.035" />
+  
+  
+  <meta name="description" content="Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode inter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generating and Interpreting Bytecode for MITScript — Using Rust">
+<meta property="og:url" content="http://raywang.tech/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-%E2%80%94-using-Rust/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode inter">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.rust-lang.org/logos/rust-logo-256x256.png">
+<meta property="article:published_time" content="2017-05-03T19:00:40.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.439Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="6.035">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.rust-lang.org/logos/rust-logo-256x256.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Generating-and-interpreting-bytecode-for-MITScript-—-using-Rust"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="https://www.rust-lang.org/logos/rust-logo-256x256.png" rel="gallery_cm0evsj0h000hcbmh4kjfgzuh">
+        <img src="https://www.rust-lang.org/logos/rust-logo-256x256.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Generating and Interpreting Bytecode for MITScript — Using Rust
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/05/03/Generating-and-interpreting-bytecode-for-MITScript-%E2%80%94-using-Rust/" class="article-date">
+	  <time datetime="2017-05-03T19:00:40.000Z" itemprop="datePublished">05-03-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?</p>
+<p>Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.</p>
+<p><escape><span id="more"></span></escape></p>
+<p>Fortunately, I had some great Rust developers on my team – Jason and <a href="https://github.com/kazimuth">James Gilles</a>, who have been avid Rustaceans for years.</p>
+<p>If you have ever seen bytecode, you’ll expect to see some non-human-readable hex bytes that stand for instructions. Instead, we have a strange text-based bytecode consisting of the following instructions:</p>
+<p><strong>Load/store instructions</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">LoadConst    </span><br><span class="line">LoadFunc     </span><br><span class="line">LoadLocal    </span><br><span class="line">StoreLocal   </span><br><span class="line">LoadGlobal   </span><br><span class="line">StoreGlobal  </span><br><span class="line">PushReference</span><br><span class="line">LoadReference   </span><br><span class="line">StoreReference  </span><br><span class="line">AllocRecord     </span><br><span class="line">FieldLoad    </span><br><span class="line">FieldStore   </span><br><span class="line">IndexLoad       </span><br><span class="line">IndexStore</span><br></pre></td></tr></table></figure>
+<p><strong>Closure functions</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AllocClosure    </span><br><span class="line">Call    </span><br><span class="line">Return  </span><br></pre></td></tr></table></figure>
+<p><strong>Binary/unary ops</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Add     </span><br><span class="line">Sub     </span><br><span class="line">Mul     </span><br><span class="line">Div     </span><br><span class="line">Neg     </span><br><span class="line">Gt      </span><br><span class="line">Geq     </span><br><span class="line">Eq      </span><br><span class="line">And     </span><br><span class="line">Or      </span><br><span class="line">Not    </span><br></pre></td></tr></table></figure>
+<p><strong>Control flow</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Goto</span><br><span class="line">If   </span><br></pre></td></tr></table></figure>
+<p><strong>Stack manipulation</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Dup     </span><br><span class="line">Swap    </span><br><span class="line">Pop     </span><br></pre></td></tr></table></figure>
+<p>And the full bytecode is a series of nested functions, like</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">function</span><br><span class="line">&#123;</span><br><span class="line">  functions =</span><br><span class="line">  [</span><br><span class="line">    function</span><br><span class="line">    &#123;</span><br><span class="line">      functions =[</span><br><span class="line">        function</span><br><span class="line">         &#123;</span><br><span class="line">          functions  = [],</span><br><span class="line">          constants  = [],</span><br><span class="line">          parameter_count = 1,</span><br><span class="line">          local_vars = [z],</span><br><span class="line">          local_ref_vars = [],</span><br><span class="line">          free_vars  = [y],</span><br><span class="line">          names = [x],</span><br><span class="line">          instructions = [</span><br><span class="line">            ...</span><br><span class="line">             return</span><br><span class="line">          ]</span><br><span class="line">         &#125;</span><br><span class="line">      ],</span><br><span class="line">      constants = [None, 1],</span><br><span class="line">      parameter_count = 1,</span><br><span class="line">      local_vars = [y, g],</span><br><span class="line">      local_ref_vars = [y],</span><br><span class="line">      free_vars = [],</span><br><span class="line">      names = [],</span><br><span class="line">      instructions = [</span><br><span class="line">        ...</span><br><span class="line">        return</span><br><span class="line">       ]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  constants = [1, None],</span><br><span class="line">  parameter_count = 1,</span><br><span class="line">  local_vars = [],</span><br><span class="line">  local_ref_vars = [],</span><br><span class="line">  free_vars = [],</span><br><span class="line">  names = [x, f],</span><br><span class="line">  instructions =</span><br><span class="line">  [</span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Some things to note:<br />
+A <code>free_var</code> is a variable from a parent scope that’s accessed in the current function.</p>
+<p>A closure contains a function, as well as a list of references to the free variables in the nested function. So, when we make a call, we need to clone all the closure’s free variable references into the newly created frame.</p>
+<h3 id="pieces-of-the-puzzle"><a class="markdownIt-Anchor" href="#pieces-of-the-puzzle"></a> Pieces of the puzzle</h3>
+<p>We split up the work into three parts. James quickly finished the bytecode parser, using the Rust library lalrpop. Jason and I worked on (last minute) the bytecode generation and interpreting, respectively.</p>
+<p>Each bytecode <code>function</code> was modeled as a Function struct.</p>
+<p>I also have a Frame structure that, as in the AST interpreter from Lab 2, contains the context for the currently executing closure. Most importantly, there is an operand stack onto which references, values, closures, etc. are pushed and popped as opcodes are executed. The HeapValue enum lists them all:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">FrameSlot</span> = Gc&lt;RefCell&lt;HeapValue&gt;&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">HeapValue</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Reference</span>(FrameSlot),</span><br><span class="line">    <span class="title function_ invoke__">Record</span>(Gc&lt;RefCell&lt;Record&gt;&gt;),</span><br><span class="line">    <span class="title function_ invoke__">Function</span>(Gc&lt;Function&gt;),</span><br><span class="line">    <span class="title function_ invoke__">Closure</span>(Gc&lt;Closure&gt;),</span><br><span class="line">    <span class="comment">// note: oddly enough, foreign functions behave more like</span></span><br><span class="line">    <span class="comment">// closures, since you can actually call them</span></span><br><span class="line">    <span class="title function_ invoke__">ForeignFunction</span>(ForeignFunction),</span><br><span class="line">    <span class="title function_ invoke__">String</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">Integer</span>(<span class="type">i64</span>),</span><br><span class="line">    <span class="title function_ invoke__">Boolean</span>(<span class="type">bool</span>),</span><br><span class="line">    <span class="literal">None</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>References have a layer of indirection provided by the Gc&lt;RefCell&lt;&gt;&gt; construct in Rust. Gc is just an alias for <code>Rc</code>. In Rust, <code>Rc</code> is a reference-counted pointer, and <code>RefCell</code> is a wrapper for a mutable value. <code>RefCell</code> introduces something called <a href="https://ricardomartins.cc/2016/06/08/interior-mutability">“interior mutability”</a>, which allows us to modify an otherwise-immutable location like a field in a struct. We can use <code>borrow</code> or <code>borrow_mut</code> to get a pointer to the value contained in the <code>RefCell</code>.</p>
+<h3 id="the-bytecode-generator"><a class="markdownIt-Anchor" href="#the-bytecode-generator"></a> The bytecode generator</h3>
+<p>Jason did this part almost entirely himself, and had to wrangle with some tricky scoping rules that I still don’t entirely understand.</p>
+<p>One key function is <code>lookup_variable</code>, which determines whether a variable is a reference, local, or global.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Determines what scope a variable&#x27;s value should be found in</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">lookup_variable</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, name: &amp;<span class="type">str</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">self</span>.globals.<span class="title function_ invoke__">contains</span>(name) &#123;</span><br><span class="line">            <span class="keyword">self</span>.map.<span class="title function_ invoke__">insert</span>(name.<span class="title function_ invoke__">to_owned</span>(), Location::Global);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.locals.<span class="title function_ invoke__">contains</span>(name) &#123;</span><br><span class="line">            <span class="keyword">self</span>.map.<span class="title function_ invoke__">insert</span>(name.<span class="title function_ invoke__">to_owned</span>(), Location::Local);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.<span class="title function_ invoke__">lookup_ref</span>(name) &#123;</span><br><span class="line">            <span class="comment">// We found the variable in a parent scope</span></span><br><span class="line">            <span class="keyword">self</span>.free.<span class="title function_ invoke__">push</span>(name.<span class="title function_ invoke__">to_owned</span>());</span><br><span class="line">            <span class="keyword">self</span>.map.<span class="title function_ invoke__">insert</span>(name.<span class="title function_ invoke__">to_owned</span>(), Location::Reference);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">self</span>.<span class="title function_ invoke__">lookup_global</span>(name) &#123;</span><br><span class="line">            <span class="comment">// Found the var in one of the active globals</span></span><br><span class="line">            <span class="keyword">self</span>.globals.<span class="title function_ invoke__">push</span>(name.<span class="title function_ invoke__">to_owned</span>());</span><br><span class="line">            <span class="keyword">self</span>.map.<span class="title function_ invoke__">insert</span>(name.<span class="title function_ invoke__">to_owned</span>(), Location::Global);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">panic!</span>(<span class="string">&quot;Uninitialized variables &#123;&#125;&quot;</span>, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>lookup_ref</code> also propagates up to parents, pushing a reference variable in parent scopes, because it has to be in each parent scope to be copied down to the current scope! To be more clear, say we have nested functions f1, f2…f100; and f100 uses some variable <code>x</code> that is local to f3. f4…f99 must all have <code>x</code> as a free variable, so when we see that <code>x</code> is being used in f100, <code>lookup_ref</code> will add it as a free variable for all parents.</p>
+<p>Next, we actually need to start thinking about performance! We’ll write a garbage collector for our compiler in Lab 4.</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/" rel="tag">6.035</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/03/2017/DEF%20CON%20CTF%20Qualifier%202017/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          DEF CON CTF Qualifier 2017
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/21/set5-writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 5</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pieces-of-the-puzzle"><span class="toc-number">1.</span> <span class="toc-text"> Pieces of the puzzle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-bytecode-generator"><span class="toc-number">2.</span> <span class="toc-text"> The bytecode generator</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

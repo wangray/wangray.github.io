@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Matasano Crypto Challenges, Set 1 | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="cryptopals" />
+  
+  
+  <meta name="description" content="Challenge 1.1 Convert hex to base64 The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges. The functions a2b_hex, unhexlif">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matasano Crypto Challenges, Set 1">
+<meta property="og:url" content="http://raywang.tech/2017/03/07/set1_writeup/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="Challenge 1.1 Convert hex to base64 The first challenge is pretty straightforward, using python’s built-in functions or pwntools, as I use heavily in these challenges. The functions a2b_hex, unhexlif">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://raywang.tech/images/vigenere.png">
+<meta property="article:published_time" content="2017-03-07T18:38:11.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.441Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="cryptopals">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://raywang.tech/images/vigenere.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-set1_writeup"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Matasano Crypto Challenges, Set 1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/set1_writeup/" class="article-date">
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Crypto/">Crypto</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="challenge-11-convert-hex-to-base64"><a class="markdownIt-Anchor" href="#challenge-11-convert-hex-to-base64"></a> Challenge 1.1 Convert hex to base64</h2>
+<p>The first challenge is pretty straightforward, using python’s built-in functions or <a href="https://github.com/Gallopsled/pwntools">pwntools</a>, as I use heavily in these challenges.</p>
+<p>The functions <code>a2b_hex</code>, <code>unhexlify</code>, and <code>''.decode(&quot;hex&quot;)</code> all do the same thing. They take in an ascii string of the form “[0-9a-f]*” and decode it. The string decodes to<br />
+<code>I'm killing your brain like a poisonous mushroom</code>. We can then use <code>binascii.b2a_base64()</code> to convert the byte string to a base64 representation.</p>
+<p><escape><span id="more"></span></escape></p>
+<h2 id="challenge-12-fixed-xor"><a class="markdownIt-Anchor" href="#challenge-12-fixed-xor"></a> Challenge 1.2 Fixed XOR</h2>
+<p>This challenge uses iterators to do a fixed-length xor.</p>
+<p>The <code>chr()</code> function takes an ASCII integer code in the range 0-255 and returns a character string.</p>
+<p>The <code>ord()</code> function does the inverse, taking a character and returning its integer. We want to xor these integers.</p>
+<p>Thus, <code>''.join([chr(ord(i)^ord(j)) for i, j in zip(s1, s2)])</code> will first xor the integers of each character of the input strings with <code>ord()</code>. Then it will convert back into a character string with <code>chr()</code>.</p>
+<h2 id="challenge-13-single-byte-xor-cipher"><a class="markdownIt-Anchor" href="#challenge-13-single-byte-xor-cipher"></a> Challenge 1.3 Single-byte XOR cipher</h2>
+<p>Extending the last challenge, we can create a variable-length input xor function. Or, we can use pwntools <code>xor()</code>.</p>
+<p>I iterate through all 255 possible single character xor keys, scoring each decrypted word based on character frequency.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> result:</span><br><span class="line">  c = c.lower()</span><br><span class="line">  <span class="keyword">if</span> c <span class="keyword">in</span> character_frequency:</span><br><span class="line">    word_score += character_frequency[c]</span><br><span class="line"></span><br><span class="line">cand_words.append((result, word_score, char))</span><br></pre></td></tr></table></figure>
+<h2 id="challenge-14-detect-single-character-xor"><a class="markdownIt-Anchor" href="#challenge-14-detect-single-character-xor"></a> Challenge 1.4 Detect single-character XOR</h2>
+<p>This challenge asks us to find which of the 60-character strings in the file has been encrypted by single-character XOR.</p>
+<p>Using the <code>find_singlechar_key_xor</code> utility function created in the last challenge, I can iterate through all the file strings and find the possible single-character xor key and word score of each line.</p>
+<p>The line turns out to decode to ‘Now that the party is jumping\n’, xored against the byte 5.</p>
+<h2 id="challenge-15-implement-repeating-key-xor"><a class="markdownIt-Anchor" href="#challenge-15-implement-repeating-key-xor"></a> Challenge 1.5 Implement repeating-key XOR</h2>
+<p>This is a cop-out. Pwntools implements repeating-key xor in its <code>utils.fiddling</code> library.</p>
+<p>We can use python <a href="https://docs.python.org/2/library/itertools.html">itertools</a> for this as well,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(<span class="built_in">ord</span>(i)^<span class="built_in">ord</span>(j)) <span class="keyword">for</span> i, j <span class="keyword">in</span> it.izip(s1, it.cycle(s2))])</span><br></pre></td></tr></table></figure>
+<h2 id="challenge-16-break-repeating-key-xor"><a class="markdownIt-Anchor" href="#challenge-16-break-repeating-key-xor"></a> Challenge 1.6 Break repeating-key XOR</h2>
+<p>This challenge asks us to solve repeating-key xor, aka the Vigenere cipher.</p>
+<p>There are several steps to doing this.</p>
+<ol>
+<li>First, we need to find the xor key length. the period of the cipher.</li>
+<li>Next, we need to find the key character-by-character, using the single-byte xor cipher we made in Challenge 1.3.</li>
+</ol>
+<p>In the first step I calculate the Hamming distance (number of diff bits between two strings) of two consecutive ciphertext blocks (of some guessed length). The correct keylength will create blocks of minimum Hamming distance.</p>
+<p>The challenge tells us to try values from 2 to 40 for the guessed key length. I calculate the hamming distance of all combinations of 4 blocks.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pairs = <span class="built_in">list</span>(it.combinations(blocks, <span class="number">2</span>))</span><br><span class="line">hamsum = it.starmap(hamming, pairs)</span><br></pre></td></tr></table></figure>
+<p><code>it.starmap</code> computes the <code>hamming</code> function using arguments obtained from the iterable <code>pairs</code>.<br />
+I then normalize the Hamming distance for keysize.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">normalized = <span class="built_in">float</span>(reduce(<span class="keyword">lambda</span> x, y: x+y, hamsum))/keysize</span><br></pre></td></tr></table></figure>
+<p>and find the keylength with the minimum normalized hamming distance is 29.</p>
+<p>The second step is to find the key, character-by-character. I split the ciphertext into blocks of len(keysize) and transpose them, so that I have a list of all the 1st, 2nd, etc… chars of each block. Each of these transposed messages has been single-char xored, so I can just find each single-char key and concatenate the chars to get the full xor key.</p>
+<p><img src="/images/vigenere.png" alt="Vigenere cipher" /></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">blocks = [x[i:i+keysize] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(x), keysize)]</span><br><span class="line"></span><br><span class="line">blocks = it.izip_longest(*blocks, fillvalue=<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">block_list = [<span class="string">&#x27;&#x27;</span>.join(msg) <span class="keyword">for</span> msg <span class="keyword">in</span> blocks]</span><br><span class="line"></span><br><span class="line">char_freqs = [find_singlechar_key_xor(<span class="string">&#x27;&#x27;</span>.join(msg))[<span class="number">2</span>]</span><br><span class="line"><span class="keyword">for</span> msg <span class="keyword">in</span> block_list]</span><br></pre></td></tr></table></figure>
+<p>I need to use <code>izip_longest</code> because the last block is shorter than the others, and <code>izip_longest</code> pads the shortest elements of the iterable.</p>
+<p>The key made by joining the single-char keys is <code>Terminator X: Bring the noise</code>.</p>
+<h2 id="challenge-17-aes-in-ecb-mode"><a class="markdownIt-Anchor" href="#challenge-17-aes-in-ecb-mode"></a> Challenge 1.7 AES in ECB mode</h2>
+<p>This challenge introduces the AES block cipher and the ECB mode. The ECB mode is problematic because it is stateless and deterministic — the same block of plaintext will encrypt to the same ciphertext.</p>
+<p>I use the <a href="https://cryptography.io"><code>cryptography</code></a> module in Python because it’s being actively developed, although the PyCrypto library is more popular.</p>
+<p>You initialize AES, a symmetric cipher, with</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cipher = Cipher(algorithm = algorithms.AES(<span class="string">&quot;YELLOW SUBMARINE&quot;</span>), mode = modes.ECB(), backend=default_backend())</span><br></pre></td></tr></table></figure>
+<p>.</p>
+<p>To decrypt text, you use a <code>decryptor</code> object and the update() and finalize() methods.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = cipher.decryptor()</span><br><span class="line">decrypted_text = d.update(file) + d.finalize()</span><br></pre></td></tr></table></figure>
+<h2 id="challenge-18-detect-aes-in-ecb-mode"><a class="markdownIt-Anchor" href="#challenge-18-detect-aes-in-ecb-mode"></a> Challenge 1.8 Detect AES in ECB mode</h2>
+<p>Because ECB is deterministic, I can detect which of the strings in 8.txt is encrypted using ECB. The properties of the plaintext, such as low Hamming distance, will remain in the ciphertext. Thus, I can use minimum Hamming distance to find the correct line, similar to Challenge 6.</p>
+<p>I create a scoring function, <code>hamming_score_line(line)</code>, which will return the hamsum of a line of ciphertext.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min_line_num = <span class="built_in">min</span>(lines, key=hamming_score_line)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>will be the correct answer, 133.</p>
+<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<p>[1] <a href="https://github.com/Gallopsled/pwntools">pwntools</a></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptopals/" rel="tag">cryptopals</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/07/set2_writeup/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Matasano Crypto Challenges, Set 2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/07/set3-writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 3</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-11-convert-hex-to-base64"><span class="toc-number">1.</span> <span class="toc-text"> Challenge 1.1 Convert hex to base64</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-12-fixed-xor"><span class="toc-number">2.</span> <span class="toc-text"> Challenge 1.2 Fixed XOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-13-single-byte-xor-cipher"><span class="toc-number">3.</span> <span class="toc-text"> Challenge 1.3 Single-byte XOR cipher</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-14-detect-single-character-xor"><span class="toc-number">4.</span> <span class="toc-text"> Challenge 1.4 Detect single-character XOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-15-implement-repeating-key-xor"><span class="toc-number">5.</span> <span class="toc-text"> Challenge 1.5 Implement repeating-key XOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-16-break-repeating-key-xor"><span class="toc-number">6.</span> <span class="toc-text"> Challenge 1.6 Break repeating-key XOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-17-aes-in-ecb-mode"><span class="toc-number">7.</span> <span class="toc-text"> Challenge 1.7 AES in ECB mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#challenge-18-detect-aes-in-ecb-mode"><span class="toc-number">8.</span> <span class="toc-text"> Challenge 1.8 Detect AES in ECB mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#references"><span class="toc-number">9.</span> <span class="toc-text"> References</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

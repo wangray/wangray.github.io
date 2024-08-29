@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Flex and Bison for a Simple Language, MITScript | Tack, Hunt, Pool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="6.035" />
+  
+  
+  <meta name="description" content="For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language. T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex and Bison for a Simple Language, MITScript">
+<meta property="og:url" content="http://raywang.tech/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/index.html">
+<meta property="og:site_name" content="Tack, Hunt, Pool">
+<meta property="og:description" content="For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language. T">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png">
+<meta property="article:published_time" content="2017-03-07T18:38:11.000Z">
+<meta property="article:modified_time" content="2024-08-29T06:03:14.439Z">
+<meta property="article:author" content="Ray Wang">
+<meta property="article:tag" content="6.035">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tack, Hunt, Pool" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu+Mono:400" rel="stylesheet"> -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+</li>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Flex-and-Bison-for-a-simple-language-MITScript"
+  
+  style="width: 75%; float:left;"
+  class="article article-type-post" itemscope itemprop="blogPost" >
+  <!-- Back button -->
+  
+  <a href="javascript:history.go(-1)" class="back-button-link"><span class="back-button-icon"></span> Back</a>
+  
+
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Flex and Bison for a Simple Language, MITScript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/" class="article-date">
+	  <time datetime="2017-03-07T18:38:11.000Z" itemprop="datePublished">03-07-2017</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Languages/">Languages</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>For the first lab in 6.035, Computer Language Engineering, in Spring 2017, we use Flex, a lexical analyzer library, and Bison, a parser generator, to create a parser for a simple scripting language.</p>
+<p>The grammar for the language is shown below.</p>
+<p><escape><span id="more"></span></escape></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Program ::= Statement*</span><br><span class="line">Statement ::= Assignment | CallStatement | Global | IfStatement | WhileLoop | Return</span><br><span class="line">Global ::= <span class="string">&#x27;global&#x27;</span> name <span class="string">&#x27;;&#x27;</span></span><br><span class="line">Assignment ::= LHS <span class="string">&#x27;=&#x27;</span> Expression <span class="string">&#x27;;&#x27;</span></span><br><span class="line">CallStatement ::= Call <span class="string">&#x27;;&#x27;</span></span><br><span class="line">Block ::= <span class="string">&#x27;&#123;&#x27;</span> Statement* <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">IfStatement ::= <span class="string">&#x27;if&#x27;</span> <span class="string">&#x27;(&#x27;</span> Expression <span class="string">&#x27;)&#x27;</span> <span class="built_in">Block</span> ( <span class="string">&#x27;else&#x27;</span> Block )?</span><br><span class="line">WhileLoop ::= <span class="string">&#x27;while&#x27;</span> <span class="string">&#x27;(&#x27;</span> Expression <span class="string">&#x27;)&#x27;</span> Block</span><br><span class="line">Return ::= <span class="string">&#x27;return&#x27;</span> Expression <span class="string">&#x27;;&#x27;</span></span><br><span class="line">Expression ::= Function | Boolean | Record</span><br><span class="line">Function ::= <span class="string">&#x27;fun&#x27;</span> <span class="string">&#x27;(&#x27;</span> Name* <span class="string">&#x27;)&#x27;</span> Block</span><br><span class="line">Boolean ::= <span class="built_in">Conjunction</span> ( <span class="string">&#x27;|&#x27;</span> Conjunction )*</span><br><span class="line">Conjunction ::= <span class="built_in">BoolUnit</span> (<span class="string">&#x27;&amp;&#x27;</span> BoolUnit)*</span><br><span class="line">BoolUnit ::= <span class="string">&#x27;!&#x27;</span>? Predicate</span><br><span class="line">Predicate ::= <span class="built_in">Arithmetic</span> ( (<span class="string">&#x27;&lt;&#x27;</span> | <span class="string">&#x27;&gt;&#x27;</span> | <span class="string">&#x27;&lt;=&#x27;</span> | <span class="string">&#x27;&gt;=&#x27;</span>| <span class="string">&#x27;==&#x27;</span>) Arithmetic)?</span><br><span class="line">Arithmetic ::= <span class="built_in">Product</span> ( (<span class="string">&#x27;+&#x27;</span> | <span class="string">&#x27;-&#x27;</span>) Product)*</span><br><span class="line">Product ::= <span class="built_in">Unit</span> ( (<span class="string">&#x27;*&#x27;</span> | <span class="string">&#x27;/&#x27;</span>) Unit)*</span><br><span class="line">Unit ::= <span class="string">&#x27;-&#x27;</span>? (LHS | Constant | Call | <span class="string">&#x27;(&#x27;</span> Boolean <span class="string">&#x27;)&#x27;</span> )</span><br><span class="line">LHS ::= <span class="built_in">Name</span> (<span class="string">&#x27;.&#x27;</span> Name | <span class="string">&#x27;[&#x27;</span> Expression <span class="string">&#x27;]&#x27;</span> )*</span><br><span class="line">Call ::= LHS <span class="string">&#x27;(&#x27;</span> (<span class="built_in">Expression</span> (<span class="string">&#x27;,&#x27;</span> Expression)*)? <span class="string">&#x27;)&#x27;</span></span><br><span class="line">Record ::= <span class="string">&#x27;&#123;&#x27;</span> (Name <span class="string">&#x27;:&#x27;</span> Expression <span class="string">&#x27;;&#x27;</span>)* <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">Constant ::= integer_constant | string_constant</span><br></pre></td></tr></table></figure>
+<p>The goal is to construct an Abstract Syntax Tree (AST) for any MITScript program and pretty-print it.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Your parser must produce an AST with nodes <span class="keyword">for</span> the following program constructs:</span><br><span class="line">Block ::= [Statement]</span><br><span class="line">Global ::= name</span><br><span class="line">Assignment ::= LHS Expression</span><br><span class="line">ExpressionStatement ::= Expression <span class="string">&#x27;;&#x27;</span></span><br><span class="line">IfStatement ::= Condition ThenPart ElsePart</span><br><span class="line">WhileLoop ::= Condition Body</span><br><span class="line">Return ::= Expression</span><br><span class="line">FunctionDeclaration ::= [Arguments] Body</span><br><span class="line">BinaryExpression ::= LeftOperand Operator RightOperand</span><br><span class="line">UnaryExpression ::= Operand Operator</span><br><span class="line">FieldDereference ::= BaseExpression Field</span><br><span class="line">IndexExpression ::= BaseExpression Index</span><br><span class="line">Call ::= TargetExpression [Arguments]</span><br><span class="line">Record ::= Map[String, Expression]</span><br><span class="line">IntegerConstant</span><br><span class="line">StringConstant</span><br><span class="line">NoneConstant</span><br></pre></td></tr></table></figure>
+<h3 id="flex"><a class="markdownIt-Anchor" href="#flex"></a> Flex</h3>
+<p>How do Flex and Bison work? Much of the lab was reading documentation about these two old utilities.</p>
+<p>Flex takes a <code>.lex</code> file, which simply lists the regular expressions, tokens, and keywords that will be matched in a program.</p>
+<p>When Flex works with Bison, every time it matches a token/keyword, it tells Bison about it. It can return the type of token/keyword to Bison, and it can also return an entire matched string or int in a Bison object it has access to, called <code>yylval</code>.</p>
+<p>Here are examples of both:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;string_const&#125; &#123;</span><br><span class="line">		<span class="comment">//Rule for string constant</span></span><br><span class="line">		yylval-&gt;strType = <span class="keyword">new</span> <span class="built_in">string</span>(yytext);</span><br><span class="line">		<span class="keyword">return</span> T_STRINGCONST;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;while&quot;</span> &#123;<span class="keyword">return</span> T_WHILE;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>For us, the lab specifies that: Your lexer must be able to recognize the following kinds of tokens in addition to all the keywords and operators listed above:</p>
+<ul>
+<li>integer constants consisting of one or more digits</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int_const [0-9][0-9]*</span><br></pre></td></tr></table></figure>
+<ul>
+<li>string constants wrapped in double quotes and supporting the following escaped characters: \ &quot; \n \t</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string_const (\&quot;(\\.|[^&quot;])*\&quot;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>None constant, equivalent to “NULL” in Java</li>
+<li>‘true’ and ‘false’</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;None&quot; &#123;return T_NONE;&#125;</span><br><span class="line">&quot;true&quot; &#123;return T_TRUE;&#125;</span><br><span class="line">&quot;false&quot; &#123;return T_FALSE;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Name identifiers that start with a letter or underscore, followed by sequence of letters, underscores and numbers. so x0 is a valid variable name, but 0x is not</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">identifier ([a-zA-Z_][a-zA-Z_0-9]*)</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">&#123;identifier&#125; &#123;</span><br><span class="line">	yylval-&gt;strType = new string(yytext);</span><br><span class="line">	return IDENTIFIER;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The file is compiled in our Makefile with <code>flex  --outfile=lexer.cpp --header-file=lexer.h lexer.lex</code>.</p>
+<h3 id="bison"><a class="markdownIt-Anchor" href="#bison"></a> Bison</h3>
+<p>In the Bison <code>.yy</code> file, we must define several things. First, we must define the union, types, and tokens that Flex and our grammar know about. Then, we need to define our grammar (the most important part!).</p>
+<p>The grammar section of the <code>.yy</code> file contains rules created simply by converting our MITScript to Bison syntax (more on this soon). Each rule is associated with an action, which contains C++ code to be executed when the rule is matched.</p>
+<p>How does this fit into everything else? Well, we have a <code>main.cpp</code> file that will call <code>yyparse</code> on stdin, which will match all the tokens and Bison rules, executing their actions. These actions will construct node objects of an AST, which are defined in <code>AST.h</code>. Then, the <code>main.cpp</code> file will call the pretty print function on the root node, which will recursively print the tree.</p>
+<p>As an example of a rule + action,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">returnStmt:</span><br><span class="line">  T_RETURN expr T_SEMICOLON &#123;</span><br><span class="line">    $$ = new ReturnStatement(*$2);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>Above, the T_RETURN and T_SEMICOLON are tokens that correspond to “return” and “;” in our lex file.</p>
+<p>The components matched by the rule can be accessed by <code>$n</code>, which stands for the value of the nth component. The semantic value for the grouping being constructed is <code>$$</code>.</p>
+<p>The ReturnStatement object is an AST node class defined in another file, <code>AST.h</code>, which we’ll get to.</p>
+<p>But let me go back to the union. “The %union declaration specifies the entire collection of possible data types for semantic values.” Lexer can access these union fields in <code>yylval</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">union</span> &#123;</span><br><span class="line">	<span class="type">int</span> intconst;</span><br><span class="line">  string *strType; <span class="comment">// goes with string_const in lex</span></span><br><span class="line"></span><br><span class="line">  Block* blockType;</span><br><span class="line">	Statement* statementType;</span><br><span class="line">  Expression* expressionType;</span><br><span class="line"></span><br><span class="line">  vector&lt;Expression*&gt; *exprListType;</span><br><span class="line">  vector&lt;Statement*&gt; *stmtListType;</span><br><span class="line">  vector&lt;string*&gt; *stringListType; <span class="comment">//maybe don&#x27;t need for function declaration list</span></span><br><span class="line">  map&lt;string, Expression*&gt; *recordMapType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You can see that in my union, I have a bunch of pointers of node types in my AST.</p>
+<p>I can now define <code>%tokens</code>, which are terminals in my grammar (strings, keywords and ints), and <code>%types</code>, which are nonterminals in my grammar. All the tokens are matched and returned in the <code>.lex</code> file.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">%token&lt;intconst&gt; T_INT</span><br><span class="line"></span><br><span class="line">%token&lt;strType&gt; T_SEMICOLON T_LBRACKET  T_RBRACKET  T_LPAREN T_RPAREN T_AND T_OR T_EXCLAM T_LESS_THAN T_GREATER_THAN T_LEQ T_GEQ T_EQEQ T_PLUS T_MINUS T_TIMES T_DIV T_DOT T_EQUALS T_COLON T_LBRACE T_RBRACE T_COMMA</span><br><span class="line"></span><br><span class="line">%token &lt;strType&gt; T_FUNCTION T_GLOBAL T_IF T_ELSE T_WHILE T_RETURN T_NONE T_TRUE T_FALSE</span><br><span class="line">%token &lt;strType&gt; IDENTIFIER T_STRINGCONST</span><br></pre></td></tr></table></figure>
+<p>And nonterminals:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%type &lt;statementType&gt; stmt assignment callStmt ifStmt whileLoop returnStmt global Program</span><br><span class="line"></span><br><span class="line">%type &lt;blockType&gt; block</span><br><span class="line"></span><br><span class="line">%type&lt;stmtListType&gt; stmts</span><br><span class="line"></span><br><span class="line">%type &lt;expressionType&gt; expr call boolean function conjunction boolunit predicate arithmetic product unit lhs record constant subunit</span><br><span class="line"></span><br><span class="line">%type&lt;exprListType&gt; argument_expr_list  func_declaration_list</span><br><span class="line"></span><br><span class="line">%type&lt;recordMapType&gt;  record_init_list</span><br></pre></td></tr></table></figure>
+<p>To enforce left-associativity, I add</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%left PLUS MINUS</span><br><span class="line">%left TIMES DIV</span><br></pre></td></tr></table></figure>
+<p>Now for the fun stuff! With all the types I’ve defined, I need to write grammar rules for all of them.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Program:</span><br><span class="line">  %empty &#123;</span><br><span class="line">    <span class="comment">// printf(&quot;Empty program\n&quot;);</span></span><br><span class="line">  &#125;</span><br><span class="line">  | stmts &#123;</span><br><span class="line">    $$ = <span class="keyword">new</span> <span class="built_in">Program</span>(*$<span class="number">1</span>);</span><br><span class="line">    out = $$;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>The highest level, the start Program, can be empty. We assign the Program node to <code>out</code>, which is passed to <code>main.cpp</code> through an argument of <code>yyparse</code>. Note that the skeleton code added some extra stuff to make this necessary/possible; namely, it is needed to make the parser reentrant. The skeleton code constructs are explained in <a href="http://esr.ibiblio.org/?p=6341">this great post</a>.</p>
+<p>Much of the translation from BNF grammar to Bison is straightforward. But, when creating variable-length lists, such as function arguments(<code>fun(a b c)&#123;&#125;</code>), we have to use a C++ <code>vector</code> and recursively push objects into it.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">argument_expr_list:</span><br><span class="line">  %empty &#123;</span><br><span class="line">    $$ = new ExpressionList();</span><br><span class="line">  &#125;</span><br><span class="line">  | expr &#123;</span><br><span class="line">    $$ = new ExpressionList();</span><br><span class="line">    $$-&gt;push_back($1);</span><br><span class="line">  &#125;</span><br><span class="line">  | argument_expr_list T_COMMA expr &#123;</span><br><span class="line">    $1-&gt;push_back($3);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>In the third rule above, the <code>$3</code> matches the <code>expr</code>, and <code>$1</code> matches the <code>argument_expr_list</code>, which you recall is of type <code>vector&lt;Expression*&gt;</code>.</p>
+<p>The same goes for <code>record</code> rules, which are like Python dicts, and are of type <code>map&lt;string, Expression*&gt;</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">record:</span><br><span class="line">  T_LBRACE record_init_list T_RBRACE &#123;</span><br><span class="line">    // printf(&quot;Parsing\n &quot;);</span><br><span class="line">    $$ = new Record(*$2);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">record_init_list:</span><br><span class="line">  %empty &#123;</span><br><span class="line">    // printf(&quot;Parsing empty record\n &quot;);</span><br><span class="line">    $$ = new RecordMap();</span><br><span class="line">  &#125;</span><br><span class="line">  | record_init_list IDENTIFIER T_COLON expr T_SEMICOLON &#123;</span><br><span class="line">    // printf(&quot;Parsing record recursive\n &quot;);</span><br><span class="line">    $1-&gt;insert(make_pair(*$2, $4));</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>Note that the default action for a rule is <code>$$ = $1;</code>.</p>
+<p>Running bison with <code>bison --output=parser.cpp --defines=parser.h -v parser.yy</code> will produce several files, including a <code>parser.output</code> file that contains valuable debugging info about our parser, such as the state transition tables.</p>
+<h3 id="ast-nodes-visitor-pattern-pretty-printing-and-main-or-putting-it-all-together"><a class="markdownIt-Anchor" href="#ast-nodes-visitor-pattern-pretty-printing-and-main-or-putting-it-all-together"></a> AST Nodes, Visitor pattern pretty-printing, and main (Or, putting it all together)</h3>
+<p>Here’s the <code>main.cpp</code> file</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span></span>&#123;</span><br><span class="line">  <span class="type">void</span>* scanner;</span><br><span class="line">  <span class="built_in">yylex_init</span>(&amp;scanner);</span><br><span class="line">  <span class="built_in">yyset_in</span>(stdin, scanner);</span><br><span class="line">  Statement* output;</span><br><span class="line">  <span class="type">int</span> rvalue = <span class="built_in">yyparse</span>(scanner, output);</span><br><span class="line">  <span class="keyword">if</span>(rvalue == <span class="number">1</span>)&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;Parsing failed&quot;</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  PrettyPrinter printer;</span><br><span class="line">  output-&gt;<span class="built_in">accept</span>(printer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Each class in my <code>AST.h</code> inherits from <code>Expression</code> or <code>Statement</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Call</span>: <span class="keyword">public</span> Expression &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Expression&amp; targetExpr;</span><br><span class="line">	ExpressionList&amp; argumentsList;</span><br><span class="line">	<span class="built_in">Call</span>( Expression&amp; targetExpr, ExpressionList&amp; argumentsList): <span class="built_in">targetExpr</span>(targetExpr), <span class="built_in">argumentsList</span>(argumentsList)&#123;&#125;;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">accept</span><span class="params">(Visitor&amp; v)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		v.<span class="built_in">visit</span>(*<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The <code>accept</code> function that overrides a virtual method is part of the <a href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor Pattern</a>. Instead of defining a pretty-print method in each of my classes in <code>AST.h</code>, I define a PrettyPrinter class that contains <code>visit(Object&amp; obj)</code> methods for all my nodes. We also need an interface with all our virtual methods in <code>Visitor.h</code>.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/d/d9/UML_diagram_of_an_example_of_the_Visitor_design_pattern.png" alt="" /> This diagram explains the Visitor pattern well.</p>
+<p>My <code>PrettyPrinter.h</code> file has recursive calls to each node’s <code>accept()</code> method. For example, for a Block, which contains a list of Statements,</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">visit</span><span class="params">(Block&amp; blk)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">  PrettyPrinter printer;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;&#123;&quot;</span>);</span><br><span class="line">  TABLEVEL++;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">auto</span> statement = blk.statements.<span class="built_in">begin</span>(); statement != blk.statements.<span class="built_in">end</span>(); statement++ ) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    (*statement)-&gt;<span class="built_in">accept</span>(printer);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n%s&#125;&quot;</span>, <span class="built_in">string</span>(TABLEVEL<span class="number">-1</span>,<span class="string">&#x27;\t&#x27;</span>).<span class="built_in">c_str</span>());</span><br><span class="line">  TABLEVEL--;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>I use a global variable <code>TABLEVEL</code> and <code>printf(&quot;\n%s&#125;&quot;, string(TABLEVEL-1,'\t').c_str());</code> to get the correct indentation for the body elements of the block.</p>
+<p>When I print, I wrap all <code>BinaryExpression</code>s and <code>UnaryExpression</code>s in parentheses.</p>
+<p>We can now understand the rest of our <code>Makefile</code>,</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all: parser.cpp lexer.cpp main.cpp PrettyPrinter.h Visitor.h</span><br><span class="line">	g++ -g -std=gnu++<span class="number">11</span> main.cpp parser.cpp lexer.cpp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">parser.cpp: parser.yy</span><br><span class="line">	bison --output=parser.cpp --defines=parser.h -v parser.yy</span><br><span class="line"></span><br><span class="line">lexer.cpp: lexer.lex</span><br><span class="line">	flex  --outfile=lexer.cpp --header-file=lexer.h lexer.lex</span><br></pre></td></tr></table></figure>
+<p>The compiled binary, <code>a.out</code>, will take in a file through a redirect <code>./a.out &lt; tests/good1.mit</code> and pretty-print!</p>
+<h3 id="other-references"><a class="markdownIt-Anchor" href="#other-references"></a> Other references</h3>
+<p><a href="http://gnuu.org/2009/09/18/writing-your-own-toy-compiler/3/">Here</a> is a complete compiler tutorial that is closer to a real language than most things. Most other Flex/Bison examples are stupid calculators x.x.</p>
+<p><a href="http://aquamentus.com/flex_bison.html">This tutorial</a> is very very thorough.</p>
+<p><a href="http://www.lysator.liu.se/c/ANSI-C-grammar-l.html">The ANSI C Lex spec</a> and <a href="http://www.lysator.liu.se/c/ANSI-C-grammar-y.html">Yacc (old version of Bison) file</a> are helpful in constructing our own grammar and lex rules.</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        
+          
+	<section id="comments" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'wangray';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+        
+        
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/6-035/" rel="tag">6.035</a></li></ul>
+
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/14/Starting-a-new-security-club-at-MIT/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Starting a New Security Club at MIT
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/07/set2_writeup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">Matasano Crypto Challenges, Set 2</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    
+      <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#flex"><span class="toc-number">1.</span> <span class="toc-text"> Flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bison"><span class="toc-number">2.</span> <span class="toc-text"> Bison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ast-nodes-visitor-pattern-pretty-printing-and-main-or-putting-it-all-together"><span class="toc-number">3.</span> <span class="toc-text"> AST Nodes, Visitor pattern pretty-printing, and main (Or, putting it all together)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#other-references"><span class="toc-number">4.</span> <span class="toc-text"> Other references</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      <div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2024 Ray Wang. All Rights Reserved.</p>
+	</div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-104530975-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<script src="/libs/justifiedgallery/jquery.justifiedGallery.min.js"></script>
+
+  
+<link rel="stylesheet" href="/libs/justifiedgallery/justifiedGallery.min.css">
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              Toggle font size
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Toggled font size
+          </div>
+        </div>
+
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              Toggle night view
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Press again to switch views
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tack, Hunt, Pool
+          </div>
+          <div class="panel-body">
+            Copyright © 2024 Ray Wang All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
