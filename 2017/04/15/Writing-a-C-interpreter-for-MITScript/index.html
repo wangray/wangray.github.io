@@ -9,12 +9,12 @@
   <meta name="keywords" content="6.035" />
   
   
-  <meta name="description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser&#x2F;lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
+  <meta name="description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser&#x2F;lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MIT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Writing a C++ Interpreter for MITScript">
 <meta property="og:url" content="http://raywang.tech/2017/04/15/Writing-a-C-interpreter-for-MITScript/index.html">
 <meta property="og:site_name" content="Tack, Hunt, Pool">
-<meta property="og:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser&#x2F;lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScrip">
+<meta property="og:description" content="Lab 2 in 6.035 was very satisfying and very fun. After creating the parser&#x2F;lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MIT">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-04-16T00:38:37.000Z">
 <meta property="article:modified_time" content="2024-08-29T06:03:14.440Z">
@@ -184,7 +184,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser/lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Lab 2 in 6.035 was very satisfying and very fun. After creating the parser&#x2F;lexer in Lab 1, we got to put our Abstract Syntax Tree to work — we created an interpreter to actually execute valid MITScript! By the end of this lab, we will be able to write arbitrarily complex programs and have them parsed and run.</p>
 <p><escape><span id="more"></span></escape></p>
 <p>We have a <a href="http://6.035.scripts.mit.edu/sp17/a2.html">list of semantic rules</a> that are generally pretty straightforward, but let me point out some interesting aspects.</p>
 <p>Note that in the stack we map identifiers(variable, function names, etc.) to addresses, and the heap maps addresses to the actual Values. One cool thing is that we don’t need to implement the heap ourselves — we can just use the memory allocation built into our language! Anyone familiar with C++ will know of <code>new</code>, which actually allocates space in the heap for an object, and returns a pointer (address) to that space.</p>
@@ -205,26 +205,24 @@
 <p><a href="https://github.com/JustAPerson">Jason Priest</a>, Meghana, and I got together to work on it.</p>
 <p>The key thing to note when implementing the interpreter is that everything is specified in the semantics — you need to follow it exactly when translating into code, and you can find the answer to all your questions by close examination.</p>
 <p>Not exactly following the order that Armando suggested, the first thing I tried to do was to get assignments and operators working, so I could do something as simple as <code>x = 5; y = 5; z = x + y;</code>. This would have given me a huge confidence boost, since I felt pretty intimidated by the scope of the lab.</p>
-<p>Roughly, I tackled this piece-by-piece in the following order: binary ops, assignments, record creation/assignments, function creation/calling, native functions, early returns. Of course, the ninety-ninety aphorism of software engineering holds:</p>
+<p>Roughly, I tackled this piece-by-piece in the following order: binary ops, assignments, record creation&#x2F;assignments, function creation&#x2F;calling, native functions, early returns. Of course, the ninety-ninety aphorism of software engineering holds:</p>
 <blockquote>
-<p>The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
+<p>   The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</p>
 </blockquote>
 <p>The remaining 10% of code on this lab was debugging the ten class-provided tests.</p>
-<h3 id="data-structures"><a class="markdownIt-Anchor" href="#data-structures"></a> Data Structures</h3>
-<p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">previous post</a>.</p>
+<h3 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h3><p>I first set up the Visitor interface for the interpreter. For more information on how the Visitor interface works, see my <a href="https://wangray.github.io/2017/03/07/Flex-and-Bison-for-a-simple-language-MITScript/">previous post</a>.</p>
 <p>Then for each of the Value types</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Boolean</span><br><span class="line">Integer</span><br><span class="line">String</span><br><span class="line">Function ::= (frame, code)</span><br><span class="line">Record ::= Map[String, Value]*</span><br><span class="line">None</span><br></pre></td></tr></table></figure>
 <p>, I defined <code>toString()</code> functions and a <code>type</code> field (so the overloaded boolean operators like <code>+</code> know what values they’re operating on). I also added methods like <code>asFunction()</code> and <code>asRecord()</code> that will throw an <code>IllegalCastException</code> if they’re called in the wrong context, or otherwise return <code>this</code>.</p>
 <p>I still wasn’t sure how to deal with Stack Frames. The way that stack frames work is that there is a global stack of these StackFrames, and each StackFrame should contain the “context”  of the currently-executing function. When a function is called, a new StackFrame is created, containing its set of local variables and a pointer to its parent frame (the frame where the function was called.)</p>
-<p>I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
+<p> I discovered during debugging that, when an MITScript program starts executing, it should be inside the global StackFrame — all assignments that it makes are available globally.</p>
 <p>When we need to access a variable, we must check for its existence in the globals, the local frame, and then search recursively in parent stack frames.</p>
-<h3 id="function-calls"><a class="markdownIt-Anchor" href="#function-calls"></a> Function calls</h3>
-<p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
+<h3 id="Function-calls"><a href="#Function-calls" class="headerlink" title="Function calls"></a>Function calls</h3><p>The function call is the most complex construct in our language. Most importantly, when we make a call, we need to traverse the body of the function, looking for globals and assignments, and add them to our new StackFrame.</p>
 <p>This is another case where I needed to know the type of objects — but here, I need to know the type of an AST object. I use <code>dynamic_cast</code>.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Global* globCast = <span class="built_in">dynamic_cast</span>&lt;Global*&gt;(stmt))&#123;</span><br><span class="line">...</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (IfStatement* ifCast = <span class="built_in">dynamic_cast</span>&lt;IfStatement*&gt;(stmt))&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Note that we need to recursively search inside <code>if</code> statements and <code>while</code> loops during the scan, as well.</p>
-<h3 id="native-functions"><a class="markdownIt-Anchor" href="#native-functions"></a> Native Functions</h3>
-<p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
+<h3 id="Native-Functions"><a href="#Native-Functions" class="headerlink" title="Native Functions"></a>Native Functions</h3><p>But how to do the native functions? Jason gave me a hint here — create a subclass of Function, which I call NativeFunction.</p>
 <p>We need to support the following:</p>
 <ul>
 <li>print(s) Uses the default casting of s to a string and prints it to the console followed by a newline.</li>
@@ -233,9 +231,9 @@
 </ul>
 <p>NativeFunction has an <code>evaluateNativeFunction()</code> method that will do the right thing.</p>
 <p>After adding the ability to return early from functions, I have a really hacky interpreter!</p>
-<h3 id="debugging-tests"><a class="markdownIt-Anchor" href="#debugging-tests"></a> Debugging tests</h3>
-<p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that’s never run — equivalent to</p>
+<h3 id="Debugging-tests"><a href="#Debugging-tests" class="headerlink" title="Debugging tests"></a>Debugging tests</h3><p>Some of these test cases reveal interesting effects of our semantics. For example, <code>test7.mit</code> has a global declaration inside an <code>if</code> statement that’s never run — equivalent to</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)&#123;</span><br><span class="line">    global x;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <p>In this case, we actually need to find this global and make <code>x</code> global in the scope. This is called variable hoisting.</p>
 <p>Note that there are a lot of crappy things about this interpreter — there is no garbage collection of unused objects, so memory usage might blow up, and it is costly to search recursively for a variable in parent stack frames. The next lab translates our MITScript into bytecode that can optimize away these costs.</p>
 
@@ -312,7 +310,7 @@
     <div id="toc" class="toc-article">
     
       <strong class="toc-title">Contents</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#data-structures"><span class="toc-number">1.</span> <span class="toc-text"> Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#function-calls"><span class="toc-number">2.</span> <span class="toc-text"> Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#native-functions"><span class="toc-number">3.</span> <span class="toc-text"> Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#debugging-tests"><span class="toc-number">4.</span> <span class="toc-text"> Debugging tests</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Structures"><span class="toc-number">1.</span> <span class="toc-text">Data Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-calls"><span class="toc-number">2.</span> <span class="toc-text">Function calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Native-Functions"><span class="toc-number">3.</span> <span class="toc-text">Native Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-tests"><span class="toc-number">4.</span> <span class="toc-text">Debugging tests</span></a></li></ol>
     
     </div>
   </aside>

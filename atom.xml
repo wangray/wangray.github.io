@@ -6,7 +6,7 @@
   <link href="http://raywang.tech/atom.xml" rel="self"/>
   
   <link href="http://raywang.tech/"/>
-  <updated>2024-08-29T06:03:14.438Z</updated>
+  <updated>2024-10-06T19:57:53.750Z</updated>
   <id>http://raywang.tech/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Some Notes on Reading Chinese Classic Literary Fiction</title>
+    <link href="http://raywang.tech/2024/10/04/Some-Notes-on-Reading-Chinese-Literary-Fiction/"/>
+    <id>http://raywang.tech/2024/10/04/Some-Notes-on-Reading-Chinese-Literary-Fiction/</id>
+    <published>2024-10-04T07:00:00.000Z</published>
+    <updated>2024-10-06T19:57:53.750Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Blah blah&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linguistics" scheme="http://raywang.tech/categories/Linguistics/"/>
+    
+    
+    <category term="Chinese" scheme="http://raywang.tech/tags/Chinese/"/>
+    
+    <category term="Black Myth Wukong" scheme="http://raywang.tech/tags/Black-Myth-Wukong/"/>
+    
+    <category term="SF/Fantasy" scheme="http://raywang.tech/tags/SF-Fantasy/"/>
+    
+    <category term="Journey to the West" scheme="http://raywang.tech/tags/Journey-to-the-West/"/>
+    
+  </entry>
+  
+  <entry>
     <title>A Translation of Black Myth: Wukong — Compendium of Creatures</title>
     <link href="http://raywang.tech/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/"/>
     <id>http://raywang.tech/2024/03/23/A-Translation-of-Black-Myth-Wukong-Lore-%E2%80%94-Compendium-of-Creatures/</id>
     <published>2024-03-23T07:00:00.000Z</published>
-    <updated>2024-08-29T06:03:14.438Z</updated>
+    <updated>2024-10-05T05:27:25.247Z</updated>
     
     
     <summary type="html">&lt;p&gt;The most hyped videogame release of this year might just be &lt;em&gt;Black Myth: Wukong&lt;/em&gt;, a Chinese action RPG set in the fantasy world of &lt;em&gt;Journey to the West&lt;/em&gt;. To improve my Chinese and be able to fully immerse myself in the game on release, I&#39;ve been consuming anything I can find about it online. During public demos last year, players screen-captured a lore book called &lt;em&gt;yǐng shén tú&lt;/em&gt; (影神图), an illustrated compendium of supernatural enemies encountered in one of the game&#39;s regions, Purple Cloud Mountain (紫云山). Here, I&#39;ve translated the available compendium entries from the original blog post, with some help from ChatGPT.&lt;/p&gt;</summary>
@@ -49,7 +74,7 @@
     <updated>2024-08-29T06:03:14.440Z</updated>
     
     
-    <summary type="html">&lt;p&gt;Since quarantine days, I’ve picked up &lt;em&gt;a lot&lt;/em&gt; of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start…&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Since quarantine days, I’ve picked up &lt;em&gt;a lot&lt;/em&gt; of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start… &lt;/p&gt;
 &lt;p&gt;Why? Full reasons unclear, but at least a combination of pure impulsiveness and a desire to challenge myself and become a more versatile person.&lt;/p&gt;
 &lt;p&gt;Along the way, I’ve survived some self-discovery and learned a lot about the &lt;em&gt;process of learning&lt;/em&gt;. This post should hopefully spark some interest in my diverse activities and provide insights on how to pick up and enjoy new skills.&lt;/p&gt;
 &lt;p&gt;&lt;escape&gt;</summary>
@@ -190,8 +215,7 @@
     <updated>2024-08-29T06:03:14.440Z</updated>
     
     
-    <summary type="html">&lt;p&gt;&lt;em&gt;The Three-Body Problem&lt;/em&gt; trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously &lt;a href=&quot;https://thetech.com/2016/10/06/deaths-end-review&quot;&gt;extolled&lt;/a&gt; as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, &lt;a href=&quot;https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101&quot;&gt;&lt;em&gt;Death’s End&lt;/em&gt;&lt;/a&gt;.&lt;br /&gt;
-&lt;escape&gt;</summary>
+    <summary type="html">&lt;p&gt;&lt;em&gt;The Three-Body Problem&lt;/em&gt; trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously &lt;a href=&quot;https://thetech.com/2016/10/06/deaths-end-review&quot;&gt;extolled&lt;/a&gt; as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, &lt;a href=&quot;https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101&quot;&gt;&lt;em&gt;Death’s End&lt;/em&gt;&lt;/a&gt;.&lt;br&gt;&lt;escape&gt;</summary>
     
     
     
@@ -210,10 +234,10 @@
     <updated>2024-08-29T06:03:14.438Z</updated>
     
     
-    <summary type="html">&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; pwnable      |      &lt;strong&gt;Points:&lt;/strong&gt; 124      |      &lt;strong&gt;Solves:&lt;/strong&gt; 49      |      &lt;a href=&quot;https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame&quot;&gt;&lt;strong&gt;Challenge files&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; pwnable&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Points:&lt;/strong&gt; 124&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Solves:&lt;/strong&gt; 49&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a href=&quot;https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame&quot;&gt;&lt;strong&gt;Challenge files&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; checksec mario&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[*] &amp;#x27;/home/raywang/ctf/DEFCONQ2018/mario&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Arch:     amd64-64-little&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    RELRO:    Full RELRO&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Stack:    Canary found&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    NX:       NX enabled&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    PIE:      PIE enabled&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;summary&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#summary&quot;&gt;&lt;/a&gt; Summary&lt;/h2&gt;
-&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, &lt;a href=&quot;https://qzqxq.wordpress.com/&quot;&gt;qzqxq&lt;/a&gt;, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
+
+&lt;h2 id=&quot;Summary&quot;&gt;&lt;a href=&quot;#Summary&quot; class=&quot;headerlink&quot; title=&quot;Summary&quot;&gt;&lt;/a&gt;Summary&lt;/h2&gt;&lt;p&gt;This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. &lt;a href=&quot;https://fortenf.org/e/&quot;&gt;fortenforge&lt;/a&gt;, &lt;a href=&quot;https://qzqxq.wordpress.com/&quot;&gt;qzqxq&lt;/a&gt;, and I combined to reverse the binary and discover the 3 separate vulnerabilities.&lt;/p&gt;
 &lt;p&gt;&lt;escape&gt;</summary>
     
     
@@ -258,6 +282,7 @@
     <summary type="html">&lt;p style=&quot;font-size:.85em;font-style:italic&quot;&gt;
 Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.me/formalnaa-proverka&quot;&gt;Russian&lt;/a&gt; and &lt;a href=&quot;http://getdrawings.com/uz-mukammal-kod-va-haqiqat&quot;&gt;Uzbek&lt;/a&gt; translations.
 &lt;/p&gt;
+
 
 &lt;p&gt;In Fall 2017, I took MIT’s &lt;a href=&quot;http://6826.csail.mit.edu/2017/index.html&quot;&gt;6.826, Principles of Computer Systems&lt;/a&gt;, taught by Turing Award-winner Butler Lampson, Nickolai Zeldovich, and Frans Kaashoek. Despite its rudimentary title, it’s a grad class on building formally verified systems. Using the proof language Coq, we wrote  specifications, implementations, and proofs of toy structures: a remapped disk, an atomic pair of blocks, and a replicated disk. We also read quite a few papers from the state-of-the-art in formal methods.&lt;/p&gt;
 &lt;p&gt;I went into the class believing that formal verification is the future — the only solution to a world of software ridden with bugs and security issues. But after recent events and a semester of trying to apply formal methods, I’m a serious skeptic. In this post, I’ll discuss why I think formal verification has a long way to go — and why it just doesn’t work right now.&lt;/p&gt;
@@ -393,8 +418,7 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
     <summary type="html">&lt;p&gt;The last of the original crypto challenges… here we go!&lt;/p&gt;
-&lt;h2 id=&quot;challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-41-implement-unpadded-message-recovery-oracle&quot;&gt;&lt;/a&gt; Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;
-&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
+&lt;h2 id=&quot;Challenge-41-Implement-unpadded-message-recovery-oracle&quot;&gt;&lt;a href=&quot;#Challenge-41-Implement-unpadded-message-recovery-oracle&quot; class=&quot;headerlink&quot; title=&quot;Challenge 41 Implement unpadded message recovery oracle&quot;&gt;&lt;/a&gt;Challenge 41 Implement unpadded message recovery oracle&lt;/h2&gt;&lt;p&gt;Unpadded RSA is homomorphic, meaning that, if operations like multiplication and addition are carried out on ciphertext, it is as if the same operation were applied to the plaintext.&lt;/p&gt;
 &lt;p&gt;&lt;escape&gt;</summary>
     
     
@@ -414,8 +438,8 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     <updated>2024-08-29T06:03:14.438Z</updated>
     
     
-    <summary type="html">&lt;p&gt;&lt;strong&gt;Update 5/5/17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot; /&gt;&lt;/p&gt;
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Update 5&amp;#x2F;5&amp;#x2F;17:&lt;/strong&gt; &lt;strong&gt;We qualified to DEF CON CTF 2017!!!!&lt;/strong&gt; We just got the email today! Congrats to everyone from Lab RATs, TechSec, and RPISEC that competed. Vegas, here we come!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2017/05/defcon2.PNG&quot; alt=&quot;DEF CON EMAIL!!!&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;escape&gt;</summary>
     
     
@@ -436,7 +460,7 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
     <summary type="html">&lt;p&gt;Well, this was my first foray into the world of Rust, the systems language that is Mozilla’s precious baby. And what better way to learn this hip new language than to write an MITScript bytecode interpreter for Computer Language Engineering?&lt;/p&gt;
-&lt;p&gt;Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating/interpreting MITScript bytecode.&lt;/p&gt;
+&lt;p&gt;Rust was not gentle for this first-time developer. It does so much to protect you that my first attempt writing a few hundred lines of code resulted in the same number of compiler errors, and I needed a lot of help from my team to just get anything to compile. For this reason, it’s not great for iterating quickly if you aren’t very experienced already. But, I’m licking my chops at the fact that the end result will be much safer, and hopefully faster, than our classmates’ C++ compilers. This post will be about the struggles I encountered as a Rust newbie, as well as the fun of generating&amp;#x2F;interpreting MITScript bytecode.&lt;/p&gt;
 &lt;p&gt;&lt;escape&gt;</summary>
     
     
@@ -445,30 +469,6 @@ Thanks to Vlad Brown and Drawings Team for &lt;a href=&quot;http://howtorecover.
     
     
     <category term="6.035" scheme="http://raywang.tech/tags/6-035/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matasano Crypto Challenges, Set 5</title>
-    <link href="http://raywang.tech/2017/04/21/set5-writeup/"/>
-    <id>http://raywang.tech/2017/04/21/set5-writeup/</id>
-    <published>2017-04-21T07:00:00.000Z</published>
-    <updated>2024-08-29T06:03:14.441Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;This set was surprisingly easy, actually. The book &lt;a href=&quot;http://www.springer.com/us/book/9783642041006&quot;&gt;Understanding Cryptography&lt;/a&gt; by Paar &amp;amp; Pelzl is an excellent intro to the basic maths needed for crypto — namely, the group theory and number theory necessary for RSA and Diffie-Hellman.&lt;/p&gt;
-&lt;p&gt;Let’s dive in!&lt;/p&gt;
-&lt;h2 id=&quot;challenge-33-implement-diffie-hellman&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#challenge-33-implement-diffie-hellman&quot;&gt;&lt;/a&gt; Challenge 33 Implement Diffie-Hellman&lt;/h2&gt;
-&lt;p&gt;Diffie-Hellman is a remarkably simple algorithm for two parties to jointly compute a shared secret key that may be used, for example, as a key for symmetric encryption.&lt;/p&gt;
-&lt;p&gt;Alice and Bob agree on an integer group of prime &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, with a generator &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;g&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.03588em;&quot;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; raised to every power in &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0...&lt;/mn&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;{0...p-1}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8388800000000001em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mbin&quot;&gt;−&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2222222222222222em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, taken &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mo lspace=&quot;0.22em&quot; rspace=&quot;0.22em&quot;&gt;&lt;mrow&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;m&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;o&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;d&lt;/mi&gt;&lt;/mrow&gt;&lt;/mo&gt;&lt;mtext&gt; &lt;/mtext&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;&#92;bmod p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.8888799999999999em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.05555555555555555em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathrm&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;mord mathrm&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;mord mathrm&quot;&gt;d&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.05555555555555555em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;, can produce every element of &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;p&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.625em;vertical-align:-0.19444em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;p&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;. Hence, it is called a “generator” of the group.&lt;/p&gt;
-&lt;p&gt;&lt;escape&gt;</summary>
-    
-    
-    
-    <category term="Crypto" scheme="http://raywang.tech/categories/Crypto/"/>
-    
-    
-    <category term="cryptopals" scheme="http://raywang.tech/tags/cryptopals/"/>
     
   </entry>
   

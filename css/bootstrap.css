@@ -1624,10 +1624,13 @@ pre code {
 
 table {
   background-color: transparent;
+  table-layout: fixed;
 }
 
 th {
-  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
 }
 
 .table {
