@@ -128,7 +128,12 @@
 
   $('table').each(function(i) {
     $(this).addClass('table')
+    $(this).addClass('table-bordered')
     $(this).wrap( "<div class='table-responsive'></div>");
+  });
+
+  $('thead').each(function(i) {
+    $(this).css('background-color', "#F5F5F5")
   });
 
   // Mobile nav
