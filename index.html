@@ -188,7 +188,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2024/10/04/Some-Notes-on-Reading-Chinese-Literary-Fiction/">Some Notes on Reading Chinese Classic Literary Fiction</a>
+      <a class="article-title" href="/2024/10/04/Some-Notes-on-Reading-Chinese-Literary-Fiction/">Learning to Read Chinese Classic Literary Fiction</a>
     </h1>
   
 
@@ -206,7 +206,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Blah blah</p>
+        <p>As part of my obsession with the seminal Chinese blockbuster game <em>Black Myth: Wukong</em>, I've spent countless hours studying Chinese literature, language, and culture to better appreciate the rich lore and context of the story. This post serves as a record of my learning process, as well as a guide for other novice language learners seeking to immerse themselves in the refined beauty of Chinese literature.</p>
         <!-- As part of my obsession with the seminal Chinese blockbuster game Black Myth: Wukong, I’ve spent countless hours studying Chinese literature, language, and culture to better appreciate the rich lor......  -->
         <p class="article-more-link">
           <a href="/2024/10/04/Some-Notes-on-Reading-Chinese-Literary-Fiction/#more">Read More</a>
@@ -310,7 +310,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Since quarantine days, I’ve picked up <em>a lot</em> of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start… </p>
+        <p>Since quarantine days, I’ve picked up <em>a lot</em> of hobbies. And if you know me, you know I’m not overselling myself — try surfing, archery, sporting clays, golf, coral reef aquarium-keeping, climbing, skateboarding, skiing, and travel for a start…</p>
 <p>Why? Full reasons unclear, but at least a combination of pure impulsiveness and a desire to challenge myself and become a more versatile person.</p>
 <p>Along the way, I’ve survived some self-discovery and learned a lot about the <em>process of learning</em>. This post should hopefully spark some interest in my diverse activities and provide insights on how to pick up and enjoy new skills.</p>
 <p><escape>
@@ -636,7 +636,8 @@ As has been discussed in Ret2Systems’ great blog post, t......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><em>The Three-Body Problem</em> trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously <a href="https://thetech.com/2016/10/06/deaths-end-review">extolled</a> as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, <a href="https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101"><em>Death’s End</em></a>.<br><escape>
+        <p><em>The Three-Body Problem</em> trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously <a href="https://thetech.com/2016/10/06/deaths-end-review">extolled</a> as one of the greatest sci-fi epics of all time. This short story was written in 2016, and is based off of events in the spectacular final book, <a href="https://www.amazon.com/Deaths-End-Remembrance-Earths-Past/dp/0765377101"><em>Death’s End</em></a>.<br />
+<escape>
         <!-- The Three-Body Problem trilogy, by brilliant Chinese author Cixin Liu, is a triumph of human creativity that I’ve previously extolled as one of the greatest sci-fi epics of all time. This short sto......  -->
         <p class="article-more-link">
           <a href="/2018/05/27/Sunset-of-Eden-Sci-Fi-Short-Story-based-on-The-Three-Body-Problem/#more">Read More</a>
@@ -688,12 +689,13 @@ As has been discussed in Ret2Systems’ great blog post, t......  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>Category:</strong> pwnable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Points:</strong> 124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Solves:</strong> 49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame"><strong>Challenge files</strong></a></p>
+        <p><strong>Category:</strong> pwnable      |      <strong>Points:</strong> 124      |      <strong>Solves:</strong> 49      |      <a href="https://github.com/wangray/ctf_dump/tree/master/DEFCONQ2018/itsame"><strong>Challenge files</strong></a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; checksec mario</span><br><span class="line">[*] &#x27;/home/raywang/ctf/DEFCONQ2018/mario&#x27;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      PIE enabled</span><br></pre></td></tr></table></figure>
-
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. <a href="https://fortenf.org/e/">fortenforge</a>, <a href="https://qzqxq.wordpress.com/">qzqxq</a>, and I combined to reverse the binary and discover the 3 separate vulnerabilities.</p>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+<p>This is a classic C++ menu challenge that features a UAF and heap overflow with a vtable pointer overwrite. The main heap techniques involve using a free unsorted bin chunk to leak a libc and heap address, as well as some feng shui to place an object in an overflow-able region on the heap. <a href="https://fortenf.org/e/">fortenforge</a>, <a href="https://qzqxq.wordpress.com/">qzqxq</a>, and I combined to reverse the binary and discover the 3 separate vulnerabilities.</p>
 <p><escape>
-        <!-- Category: pwnable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Points: 124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solves: 49&nbsp;&nbsp;&......  -->
+        <!-- Category: pwnable      |      Points: 124      |      Solves: 49      |      Challenge files
+1234567&gt; checksec mario[*] &#x27;/home/raywang/ctf/DEFCONQ2018/mario&#x27;    Arch:     amd64-64-litt......  -->
         <p class="article-more-link">
           <a href="/2018/05/14/DEF-CON-Quals-2018-It-s-a-Me/#more">Read More</a>
         </p>

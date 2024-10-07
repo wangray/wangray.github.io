@@ -126,6 +126,11 @@
 //     $('.justified-gallery:not(#custom)').justifiedGallery(options);
 //   }
 
+  $('table').each(function(i) {
+    $(this).addClass('table')
+    $(this).wrap( "<div class='table-responsive'></div>");
+  });
+
   // Mobile nav
   var $container = $('#container'),
     isMobileNavAnim = false,

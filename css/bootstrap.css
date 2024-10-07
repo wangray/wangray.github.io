@@ -1635,6 +1635,8 @@ th {
 
 .table {
   margin-bottom: 20px;
+  width: 80%;
+  word-wrap: break-word;
 }
 
 .table > thead > tr > th,
@@ -1819,7 +1821,7 @@ table th[class*="col-"] {
   .table-responsive > .table > thead > tr > td,
   .table-responsive > .table > tbody > tr > td,
   .table-responsive > .table > tfoot > tr > td {
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
   .table-responsive > .table-bordered {
     border: 0;
